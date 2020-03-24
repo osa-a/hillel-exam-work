@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>NOVAS</title>
 </head>
 
 <body>
     <header>
-        <nav>
+        <nav class="navigation">
             <!-- нужно менять путь href на каждой странице, на -->
             <!-- ../index.html ибо страницы лежат в другой папке -->
             <!-- и у img src -->
-            <a class="logo" href="index.html"><img src="img/logo/white-logo.jpg" alt="NOVAS"></a>
-            <ul class="navigation">
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
+            <a class="navigation-logo" href="index.html"><img src="img/logo/white-logo.png" alt="NOVAS"></a>
+            <ul class="navigation-menu">
+                <li class="nav-item">HOME</li>
+                <li class="nav-item">CATEGORIES</li>
+                <li class="nav-item">SHOP</li>
+                <li class="nav-item">CART</li>
             </ul>
-            <button></button>
+            <button class="cart-button"></button>
         </nav>
     </header>
 
@@ -32,14 +32,23 @@
 
 
 
-    <footer>
-        <div>
-            <a href=""></a>
-            <div></div>
+    <footer class="footer">
+        <div class="description-block">
+            <a class="footer-logo" href="index.html"><img src="img/logo/black-logo.png" alt="NOVAS"></a>
+            <div class="description">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.Ipsum.
+            </div>
         </div>
-        <div>
-            <p></p>
-            <div></div>
+        <div class="contacts-block">
+            <h3 class="contact-header">Contact</h3>
+            <div class="contact-info">
+                <p class="contact contact-adress"> No 40 Baria Sreet 133/2</p>
+                <p class="contact contact-phone"> + (156) 1800-366-6666</p>
+                <p class="contact contact-mail">Eric-82@example.com</p>
+                <a class="contact contact-web" href="index.html">www.novas.com</a>
+            </div>
         </div>
     </footer>
 </body>
