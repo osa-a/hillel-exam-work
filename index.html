@@ -10,47 +10,68 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navigation">
-            <!-- нужно менять путь href на каждой странице, на -->
-            <!-- ../index.html ибо страницы лежат в другой папке -->
-            <!-- и у img src -->
-            <a class="navigation-logo" href="index.html"><img src="img/logo/white-logo.png" alt="NOVAS"></a>
-            <ul class="navigation-menu">
-                <li class="nav-item">HOME</li>
-                <li class="nav-item">CATEGORIES</li>
-                <li class="nav-item">SHOP</li>
-                <li class="nav-item">CART</li>
-            </ul>
-            <button class="cart-button"></button>
-        </nav>
-    </header>
-
-
-
-    <main></main>
-
-
-
-    <footer class="footer">
-        <div class="description-block">
-            <a class="footer-logo" href="index.html"><img src="img/logo/black-logo.png" alt="NOVAS"></a>
-            <div class="description">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book.Ipsum.
+    <div class="wraper">
+        <header>
+            <nav class="navigation">
+                <a class="navigation-logo" href="index.html"><img src="img/logo/white-logo.png" alt="NOVAS"></a>
+                <ul class="navigation-menu">
+                    <li class="nav-item">
+                        <a href="index.html">HOME</a></li>
+                    <div class="dropdown nav-item category-item">
+                        <li>
+                            <a href="#">CATEGORIES</a>
+                        </li>
+                        <div class="dropdown-content">
+                            <a class="category-link" href="#">Decoration</a> <!-- link to decoration category-->
+                            <a class="category-link" href="#">Furniture</a> <!-- link to furniture category-->
+                        </div>
+                    </div>
+                    <li class="nav-item">
+                        <a href="#">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">CART</a>
+                    </li>
+                </ul>
+                <button class="cart-button" type="button"></button>
+            </nav>
+        </header>
+        <main>
+            <section class="homepage-head">
+                <div class="head-text-block">
+                    <h1 class="main-header">Interior Decor</h1>
+                    <h2 class="header-description">LATEST COLLECTION 2020</h2>
+                    <button type="button" class="head-buy-button">BUY</button> <!-- link to decoration category-->
+                </div>
+            </section>
+            <section class="banner-head">
+                <div class="banner-info">
+                    <h2 class="banner-text">Collection of Furniture</h2>
+                    <button class="banner-button" type="button">SHOP NOW</button> <!-- link to furniture category-->
+                </div>
+                <img src="img/homepage/2.png" alt="banner">
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="description-block">
+                <a class="footer-logo" href="index.html"><img src="img/logo/black-logo.png" alt="NOVAS"></a>
+                <div class="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                    galley of type and scrambled it to make a type specimen book.Ipsum.
+                </div>
             </div>
-        </div>
-        <div class="contacts-block">
-            <h3 class="contact-header">Contact</h3>
-            <div class="contact-info">
-                <p class="contact contact-adress"> No 40 Baria Sreet 133/2</p>
-                <p class="contact contact-phone"> + (156) 1800-366-6666</p>
-                <p class="contact contact-mail">Eric-82@example.com</p>
-                <a class="contact contact-web" href="index.html">www.novas.com</a>
+            <div class="contacts-block">
+                <h3 class="contact-header">Contact</h3>
+                <div class="contact-info">
+                    <p class="contact contact-adress"> No 40 Baria Sreet 133/2</p>
+                    <p class="contact contact-phone"> + (156) 1800-366-6666</p>
+                    <p class="contact contact-mail">Eric-82@example.com</p>
+                    <a class="contact contact-web" href="index.html">www.novas.com</a>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 </body>
 
 </html>

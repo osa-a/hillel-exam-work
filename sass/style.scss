@@ -6,7 +6,10 @@
 @include listReset();
 @include linkSet();
 @include headingReset();
-@include buttonSet();
 
-@import 'navigation';
-@import 'footer';
+@import './common/navigation';
+@import './homepage/head';
+@import './homepage/banner';
+@import './homepage/shop';
+@import './homepage/discount';
+@import './common/footer';

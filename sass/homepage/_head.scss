@@ -1,0 +1,48 @@
+.homepage-head{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background-image: url('../../img/homepage/1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 276px 115px 272px;
+}
+
+.head-text-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-header{
+    font-family: 'OpenSans Bold', Helvetica, sans-serif;
+    font-size: 100px;
+    line-height: 100px;
+    color: $mainDarkClr;
+    margin-bottom: 50px;
+}
+
+.header-description{
+    font-family: 'OpenSans Regular', Helvetica, sans-serif;;
+    font-size: 30px;
+    line-height: 30px;
+    color: $hidingClr;
+    margin-bottom: 37px;
+}
+
+.head-buy-button{
+    font-family: 'OpenSans Regular', Helvetica, sans-serif;;
+    font-size: 30px;
+    line-height: 30px;
+    color: $mainDarkClr;
+    background-color: transparent;
+    padding: 23px 45px;
+    border: 2px solid $mainDarkClr;
+    cursor: pointer;
+    &:hover{
+        border: 2px solid transparent;
+        background-color: $accentClr;
+        color: $mainLightClr;
+    }
+}

@@ -24,6 +24,7 @@
   
   @mixin linkSet {
     a {
+      color: $mainDarkClr;
       text-decoration: none;
       cursor: pointer;
     }
@@ -38,13 +39,5 @@
     h6 {
       margin-top: 0;
       margin-bottom: 0;
-    }
-  }
-  
-  @mixin buttonSet {
-    .button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
     }
   }
