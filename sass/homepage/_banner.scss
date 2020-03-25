@@ -1,0 +1,39 @@
+.banner-head {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 185px;
+  padding-bottom: 185px;
+}
+
+.banner-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 120px;
+}
+
+.banner-text {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 72px;
+  line-height: 72px;
+  max-width: 420px;
+  color: $mainDarkClr;
+  margin-bottom: 105px;
+  text-align: right;
+}
+
+.banner-button {
+  width: 185px;
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+  border: 2px solid $mainDarkClr;
+  background-color: transparent;
+  padding: 23px 20px;
+  cursor: pointer;
+  &:hover{
+      background-color: $bannerAccentClr;
+      border: 2px solid transparent;
+      color: $mainLightClr;
+  }
+}

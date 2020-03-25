@@ -1,16 +1,17 @@
+.wrapepr{
+  width: 1920px;
+  margin: 0 auto;
+}
+
 .navigation {
   display: flex;
+  justify-content: space-around;
   padding: 50px 75px;
   border-bottom: 1px solid $mainDarkClr;
 }
 
-.navigation-logo {
-  margin-right: 465px;
-}
-
 .navigation-menu {
   display: flex;
-  margin-right: 610px;
 }
 
 .navigation-menu {

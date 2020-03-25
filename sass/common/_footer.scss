@@ -1,50 +1,48 @@
-.footer{
-    display: flex;
-    background-color: $footerBackround;
-    padding-top: 85px;
-    padding-bottom: 90px;
-    padding-left: 340px;
-    padding-right: 370px;
+.footer {
+  display: flex;
+  background-color: $footerBackround;
+  justify-content: space-around;
+  padding-top: 85px;
+  padding-bottom: 90px;
 }
 
-.description-block{
-    display: flex;
-    flex-direction: column;
-    margin-right: 560px;
+.description-block {
+  display: flex;
+  flex-direction: column;
 }
 
-.footer-logo{
-    margin-bottom: 30px;
+.footer-logo {
+  margin-bottom: 30px;
 }
 
-.description{
-    width: 453px;
-    font-family: "OpenSans Regular", Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 30px;
-    color: $mainLightClr;
+.description {
+  width: 453px;
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 30px;
+  color: $mainLightClr;
 }
 
-.contact-block{
-    display: flex;
-    flex-direction: column;
+.contact-block {
+  display: flex;
+  flex-direction: column;
 }
 
-.contact-header{
-    font-family: "OpenSans Regular", Helvetica, sans-serif;
-    font-size: 30px;
-    line-height: 30px;
-    font-weight: 400;
-    color: $mainLightClr;
-    margin-bottom: 32px;
+.contact-header {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 400;
+  color: $mainLightClr;
+  margin-bottom: 32px;
 }
 
-.contact{
-    font-family: "OpenSans Regular", Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 16px;
-    color: $mainLightClr;
-    &:not(:last-child){
-        margin-bottom: 22px;
-    }
+.contact {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  color: $mainLightClr;
+  &:not(:last-child) {
+    margin-bottom: 22px;
+  }
 }
