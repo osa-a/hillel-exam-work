@@ -36,8 +36,9 @@
   border: none;
   background-color: transparent;
   position: relative;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 22px;
+  padding: 0;
   &::before {
     position: absolute;
     content: "";
