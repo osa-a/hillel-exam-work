@@ -1,0 +1,299 @@
+@charset "UTF-8";
+/*! ╨╕╨╖╨╝╨╡╨╜╨╡╨╜ url ╤И╤А╨╕╤Д╤В╨░
+    ╨╕ ╨╡╨│╨╛ ╨╜╨░╨╖╨▓╨░╨╜╨╕╨╡. ╤З╤В╨╛ ╨▒╤Л ╨╛╨╜╨╛ ╨▒╤Л╨╗╨╛ ╨▒╨╛╨╗╨╡╨╡ ╤Г╨╖╨╜╨░╨▓╨░╨╡╨╝╤Л╨╝ */
+@font-face {
+  font-family: 'OpenSans Regular';
+  src: url("../fonts/OpenSans-Regular.woff2") format("woff2"), url("../fonts/OpenSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'OpenSans Light';
+  src: url("../fonts/OpenSans-Light.woff2") format("woff2"), url("../fonts/OpenSans-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+@font-face {
+  font-family: 'OpenSans Bold';
+  src: url("../fonts/OpenSans-Bold.woff2") format("woff2"), url("../fonts/OpenSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+/*   MAIN CLR  */
+/*   ACCENT CLR   */
+/*   FONT SIZES   */
+p {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+* {
+  box-sizing: border-box; }
+
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0; }
+
+li {
+  list-style-type: none;
+  padding-left: 0; }
+
+a {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.wrapepr {
+  width: 1920px;
+  margin: 0 auto; }
+
+.navigation {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 75px;
+  border-bottom: 1px solid #000000; }
+
+.navigation-menu {
+  display: flex; }
+
+.navigation-menu {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 24px; }
+
+.nav-item {
+  border-bottom: 2px solid transparent;
+  cursor: pointer; }
+  .nav-item:not(:last-child) {
+    margin-right: 72px; }
+  .nav-item:hover:not(div) {
+    border-bottom: 2px solid #000000; }
+
+.cart-button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  width: 15px;
+  height: 22px;
+  padding: 0; }
+  .cart-button::before {
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 22px;
+    top: 0;
+    left: 0;
+    background-image: url("../img/icon/cart.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+.category-item {
+  position: relative; }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #ffffff;
+  min-width: 145px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; }
+
+.category-link {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  color: black;
+  padding: 20px 15px;
+  display: flex; }
+  .category-link:hover {
+    background-color: #dddddd; }
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column; }
+
+.footer {
+  display: flex;
+  background-color: #333333;
+  justify-content: space-around;
+  padding-top: 85px;
+  padding-bottom: 90px; }
+
+.description-block {
+  display: flex;
+  flex-direction: column; }
+
+.footer-logo {
+  margin-bottom: 30px; }
+
+.description {
+  width: 453px;
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 30px;
+  color: #ffffff; }
+
+.contact-block {
+  display: flex;
+  flex-direction: column; }
+
+.contact-header {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 32px; }
+
+.contact {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  color: #ffffff; }
+  .contact:not(:last-child) {
+    margin-bottom: 22px; }
+
+/* Styles for dropdown cart. Lets put them to navigation.scss*/
+.cart-button {
+  height: 100%;
+  position: relative; }
+
+.dropdown-order {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 390px;
+  max-height: 400px;
+  min-height: 100%;
+  width: 300px;
+  padding: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  font-family: "OpenSans Regular", Helvetica, sans-serif; }
+  .dropdown-order-content {
+    flex: 1 0 auto; }
+  .dropdown-order-title {
+    font-size: 20px;
+    padding-bottom: 25px;
+    font-weight: 500; }
+  .dropdown-order-footer {
+    flex: 0 0 auto; }
+  .dropdown-order-total {
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 15px; }
+  .dropdown-order-button {
+    padding: 15px 40px 15px 40px;
+    cursor: pointer;
+    border: 1px solid #333;
+    outline: none; }
+    .dropdown-order-button:hover {
+      background-color: #333333;
+      color: #ffffff; }
+
+/* finish */
+.main {
+  width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 30px;
+  padding-bottom: 75px; }
+
+.cart-title {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 36px;
+  padding-top: 110px;
+  padding-bottom: 110px;
+  background-image: url("../img/homepage/cartbg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.cart-body {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 30px; }
+
+.billing {
+  flex-grow: 1;
+  padding-right: 100px; }
+  .billing-title {
+    font-size: 20px;
+    padding-bottom: 24px;
+    font-weight: 500; }
+  .billing-button {
+    text-align: center; }
+    .billing-button-body {
+      padding: 20px 40px 20px 40px;
+      cursor: pointer;
+      border: 1px solid #333;
+      font-family: "OpenSans Regular", Helvetica, sans-serif;
+      outline: none; }
+      .billing-button-body:hover {
+        background-color: #333333;
+        color: #ffffff; }
+
+.input-text {
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 0 0 9px;
+  margin-bottom: 33px;
+  font-size: 15px;
+  font-family: "OpenSans Regular", Helvetica, sans-serif; }
+  .input-text::placeholder {
+    color: #333; }
+
+.half {
+  display: flex; }
+
+.input-half {
+  flex-grow: 1; }
+  .input-half:first-child {
+    margin-right: 30px; }
+
+.input-full {
+  width: 100%; }
+
+.textarea-body {
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 0 0 9px;
+  margin-bottom: 33px;
+  font-size: 15px;
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  width: 100%; }
+  .textarea-body::placeholder {
+    color: #333; }
+
+.radio-payment {
+  line-height: 30px;
+  margin-bottom: 40px;
+  font-size: 15px;
+  font-family: "OpenSans Regular", Helvetica, sans-serif; }
+
+.order {
+  flex-grow: 1; }
+  .order-title {
+    font-size: 20px;
+    padding-bottom: 25px;
+    font-weight: 500; }
+  .order-total {
+    padding-top: 25px;
+    font-weight: 500;
+    font-size: 15px;
+    font-family: "OpenSans Regular", Helvetica, sans-serif; }
+
+/*# sourceMappingURL=cartStyle.css.map */
