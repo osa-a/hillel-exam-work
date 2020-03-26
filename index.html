@@ -30,10 +30,22 @@
                         <a href="#">SHOP</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">CART</a>
+                        <a href="pages/cart.html">CART</a>
                     </li>
                 </ul>
-                <button class="cart-button" type="button"></button>
+                <!-- * CART-->
+                <div class="cart-button">
+                    <section class="dropdown-order">
+                        <div class="dropdown-order-content">
+                            <div class="dropdown-order-title">Your order</div>
+                            <div class="dropdown-order-items" id="dropdownOrderItems">Items written on JS</div>
+                        </div>
+                        <div class="dropdown-order-footer">
+                            <div class="dropdown-order-total">Total:</div>
+                            <a href="cart.html" class="dropdown-order-button">Cart</a>
+                        </div>
+                    </section>
+                </div>
             </nav>
         </header>
         <main>
@@ -126,6 +138,9 @@
             </div>
         </footer>
     </div>
+    <script src="js/Item.js"></script>
+    <script src="js/homepage/shopStringFunctions.js"></script>
+    <script src="js/homepage/main.js"></script>
 </body>
 
 </html>

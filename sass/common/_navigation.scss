@@ -1,4 +1,4 @@
-.wrapepr{
+.wrapepr {
   width: 1920px;
   margin: 0 auto;
 }
@@ -57,6 +57,8 @@
   position: relative;
 }
 
+/*   DROPDOWN MENU   */
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -83,4 +85,49 @@
 .dropdown:hover .dropdown-content {
   display: flex;
   flex-direction: column;
+}
+
+/*   DROPDOWN CART   */
+
+.dropdown-order {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 390px;
+  max-height: 400px;
+  min-height: 100%;
+  width: 300px;
+  padding: 30px;
+  background-color: $mainLightClr;
+  border: 1px solid black;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  &-content {
+    flex: 1 0 auto;
+  }
+  &-title {
+    font-size: 20px;
+    padding-bottom: 25px;
+    font-weight: 500;
+  }
+  &-footer {
+    flex: 0 0 auto;
+  }
+  &-total {
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  &-button {
+    padding: 15px 40px 15px 40px;
+    cursor: pointer;
+    border: 1px solid #333;
+    outline: none;
+    &:hover {
+      background-color: $footerBackround;
+      color: $mainLightClr;
+    }
+  }
 }

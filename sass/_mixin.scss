@@ -1,61 +1,61 @@
 @mixin mainSet {
-    p {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  
-    * {
-      box-sizing: border-box;
-    }
-  }
-  
-  @mixin listReset {
-    ul {
-      margin-top: 0;
-      margin-bottom: 0;
-      padding-left: 0;
-    }
-  
-    li {
-      list-style-type: none;
-      padding-left: 0;
-    }
-  }
-  
-  @mixin linkSet {
-    a {
-      color: $mainDarkClr;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-  
-  @mixin headingReset {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
-  @mixin backgroundSet{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  * {
+    box-sizing: border-box;
+  }
 }
 
-@mixin buttonSet{
+@mixin listReset {
+  ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+
+  li {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
+
+@mixin linkSet {
+  a {
+    color: $mainDarkClr;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+@mixin headingReset {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+@mixin backgroundSet {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin buttonSet {
   background-color: transparent;
   border: 2px solid $mainDarkClr;
   color: $mainDarkClr;
   cursor: pointer;
 }
 
-@mixin setFont($size){
+@mixin setFont($size) {
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: $size;
   line-height: $size;

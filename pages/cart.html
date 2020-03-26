@@ -1,121 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/normalize.css">
-        <link rel="stylesheet" href="../sass/cartStyle.css">
-        <title>CART</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <title>CART</title>
+</head>
 
-    <body>
-        <div class="wraper">
-            <header>
-                <nav class="navigation">
-                    <a class="navigation-logo" href="index.html"><img src="../img/logo/white-logo.png" alt="NOVAS"></a>
-                    <ul class="navigation-menu">
-                        <li class="nav-item">
-                            <a href="../index.html">HOME</a></li>
-                        <div class="dropdown nav-item category-item">
-                            <li>
-                                <a href="#">CATEGORIES</a>
-                            </li>
-                            <div class="dropdown-content">
-                                <a class="category-link" href="#">Decoration</a> <!-- link to decoration category-->
-                                <a class="category-link" href="#">Furniture</a> <!-- link to furniture category-->
+<body>
+    <div class="wraper">
+        <header>
+            <nav class="navigation">
+                <a class="navigation-logo" href="../index.html"><img src="../img/logo/white-logo.png" alt="NOVAS"></a>
+                <ul class="navigation-menu">
+                    <li class="nav-item">
+                        <a href="../index.html">HOME</a></li>
+                    <div class="dropdown nav-item category-item">
+                        <li>
+                            <a href="#">CATEGORIES</a>
+                        </li>
+                        <div class="dropdown-content">
+                            <a class="category-link" href="#">Decoration</a> <!-- link to decoration category-->
+                            <a class="category-link" href="#">Furniture</a> <!-- link to furniture category-->
+                        </div>
+                    </div>
+                    <li class="nav-item">
+                        <a href="#">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html">CART</a>
+                    </li>
+                </ul>
+                <!-- * CART-->
+                <div class="cart-button">
+                    <section class="dropdown-order">
+                        <div class="dropdown-order-content">
+                            <div class="dropdown-order-title">Your order</div>
+                            <div class="dropdown-order-items" id="dropdownOrderItems">Items written on JS</div>
+                        </div>
+                        <div class="dropdown-order-footer">
+                            <div class="dropdown-order-total">Total:</div>
+                            <a href="cart.html" class="dropdown-order-button">Cart</a>
+                        </div>
+                    </section>
+                </div>
+            </nav>
+        </header>
+        <main class="main">
+            <section class="page-head">
+                <div class="cart-title">Order</div>
+            </section>
+            <section class="cart-body wrapper">
+                <section class="billing">
+                    <div class="billing-title">Billing details</div>
+                    <form name="orderForm">
+                        <div class="half">
+                            <input type="text" name="name" placeholder="First Name *" class="input-text input-half">
+                            <input type="text" name="surname" placeholder="Second Name *" class="input-text input-half">
+                        </div>
+                        <div>
+                            <input type="text" name="address" placeholder="Address *" class="input-text input-full">
+                        </div>
+                        <div>
+                            <input type="text" name="city" placeholder="Town/City *" class="input-text input-full">
+                        </div>
+                        <div>
+                            <input type="text" name="country" placeholder="Country *" class="input-text input-full">
+                        </div>
+                        <div>
+                            <input type="text" name="phone" placeholder="Phone *" class="input-text input-full">
+                        </div>
+                        <div>
+                            <input type="email" name="email" placeholder="Email Address *"
+                                class="input-text input-full">
+                        </div>
+                        <div class="textarea">
+                            <textarea placeholder="Note about your order, eg. special notes for delivery."
+                                class="textarea-body"></textarea>
+                        </div>
+                        <div class="radio-payment">
+                            <div>
+                                <input type="radio" name="payment" id="orderBank">
+                                <label for="orderBank">Direct bank transfer</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="payment" id="orderCheck">
+                                <label for="orderCheck">Check payments</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="payment" id="oderCash">
+                                <label for="oderCash">Cash on delivery</label>
                             </div>
                         </div>
-                        <li class="nav-item">
-                            <a href="#">SHOP</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="card.html">CART</a>
-                        </li>
-                    </ul>
-                    <button class="cart-button" type="button"></button>
-                    <section class="dropdown-order">
-                        <div class="order-title">Your order</div>
-                        <div class="order-item" id="orderItem">Items written on JS</div>
-                        <div class="order-total" id="orderTotal">Total:</div>
-                    </section>
-                </nav>
-            </header>
-            <main class="main">
-                <div class="cart-title">Order</div>
-                <section class="cart-body">
-                    <section class="billing">
-                        <div class="billing-title">Billing details</div>
-                        <form name="orderForm">
-                            <div class="half">
-                                <input type="text" name="name" placeholder="First Name *" class="input-text input-half">
-                                <input type="text" name="surname" placeholder="Second Name *" class="input-text input-half">
-                            </div>
-                            <div>
-                                <input type="text" name="address" placeholder="Address *" class="input-text input-full">
-                            </div>
-                            <div>
-                                <input type="text" name="city" placeholder="Town/City *" class="input-text input-full">
-                            </div>
-                            <div>
-                                <input type="text" name="country" placeholder="Country *" class="input-text input-full">
-                            </div>
-                            <div>
-                                <input type="text" name="phone" placeholder="Phone *" class="input-text input-full">
-                            </div>
-                            <div>
-                                <input type="email" name="email" placeholder="Email Address *" class="input-text input-full">
-                            </div>
-                            <div class="textarea">
-                                <textarea placeholder="Note about your order, eg. special notes for delivery." class="textarea-body"></textarea>
-                            </div>
-                            <div class="radio-payment">
-                                <div>
-                                    <input type="radio" name="payment" id="orderBank">
-                                    <label for="orderBank">Direct bank transfer</label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="payment" id="orderCheck">
-                                    <label for="orderCheck">Check payments</label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="payment" id="oderCash">
-                                    <label for="oderCash">Cash on delivery</label>
-                                </div>
-                            </div>
-                            <div class="billing-button">
-                                <button type="button" class="billing-button-body">Place Order</button>
-                            </div>
-                        </form>
-                    </section>
-                    <section class="order">
-                        <div class="order-title">Your order</div>
-                        <div class="order-item" id="orderItem">Items written on JS</div>
-                        <div class="order-total" id="orderTotal">Total:</div>
-                    </section>
+                        <div class="billing-button">
+                            <button type="button" class="billing-button-body">Place Order</button>
+                        </div>
+                    </form>
                 </section>
-            </main>
-            <footer class="footer">
-                <div class="description-block">
-                    <a class="footer-logo" href="index.html"><img src="../img/logo/black-logo.png" alt="NOVAS"></a>
-                    <div class="description">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                        a
-                        galley of type and scrambled it to make a type specimen book.Ipsum.
-                    </div>
+                <section class="order">
+                    <div class="order-title">Your order</div>
+                    <div class="order-item" id="orderItem">Items written on JS</div>
+                    <div class="order-total" id="orderTotal">Total:</div>
+                </section>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="description-block">
+                <a class="footer-logo" href="../index.html"><img src="../img/logo/black-logo.png" alt="NOVAS"></a>
+                <div class="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+                    a
+                    galley of type and scrambled it to make a type specimen book.Ipsum.
                 </div>
-                <div class="contacts-block">
-                    <h3 class="contact-header">Contact</h3>
-                    <div class="contact-info">
-                        <p class="contact contact-adress"> No 40 Baria Sreet 133/2</p>
-                        <p class="contact contact-phone"> + (156) 1800-366-6666</p>
-                        <p class="contact contact-mail">Eric-82@example.com</p>
-                        <a class="contact contact-web" href="index.html">www.novas.com</a>
-                    </div>
+            </div>
+            <div class="contacts-block">
+                <h3 class="contact-header">Contact</h3>
+                <div class="contact-info">
+                    <p class="contact contact-adress"> No 40 Baria Sreet 133/2</p>
+                    <p class="contact contact-phone"> + (156) 1800-366-6666</p>
+                    <p class="contact contact-mail">Eric-82@example.com</p>
+                    <a class="contact contact-web" href="../index.html">www.novas.com</a>
                 </div>
-            </footer>
-        </div>
-    </body>
+            </div>
+        </footer>
+    </div>
+</body>
 
 </html>
