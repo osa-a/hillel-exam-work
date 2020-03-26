@@ -16,19 +16,13 @@
     cursor: pointer;
 }
 
-.card-description {
-  font-family: "OpenSans Regular", Helvetica, sans-serif;
-}
-
 .card-item-name {
-  font-size: 18px;
-  line-height: 18px;
+  @include  setFont($eighteenSize);
   margin-bottom: 12px;
 }
 
 .card-price {
-  font-size: 14px;
-  line-height: 14px;
+  @include  setFont($fourteenSize);
 }
 
 .card-cart-button {
@@ -48,8 +42,6 @@
     top: 0;
     left: 0;
     background-image: url("../img/icon/cart.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    @include backgroundSet();
   }
 }

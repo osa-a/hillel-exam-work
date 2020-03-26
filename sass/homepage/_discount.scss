@@ -1,0 +1,55 @@
+.discount-head {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 125px;
+}
+
+.discount-body {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.discount-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hot-discount {
+  background-image: url("../../img/homepage/discount/1.png");
+  padding-top: 165px;
+  padding-left: 50px;
+  width: 865px;
+  height: 490px;
+  @include backgroundSet();
+}
+
+.extra-discount {
+  background-image: url("../../img/homepage/discount/2.png");
+  padding-top: 165px;
+  padding-left: 50px;
+  width: 865px;
+  height: 490px;
+  @include backgroundSet();
+}
+
+.discount-header {
+  @include setFont($fourtySize);
+  margin-bottom: 30px;
+}
+
+.discount-description {
+  @include setFont($twentySize);
+  margin-bottom: 30px;
+}
+
+.discount-button {
+  @include setFont($eighteenSize);
+  @include buttonSet();
+  padding: 10px;
+  &:hover {
+      border: 2px solid transparent;
+      background-color: $discountAccentClr;
+      color: $mainLightClr;
+  }
+}

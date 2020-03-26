@@ -13,9 +13,7 @@
 }
 
 .banner-text {
-  font-family: "OpenSans Regular", Helvetica, sans-serif;
-  font-size: 72px;
-  line-height: 72px;
+  @include setFont($seventySize);
   max-width: 420px;
   color: $mainDarkClr;
   margin-bottom: 105px;
@@ -24,16 +22,12 @@
 
 .banner-button {
   width: 185px;
-  font-family: "OpenSans Regular", Helvetica, sans-serif;
-  font-size: 24px;
-  line-height: 24px;
-  border: 2px solid $mainDarkClr;
-  background-color: transparent;
+  @include setFont($twentySize);
+  @include buttonSet();
   padding: 23px 20px;
-  cursor: pointer;
-  &:hover{
-      background-color: $bannerAccentClr;
-      border: 2px solid transparent;
-      color: $mainLightClr;
+  &:hover {
+    background-color: $bannerAccentClr;
+    border: 2px solid transparent;
+    color: $mainLightClr;
   }
 }

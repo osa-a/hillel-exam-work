@@ -2,9 +2,7 @@
   display: flex;
   justify-content: flex-end;
   background-image: url("../../img/homepage/1.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  @include backgroundSet();
   padding: 276px 115px 272px;
 }
 
@@ -23,25 +21,18 @@
 }
 
 .header-description {
-  font-family: "OpenSans Regular", Helvetica, sans-serif;
-  font-size: 30px;
-  line-height: 30px;
-  color: $hidingClr;
+  @include setFont($thirtysize);
+  color: $descriptionClr;
   margin-bottom: 37px;
 }
 
 .head-buy-button {
-  font-family: "OpenSans Regular", Helvetica, sans-serif;
-  font-size: 30px;
-  line-height: 30px;
-  color: $mainDarkClr;
-  background-color: transparent;
+  @include setFont($thirtysize);
+  @include buttonSet();
   padding: 23px 45px;
-  border: 2px solid $mainDarkClr;
-  cursor: pointer;
   &:hover {
     border: 2px solid transparent;
-    background-color: $accentClr;
+    background-color: $headAccentClr;
     color: $mainLightClr;
   }
 }

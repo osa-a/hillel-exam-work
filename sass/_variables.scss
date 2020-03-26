@@ -1,8 +1,23 @@
-$mainDarkClr:#000000;
+/*   MAIN CLR  */
+
+$mainDarkClr: #000000;
 $mainLightClr: #ffffff;
-$hidingClr: #8e8e8e;
-$accentClr: #ff518f;
-$bannerAccentClr: #df8647;
+$descriptionClr: #8e8e8e;
 $footerBackround: #333333;
 $dropdownHover: #dddddd;
 $cardBorder: #ebebeb;
+
+/*   ACCENT CLR   */
+
+$headAccentClr: #ff518f;
+$bannerAccentClr: #df8647;
+$discountAccentClr: #9aac5f;
+
+/*   FONT SIZES   */
+
+$thirtysize: 30px;
+$seventySize: 72px;
+$fourtySize: 48px;
+$twentySize: 24px;
+$eighteenSize: 18px;
+$fourteenSize: 14px;

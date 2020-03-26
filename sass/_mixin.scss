@@ -41,3 +41,23 @@
       margin-bottom: 0;
     }
   }
+
+  @mixin backgroundSet{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@mixin buttonSet{
+  background-color: transparent;
+  border: 2px solid $mainDarkClr;
+  color: $mainDarkClr;
+  cursor: pointer;
+}
+
+@mixin setFont($size){
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: $size;
+  line-height: $size;
+  font-weight: 400;
+}
