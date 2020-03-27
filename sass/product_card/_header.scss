@@ -1,0 +1,13 @@
+.header__logo {
+    height: 330px;
+    max-width: 1920px;
+    min-width: 320px;
+    @include flex($fd:row, $jc:stretch, $ai:center, $fw:wrap);
+    @include background();
+    background-image: url('../img/header_pic.png');
+   
+    .header__logo--title {
+        margin-left: 430px;
+        font-family: 'OpenSans Regular', sans-serif;
+    }
+}

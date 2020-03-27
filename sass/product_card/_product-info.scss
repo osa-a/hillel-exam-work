@@ -1,0 +1,128 @@
+.item-card {
+    display: flex;
+    margin-top: 80px;
+    margin-left: 60px;
+}
+
+.item-card__mini-reviewer {
+    @include flex($fd:column, $jc:flex-start, $ai:stretch, $fw:wrap);
+
+    img {  
+        border: 1px solid rgb(204, 204, 204);
+        margin-bottom: 10px;
+    }
+}
+
+.item-card__max-reviewer {
+    margin-left: 50px;
+
+    img {
+        border: 1px solid rgb(204, 204, 204); 
+    }
+}
+
+.item-card__info-of-good {
+    margin-left: 40px;
+
+    .item-card__info-of-good--title {
+        @include font(36px, 1.2, $fw:400);
+        color: rgb(0, 0, 0);
+        text-align: center;   
+    }
+
+    .item-card__info-of-good--price {
+        @include font(30px, 1.2, $fw:400);
+        margin-top: 5px;
+        color: rgb(55, 55, 55);
+    }
+
+    .item-card__info-of-good--description {
+        @include font(18px, 1.2, $fw:400);
+        margin-top: 45px;
+        color: rgb(55, 55, 55);
+        max-width: 410px;
+    }
+
+    .item-card__info-of-good--id {
+        margin-top: 35px;
+    }
+}
+
+.buy-block {
+    display: flex;
+    margin-top: 55px;
+    
+    .amount-of-goods {
+        display: flex;
+        width: 90px;
+
+        .amount-of-goods__int {
+            @include flex($fd:row, $jc:center, $ai:center, $fw:wrap);
+            width: 60%;
+            border: 1px solid #000;
+        }
+
+        .amount-of-goods__counter {
+            width: 40%;
+            border: 1px solid #000;
+            border-left: none;
+            text-align: center;
+
+            .plus-one {
+                border-bottom: 1px solid #000;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgb(221, 221, 221);
+                }
+
+                &:active {
+                    background-color: rgb(203, 218, 199);
+                }
+            }
+
+            .minus-one {
+                height: 52%;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgb(221, 221, 221);
+                }
+
+                &:active {
+                    background-color: rgb(203, 218, 199);
+                }
+            }
+        }
+    }
+}
+
+.buy-block__button {
+    margin-left: 35px;
+
+    .buy-button {
+        @include font(20px, 1.2, 400);
+        border: 1px solid #000;
+        background-color: transparent;
+        height: 50px;
+        width: 90px;
+        color: rgb(55, 55, 55);
+
+        &:hover {
+            background-color: rgb(221, 221, 221);
+        }
+
+        &:active {
+            background-color: rgb(203, 218, 199);
+        }
+    }
+}
+
+.item-card__info-of-good--id {
+    @include font(16px, 1.875, 400);
+    color: rgb(82, 82, 82);
+}
+
+.product-rating {
+    margin-top: 10px;
+}

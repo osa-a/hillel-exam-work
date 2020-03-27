@@ -1,0 +1,63 @@
+// button switches
+
+.switches {
+    margin-top: 90px;
+
+    .description-window__btn, 
+    .review-window__btn {
+        @include font(16px, 1.875, 400);
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+    }
+
+    .description-window__btn {
+        margin-right: 50px;
+    }
+
+    .non-active {
+        opacity: 0.5;
+    }
+    
+}
+
+// description
+
+.description-block {
+    display: flex;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.description-block__info {
+    @include flex($fd:column, $jc:stretch, $ai:center, $fw:wrap);
+    margin-right: 75px;
+
+    img {
+        border: 1px solid rgb(204, 204, 204);
+        max-width: 400px;
+    }
+    
+    .description-block__info--content {
+        max-width: 200px;
+
+        .features-of-good {
+            @include font(16px, 1.875, 400);
+            margin-top: 25px;
+            margin-bottom: 25px;
+            color: rgb(82, 82, 82);
+        }
+    }
+}
+
+.description-block__portfolio {
+    img {
+        max-width: 500px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+

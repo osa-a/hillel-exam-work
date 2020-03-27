@@ -1,0 +1,29 @@
+@import '../fonts';
+@import '../variables';
+@import 'mixin';
+
+@include mainSet();
+@include listReset();
+@include linkSet();
+@include headingReset();
+// @include buttonSet();
+
+@import '../common/navigation';
+
+@import 'header';
+@import 'product-info';
+@import 'review';
+@import 'description';
+
+@import '../common/footer';
+
+.wrapper {
+    @include flex($fd:column, $jc:center, $ai:center, $fw:wrap);
+    max-width: 1920px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 0 50px; 
+    font-family: 'OpenSans Regular', sans-serif;
+}
+
+

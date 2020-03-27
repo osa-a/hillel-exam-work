@@ -1,0 +1,88 @@
+// form 
+
+.review-form {
+    @include flex($fd:column, $jc:stretch, $ai:stretch, $fw:wrap);
+    margin-top: 70px;
+    
+    input {
+        @include font(18px, 21px, $fw:400);
+        min-width: 800px;
+        height: 50px;
+        display: block;
+        border: none;
+        border-bottom: 1px solid #000;
+        margin-top: 30px;
+    }
+
+    textarea {
+        @include font(18px, 21pxpx, $fw:400);
+        min-width: 800px;
+        border: none;
+        border-bottom: 1px solid #000;
+        margin-top: 30px;
+        height: 100px;
+    }
+
+    input[type=submit] {
+        margin-bottom: 40px;
+        min-width: 150px;
+        border: 1px solid #000;
+        background-color: transparent;
+    }
+
+    .review-info p {
+        @include pm_zeroSet(); 
+    }
+
+    .chose-rating {
+        margin-top: 10px;
+    }
+}
+
+// review 
+
+.review-block {
+
+    @include pm_zeroSet();
+    @include flex($fd:row, $jc:stretch, $ai:stretch, $fw:nowrap);
+    
+    max-width: 800px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    padding-bottom: 10px;
+    margin-top: 70px;
+
+    .user-avatar {
+        margin-right: 50px;
+        display: inline;
+        
+        img {
+            border: 1px solid rgb(204, 204, 204);
+        }
+    }
+
+    .review-title {
+        @include flex($fd:row, $jc:space-between, $ai:stretch, $fw:wrap);
+
+        .user-name {
+            @include font(18px, 21px, $fw:400);
+            margin: 0;
+        }
+    }
+
+    .review-date {
+        @include font(16px, 21px, $fw:400);
+        margin: 0;
+        opacity: 0.5;
+    }
+
+    .review-content {
+        @include font(16px, 21px, $fw:400);
+        margin-top: 10px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+
