@@ -251,6 +251,15 @@ h6 {
   align-items: stretch;
   flex-wrap: wrap;
   margin-top: 70px; }
+  .review-form .review-info__add-review {
+    font-weight: 700px;
+    font-size: 28px; }
+  .review-form .review-info__sub-info {
+    font-style: italic;
+    font-size: 16px; }
+  .review-form .review-info__rating {
+    font-size: 23px;
+    line-height: 50px; }
   .review-form input {
     font-size: 18px;
     line-height: 21px;
@@ -367,6 +376,15 @@ h6 {
 
 .description-block__portfolio img {
   max-width: 500px; }
+
+  input[type=submit] {
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    color: #ffffff;
+    background-color: black;
+  }
 
 .hidden {
   display: none; }
