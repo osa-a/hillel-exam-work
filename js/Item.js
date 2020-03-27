@@ -19,29 +19,29 @@ const Item = function (id, name, price, category, material, type) {
 
 Item.prototype = new ItemProto();
 
-let itemElem = new Item('76gda', 'Tweed Armchair', 131, 'Furniture', 'wooden', 'chair');
+let itemElem = new Item('76', 'Tweed Armchair', 131, 'Furniture', 'wooden', 'chair');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('4g34', 'Hocko Blanket', 42, 'Decoration', 'wool', 'textile');
+itemElem = new Item('4gh', 'Hocko Blanket', 42, 'Decoration', 'wool', 'textile');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('745t', 'Pendant Lamp', 85, 'Decoration', 'metal', 'light');
+itemElem = new Item('74', 'Pendant Lamp', 85, 'Decoration', 'metal', 'light');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('k678', 'Low Table', 149, 'Furniture', 'wooden', 'chair');
+itemElem = new Item('k78', 'Low Table', 149, 'Furniture', 'wooden', 'chair');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('1sd23', 'Cynco Pendant Lamp', 91, 'Decoration', 'metal', 'light');
+itemElem = new Item('1s3', 'Cynco Pendant Lamp', 91, 'Decoration', 'metal', 'light');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('76tg', 'Yellow Armchair', 181, 'Furniture', 'wooden', 'chair');
+itemElem = new Item('75t', 'Yellow Armchair', 181, 'Furniture', 'wooden', 'chair');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('kjhg', 'Side Table', 122, 'Furniture', 'wooden', 'table');
+itemElem = new Item('kg', 'Side Table', 122, 'Furniture', 'wooden', 'table');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('2234d', 'Forrest Vase', 31, 'Decoration', 'stone', 'vase');
+itemElem = new Item('24d', 'Forrest Vase', 31, 'Decoration', 'stone', 'vase');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('54vrt', 'Hocko Picture', 21, 'Decoration', 'wooden', 'picture');
+itemElem = new Item('54vt', 'Hocko Picture', 21, 'Decoration', 'wooden', 'picture');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('9o8mn', 'Amyndas Pendant Lamp', 99, 'Decoration', 'metal', 'light');
+itemElem = new Item('9mn', 'Amyndas Pendant Lamp', 99, 'Decoration', 'metal', 'light');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('54hbh', 'Planting Light', 25, 'Decoration', 'glass', 'light');
+itemElem = new Item('5b', 'Planting Light', 25, 'Decoration', 'glass', 'light');
 itemElem.pushToAr(itemElem);
-itemElem = new Item('567vh', 'Planting Vase Set', 100, 'Decoration', 'glass', 'vase');
+itemElem = new Item('51v', 'Planting Vase Set', 100, 'Decoration', 'glass', 'vase');
 itemElem.pushToAr(itemElem);
 
 

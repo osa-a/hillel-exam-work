@@ -1,3 +1,3 @@
 'use strict'
 
-// createCard(shopLineImagesAr);
+createShopLine(items, 4);
