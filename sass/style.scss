@@ -7,10 +7,10 @@
 @include linkSet();
 @include headingReset();
 
-@import './common/navigation';
-@import './homepage/head';
-@import './homepage/banner';
-@import './homepage/shop';
-@import './small-item-cards';
-@import './homepage/discount';
-@import './common/footer';
+@import 'common/navigation';
+@import 'homepage/head';
+@import 'homepage/banner';
+@import 'homepage/shop';
+@import 'common/small-item-cards';
+@import 'homepage/discount';
+@import 'common/footer';

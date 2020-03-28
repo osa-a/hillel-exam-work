@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="../css/category.css">
     <title>NOVAS</title>
 </head>
@@ -17,19 +15,19 @@
             <nav class="navigation">
                 <a class="navigation-logo" href="../index.html"><img src="../img/logo/white-logo.png" alt="NOVAS"></a>
                 <ul class="navigation-menu">
-                    <li class="nav-item">
+                    <li class="nav-item" id="changer">
                         <a href="../index.html">HOME</a></li>
                     <div class="dropdown nav-item category-item">
                         <li>
                             <a href="#">CATEGORIES</a>
                         </li>
                         <div class="dropdown-content">
-                            <a class="category-link" href="#">Decoration</a> <!-- link to decoration category-->
-                            <a class="category-link" href="#">Furniture</a> <!-- link to furniture category-->
+                            <a class="category-link" href="category.html">Decoration</a> <!-- link to decoration category-->
+                            <a class="category-link" href="category.html">Furniture</a> <!-- link to furniture category-->
                         </div>
                     </div>
                     <li class="nav-item">
-                        <a href="#">SHOP</a>
+                        <a href="category.html">SHOP</a>
                     </li>
                     <li class="nav-item">
                         <a href="../pages/cart.html">CART</a>
@@ -61,7 +59,7 @@
                     <div class="range-slider filter">
                         <label for="price" class="filter-name">Price:</label>
                         <div class="price-input">
-                            <input name="price" type="range" class="custom-range" id="customRange" min="0" max="300">
+                            <input name="price" type="range"  id="customRange" min="0" max="300">
                             <span class="spanValue"></span>
                         </div>
                     </div>
@@ -104,8 +102,6 @@
         </footer>
     </div>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/data.js"></script>
     <script src="../js/Item.js"></script>
     <script src="../js/itemsCardFunctions.js"></script>

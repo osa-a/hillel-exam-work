@@ -7,8 +7,9 @@
 @include linkSet();
 @include headingReset();
 
-@import "../small-item-cards";
 @import "../common/navigation";
+@import "../category/range";
+@import "../common/small-item-cards";
 @import "../common/footer";
 
 .page-head {
@@ -71,11 +72,13 @@
 
 .filter-name {
   margin-bottom: 15px;
-  @include setFont($customSize);
+  @include setFont($twentySize);
 }
 
 .filter-label {
   @include setFont($fourteenSize);
+  font-size: 16px;
+  line-height: 30px;
   cursor: pointer;
 }
 .checkbox-margin {

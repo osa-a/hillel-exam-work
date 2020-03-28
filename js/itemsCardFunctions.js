@@ -4,10 +4,12 @@ function createCard(items, i, path) {
     const section = document.querySelector('.shop-head');
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
+    shopCard.setAttribute('data-item', items[i].id);
     const cardImg = document.createElement('img');
     cardImg.classList.add('card-image');
     cardImg.setAttribute('src', `${path}img/category-shop-cards/${items[i].id}.png`);
     cardImg.setAttribute('alt', 'item');
+
     const description = document.createElement('div');
     description.classList.add('card-description');
     const itemName = document.createElement('h4');
@@ -19,6 +21,7 @@ function createCard(items, i, path) {
     const cartBtn = document.createElement('button');
     cartBtn.classList.add('card-cart-button');
     cartBtn.setAttribute('type', 'buton');
+    cartBtn.setAttribute('data-cart', items[i].id);
 
     description.appendChild(itemName);
     description.appendChild(price);
@@ -27,3 +30,4 @@ function createCard(items, i, path) {
     shopCard.appendChild(cartBtn);
     section.appendChild(shopCard);
 }
+
