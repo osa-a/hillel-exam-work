@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../css/category.css">
+    <title>NOVAS</title>
+</head>
+
+<body>
+    <div class="wraper">
+        <header>
+            <nav class="navigation">
+                <a class="navigation-logo" href="../index.html"><img src="../img/logo/white-logo.png" alt="NOVAS"></a>
+                <ul class="navigation-menu">
+                    <li class="nav-item">
+                        <a href="../index.html">HOME</a></li>
+                    <div class="dropdown nav-item category-item">
+                        <li>
+                            <a href="#">CATEGORIES</a>
+                        </li>
+                        <div class="dropdown-content">
+                            <a class="category-link" href="#">Decoration</a> <!-- link to decoration category-->
+                            <a class="category-link" href="#">Furniture</a> <!-- link to furniture category-->
+                        </div>
+                    </div>
+                    <li class="nav-item">
+                        <a href="#">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/cart.html">CART</a>
+                    </li>
+                </ul>
+                <!-- * CART-->
+                <div class="cart-button">
+                    <section class="dropdown-order">
+                        <div class="dropdown-order-content">
+                            <div class="dropdown-order-title">Your order</div>
+                            <div class="dropdown-order-items" id="dropdownOrderItems">Items written on JS</div>
+                        </div>
+                        <div class="dropdown-order-footer">
+                            <div class="dropdown-order-total">Total:</div>
+                            <a href="../cart.html" class="dropdown-order-button">Cart</a>
+                        </div>
+                    </section>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="category-head">
+                <section class="page-head">
+                    <div class="cart-title">Category</div>
+                </section>
+            </section>
+            <section class="category-wrapper">
+                <form name="filterForm" class="filter-form">
+                    <div class="range-slider filter">
+                        <label for="price" class="filter-name">Price:</label>
+                        <div class="price-input">
+                            <input name="price" type="range" class="custom-range" id="customRange" min="0" max="300">
+                            <span class="spanValue"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="filter-button">Filter</button>
+                    <div class="category-filter filter">
+                        <h5 class="filter-name">Category</h5>
+                    </div>
+                    <div class="material-filter filter">
+                        <h5 class="filter-name">Material</h5>
+                    </div>
+                    <div class="type-filter filter">
+                        <h5 class="filter-name">Type</h5>
+                    </div>
+                    <div class="rating-filter filter">
+                        <h5 class="filter-name">Rating</h5>
+                    </div>
+                </form>
+                <section class="shop-head"></section>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="description-block">
+                <a class="footer-logo" href="../index.html"><img src="../img/logo/black-logo.png" alt="NOVAS"></a>
+                <div class="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+                    a
+                    galley of type and scrambled it to make a type specimen book.Ipsum.
+                </div>
+            </div>
+            <div class="contacts-block">
+                <h3 class="contact-header">Contact</h3>
+                <div class="contact-info">
+                    <p class="contact contact-adress"> No 40 Baria Sreet 133/2</p>
+                    <p class="contact contact-phone"> + (156) 1800-366-6666</p>
+                    <p class="contact contact-mail">Eric-82@example.com</p>
+                    <a class="contact contact-web" href="../index.html">www.novas.com</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/Item.js"></script>
+    <script src="../js/itemsCardFunctions.js"></script>
+    <script src="../js/category/functions.js"></script>
+    <script src="../js/category/main.js"></script>
+</body>
+
+</html>

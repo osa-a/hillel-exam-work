@@ -1,3 +1,3 @@
 'use strict'
 
-createShopLine(items, 4);
+createShopLine(items, 4, '../../');

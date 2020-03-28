@@ -1,12 +1,12 @@
 'use strict'
 
-function createCard(items, i) {
+function createCard(items, i, path) {
     const section = document.querySelector('.shop-head');
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
     const cardImg = document.createElement('img');
     cardImg.classList.add('card-image');
-    cardImg.setAttribute('src', `../../img/category-shop-cards/${items[i].id}.png`);
+    cardImg.setAttribute('src', `${path}img/category-shop-cards/${items[i].id}.png`);
     cardImg.setAttribute('alt', 'item');
     const description = document.createElement('div');
     description.classList.add('card-description');
@@ -26,11 +26,4 @@ function createCard(items, i) {
     shopCard.appendChild(description);
     shopCard.appendChild(cartBtn);
     section.appendChild(shopCard);
-}
-
-function createShopLine(items, amount) {
-    for (let i = 0; i < amount; i++) {
-        console.log(items[i].id);
-        createCard(items, i);
-    }
 }

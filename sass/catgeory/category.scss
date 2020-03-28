@@ -1,0 +1,84 @@
+@import "../fonts";
+@import "../variables";
+@import "../mixin";
+
+@include mainSet();
+@include listReset();
+@include linkSet();
+@include headingReset();
+
+@import "../small-item-cards";
+@import "../common/navigation";
+@import "../common/footer";
+
+.page-head {
+  background-image: url("../img/cart/shop-bg.png");
+  @include backgroundSet;
+  padding: 110px 0 110px 230px;
+}
+
+.cart-title {
+  @include setFont($thirtysixSize);
+}
+
+.category-wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.shop-head {
+  display: flex;
+  justify-content: space-around;
+  width: 1020px;
+  flex-wrap: wrap;
+}
+
+.shop-card {
+  margin-bottom: 25px;
+}
+
+.filter-form {
+  min-width: 250px;
+}
+
+.filter-button {
+  @include setFont($eighteenSize);
+  @include buttonSet();
+  padding: 5px 15px;
+  margin-bottom: 25px;
+  &:hover {
+    background-color: $mainDarkClr;
+    border: 2px solid transparent;
+    color: $mainLightClr;
+  }
+}
+
+.range-slider {
+  width: 300px;
+}
+
+.price-color {
+  color: $mainDarkClr;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.filter-name {
+  margin-bottom: 15px;
+  @include setFont($customSize);
+}
+
+.filter-label {
+  @include setFont($fourteenSize);
+  cursor: pointer;
+}
+.checkbox-margin {
+  margin-right: 10px;
+  cursor: pointer;
+}

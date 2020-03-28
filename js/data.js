@@ -1,5 +1,11 @@
 let items = [];
 
+const categories = ['Furniture','Decoration'];
+const material = ['Wood', 'Wool', 'Metal', 'Stone', 'Glass'];
+const type = ['Chair', 'Textile', 'Light', 'Table', 'Vase', 'Picture'];
+const rating = ['1','2','3','4','5'];
+
+
 // const descriptions = {
 //     [items[0].id]: 'dfghjkl',
 //     [items[1].id]: 'dfghjkl',
