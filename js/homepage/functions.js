@@ -1,7 +1,7 @@
 'use strict'
 
-function createShopLine(items, amount, path) {
-    for (let i = 0; i < amount; i++) {
-        createCard(items, i, path);
+function createShopLine(items, start, amount, path, section) {
+    for (let i = start; i < amount; i++) {
+        createCard(items, i, path, section);
     }
 }

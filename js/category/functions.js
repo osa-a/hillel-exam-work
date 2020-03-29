@@ -1,24 +1,24 @@
 'use strict'
 
-function createItemsShop(items, amount, path) {
+function createItemsShop(items, amount, path, section) {
     for (let i = 0; i < amount; i++) {
-        createCard(items, i, path);
+        createCard(items, i, path, section);
     }
 }
 
 $(document).ready(function () {
     const $spanValue = $('.spanValue'); //получает инпут
     const $value = $('#customRange'); //получает value инпута
-    $spanValue.html($value.val()+'$');  // сетит value инпута и отображает его со старта
+    $spanValue.html($value.val() + '$');  // сетит value инпута и отображает его со старта
     $value.on('input change', () => { // .on тоже самое что повесить обработчик
-        $spanValue.html($value.val()+'$');  //динамически отображает цену
+        $spanValue.html($value.val() + '$');  //динамически отображает цену
     });
 });
 
 function createCheckBox(container, dataArray, i) {
     let input = document.createElement('input');
     let label = document.createElement('label');
-    let boxContainer =  document.createElement('div');
+    let boxContainer = document.createElement('div');
 
     input.setAttribute('type', 'checkbox');
     input.setAttribute('id', `box${dataArray[i]}`);

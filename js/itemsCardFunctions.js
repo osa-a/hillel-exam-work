@@ -1,7 +1,6 @@
-'use strict'
+'use strict';
 
-function createCard(items, i, path) {
-    const section = document.querySelector('.shop-head');
+function createCard(items, i, path, section) {
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
     shopCard.setAttribute('data-item', items[i].id);
@@ -30,4 +29,3 @@ function createCard(items, i, path) {
     shopCard.appendChild(cartBtn);
     section.appendChild(shopCard);
 }
-

@@ -10,7 +10,7 @@ const Item = function (id, name, price, category, material, type) {
         this.name = name,
         this.price = price,
         this.category = category,
-        // this.description = descriptions.id,
+        this.description = descriptions[this.id],
         this.material = material,
         this.type = type,
         this.rating = 0,
@@ -43,3 +43,4 @@ itemElem = new Item('5b', 'Planting Light', 25, 'Decoration', 'Glass', 'Light');
 itemElem.pushToAr(itemElem);
 itemElem = new Item('51', 'Planting Vase Set', 100, 'Decoration', 'Glass', 'Vase');
 itemElem.pushToAr(itemElem);
+
