@@ -33,3 +33,35 @@ let addlistenerToSwitches = () => {
         }
     });
 }
+
+let addlistenerToAmountOfProduct = () => {
+
+let amount = document.querySelector('.amount-of-goods__int').innerHTML = 1;
+    
+    document.querySelector('.amount-of-goods__counter').addEventListener('click', function(e) {
+
+        if (e.target.classList.contains('plus-one')) {
+            amount += 1;
+            changeAmountValue(amount);
+        } else if (e.target.classList.contains('minus-one')) {
+            if (amount <= 1) {
+                document.querySelector('.amount-of-goods__int').innerHTML = 1;
+                amount = 1;
+            } else {
+                amount -= 1;
+                changeAmountValue(amount);
+            }
+        }
+    });
+
+}
+
+let changeAmountValue = (amount) => {
+    if (amount < 1) {
+        document.querySelector('.amount-of-goods__int').innerHTML = 1;
+        amount = 1;
+    } else {
+        document.querySelector('.amount-of-goods__int').innerHTML = amount;
+    }
+    return amount;
+}

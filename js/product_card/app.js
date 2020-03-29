@@ -4,3 +4,8 @@
 
 hideBlock();
 addlistenerToSwitches();
+
+// COUNTER OF AMOUNT OF THE PRODUCT
+
+addlistenerToAmountOfProduct();
+
