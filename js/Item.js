@@ -19,28 +19,29 @@ const Item = function (id, name, price, category, material, type) {
 
 Item.prototype = new ItemProto();
 
-let itemElem = new Item('76', 'Tweed Armchair', 131, 'Furniture', 'Wooden', 'Chair');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('4gh', 'Hocko Blanket', 42, 'Decoration', 'Wool', 'Textile');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('74', 'Pendant Lamp', 85, 'Decoration', 'Metal', 'Light');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('k78', 'Low Table', 149, 'Furniture', 'Wooden', 'Chair');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('1s3', 'Cynco Pendant Lamp', 91, 'Decoration', 'Metal', 'Light');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('75t', 'Yellow Armchair', 181, 'Furniture', 'Wooden', 'Chair');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('kg', 'Side Table', 122, 'Furniture', 'Wooden', 'Table');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('24d', 'Forrest Vase', 31, 'Decoration', 'Stone', 'Vase');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('54vt', 'Hocko Picture', 21, 'Decoration', 'Wooden', 'Picture');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('9mn', 'Amyndas Pendant Lamp', 99, 'Decoration', 'Metal', 'Light');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('5b', 'Planting Light', 25, 'Decoration', 'Glass', 'Light');
-itemElem.pushToAr(itemElem);
-itemElem = new Item('51', 'Planting Vase Set', 100, 'Decoration', 'Glass', 'Vase');
-itemElem.pushToAr(itemElem);
-
+function createData(){
+    let itemElem = new Item('76', 'Tweed Armchair', 131, categories[0], material[0], type[0]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('4gh', 'Hocko Blanket', 42, categories[1], material[1], type[1]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('74', 'Pendant Lamp', 85,  categories[1], material[2], type[2]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('k78', 'Low Table', 149, categories[0], material[0], type[0]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('1s3', 'Cynco Pendant Lamp', 91,  categories[1], material[2], type[2]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('75t', 'Yellow Armchair', 181, categories[0], material[0], type[0]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('kg', 'Side Table', 122, categories[0], material[0], type[3]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('24d', 'Forrest Vase', 31,  categories[1], material[3], type[4]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('54vt', 'Hocko Picture', 21,  categories[1], material[0], type[5]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('9mn', 'Amyndas Pendant Lamp', 99,  categories[1], material[2], type[2]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('5b', 'Planting Light', 25,  categories[1], material[4], type[2]);
+    itemElem.pushToAr(itemElem);
+    itemElem = new Item('51', 'Planting Vase Set', 100,  categories[1], material[4], type[4]);
+    itemElem.pushToAr(itemElem);
+}
