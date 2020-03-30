@@ -35,17 +35,19 @@
                 </ul>
                 <!-- * CART-->
                 <div class="cart-button">
-                    <section class="dropdown-order">
-                        <div class="dropdown-order-content">
-                            <div class="dropdown-order-title">Your order</div>
-                            <div class="dropdown-order-items" id="dropdownOrderItems">Items written on JS</div>
-                        </div>
-                        <div class="dropdown-order-footer">
-                            <div class="dropdown-order-total">Total:</div>
-                            <a href="cart.html" class="dropdown-order-button">Cart</a>
-                        </div>
-                    </section>
-                </div>
+                    <div class="cart-button" id="cartButton">
+                        <section class="dropdown-order" id="dropdownOrder">
+                            <div class="dropdown-order-content">
+                                <div class="dropdown-order-title">Your order</div>
+                                <div class="dropdown-order-items" id="dropdownOrderItems">Items written on JS</div>
+                            </div>
+                            <div class="dropdown-order-footer">
+                                <div class="dropdown-order-total">Total:</div>
+                                <button class="dropdown-order-button dropdown-order-continue" id="dropdownOrderContinue">Continue shopping</button>
+                                <button class="dropdown-order-button" id="dropdownOrderCheckout">Checkout</button>
+                            </div>
+                        </section>
+                    </div>
             </nav>
         </header>
         <main>
