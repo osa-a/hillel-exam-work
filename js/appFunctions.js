@@ -55,3 +55,39 @@ function cartButtonListener(container) {
 //функция добавления в корзину 
     })
 }
+
+//DROPDOWN CART
+document.getElementById('dropdownOrder').style.display = 'none';
+
+function openDropDownOrder() {
+    let cartButton = document.getElementById('cartButton');
+    let dropdownOrder = document.getElementById('dropdownOrder');
+    let actions = {
+        1: () => {
+            dropdownOrder.style.display = 'flex';
+            continueOrder();
+            openOrder();
+        },
+        2: () => {
+            dropdownOrder.style.display = 'none';
+        }
+    };
+    let counter = 0;
+    cartButton.addEventListener('click', () => {
+        actions[counter = (counter % 2) + 1]();
+    })
+}
+
+function continueOrder() {
+    let dropdownOrderContinue = document.getElementById('dropdownOrderContinue');
+    dropdownOrderContinue.addEventListener('click', () => {
+        document.getElementById('dropdownOrder').style.display = 'none';
+    })
+}
+
+function openOrder() {
+    let dropdownOrderCheckout = document.getElementById('dropdownOrderCheckout');
+    dropdownOrderCheckout.addEventListener('click', () => {
+        window.location.href = 'http://localhost:63342/on-line-shop/pages/cart.html';
+    })
+}
