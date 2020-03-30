@@ -90,6 +90,7 @@
 /*   DROPDOWN CART   */
 
 .dropdown-order {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -98,7 +99,7 @@
   min-width: 400px;
   padding: 30px;
   background-color: $mainLightClr;
-  border: 1px solid black;
+  border: 1px solid $mainDarkClr;
   position: absolute;
   top: 100%;
   right: 0;
@@ -120,7 +121,7 @@
     font-size: 15px;
   }
   &-button {
-    padding: 15px 40px 15px 40px;
+    padding: 10px 20px 10px 20px;
     cursor: pointer;
     border: 1px solid #333;
     outline: none;
@@ -128,5 +129,8 @@
       background-color: $footerBackround;
       color: $mainLightClr;
     }
+  }
+  &-continue {
+    margin-right: 10px;
   }
 }

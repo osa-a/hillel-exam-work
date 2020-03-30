@@ -1,24 +1,18 @@
-@charset "UTF-8";
-/*! изменен url шрифта
-    и его название. что бы оно было более узнаваемым */
 @font-face {
   font-family: 'OpenSans Regular';
   src: url("../fonts/OpenSans-Regular.woff2") format("woff2"), url("../fonts/OpenSans-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'OpenSans Light';
   src: url("../fonts/OpenSans-Light.woff2") format("woff2"), url("../fonts/OpenSans-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal; }
-
 @font-face {
   font-family: 'OpenSans Bold';
   src: url("../fonts/OpenSans-Bold.woff2") format("woff2"), url("../fonts/OpenSans-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal; }
-
 /*   MAIN CLR  */
 /*   ACCENT CLR   */
 /*   FONT SIZES   */
@@ -54,6 +48,10 @@ h5,
 h6 {
   margin-top: 0;
   margin-bottom: 0; }
+
+.wrapepr {
+  width: 1920px;
+  margin: 0 auto; }
 
 .navigation {
   display: flex;
@@ -100,6 +98,7 @@ h6 {
 .category-item {
   position: relative; }
 
+/*   DROPDOWN MENU   */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -124,6 +123,45 @@ h6 {
   display: flex;
   flex-direction: column; }
 
+/*   DROPDOWN CART   */
+.dropdown-order {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  max-height: 400px;
+  min-height: 100%;
+  min-width: 400px;
+  padding: 30px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  font-family: "OpenSans Regular", Helvetica, sans-serif; }
+  .dropdown-order-content {
+    flex: 1 0 auto; }
+  .dropdown-order-title {
+    font-size: 20px;
+    padding-bottom: 25px;
+    font-weight: 500; }
+  .dropdown-order-footer {
+    flex: 0 0 auto; }
+  .dropdown-order-total {
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 15px; }
+  .dropdown-order-button {
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
+    border: 1px solid #333;
+    outline: none; }
+    .dropdown-order-button:hover {
+      background-color: #333333;
+      color: #ffffff; }
+  .dropdown-order-continue {
+    margin-right: 10px; }
+
 .header__logo {
   height: 330px;
   max-width: 1920px;
@@ -136,7 +174,7 @@ h6 {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("../img/product_card/header_pic.png"); }
+  background-image: url("../img/header_pic.png"); }
   .header__logo .header__logo--title {
     margin-left: 430px;
     font-family: 'OpenSans Regular', sans-serif; }
@@ -251,15 +289,6 @@ h6 {
   align-items: stretch;
   flex-wrap: wrap;
   margin-top: 70px; }
-  .review-form .review-info__add-review {
-    font-weight: 700px;
-    font-size: 28px; }
-  .review-form .review-info__sub-info {
-    font-style: italic;
-    font-size: 16px; }
-  .review-form .review-info__rating {
-    font-size: 23px;
-    line-height: 50px; }
   .review-form input {
     font-size: 18px;
     line-height: 21px;
@@ -377,30 +406,17 @@ h6 {
 .description-block__portfolio img {
   max-width: 500px; }
 
-  input[type=submit] {
-    cursor: pointer;
-  }
-
-  input[type=submit]:hover {
-    color: #ffffff;
-    background-color: black;
-  }
-
 .hidden {
   display: none; }
 
 .footer {
   display: flex;
-  justify-content: space-between;
-  max-width: 1920px;
-  min-width: 320px;
   background-color: #333333;
+  justify-content: space-around;
   padding-top: 85px;
-  padding-bottom: 90px;
-  padding-left: 340px;
-  padding-right: 370px; }
+  padding-bottom: 90px; }
 
-.description-footer-block {
+.description-block {
   display: flex;
   flex-direction: column; }
 
@@ -445,3 +461,5 @@ h6 {
   margin: 0 auto;
   padding: 0 50px;
   font-family: 'OpenSans Regular', sans-serif; }
+
+/*# sourceMappingURL=product_card.css.map */
