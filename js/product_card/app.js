@@ -10,6 +10,7 @@ fetch('../../data.json')
         smallImg = { ...res.smallImg };
         createData();
         renderingProductCard(selectedId);
+        renderingPics(selectedId);
     });
 
 // SWITCHES LISTENERS

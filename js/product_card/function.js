@@ -12,8 +12,6 @@ let getIdFromStorage = () => {
 const selectedId = getIdFromStorage(); 
 
 let renderingProductCard = (selectedId) => {
-    console.log(selectedId);
-
     const productName = document.querySelector('.item-card__info-of-good--title');
     const productPrice = document.querySelector('.item-card__info-of-good--price');
     const productDescription = document.querySelector('.item-card__info-of-good--description');
@@ -34,6 +32,29 @@ let renderingProductCard = (selectedId) => {
         }
     });
 }
+
+let renderingPics = (selectedId) => {
+    const mainPic = document.querySelector('.main-pic');
+    const miniPic1 = document.querySelector('.mini-pic-1');
+    const miniPic2 = document.querySelector('.mini-pic-2');
+    const miniPic3 = document.querySelector('.mini-pic-3');
+    const miniPic4 = document.querySelector('.mini-pic-4');
+    const descPic1 = document.querySelector('.description-pic-1');
+    const descPic2 = document.querySelector('.description-pic-2');
+
+
+    items.forEach(element => {
+        if (element.id === selectedId) {
+            mainPic.setAttribute('src', `../img/product_card/smallImg/${element.id}-1.png`);
+            miniPic1.setAttribute('src', `../img/product_card/smallImg/${element.id}-1.png`);
+            miniPic2.setAttribute('src', `../img/product_card/smallImg/${element.id}-2.png`);
+            miniPic3.setAttribute('src', `../img/product_card/smallImg/${element.id}-3.png`);
+            miniPic4.setAttribute('src', `../img/product_card/smallImg/${element.id}-4.png`);
+            descPic1.setAttribute('src', `../img/product_card/smallImg/${element.id}-1.png`); // temporary
+            descPic2.setAttribute('src', `../img/product_card/smallImg/${element.id}-2.png`); // temporary 
+        }
+    });
+} 
 
 
 // SWITCHES LISTENERS
