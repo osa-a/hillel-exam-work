@@ -18,5 +18,9 @@ fetch('data.json')
 function createHomepage(){
     createShopLine(items, 0, 4, '../../', shopHead);
     createShopLine(items, 4, 8, '../../', shopFooter);
+    shopCardListener(shopHead);
+    shopCardListener(shopFooter);
+    cartButtonListener(shopHead);
+    cartButtonListener(shopFooter);
 }
 

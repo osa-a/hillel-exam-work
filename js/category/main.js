@@ -25,4 +25,6 @@ function createCategoryPage(){
     createFilter(materialFilterContainer, material);
     createFilter(typeFilterContainer, type);
     createFilter(ratingFilterContainer, rating);
+    shopCardListener(section);
+    cartButtonListener(section);
 }

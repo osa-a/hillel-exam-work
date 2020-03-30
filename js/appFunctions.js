@@ -3,12 +3,12 @@
 function createCard(items, i, path, section) {
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
-    shopCard.setAttribute('data-item', items[i].id);
     const cardImg = document.createElement('img');
     cardImg.classList.add('card-image');
+    cardImg.setAttribute('data-item', items[i].id);
     cardImg.setAttribute('src', `${path}img/category-shop-cards/${items[i].id}.png`);
     cardImg.setAttribute('alt', 'item');
-
+    
     const description = document.createElement('div');
     description.classList.add('card-description');
     const itemName = document.createElement('h4');
@@ -28,4 +28,25 @@ function createCard(items, i, path, section) {
     shopCard.appendChild(description);
     shopCard.appendChild(cartBtn);
     section.appendChild(shopCard);
+}
+
+function shopCardListener(container) {
+    container.addEventListener('click', (e) => {
+        let clicked = e.target.getAttribute('data-item');
+        if (!clicked) {
+                return;
+        };
+//функция перехода на страницу карточки товара + отрисовка
+        document.location.href = "../pages/product_card.html";
+    })
+}
+
+function cartButtonListener(container) {
+    container.addEventListener('click', (e) => {
+        let clicked = e.target.getAttribute('data-cart');
+        if (!clicked) {
+                return;
+        };
+//функция добавления в корзину 
+    })
 }
