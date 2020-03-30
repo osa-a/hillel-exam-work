@@ -22,3 +22,7 @@ addlistenerToSwitches();
 
 addlistenerToAmountOfProduct();
 
+// CHANGE MAIN PIC
+
+addListenerToChangeMainPic(selectedId);
+

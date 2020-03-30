@@ -9,6 +9,7 @@ let getIdFromStorage = () => {
 
 const selectedId = getIdFromStorage(); 
 
+
 let renderingProductCard = (selectedId) => {
     const productName = document.querySelector('.item-card__info-of-good--title');
     const productPrice = document.querySelector('.item-card__info-of-good--price');
@@ -118,4 +119,19 @@ let changeAmountValue = (amount) => {
         document.querySelector('.amount-of-goods__int').innerHTML = amount;
     }
     return amount;
+}
+
+// CHANGE MAIN PIC
+
+let addListenerToChangeMainPic = (selectedId) => {
+    const miniPicBlock = document.querySelector('.item-card__mini-reviewer');
+    const mainPic = document.querySelector('.main-pic');
+
+    miniPicBlock.addEventListener('mouseover', (e) => {
+        for (let i = 1; i < 5; i++) {
+            if (e.target.classList.contains(`mini-pic-${i}`)) {
+                mainPic.setAttribute('src', `../img/category-shop-cards/smallImg/${selectedId}-${i}.png`)
+            }
+        }
+    });
 }
