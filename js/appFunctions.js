@@ -30,13 +30,18 @@ function createCard(items, i, path, section) {
     section.appendChild(shopCard);
 }
 
+let setIdToStorage = (e) => {
+    let selectedId = e.target.dataset.item;
+    localStorage.setItem('Data-id', JSON.stringify(selectedId)); 
+}
+
 function shopCardListener(container) {
     container.addEventListener('click', (e) => {
+       setIdToStorage(e);
         let clicked = e.target.getAttribute('data-item');
         if (!clicked) {
                 return;
         };
-//функция перехода на страницу карточки товара + отрисовка
         document.location.href = "../pages/product_card.html";
     })
 }

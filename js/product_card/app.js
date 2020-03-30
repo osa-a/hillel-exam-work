@@ -9,12 +9,8 @@ fetch('../../data.json')
         descriptions = { ...res.descriptions };
         smallImg = { ...res.smallImg };
         createData();
-        // createCardPage();
+        renderingProductCard(selectedId);
     });
-
-// function createCardPage() {
-//     ...
-// }
 
 // SWITCHES LISTENERS
 

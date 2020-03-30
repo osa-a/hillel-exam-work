@@ -1,5 +1,41 @@
 'use strict'
 
+// RENDER
+
+
+let getIdFromStorage = () => {
+    let selectedCategory = JSON.parse(localStorage.getItem('Data-id'));
+    localStorage.clear();
+    return selectedCategory; 
+}
+
+const selectedId = getIdFromStorage(); 
+
+let renderingProductCard = (selectedId) => {
+    console.log(selectedId);
+
+    const productName = document.querySelector('.item-card__info-of-good--title');
+    const productPrice = document.querySelector('.item-card__info-of-good--price');
+    const productDescription = document.querySelector('.item-card__info-of-good--description');
+    const productId = document.querySelector('.id-of-good');
+    const productCategory = document.querySelector('.category-of-good');
+    const productType = document.querySelector('.features-of-good__type');
+    const productMaterial = document.querySelector('.features-of-good__material');
+
+    items.forEach(element => {
+        if (element.id === selectedId) {
+            productName.innerText = element.name;
+            productPrice.innerText = `${element.price}$`;
+            productDescription.innerText = element.description;
+            productId.innerText = `ID: ${element.id}`;
+            productCategory.innerText = `Category: ${element.category}`;
+            productType.innerText = `Type: ${element.type}`;
+            productMaterial.innerText = `Material: ${element.material}`;
+        }
+    });
+}
+
+
 // SWITCHES LISTENERS
 
 
