@@ -48,8 +48,8 @@ let renderingPics = (selectedId) => {
             miniPic2.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-2.png`);
             miniPic3.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-3.png`);
             miniPic4.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-4.png`);
-            descPic1.setAttribute('src', `../img/category-shop-cards/descr/${element.id}-1.ipg`); // temporary
-            descPic2.setAttribute('src', `../img/category-shop-cards/descr/${element.id}-2.ipg` || `../img/category-shop-cards/descr/${element.id}-1.ipg`); // temporary 
+            descPic1.setAttribute('src', `../img/category-shop-cards/descr/${element.id}-1.jpg`); 
+            descPic2.setAttribute('src', `../img/category-shop-cards/descr/${element.id}-2.jpg`);
         }
     });
 } 
