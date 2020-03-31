@@ -9,20 +9,4 @@ fetch('../../data.json')
         descriptions = { ...res.descriptions };
         smallImg = { ...res.smallImg };
         createData();
-        renderingProductCard(selectedId);
-        renderingPics(selectedId);
     });
-
-// SWITCHES LISTENERS
-
-hideBlock();
-addlistenerToSwitches();
-
-// COUNTER OF AMOUNT OF THE PRODUCT
-
-addlistenerToAmountOfProduct();
-
-// CHANGE MAIN PIC
-
-addListenerToChangeMainPic(selectedId);
-
