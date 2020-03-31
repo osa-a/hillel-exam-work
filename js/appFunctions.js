@@ -1,14 +1,24 @@
 'use strict';
 
-function createCard(items, i, path, section) {
+//*   MAIN   *//
+
+function insertMain(page) {
+    const mainFooter = document.getElementById('main-footer');
+    let parentDiv = mainFooter.parentNode;
+    parentDiv.insertBefore(page, mainFooter);
+}
+
+//*   HOMEPAGE  +  CATEGORY    *// 
+
+function createCard(items, i, container) {
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
     const cardImg = document.createElement('img');
     cardImg.classList.add('card-image');
     cardImg.setAttribute('data-item', items[i].id);
-    cardImg.setAttribute('src', `${path}img/category-shop-cards/${items[i].id}.png`);
+    cardImg.setAttribute('src', `img/category-shop-cards/${items[i].id}.png`);
     cardImg.setAttribute('alt', 'item');
-    
+
     const description = document.createElement('div');
     description.classList.add('card-description');
     const itemName = document.createElement('h4');
@@ -27,36 +37,54 @@ function createCard(items, i, path, section) {
     shopCard.appendChild(cardImg);
     shopCard.appendChild(description);
     shopCard.appendChild(cartBtn);
-    section.appendChild(shopCard);
+    container.appendChild(shopCard);
 }
 
-let setIdToStorage = (e) => {
-    let selectedId = e.target.dataset.item;
-    localStorage.setItem('Data-id', JSON.stringify(selectedId)); 
+//*   LISTENERS   *//
+
+function mainPageListener(wrapper) {
+    wrapper.addEventListener('click', e => {
+        const click = e.target.classList.contains('another-page');
+        if (!click) {
+            return;
+        }
+        const page = e.target.getAttribute('data-page');
+        console.log(page);
+    });
 }
 
 function shopCardListener(container) {
     container.addEventListener('click', (e) => {
-       setIdToStorage(e);
+        setIdToStorage(e);
         let clicked = e.target.getAttribute('data-item');
         if (!clicked) {
-                return;
+            return;
         };
         document.location.href = "../pages/product_card.html";
+        // console.log(clicked);
     })
 }
 
-function cartButtonListener(container) {
-    container.addEventListener('click', (e) => {
+function cartButtonListener(wrapper) {
+    wrapper.addEventListener('click', (e) => {
         let clicked = e.target.getAttribute('data-cart');
         if (!clicked) {
-                return;
+            return;
         };
-//функция добавления в корзину 
+        //функция добавления в корзину 
     })
 }
 
-//DROPDOWN CART
+//*   ITEM CARD   *//
+
+let setIdToStorage = (e) => {
+    let selectedId = e.target.dataset.item;
+    localStorage.setItem('Data-id', JSON.stringify(selectedId));
+}
+
+
+//*   DROPDOWN CART   *//
+
 document.getElementById('dropdownOrder').style.display = 'none';
 
 function openDropDownOrder() {
@@ -88,6 +116,6 @@ function continueOrder() {
 function openOrder() {
     let dropdownOrderCheckout = document.getElementById('dropdownOrderCheckout');
     dropdownOrderCheckout.addEventListener('click', () => {
-        document.location.href = "../pages/cart.html";;
+        document.location.href = "../pages/cart.html";
     })
 }

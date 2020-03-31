@@ -5,33 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link class="style-css-files" rel="stylesheet" href="css/style.css">
     <title>NOVAS</title>
 </head>
 
-<body>
-    <div class="wraper">
+<body class="web-wrapper">
+    <div>
         <header>
             <nav class="navigation">
-                <a class="navigation-logo" href="index.html"><img src="img/logo/white-logo.png" alt="NOVAS"></a>
+                <img class="another-page" data-page="1" src="img/logo/white-logo.png" alt="NOVAS">
                 <ul class="navigation-menu">
-                    <li class="nav-item">
-                        <a href="index.html">HOME</a></li>
+                    <li class="nav-item another-page" data-page="1">HOME</li>
                     <div class="dropdown nav-item category-item">
-                        <li>
-                            <a href="#">CATEGORIES</a>
-                        </li>
+                        <li>CATEGORIES</li>
                         <div class="dropdown-content">
-                            <a class="category-link" href="pages/category.html">Decoration</a>
-                            <a class="category-link" href="pages/category.html">Furniture</a>
+                            <div class="category-link another-page" data-page="2">Decoration</div>
+                            <div class="category-link another-page" data-page="3">Furniture</div>
                         </div>
                     </div>
-                    <li class="nav-item">
-                        <a href="pages/category.html">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/cart.html">CART</a>
-                    </li>
+                    <li class="nav-item another-page" data-page="4">SHOP</li>
+                    <li class="nav-item another-page" data-page="5">CART</li>
                 </ul>
                 <!-- * CART-->
                 <div class="cart-button">
@@ -43,53 +36,18 @@
                             </div>
                             <div class="dropdown-order-footer">
                                 <div class="dropdown-order-total">Total:</div>
-                                <button class="dropdown-order-button dropdown-order-continue" id="dropdownOrderContinue">Continue shopping</button>
+                                <button class="dropdown-order-button dropdown-order-continue"
+                                    id="dropdownOrderContinue">Continue shopping</button>
                                 <button class="dropdown-order-button" id="dropdownOrderCheckout">Checkout</button>
                             </div>
                         </section>
                     </div>
             </nav>
         </header>
-        <main>
-            <section class="homepage-head">
-                <div class="head-text-block">
-                    <h1 class="main-header">Interior Decor</h1>
-                    <h2 class="header-description">LATEST COLLECTION 2020</h2>
-                    <button type="button" class="head-buy-button">BUY</button> <!-- link to decoration category-->
-                </div>
-            </section>
-            <section class="shop-head">
-            </section>
-            <section class="banner-head">
-                <div class="banner-info">
-                    <h2 class="banner-text">Collection of Furniture</h2>
-                    <button class="banner-button" type="button">SHOP NOW</button> <!-- link to furniture category-->
-                </div>
-                <img src="img/homepage/2.png" alt="banner">
-            </section>
-            <section class="shop-footer">
-            </section>
-            <section class="category-choice-head">
-                <div class="category-choice-body decoration-choice">
-                    <div class="category-choice-text ">
-                        <h2 class="category-choice-header">DECORATION</h2>
-                        <h3 class="category-choice-description">The best prices in the world</h3>
-                        <button class="category-choice-button decoration-categ-button">Shop Now</button>
-                    </div>
-
-                </div>
-                <div class="category-choice-body furniture-choice">
-                    <div class="category-choice-text">
-                        <h2 class="category-choice-header">FURNITURE</h2>
-                        <h3 class="category-choice-description">Our armchairs are the softest on the Earth</h3>
-                        <button class="category-choice-button furniture-categ-button">Shop Now</button>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <footer class="footer">
+        <footer id="main-footer" class="footer">
             <div class="description-block">
-                <a class="footer-logo" href="index.html"><img src="img/logo/black-logo.png" alt="NOVAS"></a>
+                <div><img class="footer-logo another-page" data-page="1" src="img/logo/black-logo.png" alt="NOVAS">
+                </div>
                 <div class="description">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                     Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
@@ -103,11 +61,12 @@
                     <p class="contact contact-adress"> No 40 Baria Sreet 133/2</p>
                     <p class="contact contact-phone"> + (156) 1800-366-6666</p>
                     <p class="contact contact-mail">Eric-82@example.com</p>
-                    <a class="contact contact-web" href="index.html">www.novas.com</a>
+                    <p class="contact contact-web another-page" data-page="1">www.novas.com</p>
                 </div>
             </div>
         </footer>
     </div>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="js/data.js"></script>
     <script src="js/Item.js"></script>
     <script src="js/appFunctions.js"></script>
