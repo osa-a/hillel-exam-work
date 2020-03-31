@@ -88,6 +88,6 @@ function continueOrder() {
 function openOrder() {
     let dropdownOrderCheckout = document.getElementById('dropdownOrderCheckout');
     dropdownOrderCheckout.addEventListener('click', () => {
-        window.location.href = 'http://localhost:63342/on-line-shop/pages/cart.html';
+        document.location.href = "../pages/cart.html";;
     })
 }
