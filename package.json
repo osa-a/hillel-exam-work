@@ -1,0 +1,25 @@
+{
+  "name": "on-line-shop",
+  "version": "1.0.0",
+  "description": "On-line shop ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osa-a/on-line-shop.git"
+  },
+  "keywords": [
+    "furniture"
+  ],
+  "author": "WE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osa-a/on-line-shop/issues"
+  },
+  "homepage": "https://github.com/osa-a/on-line-shop#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
