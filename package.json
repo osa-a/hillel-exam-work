@@ -21,6 +21,7 @@
   "homepage": "https://github.com/osa-a/on-line-shop#readme",
   "dependencies": {
     "jquery": "^3.4.1",
-    "jquery-bar-rating": "^1.2.2"
+    "jquery-bar-rating": "^1.2.2",
+    "sass": "^1.26.3"
   }
 }

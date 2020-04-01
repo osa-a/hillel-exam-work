@@ -56,6 +56,9 @@ h6 {
   padding: 50px 75px;
   border-bottom: 1px solid #000000; }
 
+.header-logo {
+  cursor: pointer; }
+
 .navigation-menu {
   display: flex; }
 
@@ -171,6 +174,7 @@ h6 {
   flex-direction: column; }
 
 .footer-logo {
+  cursor: pointer;
   margin-bottom: 30px; }
 
 .description {
@@ -199,6 +203,9 @@ h6 {
   color: #ffffff; }
   .contact:not(:last-child) {
     margin-bottom: 22px; }
+
+.contact-web {
+  cursor: pointer; }
 
 .page-head {
   background-image: url("../img/cart/shop-bg.png");
@@ -275,11 +282,13 @@ h6 {
   .textarea-body::placeholder {
     color: #333; }
 
-.radio-payment {
+.radio {
   margin-bottom: 40px;
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 15px;
   line-height: 30px; }
+  .radio-payment {
+    margin-right: 7px; }
 
 .order {
   flex-grow: 1; }

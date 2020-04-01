@@ -5,6 +5,7 @@ function creatCartPageHead(cartPage) {
     section.classList.add('page-head');
     const sectionTitle = document.createElement('div');
     sectionTitle.classList.add('cart-title');
+    sectionTitle.innerText = 'Order';
     section.appendChild(sectionTitle);
     cartPage.appendChild(section);
 }
@@ -23,9 +24,9 @@ function creatCartPageBilling(cartBody) {
     const billingTitle = document.createElement('div');
     billingTitle.classList.add('billing-title');
     billingTitle.innerText = 'Billing details';
-    creatOrderForm(billing);
     billing.appendChild(billingTitle);
     cartBody.appendChild(billing);
+    creatOrderForm(billing);
 }
 
 function creatOrderForm(billing) {
@@ -40,17 +41,17 @@ function creatOrderForm(billing) {
 
 function creatInputs(orderForm) {
     const divHalfBlock = document.createElement('div');
-    divHalfBlock.setAttribute('name', 'half');
+    divHalfBlock.classList.add('half');
     const inputHalf = [
         { name: 'name', placeholder: 'First Name *' },
         { name: 'surname', placeholder: 'Second Name *' }
     ];
     for (let i = 0; i < inputHalf.length; i++) {
         let input = document.createElement('input');
-        input.classList.add('input-text', 'input-half');
         input.setAttribute('type', 'text');
         input.setAttribute('name', inputHalf[i]['name']);
         input.setAttribute('placeholder', inputHalf[i]['placeholder']);
+        input.classList.add('input-text', 'input-half');
         divHalfBlock.appendChild(input);
     }
     orderForm.appendChild(divHalfBlock);
@@ -105,8 +106,9 @@ function creatTextArea(orderForm) {
 }
 
 function creatRadioPaymentBlock(orderForm) {
-    const radioPayment = document.createElement('div');
-    radioPayment.setAttribute('name', 'radio-payment');
+    const radio = document.createElement('div');
+    radio.classList.add('radio');
+    orderForm.appendChild(radio);
     let radioInfo = [
         { id: 'orderBank', text: 'Direct bank transfer' },
         { id: 'orderCheck', text: 'Check payments' },
@@ -114,25 +116,26 @@ function creatRadioPaymentBlock(orderForm) {
     ];
     for (let i = 0; i < radioInfo.length; i++) {
         const div = document.createElement('div');
+        radio.appendChild(div);
         const input = document.createElement('input');
-        input.setAttribute('name', 'payment');
         input.setAttribute('type', 'radio');
+        input.setAttribute('name', 'payment');
         input.setAttribute('id', radioInfo[i]['id']);
+        input.classList.add('radio-payment');
         div.appendChild(input);
-        const label = document.createElement('input');
+        const label = document.createElement('label');
         label.setAttribute('for', radioInfo[i]['id']);
         label.innerText = radioInfo[i]['text'];
         div.appendChild(label);
     }
-    orderForm.appendChild(radioPayment);
 }
 
 function creatBillingButtonBlock(orderForm) {
     const billingButtonBlock = document.createElement('div');
-    billingButtonBlock.setAttribute('name', 'billing-button');
+    billingButtonBlock.classList.add('billing-button');
     const placeOrderButton = document.createElement('button');
-    placeOrderButton.classList.add('billing-button-body');
     placeOrderButton.setAttribute('type', 'button');
+    placeOrderButton.classList.add('billing-button-body');
     placeOrderButton.innerText = 'Place Order';
     orderForm.appendChild(billingButtonBlock);
     billingButtonBlock.appendChild(placeOrderButton);
@@ -141,16 +144,16 @@ function creatBillingButtonBlock(orderForm) {
 function creatCartPageOrder(cartBody) {
     const order = document.createElement('section');
     order.classList.add('order');
+    cartBody.appendChild(order);
     const orderTitle = document.createElement('div');
     orderTitle.classList.add('order-title');
     orderTitle.innerText = 'Your order';
+    order.appendChild(orderTitle);
     creatItemsInCart(order);
     const orderTotal = document.createElement('div');
     orderTotal.classList.add('order-total');
     orderTotal.innerText = 'Total:';
-    order.appendChild(orderTitle);
     order.appendChild(orderTotal);
-    cartBody.appendChild(order);
 }
 
 // FUNC THAT WILL SHOW ITEMS THAT USER ADD TO CART //

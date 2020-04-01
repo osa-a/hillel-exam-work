@@ -93,11 +93,14 @@
   }
 }
 
-.radio-payment {
+.radio {
   margin-bottom: 40px;
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 15px;
   line-height: 30px;
+  &-payment {
+    margin-right: 7px;
+  }
 }
 .order {
   flex-grow: 1;
