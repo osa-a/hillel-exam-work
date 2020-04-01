@@ -162,6 +162,19 @@ h6 {
   .dropdown-order-continue {
     margin-right: 10px; }
 
+    .page-head {
+      background-image: url("../img/cart/shop-bg.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 110px 0 110px 230px; }
+    
+    .cart-title {
+      font-family: "OpenSans Regular", Helvetica, sans-serif;
+      font-size: 36px;
+      line-height: 36px;
+      font-weight: 400; }
+
 .header__logo {
   height: 330px;
   max-width: 1920px;

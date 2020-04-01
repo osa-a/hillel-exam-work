@@ -104,7 +104,9 @@ function shopCardListener(container) {
         if (!clicked) {
             return;
         };
-        document.location.href = "../pages/product_card.html";
+
+        renderingPage();
+        // document.location.href = "../pages/product_card.html";
         // console.log(clicked);
     })
 }
