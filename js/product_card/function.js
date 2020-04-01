@@ -68,7 +68,7 @@ let changeLinkCSS = () => {
 } 
 
 let createSectionCategoryHead = () => {
-    createElement('section', 'category-head', '.homepage'); // временно
+    createElement('section', 'category-head', '.main');
     createElement('div', 'page-head', '.category-head');
     createElement('div', 'cart-title', '.page-head');
     document.querySelector('.cart-title').innerText = 'Shop';
@@ -79,7 +79,7 @@ let createSectionCategoryHead = () => {
 
 let createItemCardSection = () => {
     // create wrapper
-    createElement('div', 'wrapper', '.homepage'); // временно
+    createElement('div', 'wrapper', '.main');
 
     // create section - item-card
     createElement('section', 'item-card', '.wrapper');
