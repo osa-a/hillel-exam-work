@@ -150,7 +150,7 @@ let createReviewSection = () => {
     createElement('section', 'review-block', '.wrapper');
 
     createElement('div', 'user-avatar', '.review-block');
-    // сюда запилить фото комментария
+    createImg('user-avatar-photo', 'avatar', '110', '110', ".user-avatar")
 
     createElement('div', 'user-review', '.review-block');
 
@@ -172,6 +172,34 @@ let createReviewFormSection = () => {
     createElement('p', 'review-info__rating', '.review-info');
 
     createElement('div', 'chose-rating', '.review-info');
+
+    $('<div>', {
+        class: 'br-wrapper br-theme-fontawesome-stars',
+        html: 
+        `<select id="example">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>`
+    }).appendTo(document.querySelector('.chose-rating'));
+    $('select').barrating('show');
+    $('#example').barrating('show', { // еще разбираюсь как эта хрень работает
+        theme: 'my-awesome-theme',
+        onSelect: function(value, text, event) {
+          if (typeof(event) !== 'undefined') {
+            // rating was selected by a user
+            console.log(event.target);
+          } else {
+            // rating was selected programmatically
+            // by calling `set` method
+          }
+        }
+      });
+
+
+    
     // сюда запились рейтинг звездочками
 
     createInput('name-field', 'text', 'name-field-id', 'Your name', '.review-info'); 
@@ -230,6 +258,10 @@ let renderingProductCard = () => {
     const productCategory = document.querySelector('.category-of-good');
     const productType = document.querySelector('.features-of-good__type');
     const productMaterial = document.querySelector('.features-of-good__material');
+    const commentUserName = document.querySelector('.user-name');
+    const commentUserText = document.querySelector('.review-content');
+    const commentUserDate = document.querySelector('.review-date');
+
 
     items.forEach(element => {
         if (element.id === selectedId) {
@@ -240,6 +272,9 @@ let renderingProductCard = () => {
             productCategory.innerText = `Category: ${element.category}`;
             productType.innerText = `Type: ${element.type}`;
             productMaterial.innerText = `Material: ${element.material}`;
+            commentUserName.innerText = element.comments.name;
+            commentUserText.innerText = element.comments.comment;
+            commentUserDate.innerText = element.comments.date;
         }
     });
 }
@@ -253,17 +288,23 @@ let renderingPics = () => {
     const miniPic4 = document.querySelector('.mini-pic-4');
     const descPic1 = document.querySelector('.description-pic-1');
     const descPic2 = document.querySelector('.description-pic-2');
+    const userAvatar = document.querySelector('.user-avatar-photo');
 
+    for (let value in smallImg) {
+         if (value === selectedId) {
+            mainPic.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-1.png`);
+            miniPic1.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-1.png`);
+            miniPic2.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-2.png`);
+            miniPic3.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-3.png`);
+            miniPic4.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-4.png`);
+            descPic1.setAttribute('src', `../img/category-shop-cards/descr/${value}-1.jpg`); 
+            descPic2.setAttribute('src', `../img/category-shop-cards/descr/${value}-2.jpg`);
+        }
+    }
 
-    items.forEach(element => {
+    items.forEach(element => { // не отображается, разобраться
         if (element.id === selectedId) {
-            mainPic.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-1.png`);
-            miniPic1.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-1.png`);
-            miniPic2.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-2.png`);
-            miniPic3.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-3.png`);
-            miniPic4.setAttribute('src', `../img/category-shop-cards/smallImg/${element.id}-4.png`);
-            descPic1.setAttribute('src', `../img/category-shop-cards/descr/${element.id}-1.jpg`); 
-            descPic2.setAttribute('src', `../img/category-shop-cards/descr/${element.id}-2.jpg`);
+            userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments.avatar}`);
         }
     });
 } 

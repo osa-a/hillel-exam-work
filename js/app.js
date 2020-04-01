@@ -11,6 +11,7 @@ fetch('data.json')
         type = [...res.type];
         descriptions = { ...res.descriptions };
         smallImg = { ...res.smallImg };
+        comments = { ...res.comments };
         createData();
         createHomepage();
         mainPageListener(wrapper, page);
