@@ -8,7 +8,51 @@ function insertMain(page) {
     parentDiv.insertBefore(page, mainFooter);
 }
 
+function switchPage(page) {
+    switch (page) {
+        case '1':
+            cleaner();
+            createHomepage();
+            break;
+        case '2':
+            createCategoryPage('Decoration');
+            watchPriceRange()
+            break;
+        case '3':
+            createCategoryPage('Furniture');
+            watchPriceRange()
+            break;
+        case '4':
+            createCategoryPage('Shop');
+            watchPriceRange()
+            break;
+        case '5':
+            createCartPage();
+            break;
+    }
+}
+
+function cleaner() {
+    const mainContainer = document.querySelector('.main');
+    mainContainer.innerHTML = '';
+    mainContainer.remove();
+}
+
+function changeCss(style){
+    const mainCss = document.querySelector('.style-css-files');
+    mainCss.setAttribute('href', `css/${style}.css`)
+}
+
 //*   HOMEPAGE  +  CATEGORY    *// 
+
+function createShopLine(array, start, amount, calssName, page) {
+    const section = document.createElement('section');
+    section.classList.add(calssName);
+    for (let i = start; i < amount; i++) {
+        createCard(array, i, section);
+    }
+    page.appendChild(section);
+}
 
 function createCard(items, i, container) {
     const shopCard = document.createElement('div');
@@ -42,14 +86,14 @@ function createCard(items, i, container) {
 
 //*   LISTENERS   *//
 
-function mainPageListener(wrapper) {
+function mainPageListener(wrapper, page) {
     wrapper.addEventListener('click', e => {
         const click = e.target.classList.contains('another-page');
         if (!click) {
             return;
         }
-        const page = e.target.getAttribute('data-page');
-        console.log(page);
+        page = e.target.getAttribute('data-page');
+        switchPage(page);
     });
 }
 

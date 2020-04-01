@@ -1,18 +1,13 @@
 'use strict';
 
+function createCartPage() {
+    cleaner();
+    changeCss('cart');
+    const cartPage = document.createElement('main');
+    cartPage.classList.add('cartpage');
+    creatCartPageHead(cartPage);
+    creatCartPageBody(cartPage);
 
-fetch('../../data.json')
-    .then((res) => res.json())
-    .then((res) => {
-        categories = [...res.categories];
-        material = [...res.material];
-        type = [...res.type];
-        descriptions = { ...res.descriptions };
-        smallImg = { ...res.smallImg };
-        createData();
-        // createCartPage();
-    });
-
-// function createCartPage() {
-//     ...
-// }
+    //shopCardListener(wrapper);
+    insertMain(cartPage);
+}

@@ -24,15 +24,6 @@ function createHomepageHead(homepage) {
     homepage.appendChild(section);
 }
 
-function createShopLine(items, start, amount, calssName, homepage) {
-    const section = document.createElement('section');
-    section.classList.add(calssName);
-    for (let i = start; i < amount; i++) {
-        createCard(items, i, section);
-    }
-    homepage.appendChild(section);
-}
-
 function createBanner(homepage) {
     const section = document.createElement('section');
     section.classList.add('banner-head');

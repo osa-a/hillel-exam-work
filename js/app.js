@@ -1,6 +1,7 @@
 'use strict';
 
 const wrapper = document.querySelector('.web-wrapper');
+let page;
 
 fetch('data.json')
     .then((res) => res.json())
@@ -12,7 +13,9 @@ fetch('data.json')
         smallImg = { ...res.smallImg };
         createData();
         createHomepage();
-        mainPageListener(wrapper);
+        mainPageListener(wrapper, page);
     });
+
+
 
 openDropDownOrder();
