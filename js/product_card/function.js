@@ -49,11 +49,18 @@ let createTextareaReview = () => {
     parent.append(textarea);
 }
 
+let mnemonFunc = () => {
+    let mnemon = '&rarr;';
+    let htmlDecode = value => $('<div/>').html(value).text(); 
+    mnemon = htmlDecode(mnemon);
+    return mnemon;
+}
+
 let createSubmitButtonReview = () => {
     let input = document.createElement('input');
     let parent = document.querySelector('.review-info');
     input.setAttribute('type', 'submit');
-    input.setAttribute('value', 'Submit &rarr;');
+    input.setAttribute('value', `Submit ${mnemonFunc()}`);
     parent.append(input);
 } 
 
@@ -157,6 +164,7 @@ let createReviewSection = () => {
     createElement('div', 'review-title', '.user-review');
     createElement('h5', 'user-name', '.review-title');
     createElement('div', 'user-rating', '.review-title');
+    addRatingToComment('.user-rating');
     // сюда запилить рейтинг звездочками
 
     createElement('div', 'review-date', '.user-review');
@@ -171,12 +179,16 @@ let createReviewFormSection = () => {
     createElement('p', 'review-info__sub-info', '.review-info');
     createElement('p', 'review-info__rating', '.review-info');
 
+    document.querySelector('.review-info__add-review').innerText = "Add a review";
+    document.querySelector('.review-info__sub-info').innerText = "Your email address will not be published. Required fields are marked *";
+    document.querySelector('.review-info__rating').innerText = "Choose rating";
+
     createElement('div', 'chose-rating', '.review-info');
 
     $('<div>', {
         class: 'br-wrapper br-theme-fontawesome-stars',
         html: 
-        `<select id="example">
+        `<select id="rating-scale">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -185,15 +197,12 @@ let createReviewFormSection = () => {
       </select>`
     }).appendTo(document.querySelector('.chose-rating'));
     $('select').barrating('show');
-    $('#example').barrating('show', { // еще разбираюсь как эта хрень работает
+    $('#rating-scale').barrating('show', { // еще разбираюсь как эта хрень работает
         theme: 'my-awesome-theme',
-        onSelect: function(value, text, event) {
+        onSelect: function(value, event) {
           if (typeof(event) !== 'undefined') {
             // rating was selected by a user
             console.log(event.target);
-          } else {
-            // rating was selected programmatically
-            // by calling `set` method
           }
         }
       });
@@ -203,7 +212,7 @@ let createReviewFormSection = () => {
     // сюда запились рейтинг звездочками
 
     createInput('name-field', 'text', 'name-field-id', 'Your name', '.review-info'); 
-    createInput('name-field', 'text', 'name-field-id', 'Your name', '.review-info');
+    createInput('email-field', 'text', 'email-field-id', 'Your email', '.review-info');
 
     createTextareaReview();
     createSubmitButtonReview();
@@ -389,4 +398,25 @@ let addListenerToChangeMainPic = () => {
             }
         }
     });
+}
+
+
+let addRatingToProduct = () => {
+    
+}
+
+let addRatingToComment = (parent) => {
+    let selectedId = getIdFromStorage()
+    for (let i = 1; i < 6; i++) {
+        createImg(`rate-star-${i}`, 'star', '25', '25', parent);
+        document.querySelector(`.rate-star-${i}`).setAttribute('src', '../img/product_card/empty_star.png');
+    }
+
+    items.forEach(elem => {
+        if (elem.id === selectedId) {
+            for (let i = 1; i < parseInt(elem.comments.rate); i++) {
+                document.querySelector(`.rate-star-${i}`).setAttribute('src', '../img/product_card/full_star.png');
+            }
+        }
+    })
 }

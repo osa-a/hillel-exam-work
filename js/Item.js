@@ -42,6 +42,6 @@ function createData(){
     itemElem.pushToAr(itemElem);
     itemElem = new Item('5b', 'Planting Light', 25,  categories[1], material[4], type[2], comments[5]);
     itemElem.pushToAr(itemElem);
-    itemElem = new Item('51', 'Planting Vase Set', 100,  categories[1], material[4], type[4], comments[6]);
+    itemElem = new Item('51', 'Planting Vase Set', 100,  categories[1], material[4], type[4], comments[4]);
     itemElem.pushToAr(itemElem);
 }
