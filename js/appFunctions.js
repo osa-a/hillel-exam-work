@@ -38,7 +38,7 @@ function cleaner() {
     mainContainer.remove();
 }
 
-function changeCss(style){
+function changeCss(style) {
     const mainCss = document.querySelector('.style-css-files');
     mainCss.setAttribute('href', `css/${style}.css`)
 }
@@ -104,10 +104,9 @@ function shopCardListener(container) {
         if (!clicked) {
             return;
         };
-
         renderingPage();
         // document.location.href = "../pages/product_card.html";
-        // console.log(clicked);
+
     })
 }
 
@@ -127,7 +126,6 @@ let setIdToStorage = (e) => {
     let selectedId = e.target.dataset.item;
     localStorage.setItem('Data-id', JSON.stringify(selectedId));
 }
-
 
 //*   DROPDOWN CART   *//
 

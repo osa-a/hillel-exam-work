@@ -12,6 +12,7 @@ function createCategoryPage(text) {
             return item.category === text;
         });
     }
+    console.log(filteredArray);
     createCategoryHead(category, text);
     createCategoryWrapper(category, filteredArray);
     shopCardListener(wrapper);

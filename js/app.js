@@ -16,6 +16,4 @@ fetch('data.json')
         mainPageListener(wrapper, page);
     });
 
-
-
 openDropDownOrder();
