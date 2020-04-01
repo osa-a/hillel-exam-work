@@ -33,7 +33,7 @@ let createReviewForm = () => {
     let parent = document.querySelector('.wrapper');
     form.classList.add('review-form');
     form.setAttribute('name', 'review-form');
-    form.setAttribute('action', 'post'); // добавить action
+    form.setAttribute('action', 'https://mcslayer.com/hillel/post.php'); // добавить action
     parent.append(form);
 }
 
@@ -71,7 +71,7 @@ let clearAllMainBlock = () => {
 let changeLinkCSS = () => {
     let startedLink = document.querySelector('.style-css-files'); 
     startedLink.removeAttribute('href');
-    startedLink.setAttribute('href', 'css/product_card.min.css');
+    startedLink.setAttribute('href', 'css/product_card/product_card.css');
 } 
 
 let createSectionCategoryHead = () => {
@@ -137,9 +137,9 @@ let createSwitchesSection = () => {
 }
 
 let createDescriptionBlock = () => {
-    createElement('section', 'description-block', '.wrapper');
+    createElement('section', 'description-section', '.wrapper');
 
-    createElement('div', 'description-block__info', '.description-block');
+    createElement('div', 'description-block__info', '.description-section');
     createImg('description-pic-1', 'description-block__info-pic', '300', '375', '.description-block__info');
     createElement('div', 'description-block__info--content', '.description-block__info');
 
@@ -147,7 +147,7 @@ let createDescriptionBlock = () => {
     createElement('p', 'features-of-good__type', '.features-of-good');
     createElement('p', 'features-of-good__material', '.features-of-good');
 
-    createElement('div', 'description-block__portfolio', '.description-block');
+    createElement('div', 'description-block__portfolio', '.description-section');
     createImg('description-pic-2', 'description-block__portfolio', '400', '530', '.description-block__portfolio');
     
     
@@ -331,7 +331,7 @@ let hideBlock = () => {
 let addlistenerToSwitches = () => {
 
     let reviewBlock = document.querySelector('.review-block');
-    let descrBlock = document.querySelector('.description-block');
+    let descrBlock = document.querySelector('.description-section');
     let form = document.forms['review-form'];
 
     document.querySelector('.switches').addEventListener('click', function(e) {
