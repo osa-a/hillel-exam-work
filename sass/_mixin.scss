@@ -3,8 +3,11 @@
     margin-top: 0;
     margin-bottom: 0;
   }
-  * {
+  html * {
     box-sizing: border-box;
+  }
+  body {
+    margin: 0;
   }
 }
 
@@ -41,6 +44,33 @@
   }
 }
 
+@mixin pm_zeroSet() {
+  padding: 0;
+  margin: 0;    
+}
+
+@mixin padding($pt, $pr, $pb, $pl) {
+  padding-top: $pt;
+  padding-right: $pr;
+  padding-bottom: $pb;
+  padding-left: $pl;
+}
+
+@mixin margin($mt, $ml, $mb, $mr) {
+  margin-top: $mt;
+  margin-left: $ml; 
+  margin-bottom: $mb;
+  margin-right: $mr;
+}
+
+@mixin flex($fd:row, $jc:center, $ai:center, $fw:wrap) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-wrap: $fw;
+}
+
 @mixin backgroundSet {
   background-size: cover;
   background-repeat: no-repeat;
@@ -52,6 +82,12 @@
   border: 2px solid $mainDarkClr;
   color: $mainDarkClr;
   cursor: pointer;
+}
+
+@mixin font($fs, $lh, $fw:400) {
+  font-size: $fs;
+  line-height: $lh;
+  font-weight: $fw;
 }
 
 @mixin setFont($size) {

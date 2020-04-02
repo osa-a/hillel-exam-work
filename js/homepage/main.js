@@ -1,7 +1,7 @@
 'use strict'
 
 function createHomepage() {
-    changeCss('style');
+    changeCss('homepage');
     const homepage = document.createElement('main');
     homepage.classList.add('main');
     createHomepageHead(homepage);

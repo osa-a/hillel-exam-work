@@ -1,19 +1,10 @@
-@import "../fonts";
 @import "../variables";
 @import "../mixin";
 
-@include mainSet();
-@include listReset();
-@include linkSet();
-@include headingReset();
-
-@import "../common/navigation";
 @import "../category/range";
-@import "../common/small-item-cards";
-@import "../common/footer";
 
 .page-head {
-  background-image: url("../img/cart/shop-bg.png");
+  background-image: url("../../img/cart/shop-bg.png");
   @include backgroundSet;
   padding: 110px 0 110px 230px;
 }
@@ -38,6 +29,7 @@
 
 .shop-card {
   margin-bottom: 25px;
+  max-height: 400px;
 }
 
 .filter-form {

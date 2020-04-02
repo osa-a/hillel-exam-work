@@ -1,0 +1,157 @@
+/*   MAIN CLR  */
+/*   ACCENT CLR   */
+/*   FONT SIZES   */
+.homepage-head {
+  display: flex;
+  justify-content: flex-end;
+  background-image: url("../../img/homepage/1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 276px 115px 272px;
+}
+
+.head-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-header {
+  font-family: "OpenSans Bold", Helvetica, sans-serif;
+  font-size: 100px;
+  line-height: 100px;
+  color: #000000;
+  margin-bottom: 50px;
+}
+
+.header-description {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 400;
+  color: #8e8e8e;
+  margin-bottom: 37px;
+}
+
+.head-buy-button {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 400;
+  background-color: transparent;
+  border: 2px solid #000000;
+  color: #000000;
+  cursor: pointer;
+  padding: 23px 45px;
+}
+
+.head-buy-button:hover {
+  border: 2px solid transparent;
+  background-color: #ff518f;
+  color: #ffffff;
+}
+
+.banner-head {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 185px;
+  padding-bottom: 185px;
+}
+
+.banner-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 120px;
+}
+
+.banner-text {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 72px;
+  line-height: 72px;
+  font-weight: 400;
+  max-width: 420px;
+  color: #000000;
+  margin-bottom: 105px;
+  text-align: right;
+}
+
+.banner-button {
+  width: 185px;
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 400;
+  background-color: transparent;
+  border: 2px solid #000000;
+  color: #000000;
+  cursor: pointer;
+  padding: 23px 20px;
+}
+
+.banner-button:hover {
+  background-color: #df8647;
+  border: 2px solid transparent;
+  color: #ffffff;
+}
+
+.shop-head {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 100px;
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.shop-footer {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 170px;
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.about-us {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 125px;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.about-img {
+  width: 512px;
+  height: 609px;
+}
+
+.about-header {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 36px;
+  line-height: 36px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.about-description {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  max-width: 700px;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.about-signature-name {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  line-height: 35px;
+  max-width: 700px;
+}

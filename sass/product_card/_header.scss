@@ -1,9 +1,15 @@
+/* я не совсем понимаю что тут происходит? 
+   такой класс я нигде не обнаружила, он разве что, почти
+   один в один с header_logo у логотипа,
+   только у оследнего, на одно _ меньше*/
+
+
 .header__logo {
     height: 330px;
     max-width: 1920px;
     min-width: 320px;
     @include flex($fd:row, $jc:stretch, $ai:center, $fw:wrap);
-    @include background();
+    @include backgroundSet();
     background-image: url('../img/header_pic.png');
    
     .header__logo--title {

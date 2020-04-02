@@ -48,7 +48,7 @@ function cleaner(reload) {
 
 function changeCss(style) {
     const mainCss = document.querySelector('.style-css-files');
-    mainCss.setAttribute('href', `css/${style}.css`)
+    mainCss.setAttribute('href', `css/${style}/${style}.css`)
 }
 
 //*   HOMEPAGE  +  CATEGORY    *// 

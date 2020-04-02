@@ -68,11 +68,11 @@ let clearAllMainBlock = () => {
     document.getElementsByTagName('main')[0].innerHTML = '';
 };
 
-let changeLinkCSS = () => {
-    let startedLink = document.querySelector('.style-css-files');
-    startedLink.removeAttribute('href');
-    startedLink.setAttribute('href', 'css/product_card/product_card.css');
-}
+// let changeLinkCSS = () => {
+//     let startedLink = document.querySelector('.style-css-files');
+//     startedLink.removeAttribute('href');
+//     startedLink.setAttribute('href', 'css/product_card/product_card.css');
+// }
 
 let createSectionCategoryHead = () => {
     createElement('section', 'category-head', '.main');
@@ -230,8 +230,8 @@ let renderingPage = (/*page, reload*/) => {
     //* так как второй параметр (true) в switch не передан, соответственно, это не перезагрузка
     //* значит, там есть что чистить
     clearAllMainBlock(); //! 
-    // changeCss('product_card');
-    changeLinkCSS(); 
+    changeCss('product_card');
+    // changeLinkCSS(); 
 
     //! const itemCardPage = document.createElement('main');
     //! itemCardPage.classList.add('main');
