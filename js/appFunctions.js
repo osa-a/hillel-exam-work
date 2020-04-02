@@ -173,6 +173,8 @@ function continueOrder() {
 function openOrder() {
     let dropdownOrderCheckout = document.getElementById('dropdownOrderCheckout');
     dropdownOrderCheckout.addEventListener('click', () => {
-        document.location.href = "../pages/cart.html";
+        dropdownOrderCheckout.classList.add('another-page');
+        dropdownOrderCheckout.setAttribute('data-page', '5');
+        document.getElementById('dropdownOrder').style.display = 'none';
     })
 }
