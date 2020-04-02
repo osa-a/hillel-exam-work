@@ -2,28 +2,21 @@
 /*   MAIN CLR  */
 /*   ACCENT CLR   */
 /*   FONT SIZES   */
-/* я не совсем понимаю что тут происходит? 
-   такой класс я нигде не обнаружила, он разве что, почти
-   один в один с header_logo у логотипа,
-   только у оследнего, на одно _ меньше*/
-.header__logo {
-  height: 330px;
-  max-width: 1920px;
-  min-width: 320px;
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  align-items: center;
-  flex-wrap: wrap;
+
+
+.page-head {
+  background-image: url("../../img/cart/shop-bg.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("../img/header_pic.png");
+  padding: 110px 0 110px 230px;
 }
 
-.header__logo .header__logo--title {
-  margin-left: 430px;
-  font-family: 'OpenSans Regular', sans-serif;
+.cart-title {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 36px;
+  line-height: 36px;
+  font-weight: 400;
 }
 
 .item-card {
@@ -114,6 +107,7 @@
 }
 
 .buy-block .amount-of-goods .amount-of-goods__counter .plus-one {
+  height: 50%;
   border-bottom: 1px solid #000;
   cursor: pointer;
 }
@@ -127,7 +121,7 @@
 }
 
 .buy-block .amount-of-goods .amount-of-goods__counter .minus-one {
-  height: 52%;
+  height: 50%;
   cursor: pointer;
 }
 
@@ -301,7 +295,7 @@
   opacity: 0.5;
 }
 
-.description-block {
+.description-section {
   display: flex;
   margin-top: 80px;
   margin-bottom: 40px;

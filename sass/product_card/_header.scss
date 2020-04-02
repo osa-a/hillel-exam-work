@@ -1,19 +1,14 @@
-/* я не совсем понимаю что тут происходит? 
-   такой класс я нигде не обнаружила, он разве что, почти
-   один в один с header_logo у логотипа,
-   только у оследнего, на одно _ меньше*/
-
-
-.header__logo {
-    height: 330px;
-    max-width: 1920px;
-    min-width: 320px;
-    @include flex($fd:row, $jc:stretch, $ai:center, $fw:wrap);
-    @include backgroundSet();
-    background-image: url('../img/header_pic.png');
-   
-    .header__logo--title {
-        margin-left: 430px;
-        font-family: 'OpenSans Regular', sans-serif;
-    }
-}
+.page-head {
+    background-image: url("../../img/cart/shop-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 110px 0 110px 230px;
+  }
+  
+  .cart-title {
+    font-family: "OpenSans Regular", Helvetica, sans-serif;
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: 400;
+  }

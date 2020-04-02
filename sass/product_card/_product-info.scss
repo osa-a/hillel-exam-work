@@ -69,6 +69,7 @@
             text-align: center;
 
             .plus-one {
+                height: 50%;
                 border-bottom: 1px solid #000;
                 cursor: pointer;
 
@@ -82,7 +83,7 @@
             }
 
             .minus-one {
-                height: 52%;
+                height: 50%;
                 cursor: pointer;
 
                 &:hover {
