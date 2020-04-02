@@ -13,4 +13,3 @@ function createHomepage() {
     cartButtonListener(wrapper);
     insertMain(homepage);
 }
-

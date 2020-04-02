@@ -1,7 +1,7 @@
 'use strict';
 
-function createCartPage() {
-    cleaner();
+function createCartPage(reload) {
+    cleaner(reload);
     changeCss('cart');
     const cartPage = document.createElement('main');
     cartPage.classList.add('main');

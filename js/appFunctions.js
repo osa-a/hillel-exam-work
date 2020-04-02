@@ -8,34 +8,42 @@ function insertMain(page) {
     parentDiv.insertBefore(page, mainFooter);
 }
 
-function switchPage(page) {
+function switchPage(page, reload) {
     switch (page) {
         case '1':
-            cleaner();
+            cleaner(reload);
             createHomepage();
             break;
         case '2':
-            createCategoryPage('Decoration');
+            createCategoryPage('Decoration', reload);
             watchPriceRange()
             break;
         case '3':
-            createCategoryPage('Furniture');
+            createCategoryPage('Furniture', reload);
             watchPriceRange()
             break;
         case '4':
-            createCategoryPage('Shop');
+            createCategoryPage('Shop', reload);
             watchPriceRange()
             break;
         case '5':
-            createCartPage();
+            createCartPage(reload);
+            break;
+        case '6':
+            renderingPage(reload);
+            break;
+        default:
+            createHomepage();
             break;
     }
 }
 
-function cleaner() {
-    const mainContainer = document.querySelector('.main');
-    mainContainer.innerHTML = '';
-    mainContainer.remove();
+function cleaner(reload) {
+    if (!reload) {
+        const mainContainer = document.querySelector('.main');
+        mainContainer.innerHTML = '';
+        mainContainer.remove();
+    }
 }
 
 function changeCss(style) {
@@ -92,6 +100,7 @@ function mainPageListener(wrapper, page) {
         if (!click) {
             return;
         }
+        setIdToStorage(e, 'page', 'page');
         page = e.target.getAttribute('data-page');
         switchPage(page);
     });
@@ -99,14 +108,13 @@ function mainPageListener(wrapper, page) {
 
 function shopCardListener(container) {
     container.addEventListener('click', (e) => {
-        setIdToStorage(e);
         let clicked = e.target.getAttribute('data-item');
         if (!clicked) {
             return;
         };
+        setIdToStorage(e, 'item', 'item');
         renderingPage();
         // document.location.href = "../pages/product_card.html";
-
     })
 }
 
@@ -120,11 +128,16 @@ function cartButtonListener(wrapper) {
     })
 }
 
-//*   ITEM CARD   *//
+//*   LOCAL STORAGE   *//
 
-let setIdToStorage = (e) => {
-    let selectedId = e.target.dataset.item;
-    localStorage.setItem('Data-id', JSON.stringify(selectedId));
+let setIdToStorage = (e, data, item) => {
+    let selectedData = e.target.dataset[item];
+    localStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
+}
+
+let getIdFromStorage = (data) => {
+    let selectedData = JSON.parse(localStorage.getItem(`Data-${data}`));
+    return selectedData;
 }
 
 //*   DROPDOWN CART   *//

@@ -13,7 +13,8 @@ fetch('data.json')
         smallImg = { ...res.smallImg };
         comments = { ...res.comments };
         createData();
-        createHomepage();
+        page = getIdFromStorage('page');
+        switchPage(page, true);
         mainPageListener(wrapper, page);
     });
 

@@ -51,7 +51,7 @@ let createTextareaReview = () => {
 
 let mnemonFunc = () => {
     let mnemon = '&rarr;';
-    let htmlDecode = value => $('<div/>').html(value).text(); 
+    let htmlDecode = value => $('<div/>').html(value).text();
     mnemon = htmlDecode(mnemon);
     return mnemon;
 }
@@ -62,17 +62,17 @@ let createSubmitButtonReview = () => {
     input.setAttribute('type', 'submit');
     input.setAttribute('value', `Submit ${mnemonFunc()}`);
     parent.append(input);
-} 
+}
 
 let clearAllMainBlock = () => {
     document.getElementsByTagName('main')[0].innerHTML = '';
 };
 
 let changeLinkCSS = () => {
-    let startedLink = document.querySelector('.style-css-files'); 
+    let startedLink = document.querySelector('.style-css-files');
     startedLink.removeAttribute('href');
     startedLink.setAttribute('href', 'css/product_card/product_card.css');
-} 
+}
 
 let createSectionCategoryHead = () => {
     createElement('section', 'category-head', '.main');
@@ -81,7 +81,7 @@ let createSectionCategoryHead = () => {
     document.querySelector('.cart-title').innerText = 'Shop';
 
     createItemCardSection();
-    
+
 }
 
 let createItemCardSection = () => {
@@ -102,7 +102,7 @@ let createItemCardSection = () => {
     createElement('div', 'item-card__info-of-good', '.item-card');
     createElement('h3', 'item-card__info-of-good--title', '.item-card__info-of-good');
     createElement('h4', 'item-card__info-of-good--price', '.item-card__info-of-good');
-    createElement('div', 'product-rating', '.item-card__info-of-good'); 
+    createElement('div', 'product-rating', '.item-card__info-of-good');
     // сюда допилить рейтинг звездочками
 
     createElement('p', 'item-card__info-of-good--description', '.item-card__info-of-good');
@@ -110,16 +110,16 @@ let createItemCardSection = () => {
 
     createElement('div', 'amount-of-goods', '.buy-block');
     createElement('div', 'amount-of-goods__int', '.amount-of-goods');
-    createElement('div', 'amount-of-goods__counter', '.amount-of-goods'); 
-    createElement('div', 'plus-one', '.amount-of-goods__counter'); 
+    createElement('div', 'amount-of-goods__counter', '.amount-of-goods');
+    createElement('div', 'plus-one', '.amount-of-goods__counter');
     createElement('div', 'minus-one', '.amount-of-goods__counter');
     document.querySelector('.amount-of-goods__int').innerText = "1";
-    document.querySelector('.plus-one').innerText = "+"; 
-    document.querySelector('.minus-one').innerText = "-"; 
+    document.querySelector('.plus-one').innerText = "+";
+    document.querySelector('.minus-one').innerText = "-";
 
     createElement('div', 'buy-block__button', '.buy-block');
     createElement('button', 'buy-button', '.buy-block__button');
-    document.querySelector('.buy-button').innerText = "BUY"; 
+    document.querySelector('.buy-button').innerText = "BUY";
 
     createElement('div', 'item-card__info-of-good--id', '.item-card__info-of-good');
     createElement('p', 'id-of-good', '.item-card__info-of-good--id');
@@ -149,8 +149,8 @@ let createDescriptionBlock = () => {
 
     createElement('div', 'description-block__portfolio', '.description-section');
     createImg('description-pic-2', 'description-block__portfolio', '400', '530', '.description-block__portfolio');
-    
-    
+
+
 }
 
 let createReviewSection = () => {
@@ -187,8 +187,8 @@ let createReviewFormSection = () => {
 
     $('<div>', {
         class: 'br-wrapper br-theme-fontawesome-stars',
-        html: 
-        `<select id="rating-scale">
+        html:
+            `<select id="rating-scale">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -199,28 +199,46 @@ let createReviewFormSection = () => {
     $('select').barrating('show');
     $('#rating-scale').barrating('show', { // еще разбираюсь как эта хрень работает
         theme: 'my-awesome-theme',
-        onSelect: function(value, event) {
-          if (typeof(event) !== 'undefined') {
-            // rating was selected by a user
-            console.log(event.target);
-          }
+        onSelect: function (value, event) {
+            if (typeof (event) !== 'undefined') {
+                // rating was selected by a user
+                console.log(event.target);
+            }
         }
-      });
+    });
 
-
-    
     // сюда запились рейтинг звездочками
 
-    createInput('name-field', 'text', 'name-field-id', 'Your name', '.review-info'); 
+    createInput('name-field', 'text', 'name-field-id', 'Your name', '.review-info');
     createInput('email-field', 'text', 'email-field-id', 'Your email', '.review-info');
 
     createTextareaReview();
     createSubmitButtonReview();
 }
 
-let renderingPage = () => {
-    clearAllMainBlock();
-    changeLinkCSS();
+
+//* рекомендую переименовать в CreateItemCardPage
+//* ибо она будет лежать в общей функции
+//* что бы всем было понятно что за страница рендерится 
+let renderingPage = (/*page, reload*/) => {
+    //! cleaner(reload);
+    //* клинер использует reload, потому что посмотри в app.js fetch
+    //* если страница перезагружается или отрисовывается первый раз
+    //* в конструкцию switch падает второй параметр (true)
+    //* тогда клинер срабатывать не будет, потому что ему чистить нечего
+    //* если же это просто переход со страницы на страницу, тогда он будет срабатывать 
+    //* так как второй параметр (true) в switch не передан, соответственно, это не перезагрузка
+    //* значит, там есть что чистить
+    clearAllMainBlock(); //! 
+    // changeCss('product_card');
+    changeLinkCSS(); 
+
+    //! const itemCardPage = document.createElement('main');
+    //! itemCardPage.classList.add('main');
+    //* itemCardPage соотвутственно тебе нужно itemCardPage передавать
+    //* в каждую функцию, которая создает тот или иной блок
+    //* и созданное аппендить в нее
+
     createSectionCategoryHead();
     createSwitchesSection();
     createDescriptionBlock();
@@ -235,31 +253,25 @@ let renderingPage = () => {
     hideBlock();
     addlistenerToSwitches();
 
-// counter of amount of product
+    // counter of amount of product
 
     addlistenerToAmountOfProduct();
 
-// change main pic
+    // change main pic
 
     addListenerToChangeMainPic();
+
+    //! insertMain(itemCardPage);
 }
-
-
-
 
 
 // RENDER
 
-let getIdFromStorage = () => {
-    let selectedCategory = JSON.parse(localStorage.getItem('Data-id'));
-    return selectedCategory; 
-}
-
-// const selectedId = getIdFromStorage(); 
+// const selectedId = getIdFromStorage('item'); 
 
 
 let renderingProductCard = () => {
-    let selectedId = getIdFromStorage();
+    let selectedId = getIdFromStorage('item');
     const productName = document.querySelector('.item-card__info-of-good--title');
     const productPrice = document.querySelector('.item-card__info-of-good--price');
     const productDescription = document.querySelector('.item-card__info-of-good--description');
@@ -289,7 +301,7 @@ let renderingProductCard = () => {
 }
 
 let renderingPics = () => {
-    let selectedId = getIdFromStorage();
+    let selectedId = getIdFromStorage('item');
     const mainPic = document.querySelector('.main-pic');
     const miniPic1 = document.querySelector('.mini-pic-1');
     const miniPic2 = document.querySelector('.mini-pic-2');
@@ -300,13 +312,13 @@ let renderingPics = () => {
     const userAvatar = document.querySelector('.user-avatar-photo');
 
     for (let value in smallImg) {
-         if (value === selectedId) {
+        if (value === selectedId) {
             mainPic.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-1.png`);
             miniPic1.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-1.png`);
             miniPic2.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-2.png`);
             miniPic3.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-3.png`);
             miniPic4.setAttribute('src', `../img/category-shop-cards/smallImg/${value}-4.png`);
-            descPic1.setAttribute('src', `../img/category-shop-cards/descr/${value}-1.jpg`); 
+            descPic1.setAttribute('src', `../img/category-shop-cards/descr/${value}-1.jpg`);
             descPic2.setAttribute('src', `../img/category-shop-cards/descr/${value}-2.jpg`);
         }
     }
@@ -316,7 +328,7 @@ let renderingPics = () => {
             userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments.avatar}`);
         }
     });
-} 
+}
 
 // SWITCHES LISTENERS
 
@@ -334,17 +346,17 @@ let addlistenerToSwitches = () => {
     let descrBlock = document.querySelector('.description-section');
     let form = document.forms['review-form'];
 
-    document.querySelector('.switches').addEventListener('click', function(e) {
+    document.querySelector('.switches').addEventListener('click', function (e) {
 
         if (e.target.classList.contains('review-window__btn')) {
             form.classList.remove('hidden');
-            reviewBlock.classList.remove('hidden');  
+            reviewBlock.classList.remove('hidden');
             descrBlock.classList.add('hidden');
             document.querySelector('.review-window__btn').classList.remove('non-active');
             document.querySelector('.description-window__btn').classList.add('non-active');
         } else if (e.target.classList.contains('description-window__btn')) {
             form.classList.add('hidden');
-            reviewBlock.classList.add('hidden');  
+            reviewBlock.classList.add('hidden');
             descrBlock.classList.remove('hidden');
             document.querySelector('.review-window__btn').classList.add('non-active');
             document.querySelector('.description-window__btn').classList.remove('non-active');
@@ -354,9 +366,9 @@ let addlistenerToSwitches = () => {
 
 let addlistenerToAmountOfProduct = () => {
 
-let amount = document.querySelector('.amount-of-goods__int').innerHTML = 1;
-    
-    document.querySelector('.amount-of-goods__counter').addEventListener('click', function(e) {
+    let amount = document.querySelector('.amount-of-goods__int').innerHTML = 1;
+
+    document.querySelector('.amount-of-goods__counter').addEventListener('click', function (e) {
 
         if (e.target.classList.contains('plus-one')) {
             amount += 1;
@@ -387,7 +399,7 @@ let changeAmountValue = (amount) => {
 // CHANGE MAIN PIC
 
 let addListenerToChangeMainPic = () => {
-    let selectedId = getIdFromStorage();
+    let selectedId = getIdFromStorage('item');
     const miniPicBlock = document.querySelector('.item-card__mini-reviewer');
     const mainPic = document.querySelector('.main-pic');
 
@@ -402,11 +414,11 @@ let addListenerToChangeMainPic = () => {
 
 
 let addRatingToProduct = () => {
-    
+
 }
 
 let addRatingToComment = (parent) => {
-    let selectedId = getIdFromStorage()
+    let selectedId = getIdFromStorage('item');
     for (let i = 1; i < 6; i++) {
         createImg(`rate-star-${i}`, 'star', '25', '25', parent);
         document.querySelector(`.rate-star-${i}`).setAttribute('src', '../img/product_card/empty_star.png');

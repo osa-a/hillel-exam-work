@@ -1,8 +1,8 @@
 'use strict';
 
 
-function createCategoryPage(text) {
-    cleaner();
+function createCategoryPage(text, reload) {
+    cleaner(reload);
     changeCss('category');
     const category = document.createElement('main');
     category.classList.add('main');
@@ -12,7 +12,6 @@ function createCategoryPage(text) {
             return item.category === text;
         });
     }
-    console.log(filteredArray);
     createCategoryHead(category, text);
     createCategoryWrapper(category, filteredArray);
     shopCardListener(wrapper);
