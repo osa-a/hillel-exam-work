@@ -251,10 +251,11 @@
   line-height: 21px;
   font-weight: 400;
   margin: 0;
+  padding-top: 5px;
 }
 
 .review-block .review-date {
-  font-size: 16px;
+  font-size: 13px;
   line-height: 21px;
   font-weight: 400;
   margin: 0;

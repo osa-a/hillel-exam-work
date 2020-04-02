@@ -30,7 +30,8 @@ function switchPage(page, reload) {
             createCartPage(reload);
             break;
         case '6':
-            renderingPage(reload);
+            сreateItemCardPage(reload);
+            // renderingPage(reload);
             break;
         default:
             createHomepage();
@@ -67,6 +68,8 @@ function createCard(items, i, container) {
     shopCard.classList.add('shop-card');
     const cardImg = document.createElement('img');
     cardImg.classList.add('card-image');
+    cardImg.classList.add('another-page');
+    cardImg.setAttribute('data-page', '6');
     cardImg.setAttribute('data-item', items[i].id);
     cardImg.setAttribute('src', `img/category-shop-cards/${items[i].id}.png`);
     cardImg.setAttribute('alt', 'item');
@@ -106,15 +109,14 @@ function mainPageListener(wrapper, page) {
     });
 }
 
-function shopCardListener(container) {
+function shopCardListener(container, reload) {
     container.addEventListener('click', (e) => {
         let clicked = e.target.getAttribute('data-item');
         if (!clicked) {
             return;
         };
         setIdToStorage(e, 'item', 'item');
-        renderingPage();
-        // document.location.href = "../pages/product_card.html";
+        сreateItemCardPage(reload);
     })
 }
 

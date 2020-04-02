@@ -64,22 +64,12 @@ let createSubmitButtonReview = () => {
     parent.append(input);
 }
 
-let clearAllMainBlock = () => {
-    document.getElementsByTagName('main')[0].innerHTML = '';
-};
-
-// let changeLinkCSS = () => {
-//     let startedLink = document.querySelector('.style-css-files');
-//     startedLink.removeAttribute('href');
-//     startedLink.setAttribute('href', 'css/product_card/product_card.css');
-// }
-
 let createSectionCategoryHead = () => {
     createElement('section', 'category-head', '.main');
     createElement('div', 'page-head', '.category-head');
     createElement('div', 'cart-title', '.page-head');
     document.querySelector('.cart-title').innerText = 'Shop';
-
+    
     createItemCardSection();
 
 }
@@ -207,7 +197,7 @@ let createReviewFormSection = () => {
         }
     });
 
-    // сюда запились рейтинг звездочками
+    // сюда запилить рейтинг звездочками
 
     createInput('name-field', 'text', 'name-field-id', 'Your name', '.review-info');
     createInput('email-field', 'text', 'email-field-id', 'Your email', '.review-info');
@@ -216,28 +206,15 @@ let createReviewFormSection = () => {
     createSubmitButtonReview();
 }
 
+let сreateItemCardPage = (reload) => {
 
-//* рекомендую переименовать в CreateItemCardPage
-//* ибо она будет лежать в общей функции
-//* что бы всем было понятно что за страница рендерится 
-let renderingPage = (/*page, reload*/) => {
-    //! cleaner(reload);
-    //* клинер использует reload, потому что посмотри в app.js fetch
-    //* если страница перезагружается или отрисовывается первый раз
-    //* в конструкцию switch падает второй параметр (true)
-    //* тогда клинер срабатывать не будет, потому что ему чистить нечего
-    //* если же это просто переход со страницы на страницу, тогда он будет срабатывать 
-    //* так как второй параметр (true) в switch не передан, соответственно, это не перезагрузка
-    //* значит, там есть что чистить
-    clearAllMainBlock(); //! 
+    // отрисовка main и css 
+    const itemCardPage = document.createElement('main');
+    itemCardPage.classList.add('main');
+    
+    insertMain(itemCardPage);
+    cleaner(reload);
     changeCss('product_card');
-    // changeLinkCSS(); 
-
-    //! const itemCardPage = document.createElement('main');
-    //! itemCardPage.classList.add('main');
-    //* itemCardPage соотвутственно тебе нужно itemCardPage передавать
-    //* в каждую функцию, которая создает тот или иной блок
-    //* и созданное аппендить в нее
 
     createSectionCategoryHead();
     createSwitchesSection();
@@ -245,30 +222,23 @@ let renderingPage = (/*page, reload*/) => {
     createReviewSection();
     createReviewFormSection();
 
+    // отрисовка контента страницы
     renderingProductCard();
     renderingPics();
 
     // switches listener
-
     hideBlock();
     addlistenerToSwitches();
 
     // counter of amount of product
-
     addlistenerToAmountOfProduct();
 
     // change main pic
-
     addListenerToChangeMainPic();
-
-    //! insertMain(itemCardPage);
 }
 
 
 // RENDER
-
-// const selectedId = getIdFromStorage('item'); 
-
 
 let renderingProductCard = () => {
     let selectedId = getIdFromStorage('item');
@@ -323,7 +293,7 @@ let renderingPics = () => {
         }
     }
 
-    items.forEach(element => { // не отображается, разобраться
+    items.forEach(element => {
         if (element.id === selectedId) {
             userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments.avatar}`);
         }
