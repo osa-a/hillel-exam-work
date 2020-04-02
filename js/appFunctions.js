@@ -103,7 +103,7 @@ function mainPageListener(wrapper, page) {
         if (!click) {
             return;
         }
-        setIdToStorage(e, 'page', 'page');
+        setIdToSession(e, 'page', 'page');
         page = e.target.getAttribute('data-page');
         switchPage(page);
     });
@@ -131,6 +131,16 @@ function cartButtonListener(wrapper) {
 }
 
 //*   LOCAL STORAGE   *//
+let setIdToSession = (e, data, item) => {
+    let selectedData = e.target.dataset[item];
+    sessionStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
+}
+
+let getIdFromSession = (data) => {
+    let selectedData = JSON.parse(sessionStorage.getItem(`Data-${data}`));
+    return selectedData;
+}
+
 
 let setIdToStorage = (e, data, item) => {
     let selectedData = e.target.dataset[item];
