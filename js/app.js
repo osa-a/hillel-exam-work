@@ -11,7 +11,7 @@ fetch('data.json')
         type = [...res.type];
         descriptions = { ...res.descriptions };
         smallImg = { ...res.smallImg };
-        comments = { ...res.comments };
+        createCommentsData();
         createData();
         page = getIdFromSession('page');
         switchPage(page, true);

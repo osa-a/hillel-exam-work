@@ -14,15 +14,15 @@ function createCategoryHead(category, text) {
     category.appendChild(section);
 }
 
-function createCategoryWrapper(category, filteredArray) {
+function createCategoryWrapper(category, filteredArray,shop) {
     const section = document.createElement('section');
     section.classList.add('category-wrapper');
-    createFilterForm(section);
+    createFilterForm(section,shop);
     createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
     category.appendChild(section);
 }
 
-function createFilterForm(section) {
+function createFilterForm(section, shop) {
     const form = document.createElement('form');
     form.classList.add('filter-form');
     form.setAttribute('name', 'filter-form');
@@ -32,7 +32,9 @@ function createFilterForm(section) {
     filterButton.setAttribute('type', 'button');
     filterButton.innerText = 'Filter';
     form.appendChild(filterButton);
-    createFilter(categories, form, 'category', 'Category');
+    if(shop){
+        createFilter(categories, form, 'category', 'Category');
+    }
     createFilter(material, form, 'material', 'Material');
     createFilter(type, form, 'type', 'Type');
     createFilter(rating, form, 'rating', 'Rating');
@@ -107,3 +109,7 @@ function watchPriceRange(){
         });
     });
 }
+
+// function checkFilterForm(){
+
+// }
