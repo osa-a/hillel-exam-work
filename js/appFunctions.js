@@ -162,41 +162,44 @@ let getIdFromStorage = (data) => {
     return selectedData;
 }
 
-//*   DROPDOWN CART   *//
+//*   MODAL CART   *//
 
-document.getElementById('dropdownOrder').style.display = 'none';
+document.getElementById('modalOrder').style.display = 'none';
 
-function openDropDownOrder() {
+function openModalOrder() {
     let cartButton = document.getElementById('cartButton');
-    let dropdownOrder = document.getElementById('dropdownOrder');
-    let actions = {
-        1: () => {
-            dropdownOrder.style.display = 'flex';
-            continueOrder();
-            openOrder();
-        },
-        2: () => {
-            dropdownOrder.style.display = 'none';
-        }
-    };
-    let counter = 0;
+    let modalOrder = document.getElementById('modalOrder');
     cartButton.addEventListener('click', () => {
-        actions[counter = (counter % 2) + 1]();
+        modalOrder.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        closeOrderCart();
+        continueOrder();
+        openOrder();
+    })
+}
+
+function closeOrderCart() {
+    let modalOrderClose = document.getElementById('modalOrderClose');
+    let modalOrder = document.getElementById('modalOrder');
+    modalOrderClose.addEventListener('click', () => {
+        modalOrder.style.display = 'none';
     })
 }
 
 function continueOrder() {
-    let dropdownOrderContinue = document.getElementById('dropdownOrderContinue');
-    dropdownOrderContinue.addEventListener('click', () => {
-        document.getElementById('dropdownOrder').style.display = 'none';
+    let modalOrderContinue = document.getElementById('modalOrderContinue');
+    let modalOrder = document.getElementById('modalOrder');
+    modalOrderContinue.addEventListener('click', () => {
+        modalOrder.style.display = 'none';
     })
 }
 
 function openOrder() {
-    let dropdownOrderCheckout = document.getElementById('dropdownOrderCheckout');
-    dropdownOrderCheckout.addEventListener('click', () => {
-        dropdownOrderCheckout.classList.add('another-page');
-        dropdownOrderCheckout.setAttribute('data-page', '5');
-        document.getElementById('dropdownOrder').style.display = 'none';
+    let modalOrderCheckout = document.getElementById('modalOrderCheckout');
+    let modalOrder = document.getElementById('modalOrder');
+    modalOrderCheckout.addEventListener('click', () => {
+        modalOrderCheckout.classList.add('another-page');
+        modalOrderCheckout.setAttribute('data-page', '5');
+        modalOrder.style.display = 'none';
     })
 }

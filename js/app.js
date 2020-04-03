@@ -21,5 +21,5 @@ fetch('data.json')
         filterListener(wrapper);
     });
 
-openDropDownOrder();
+openModalOrder();
 
