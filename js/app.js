@@ -16,6 +16,10 @@ fetch('data.json')
         page = getIdFromSession('page');
         switchPage(page, true);
         mainPageListener(wrapper, page);
+        shopCardListener(wrapper);
+        cartButtonListener(wrapper);
+        filterListener(wrapper);
     });
 
 openDropDownOrder();
+

@@ -16,9 +16,5 @@ function createCategoryPage(text, reload) {
     }
     createCategoryHead(category, text);
     createCategoryWrapper(category, filteredArray,shop);
-    shopCardListener(wrapper);
-    cartButtonListener(wrapper);
     insertMain(category);
-
-    // checkFilterForm();
 }

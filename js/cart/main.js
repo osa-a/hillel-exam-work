@@ -8,6 +8,5 @@ function createCartPage(reload) {
     creatCartPageHead(cartPage);
     creatCartPageBody(cartPage);
 
-    //shopCardListener(wrapper);
     insertMain(cartPage);
 }

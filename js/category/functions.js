@@ -14,10 +14,10 @@ function createCategoryHead(category, text) {
     category.appendChild(section);
 }
 
-function createCategoryWrapper(category, filteredArray,shop) {
+function createCategoryWrapper(category, filteredArray, shop) {
     const section = document.createElement('section');
     section.classList.add('category-wrapper');
-    createFilterForm(section,shop);
+    createFilterForm(section, shop);
     createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
     category.appendChild(section);
 }
@@ -25,14 +25,14 @@ function createCategoryWrapper(category, filteredArray,shop) {
 function createFilterForm(section, shop) {
     const form = document.createElement('form');
     form.classList.add('filter-form');
-    form.setAttribute('name', 'filter-form');
+    form.setAttribute('name', 'filterForm');
     createRange(form);
     const filterButton = document.createElement('button');
     filterButton.classList.add('filter-button');
     filterButton.setAttribute('type', 'button');
     filterButton.innerText = 'Filter';
     form.appendChild(filterButton);
-    if(shop){
+    if (shop) {
         createFilter(categories, form, 'category', 'Category');
     }
     createFilter(material, form, 'material', 'Material');
@@ -74,19 +74,19 @@ function createFilter(dataArray, form, filterClass, text) {
     filterName.innerText = text;
     container.appendChild(filterName);
     for (let i = 0; i < dataArray.length; i++) {
-        createCheckBox(container, dataArray, i);
+        createCheckBox(container, dataArray, i, text);
     }
     form.appendChild(container);
 }
 
-function createCheckBox(container, dataArray, i) {
+function createCheckBox(container, dataArray, i, text) {
     let input = document.createElement('input');
     let label = document.createElement('label');
     let boxContainer = document.createElement('div');
 
     input.setAttribute('type', 'checkbox');
     input.setAttribute('id', `box${dataArray[i]}`);
-    input.setAttribute('name', `check${dataArray[i]}`);
+    input.setAttribute('name', `check${text}`);
     input.setAttribute('value', dataArray[i]);
     input.classList.add('checkbox-margin');
 
@@ -99,7 +99,7 @@ function createCheckBox(container, dataArray, i) {
     container.appendChild(boxContainer);
 }
 
-function watchPriceRange(){
+function watchPriceRange() {
     $(document).ready(function () {
         const $spanValue = $('.spanValue'); //получает инпут
         const $value = $('#customRange'); //получает value инпута
@@ -110,6 +110,20 @@ function watchPriceRange(){
     });
 }
 
-// function checkFilterForm(){
+function filterFormTrigger() {
+    const form = document.forms.filterForm;
+    let price = form.elements.price.value;
+    let category = getCheckboxesValue('checkCategory');
+    let material = getCheckboxesValue('checkMaterial');
+    let type = getCheckboxesValue('checkType');
+    let rating = getCheckboxesValue('checkRating');
+}
 
-// }
+function getCheckboxesValue(checkboxName) {
+    let ar = [];
+    let check = document.querySelectorAll(`input[name=${checkboxName}]:checked`);
+    for (let i = 0; i < check.length; i++) {
+        ar.push(check[i].value);
+    }
+    return ar;
+}

@@ -9,7 +9,5 @@ function createHomepage() {
     createBanner(homepage);
     createShopLine(items, 4, 8, 'shop-footer', homepage);
     createAboutUs(homepage);
-    shopCardListener(wrapper);
-    cartButtonListener(wrapper);
     insertMain(homepage);
 }

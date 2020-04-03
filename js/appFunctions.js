@@ -130,6 +130,16 @@ function cartButtonListener(wrapper) {
     })
 }
 
+function filterListener() {
+    wrapper.addEventListener('click', (e) => {
+        let clicked = e.target.classList.contains('filter-button');
+        if(!clicked){
+            return;
+        }
+        filterFormTrigger();
+    });
+}
+
 //*   LOCAL STORAGE   *//
 let setIdToSession = (e, data, item) => {
     let selectedData = e.target.dataset[item];
