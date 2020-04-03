@@ -93,7 +93,7 @@
 
 /*   MODAL CART   */
 .modal-order {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, .9);
@@ -106,8 +106,8 @@
   &-body {
     display: flex;
     flex-direction: column;
-    height: 400px;
-    width: 600px;
+    min-height: 400px;
+    min-width: 900px;
     padding: 30px;
     background-color: $mainLightClr;
     border: 1px solid $mainDarkClr;

@@ -164,8 +164,6 @@ let getIdFromStorage = (data) => {
 
 //*   MODAL CART   *//
 
-document.getElementById('modalOrder').style.display = 'none';
-
 function openModalOrder() {
     let cartButton = document.getElementById('cartButton');
     let modalOrder = document.getElementById('modalOrder');
