@@ -85,7 +85,8 @@ h6 {
   position: relative;
   width: 15px;
   height: 22px;
-  padding: 0; }
+  padding: 0;
+  outline: none; }
   .cart-button::before {
     position: absolute;
     content: "";
@@ -128,7 +129,7 @@ h6 {
 
 /*   MODAL CART   */
 .modal-order {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.9);
@@ -141,7 +142,7 @@ h6 {
   .modal-order-body {
     display: flex;
     flex-direction: column;
-    min-height: 400px;
+    max-height: 400px;
     min-width: 900px;
     padding: 30px;
     background-color: #ffffff;
@@ -156,6 +157,7 @@ h6 {
     top: 1%;
     right: 1%; }
   .modal-order-content {
+    padding-bottom: 15px;
     max-height: 230px;
     overflow: auto;
     flex: 1 0 auto; }

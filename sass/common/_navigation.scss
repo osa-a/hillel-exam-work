@@ -43,6 +43,7 @@
   width: 15px;
   height: 22px;
   padding: 0;
+  outline: none;
   &::before {
     position: absolute;
     content: "";
@@ -93,7 +94,7 @@
 
 /*   MODAL CART   */
 .modal-order {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, .9);
@@ -106,7 +107,7 @@
   &-body {
     display: flex;
     flex-direction: column;
-    min-height: 400px;
+    max-height: 400px;
     min-width: 900px;
     padding: 30px;
     background-color: $mainLightClr;
@@ -123,6 +124,7 @@
     right: 1%;
   }
   &-content {
+    padding-bottom: 15px;
     max-height: 230px;
     overflow: auto;
     flex: 1 0 auto;
