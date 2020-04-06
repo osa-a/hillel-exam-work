@@ -163,6 +163,16 @@
   color: #525252;
 }
 
+.review-form .review-info__add-review {
+  font-weight: 700px;
+  font-size: 28px; }
+.review-form .review-info__sub-info {
+  font-style: italic;
+  font-size: 16px; }
+.review-form .review-info__rating {
+  font-size: 23px;
+  line-height: 50px; }
+
 .product-rating {
   margin-top: 10px;
 }
