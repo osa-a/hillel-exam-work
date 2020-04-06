@@ -15,6 +15,6 @@ function createCategoryPage(text, reload) {
         });
     }
     createCategoryHead(category, text);
-    createCategoryWrapper(category, filteredArray,shop);
+    createCategoryWrapper(category, filteredArray, shop);
     insertMain(category);
 }

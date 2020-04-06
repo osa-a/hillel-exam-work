@@ -110,15 +110,6 @@ function watchPriceRange() {
     });
 }
 
-function filterFormTrigger() {
-    const form = document.forms.filterForm;
-    let price = form.elements.price.value;
-    let category = getCheckboxesValue('checkCategory');
-    let material = getCheckboxesValue('checkMaterial');
-    let type = getCheckboxesValue('checkType');
-    let rating = getCheckboxesValue('checkRating');
-}
-
 function getCheckboxesValue(checkboxName) {
     let ar = [];
     let check = document.querySelectorAll(`input[name=${checkboxName}]:checked`);
@@ -126,4 +117,60 @@ function getCheckboxesValue(checkboxName) {
         ar.push(check[i].value);
     }
     return ar;
+}
+
+function filterFormTrigger() {
+    const form = document.forms.filterForm;
+    let prices = form.elements.price.value;
+    let categories = getCheckboxesValue('checkCategory');
+    let materials = getCheckboxesValue('checkMaterial');
+    let types = getCheckboxesValue('checkType');
+    let ratings = getCheckboxesValue('checkRating');
+    return filtersRun(items, prices, categories, materials, types, ratings);
+}
+
+function filtersRun(items, prices, categories, materials, types, ratings) {
+    let array = items;
+    array = items.filter(item => {
+
+        if (prices) {
+            if (item.price > prices) {
+                return item;
+            }
+        }
+
+        if (categories) {
+            for (let i = 0; i < categories.length; i++) {
+                if (item.category === categories[i]) {
+                    return item;
+                }
+            }
+        }
+
+        if (materials) {
+            for (let i = 0; i < materials.length; i++) {
+                if (item.material === materials[i]) {
+                    return item;
+                }
+            }
+        }
+
+        if (types) {
+            for (let i = 0; i < types.length; i++) {
+                if (item.type === types[i]) {
+                    return item;
+                }
+            }
+        }
+
+        if (ratings) {
+            for (let i = 0; i < ratings.length; i++) {
+                if (item.rating === ratings[i]) {
+                    return item;
+                }
+            }
+        }
+
+    });
+    return array;
 }

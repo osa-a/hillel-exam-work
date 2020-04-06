@@ -26,7 +26,7 @@ function createData(){
     itemElem.pushToAr(itemElem);
     itemElem = new Item('74', 'Pendant Lamp', 85,  categories[1], material[2], type[2], comments[2]);
     itemElem.pushToAr(itemElem);
-    itemElem = new Item('k78', 'Low Table', 149, categories[0], material[0], type[0], comments[3]);
+    itemElem = new Item('k78', 'Low Table', 149, categories[0], material[0], type[3], comments[3]);
     itemElem.pushToAr(itemElem);
     itemElem = new Item('1s3', 'Cynco Pendant Lamp', 91,  categories[1], material[2], type[2], comments[4]);
     itemElem.pushToAr(itemElem);

@@ -63,6 +63,12 @@ function createShopLine(array, start, amount, calssName, page) {
     page.appendChild(section);
 }
 
+function shopLineCleaner(){
+    const shopContainer = document.querySelector('.shop-head');
+    shopContainer.innerHTML = '';
+    shopContainer.remove();
+}
+
 function createCard(items, i, container) {
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
@@ -136,7 +142,10 @@ function filterListener() {
         if(!clicked){
             return;
         }
-        filterFormTrigger();
+        const section = document.querySelector('.category-wrapper');
+        shopLineCleaner();
+        let filtered =  filterFormTrigger();
+        createShopLine(filtered, 0, filtered.length, 'shop-head', section); 
     });
 }
 
