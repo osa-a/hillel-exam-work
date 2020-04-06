@@ -268,6 +268,7 @@ function closeOrderCart() {
     let modalOrderClose = document.getElementById('modalOrderClose');
     let modalOrder = document.getElementById('modalOrder');
     modalOrderClose.addEventListener('click', () => {
+        document.body.style.overflow = 'auto';
         modalOrder.remove();
     })
 }
@@ -276,6 +277,7 @@ function continueOrder() {
     let modalOrderContinue = document.getElementById('modalOrderContinue');
     let modalOrder = document.getElementById('modalOrder');
     modalOrderContinue.addEventListener('click', () => {
+        document.body.style.overflow = 'auto';
         modalOrder.remove();
     })
 }
@@ -286,6 +288,7 @@ function openOrder() {
     modalOrderCheckout.addEventListener('click', () => {
         modalOrderCheckout.classList.add('another-page');
         modalOrderCheckout.setAttribute('data-page', '5');
+        document.body.style.overflow = 'auto';
         modalOrder.remove();
     })
 }
@@ -296,6 +299,7 @@ function startShopping() {
     cartButtonShopping.addEventListener('click', () => {
         cartButtonShopping.classList.add('another-page');
         cartButtonShopping.setAttribute('data-page', '4');
+        document.body.style.overflow = 'auto';
         modalOrder.remove();
     })
 }
