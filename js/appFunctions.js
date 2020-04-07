@@ -31,6 +31,7 @@ function switchPage(page, reload) {
             break;
         case '5':
             createCartPage(reload);
+            sendOrder();
             break;
         case '6':
             сreateItemCardPage(reload);
@@ -269,7 +270,6 @@ function creatOrderFooter(modalOrderBody) {
 
 function openModalOrder() {
     let cartButton = document.getElementById('cartButton');
-    let modalOrder = document.getElementById('modalOrder');
     cartButton.addEventListener('click', () => {
         document.body.style.overflow = 'hidden';
         creatModalCart();

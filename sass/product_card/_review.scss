@@ -14,6 +14,21 @@
         margin-top: 30px;
     }
 
+    .review-info__add-review {
+        font-weight: 700px;
+        font-size: 28px; 
+    }
+
+    .review-info__sub-info {
+        font-style: italic;
+        font-size: 16px; 
+    }
+
+    .review-info__rating {
+        font-size: 23px;
+        line-height: 50px; 
+    }
+
     textarea {
         @include font(18px, 21pxpx, $fw:400);
         min-width: 800px;
