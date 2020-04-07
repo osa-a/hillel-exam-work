@@ -14,7 +14,11 @@ function createCategoryPage(text, reload) {
             return item.category === text;
         });
     }
+    let check = getIdFromSession('filter');
+    if (check && check.lenght !== 0 && reload) {
+        filteredArray = check;
+    }
     createCategoryHead(category, text);
-    createCategoryWrapper(category, filteredArray, shop);
+    createCategoryWrapper(category, filteredArray, shop, reload);
     insertMain(category);
 }

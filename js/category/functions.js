@@ -14,15 +14,15 @@ function createCategoryHead(category, text) {
     category.appendChild(section);
 }
 
-function createCategoryWrapper(category, filteredArray, shop) {
+function createCategoryWrapper(category, filteredArray, shop, reload) {
     const section = document.createElement('section');
     section.classList.add('category-wrapper');
-    createFilterForm(section, shop);
+    createFilterForm(section, shop, reload);
     createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
     category.appendChild(section);
 }
 
-function createFilterForm(section, shop) {
+function createFilterForm(section, shop, reload) {
     const form = document.createElement('form');
     form.classList.add('filter-form');
     form.setAttribute('name', 'filterForm');
@@ -35,9 +35,9 @@ function createFilterForm(section, shop) {
     if (shop) {
         createFilter(categories, form, 'category', 'Category');
     }
-    createFilter(material, form, 'material', 'Material');
-    createFilter(type, form, 'type', 'Type');
-    createFilter(rating, form, 'rating', 'Rating');
+    createFilter(material, form, 'material', 'Material', reload);
+    createFilter(type, form, 'type', 'Type', reload);
+    createFilter(rating, form, 'rating', 'Rating', reload);
     section.appendChild(form);
 }
 
@@ -66,7 +66,7 @@ function createRange(form) {
     form.appendChild(rangeSlider)
 }
 
-function createFilter(dataArray, form, filterClass, text) {
+function createFilter(dataArray, form, filterClass, text, reload) {
     const container = document.createElement('div');
     container.classList.add(`${filterClass}-filter`, 'filter');
     const filterName = document.createElement('h5');
@@ -74,12 +74,12 @@ function createFilter(dataArray, form, filterClass, text) {
     filterName.innerText = text;
     container.appendChild(filterName);
     for (let i = 0; i < dataArray.length; i++) {
-        createCheckBox(container, dataArray, i, text);
+        createCheckBox(container, dataArray, i, text, reload);
     }
     form.appendChild(container);
 }
 
-function createCheckBox(container, dataArray, i, text) {
+function createCheckBox(container, dataArray, i, text, reload) {
     let input = document.createElement('input');
     let label = document.createElement('label');
     let boxContainer = document.createElement('div');
@@ -88,11 +88,21 @@ function createCheckBox(container, dataArray, i, text) {
     input.setAttribute('id', `box${dataArray[i]}`);
     input.setAttribute('name', `check${text}`);
     input.setAttribute('value', dataArray[i]);
-    input.classList.add('checkbox-margin');
+    input.classList.add('checkbox-margin', 'checkbox');
 
     label.setAttribute('for', `box${dataArray[i]}`)
     label.classList.add('filter-label');
     label.innerText = dataArray[i];
+
+    if (reload) {
+        let check = getIdFromSession('checkbox');
+        console.log(categories[1] === check[0]);
+        // for (let i = 0; i < check.length; i++) {
+        //     if(check[i] === dataArray[i] )
+        //     console.log(true);
+        //     input.setAttribute('checked', 'checked');
+        // }
+    }
 
     boxContainer.appendChild(input);
     boxContainer.appendChild(label);
@@ -121,56 +131,34 @@ function getCheckboxesValue(checkboxName) {
 
 function filterFormTrigger() {
     const form = document.forms.filterForm;
-    let prices = form.elements.price.value;
-    let categories = getCheckboxesValue('checkCategory');
-    let materials = getCheckboxesValue('checkMaterial');
-    let types = getCheckboxesValue('checkType');
-    let ratings = getCheckboxesValue('checkRating');
-    return filtersRun(items, prices, categories, materials, types, ratings);
+    let obj = {
+        price: form.elements.price.value,
+        category: getCheckboxesValue('checkCategory'),
+        material: getCheckboxesValue('checkMaterial'),
+        type: getCheckboxesValue('checkType'),
+        rating: getCheckboxesValue('checkRating'),
+    }
+    return filtersRun(items, obj);
 }
 
-function filtersRun(items, prices, categories, materials, types, ratings) {
-    let array = items;
-    array = items.filter(item => {
-
-        if (prices) {
-            if (item.price > prices) {
-                return item;
-            }
+let filtered = (item, property, obj) => {
+    if (obj.length === 0) {
+        return true;
+    }
+    for (let elem of obj) {
+        if (property === elem) {
+            return item;
         }
+    }
+}
 
-        if (categories) {
-            for (let i = 0; i < categories.length; i++) {
-                if (item.category === categories[i]) {
-                    return item;
-                }
-            }
-        }
-
-        if (materials) {
-            for (let i = 0; i < materials.length; i++) {
-                if (item.material === materials[i]) {
-                    return item;
-                }
-            }
-        }
-
-        if (types) {
-            for (let i = 0; i < types.length; i++) {
-                if (item.type === types[i]) {
-                    return item;
-                }
-            }
-        }
-
-        if (ratings) {
-            for (let i = 0; i < ratings.length; i++) {
-                if (item.rating === ratings[i]) {
-                    return item;
-                }
-            }
-        }
-
+function filtersRun(items, obj) {
+    let array = items.filter(item => {
+        return item.price >= obj.price &&
+            filtered(item, item.category, obj.category) &&
+            filtered(item, item.material, obj.material) &&
+            filtered(item, item.type, obj.type) &&
+            filtered(item, item.rating, obj.rating);
     });
     return array;
 }

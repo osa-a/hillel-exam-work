@@ -31,7 +31,6 @@ function switchPage(page, reload) {
             break;
         case '6':
             сreateItemCardPage(reload);
-            // renderingPage(reload);
             break;
         default:
             createHomepage();
@@ -63,7 +62,7 @@ function createShopLine(array, start, amount, calssName, page) {
     page.appendChild(section);
 }
 
-function shopLineCleaner(){
+function shopLineCleaner() {
     const shopContainer = document.querySelector('.shop-head');
     shopContainer.innerHTML = '';
     shopContainer.remove();
@@ -139,17 +138,36 @@ function cartButtonListener(wrapper) {
 function filterListener() {
     wrapper.addEventListener('click', (e) => {
         let clicked = e.target.classList.contains('filter-button');
-        if(!clicked){
+        if (!clicked) {
             return;
         }
         const section = document.querySelector('.category-wrapper');
         shopLineCleaner();
-        let filtered =  filterFormTrigger();
-        createShopLine(filtered, 0, filtered.length, 'shop-head', section); 
+        let filtered = filterFormTrigger();
+        setFilterToSession('filter', filtered);
+        createShopLine(filtered, 0, filtered.length, 'shop-head', section);
+        let checkboxes = getChecked();
+        setFilterToSession('checkbox', checkboxes);
     });
 }
 
-//*   LOCAL STORAGE   *//
+function getChecked() {
+    let checkboxes = document.getElementsByClassName('checkbox');
+    var checked = [];
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            checked.push(checkboxes[i].value);
+        }
+    }
+    return checked;
+}
+
+//*   LOCAL + SESSION STORAGES   *//
+
+let setFilterToSession = (data, array) => {
+    sessionStorage.setItem(`Data-${data}`, JSON.stringify(array));
+}
+
 let setIdToSession = (e, data, item) => {
     let selectedData = e.target.dataset[item];
     sessionStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
@@ -159,7 +177,6 @@ let getIdFromSession = (data) => {
     let selectedData = JSON.parse(sessionStorage.getItem(`Data-${data}`));
     return selectedData;
 }
-
 
 let setIdToStorage = (e, data, item) => {
     let selectedData = e.target.dataset[item];
