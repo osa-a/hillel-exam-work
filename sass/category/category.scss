@@ -1,6 +1,5 @@
 @import "../variables";
 @import "../mixin";
-
 @import "../category/range";
 
 .page-head {
@@ -25,6 +24,17 @@
   justify-content: space-around;
   width: 1020px;
   flex-wrap: wrap;
+}
+
+.empty-message {
+  padding: 45px 50px 45px;
+  border: 5px dashed $discountAccentClr;
+  @include setFont($twentySize);
+  background: url(../../img/sorry-card/3.png);
+  @include backgroundSet();
+  background-size: 415px 400px;
+  color: #727272;
+  font-weight: 600;
 }
 
 .shop-card {

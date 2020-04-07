@@ -225,13 +225,13 @@ function getCheckedForStorage() {
     return checked;
 }
 
-function emptyMessage() {
+function sorryMessage() {
     const container = document.querySelector('.category-wrapper');
     const section = document.createElement('section');
     section.classList.add('shop-head');
     const message = document.createElement('div');
     message.classList.add('empty-message');
-    message.innerText = 'We\'re  sorry to say but we don\'t have the product that you were looking for.'
+    message.innerText = 'We\'re  sorry to say but we don\'t have products you were looking for'
     section.appendChild(message);
     container.appendChild(section);
 }

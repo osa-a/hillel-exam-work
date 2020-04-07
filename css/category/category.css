@@ -64,6 +64,22 @@ input[type=range]::-webkit-slider-thumb {
   flex-wrap: wrap;
 }
 
+.empty-message {
+  padding: 45px 50px 45px;
+  border: 5px dashed #9aac5f;
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 400;
+  background: url(../../img/sorry-card/3.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 415px 400px;
+  color: #727272;
+  font-weight: 600;
+}
+
 .shop-card {
   margin-bottom: 25px;
   max-height: 400px;

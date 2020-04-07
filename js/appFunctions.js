@@ -143,7 +143,7 @@ function filterListener() {
         shopLineCleaner();
         let filtered = filterFormTrigger();
         if (filtered.length === 0) {
-            emptyMessage();
+            sorryMessage();
             return;
         }
         setDataToSession('filter', filtered);
