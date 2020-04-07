@@ -15,7 +15,7 @@ fetch('data.json')
         createData();
         page = getIdFromSession('page');
         switchPage(page, true);
-        mainPageListener(wrapper, page);
+        mainPageListener(wrapper);
         shopCardListener(wrapper);
         cartButtonListener(wrapper);
         filterListener(wrapper);

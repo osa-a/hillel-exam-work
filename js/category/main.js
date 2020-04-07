@@ -1,24 +1,24 @@
 'use strict';
 
 
-function createCategoryPage(text, reload) {
+function createCategoryPage(page, reload) {
     cleaner(reload);
     changeCss('category');
     const category = document.createElement('main');
     category.classList.add('main');
     let filteredArray = items;
     let shop = true;
-    if (text !== 'Shop') {
+    if (page !== 'Shop') {
         shop = false;
         filteredArray = items.filter((item) => {
-            return item.category === text;
+            return item.category === page;
         });
     }
     let check = getIdFromSession('filter');
     if (check && check.lenght !== 0 && reload) {
         filteredArray = check;
     }
-    createCategoryHead(category, text);
-    createCategoryWrapper(category, filteredArray, shop, reload);
+    createCategoryHead(category, page);
+    createCategoryWrapper(category, filteredArray, shop);
     insertMain(category);
 }

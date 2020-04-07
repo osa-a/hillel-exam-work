@@ -16,14 +16,17 @@ function switchPage(page, reload) {
             break;
         case '2':
             createCategoryPage('Decoration', reload);
+            setSelectedFilter(reload);
             watchPriceRange()
             break;
         case '3':
             createCategoryPage('Furniture', reload);
+            setSelectedFilter(reload);
             watchPriceRange()
             break;
         case '4':
             createCategoryPage('Shop', reload);
+            setSelectedFilter(reload);
             watchPriceRange()
             break;
         case '5':
@@ -62,12 +65,6 @@ function createShopLine(array, start, amount, calssName, page) {
     page.appendChild(section);
 }
 
-function shopLineCleaner() {
-    const shopContainer = document.querySelector('.shop-head');
-    shopContainer.innerHTML = '';
-    shopContainer.remove();
-}
-
 function createCard(items, i, container) {
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
@@ -102,14 +99,14 @@ function createCard(items, i, container) {
 
 //*   LISTENERS   *//
 
-function mainPageListener(wrapper, page) {
+function mainPageListener(wrapper) {
     wrapper.addEventListener('click', e => {
         const click = e.target.classList.contains('another-page');
         if (!click) {
             return;
         }
         setIdToSession(e, 'page', 'page');
-        page = e.target.getAttribute('data-page');
+        const page = e.target.getAttribute('data-page');
         switchPage(page);
     });
 }
@@ -144,27 +141,16 @@ function filterListener() {
         const section = document.querySelector('.category-wrapper');
         shopLineCleaner();
         let filtered = filterFormTrigger();
-        setFilterToSession('filter', filtered);
+        setDataToSession('filter', filtered);
         createShopLine(filtered, 0, filtered.length, 'shop-head', section);
-        let checkboxes = getChecked();
-        setFilterToSession('checkbox', checkboxes);
+        let checkboxes = getCheckedForStorage();
+        setDataToSession('checkbox', checkboxes);
     });
-}
-
-function getChecked() {
-    let checkboxes = document.getElementsByClassName('checkbox');
-    var checked = [];
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            checked.push(checkboxes[i].value);
-        }
-    }
-    return checked;
 }
 
 //*   LOCAL + SESSION STORAGES   *//
 
-let setFilterToSession = (data, array) => {
+let setDataToSession = (data, array) => {
     sessionStorage.setItem(`Data-${data}`, JSON.stringify(array));
 }
 

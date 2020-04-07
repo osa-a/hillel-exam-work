@@ -1,5 +1,7 @@
 'use strict'
 
+//*   CREATE   *//
+
 function createCategoryHead(category, text) {
     const section = document.createElement('section');
     section.classList.add('category-head');
@@ -14,15 +16,15 @@ function createCategoryHead(category, text) {
     category.appendChild(section);
 }
 
-function createCategoryWrapper(category, filteredArray, shop, reload) {
+function createCategoryWrapper(category, filteredArray, shop) {
     const section = document.createElement('section');
     section.classList.add('category-wrapper');
-    createFilterForm(section, shop, reload);
+    createFilterForm(section, shop);
     createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
     category.appendChild(section);
 }
 
-function createFilterForm(section, shop, reload) {
+function createFilterForm(section, shop) {
     const form = document.createElement('form');
     form.classList.add('filter-form');
     form.setAttribute('name', 'filterForm');
@@ -35,9 +37,9 @@ function createFilterForm(section, shop, reload) {
     if (shop) {
         createFilter(categories, form, 'category', 'Category');
     }
-    createFilter(material, form, 'material', 'Material', reload);
-    createFilter(type, form, 'type', 'Type', reload);
-    createFilter(rating, form, 'rating', 'Rating', reload);
+    createFilter(material, form, 'material', 'Material');
+    createFilter(type, form, 'type', 'Type');
+    createFilter(rating, form, 'rating', 'Rating');
     section.appendChild(form);
 }
 
@@ -66,7 +68,18 @@ function createRange(form) {
     form.appendChild(rangeSlider)
 }
 
-function createFilter(dataArray, form, filterClass, text, reload) {
+function watchPriceRange() {
+    $(document).ready(function () {
+        const $spanValue = $('.spanValue'); //получает инпут
+        const $value = $('#customRange'); //получает value инпута
+        $spanValue.html(`${$value.val()}$`);  // сетит value инпута и отображает его со старта
+        $value.on('input change', () => { // .on тоже самое что повесить обработчик
+            $spanValue.html(`${$value.val()}$`);  //динамически отображает цену
+        });
+    });
+}
+
+function createFilter(dataArray, form, filterClass, text) {
     const container = document.createElement('div');
     container.classList.add(`${filterClass}-filter`, 'filter');
     const filterName = document.createElement('h5');
@@ -74,12 +87,12 @@ function createFilter(dataArray, form, filterClass, text, reload) {
     filterName.innerText = text;
     container.appendChild(filterName);
     for (let i = 0; i < dataArray.length; i++) {
-        createCheckBox(container, dataArray, i, text, reload);
+        createCheckBox(container, dataArray, i, text);
     }
     form.appendChild(container);
 }
 
-function createCheckBox(container, dataArray, i, text, reload) {
+function createCheckBox(container, dataArray, i, text) {
     let input = document.createElement('input');
     let label = document.createElement('label');
     let boxContainer = document.createElement('div');
@@ -94,31 +107,12 @@ function createCheckBox(container, dataArray, i, text, reload) {
     label.classList.add('filter-label');
     label.innerText = dataArray[i];
 
-    if (reload) {
-        let check = getIdFromSession('checkbox');
-        console.log(categories[1] === check[0]);
-        // for (let i = 0; i < check.length; i++) {
-        //     if(check[i] === dataArray[i] )
-        //     console.log(true);
-        //     input.setAttribute('checked', 'checked');
-        // }
-    }
-
     boxContainer.appendChild(input);
     boxContainer.appendChild(label);
     container.appendChild(boxContainer);
 }
 
-function watchPriceRange() {
-    $(document).ready(function () {
-        const $spanValue = $('.spanValue'); //получает инпут
-        const $value = $('#customRange'); //получает value инпута
-        $spanValue.html($value.val() + '$');  // сетит value инпута и отображает его со старта
-        $value.on('input change', () => { // .on тоже самое что повесить обработчик
-            $spanValue.html($value.val() + '$');  //динамически отображает цену
-        });
-    });
-}
+//*   RUN FILTER   *//
 
 function getCheckboxesValue(checkboxName) {
     let ar = [];
@@ -138,27 +132,93 @@ function filterFormTrigger() {
         type: getCheckboxesValue('checkType'),
         rating: getCheckboxesValue('checkRating'),
     }
-    return filtersRun(items, obj);
+    setDataToSession('price', obj.price);
+    const page = getIdFromSession('page');
+
+    let itemsAr = filterPageCategories(items, page);
+
+    return filtersRun(itemsAr, obj);
 }
 
-let filtered = (item, property, obj) => {
+function filterPageCategories(items, page) {
+    let ar = [];
+    switch (page) {
+        case '2':
+            ar = items.filter((item) => {
+                return item.category === 'Decoration';
+            });
+            break;
+        case '3':
+            ar = items.filter((item) => {
+                return item.category === 'Furniture';
+            });
+            break;
+        case '4':
+            ar = items;
+            break;
+    }
+    return ar;
+}
+
+function filtersRun(elements, obj) {
+    let array = elements.filter(element => {
+        return element.price >= obj.price &&
+            filtered(element, element.category, obj.category) &&
+            filtered(element, element.material, obj.material) &&
+            filtered(element, element.type, obj.type) &&
+            filtered(element, element.rating, obj.rating);
+    });
+    return array;
+}
+
+let filtered = (element, property, obj) => {
     if (obj.length === 0) {
         return true;
     }
     for (let elem of obj) {
         if (property === elem) {
-            return item;
+            return element;
         }
     }
 }
 
-function filtersRun(items, obj) {
-    let array = items.filter(item => {
-        return item.price >= obj.price &&
-            filtered(item, item.category, obj.category) &&
-            filtered(item, item.material, obj.material) &&
-            filtered(item, item.type, obj.type) &&
-            filtered(item, item.rating, obj.rating);
-    });
-    return array;
+
+//*   AFTER RELOAD   *//
+function setSelectedFilter(reload) {
+    if (reload) {
+        let checkboxes = document.getElementsByClassName('checkbox');
+        let selected = getIdFromSession('checkbox');
+        if (!selected) {
+            selected = [];
+        }
+        //* -- start  price range from storage
+        let price = getIdFromSession('price');
+        const $value = $('#customRange');
+        $value.val(price);
+        //* -- ending
+        for (let i = 0; i < checkboxes.length; i++) {
+            for (let j = 0; j < selected.length; j++) {
+                if (checkboxes[i].value === selected[j]) {
+                    checkboxes[i].setAttribute('checked', 'checked');
+                }
+            }
+        }
+    }
+}
+
+function shopLineCleaner() {
+    const shopContainer = document.querySelector('.shop-head');
+    shopContainer.innerHTML = '';
+    shopContainer.remove();
+}
+
+function getCheckedForStorage() {
+    let checkboxes = document.getElementsByClassName('checkbox');
+    var checked = [];
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            checked.push(checkboxes[i].value);
+        }
+    }
+    return checked;
 }
