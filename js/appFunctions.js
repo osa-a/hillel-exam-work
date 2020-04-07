@@ -142,6 +142,10 @@ function filterListener() {
         const section = document.querySelector('.category-wrapper');
         shopLineCleaner();
         let filtered = filterFormTrigger();
+        if (filtered.length === 0) {
+            emptyMessage();
+            return;
+        }
         setDataToSession('filter', filtered);
         createShopLine(filtered, 0, filtered.length, 'shop-head', section);
         let checkboxes = getCheckedForStorage();

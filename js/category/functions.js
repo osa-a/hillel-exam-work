@@ -172,6 +172,9 @@ function filtersRun(elements, obj) {
 }
 
 let filtered = (element, property, obj) => {
+//проверка по рейтингу через parseInt/property/obj values
+// определить что входящие данные, это рейтинговые данные
+
     if (obj.length === 0) {
         return true;
     }
@@ -181,7 +184,6 @@ let filtered = (element, property, obj) => {
         }
     }
 }
-
 
 //*   AFTER RELOAD   *//
 function setSelectedFilter(reload) {
@@ -207,9 +209,9 @@ function setSelectedFilter(reload) {
 }
 
 function shopLineCleaner() {
-    const shopContainer = document.querySelector('.shop-head');
-    shopContainer.innerHTML = '';
-    shopContainer.remove();
+    const container = document.querySelector('.shop-head');
+    container.innerHTML = '';
+    container.remove();
 }
 
 function getCheckedForStorage() {
@@ -221,4 +223,15 @@ function getCheckedForStorage() {
         }
     }
     return checked;
+}
+
+function emptyMessage() {
+    const container = document.querySelector('.category-wrapper');
+    const section = document.createElement('section');
+    section.classList.add('shop-head');
+    const message = document.createElement('div');
+    message.classList.add('empty-message');
+    message.innerText = 'We\'re  sorry to say but we don\'t have the product that you were looking for.'
+    section.appendChild(message);
+    container.appendChild(section);
 }
