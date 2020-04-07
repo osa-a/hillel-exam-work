@@ -188,7 +188,7 @@ function creatButtonThanksClose(modalThanksBody) {
     buttonThanksClose.setAttribute('id', 'modalThanksClose');
     buttonThanksClose.innerText = 'x';
     modalThanksBody.appendChild(buttonThanksClose);
-    closeOrderCart();
+    closeModalThanks();
 }
 
 function creatThanksHeader(modalThanksBody) {
@@ -213,7 +213,7 @@ function creatThanksContent(modalThanksBody) {
     modalThanksItems.innerText = 'Looking forward to seeing you again';
 }
 
-function closeOrderCart() {
+function closeModalThanks() {
     let modalThanksClose = document.getElementById('modalThanksClose');
     let modalThanks = document.getElementById('modalThanks');
     modalThanksClose.addEventListener('click', () => {
