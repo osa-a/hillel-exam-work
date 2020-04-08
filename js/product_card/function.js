@@ -245,26 +245,6 @@ let renderingProductCard = () => {
 
     let arrayOfElem = document.querySelectorAll('.review-item'); // создаем массив, чтоб узнать сколько у нас комментариев
 
-    // if (!arrayOfElem) {
-    //     const commentUserName = document.querySelector(`.user-name-1`);  // временно 
-    //     const commentUserText = document.querySelector(`.review-content-1`); // временно 
-    //     const commentUserDate = document.querySelector(`.review-date-1`); // временно 
-
-    // items.forEach(element => {
-    //     if (element.id === selectedId) {
-    //         productName.innerText = element.name;
-    //         productPrice.innerText = `${element.price}$`;
-    //         productDescription.innerText = element.description;
-    //         productId.innerText = `ID: ${element.id}`;
-    //         productCategory.innerText = `Category: ${element.category}`;
-    //         productType.innerText = `Type: ${element.type}`;
-    //         productMaterial.innerText = `Material: ${element.material}`;
-    //         commentUserName.innerText = element.comments.name;
-    //         commentUserText.innerText = element.comments.comment;
-    //         commentUserDate.innerText = element.comments.date;
-    //     }
-    // });
-    // } else {
         let id = arrayOfElem.length; 
 
         items.forEach(element => {
@@ -326,7 +306,8 @@ let renderingPics = () => {
     const miniPic4 = document.querySelector('.mini-pic-4');
     const descPic1 = document.querySelector('.description-pic-1');
     const descPic2 = document.querySelector('.description-pic-2');
-    const userAvatar = document.querySelector(`.user-avatar-photo-1`); // временно 
+
+    // const userAvatar = document.querySelector(`.user-avatar-photo-${id}`); // временно 
 
     for (let value in smallImg) {
         if (value === selectedId) {
@@ -342,7 +323,20 @@ let renderingPics = () => {
 
     items.forEach(element => {
         if (element.id === selectedId) {
-            userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments.avatar}`);
+            let amount = element.comments.length;
+            console.log(amount);
+
+            for (let i = 0; i < amount; i++) { 
+                const userAvatar = document.querySelector(`.user-avatar-photo-${i++}`);
+
+                items.forEach(element => {
+                if (element.id === selectedId) {
+                    userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[amount - 1].avatar}`);
+                }
+            });
+            }
+
+           
         }
     });
 }
@@ -456,49 +450,38 @@ let addRatingToComment = (parent) => {
 let createUserReview = () => {                             // Самый страшный костыль проекта 
     let id = getIdFromStorage('item');
 
-    // проверка на наличие элемента
-    let reviewNumber = document.querySelector(`.review-1`);
+    items.forEach(element => { 
+        if (element.id === id) {
+            let amount = element.comments.length; // надодим сколько всего комментов в этом товаре 
+            console.log(amount);
 
-    if (!reviewNumber) {
-        createElement('div', `review-1`, '.review-block');
-        let block = document.querySelector('.review-1');
-        block.classList.add('review-item');
-        createElement('div', `user-avatar-1`, `.review-1`);
-        createImg(`user-avatar-photo-1`, 'avatar', '110', '110', `.user-avatar-1`)
+            for (let i = 0; i < amount; i++) { // создаем колличество блоков для комментов
+                
+                let arrayOfElem = document.querySelectorAll('.review-item'); // создаем массив, чтоб узнать сколько у нас комментариев
 
-        createElement('div', `user-review-1`, `.review-1`);
+                let reviewAmount = arrayOfElem.length; // записываем колличество комментариев в переменную
 
-        createElement('div', `review-title-1`, `.user-review-1`);
-        createElement('h5', `user-name-1`, `.review-title-1`);
-        createElement('div', `user-rating-1`, `.review-title-1`);
-        addRatingToComment(`.user-rating-1`);
+                id = reviewAmount + 1; // указываем номер комментария и присваеваем к элементам
+                createElement('div', `review-${id}`, '.review-block');
 
-        createElement('div', `review-date-1`, `.user-review-1`);
-        createElement('div', `review-content-1`, `.user-review-1`);
-    } else {
-        let arrayOfElem = document.querySelectorAll('.review-item'); // создаем массив, чтоб узнать сколько у нас комментариев
+                let block = document.querySelector(`.review-${id}`); // добавление общего класса всем комментариям, чтоб понимать какое количество этих элементов
+                block.classList.add('review-item');
 
-        let reviewAmount = arrayOfElem.length; // записываем колличество комментариев в переменную
+                createElement('div', `user-avatar-${id}`, `.review-${id}`);
+                createImg(`user-avatar-photo-${i}`, 'avatar', '110', '110', `.user-avatar-${id}`)
 
-        id = reviewAmount + 1; // указываем номер комментария и присваеваем к элементам
-        createElement('div', `review-${id}`, '.review-block');
+                createElement('div', `user-review-${id}`, `.review-${id}`);
 
-        let block = document.querySelector(`.review-${id}`); // добавление общего класса всем комментариям, чтоб понимать какое количество этих элементов
-        block.classList.add('review-item');
+                createElement('div', `review-title-${id}`, `.user-review-${id}`);
+                createElement('h5', `user-name-${id}`, `.review-title-${id}`);
+                createElement('div', `user-rating-${id}`, `.review-title-${id}`);
+                addRatingToComment(`.user-rating-${id}`);
 
-        createElement('div', `user-avatar-${id}`, `.review-${id}`);
-        createImg('user-avatar-photo', 'avatar', '110', '110', `.user-avatar-${id}`)
-
-        createElement('div', `user-review-${id}`, `.review-${id}`);
-
-        createElement('div', `review-title-${id}`, `.user-review-${id}`);
-        createElement('h5', `user-name-${id}`, `.review-title-${id}`);
-        createElement('div', `user-rating-${id}`, `.review-title-${id}`);
-        addRatingToComment(`.user-rating-${id}`);
-
-        createElement('div', `review-date-${id}`, `.user-review-${id}`);
-        createElement('div', `review-content-${id}`, `.user-review-${id}`);
-    }
+                createElement('div', `review-date-${id}`, `.user-review-${id}`);
+                createElement('div', `review-content-${id}`, `.user-review-${id}`);
+            }
+        }
+    });
 }
     
 
