@@ -20,7 +20,7 @@ const Item = function (id, name, price, category, material, type, comments) {
 Item.prototype = new ItemProto();
 
 function createData(){
-    let itemElem = new Item('76', 'Tweed Armchair', 131, categories[0], material[0], type[0], comments[0]);
+    let itemElem = new Item('76', 'Tweed Armchair', 131, categories[0], material[0], type[0], [comments[0], comments[1]]);
     itemElem.pushToAr(itemElem);
     itemElem = new Item('4gh', 'Hocko Blanket', 42, categories[1], material[1], type[1], comments[1]);
     itemElem.pushToAr(itemElem);
@@ -38,7 +38,7 @@ function createData(){
     itemElem.pushToAr(itemElem);
     itemElem = new Item('54vt', 'Hocko Picture', 21,  categories[1], material[0], type[5], comments[2]);
     itemElem.pushToAr(itemElem);
-    itemElem = new Item('9mn', 'Amyndas Pendant Lamp', 99,  categories[1], material[2], type[2], comments[3]);
+    itemElem = new Item('9mn', 'Amyndas Pendant Lamp', 99,  categories[1], material[2], type[2], [comments[3], comments[2]]);
     itemElem.pushToAr(itemElem);
     itemElem = new Item('5b', 'Planting Light', 25,  categories[1], material[4], type[2], comments[5]);
     itemElem.pushToAr(itemElem);

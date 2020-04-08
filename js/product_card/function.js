@@ -146,19 +146,7 @@ let createDescriptionBlock = () => {
 let createReviewSection = () => {
     createElement('section', 'review-block', '.wrapper');
 
-    createElement('div', 'user-avatar', '.review-block');
-    createImg('user-avatar-photo', 'avatar', '110', '110', ".user-avatar")
-
-    createElement('div', 'user-review', '.review-block');
-
-    createElement('div', 'review-title', '.user-review');
-    createElement('h5', 'user-name', '.review-title');
-    createElement('div', 'user-rating', '.review-title');
-    addRatingToComment('.user-rating');
-    // сюда запилить рейтинг звездочками
-
-    createElement('div', 'review-date', '.user-review');
-    createElement('div', 'review-content', '.user-review');
+    createUserReview();
 }
 
 let createReviewFormSection = () => {
@@ -206,6 +194,8 @@ let createReviewFormSection = () => {
     createSubmitButtonReview();
 }
 
+// MAIN FUNC (ASSEMBLY)
+
 let сreateItemCardPage = (reload) => {
 
     // отрисовка main и css 
@@ -235,6 +225,9 @@ let сreateItemCardPage = (reload) => {
 
     // change main pic
     addListenerToChangeMainPic();
+
+    // add comments to review
+    addEventListenetToReviewSubmit();
 }
 
 
@@ -249,25 +242,79 @@ let renderingProductCard = () => {
     const productCategory = document.querySelector('.category-of-good');
     const productType = document.querySelector('.features-of-good__type');
     const productMaterial = document.querySelector('.features-of-good__material');
-    const commentUserName = document.querySelector('.user-name');
-    const commentUserText = document.querySelector('.review-content');
-    const commentUserDate = document.querySelector('.review-date');
 
+    let arrayOfElem = document.querySelectorAll('.review-item'); // создаем массив, чтоб узнать сколько у нас комментариев
 
-    items.forEach(element => {
-        if (element.id === selectedId) {
-            productName.innerText = element.name;
-            productPrice.innerText = `${element.price}$`;
-            productDescription.innerText = element.description;
-            productId.innerText = `ID: ${element.id}`;
-            productCategory.innerText = `Category: ${element.category}`;
-            productType.innerText = `Type: ${element.type}`;
-            productMaterial.innerText = `Material: ${element.material}`;
-            commentUserName.innerText = element.comments.name;
-            commentUserText.innerText = element.comments.comment;
-            commentUserDate.innerText = element.comments.date;
-        }
-    });
+    // if (!arrayOfElem) {
+    //     const commentUserName = document.querySelector(`.user-name-1`);  // временно 
+    //     const commentUserText = document.querySelector(`.review-content-1`); // временно 
+    //     const commentUserDate = document.querySelector(`.review-date-1`); // временно 
+
+    // items.forEach(element => {
+    //     if (element.id === selectedId) {
+    //         productName.innerText = element.name;
+    //         productPrice.innerText = `${element.price}$`;
+    //         productDescription.innerText = element.description;
+    //         productId.innerText = `ID: ${element.id}`;
+    //         productCategory.innerText = `Category: ${element.category}`;
+    //         productType.innerText = `Type: ${element.type}`;
+    //         productMaterial.innerText = `Material: ${element.material}`;
+    //         commentUserName.innerText = element.comments.name;
+    //         commentUserText.innerText = element.comments.comment;
+    //         commentUserDate.innerText = element.comments.date;
+    //     }
+    // });
+    // } else {
+        let id = arrayOfElem.length; 
+
+        items.forEach(element => {
+            if (element.id === selectedId) {
+                let amount = element.comments.length;
+                console.log(amount);
+
+                // какое количество в стораже, сначала создаются все сцществующие блоки, а только потом туда добавляется информация
+
+                const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
+                const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
+                const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
+        
+                items.forEach(element => {
+                    if (element.id === selectedId) {
+                        productName.innerText = element.name;
+                        productPrice.innerText = `${element.price}$`;
+                        productDescription.innerText = element.description;
+                        productId.innerText = `ID: ${element.id}`;
+                        productCategory.innerText = `Category: ${element.category}`;
+                        productType.innerText = `Type: ${element.type}`;
+                        productMaterial.innerText = `Material: ${element.material}`;
+                        commentUserName.innerText = element.comments[amount - 1].name;
+                        commentUserText.innerText = element.comments[amount - 1].comment;
+                        commentUserDate.innerText = element.comments.date;
+                    }
+                });
+
+            }
+        });
+
+        // const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
+        // const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
+        // const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
+
+        // items.forEach(element => {
+        //     if (element.id === selectedId) {
+        //         productName.innerText = element.name;
+        //         productPrice.innerText = `${element.price}$`;
+        //         productDescription.innerText = element.description;
+        //         productId.innerText = `ID: ${element.id}`;
+        //         productCategory.innerText = `Category: ${element.category}`;
+        //         productType.innerText = `Type: ${element.type}`;
+        //         productMaterial.innerText = `Material: ${element.material}`;
+        //         commentUserName.innerText = element.comments[1].name;
+        //         commentUserText.innerText = element.comments[1].comment;
+        //         commentUserDate.innerText = element.comments.date;
+        //     }
+        // });
+    // }
 }
 
 let renderingPics = () => {
@@ -279,7 +326,7 @@ let renderingPics = () => {
     const miniPic4 = document.querySelector('.mini-pic-4');
     const descPic1 = document.querySelector('.description-pic-1');
     const descPic2 = document.querySelector('.description-pic-2');
-    const userAvatar = document.querySelector('.user-avatar-photo');
+    const userAvatar = document.querySelector(`.user-avatar-photo-1`); // временно 
 
     for (let value in smallImg) {
         if (value === selectedId) {
@@ -382,6 +429,7 @@ let addListenerToChangeMainPic = () => {
     });
 }
 
+// ADD RATING 
 
 let addRatingToProduct = () => {
 
@@ -396,9 +444,69 @@ let addRatingToComment = (parent) => {
 
     items.forEach(elem => {
         if (elem.id === selectedId) {
-            for (let i = 1; i < parseInt(elem.comments.rate); i++) {
+            for (let i = 1; i <= parseInt(elem.comments.rate); i++) {
                 document.querySelector(`.rate-star-${i}`).setAttribute('src', '../img/product_card/full_star.png');
             }
         }
+    })
+}
+
+// ADD USER-REVIEW
+
+let createUserReview = () => {                             // Самый страшный костыль проекта 
+    let id = getIdFromStorage('item');
+
+    // проверка на наличие элемента
+    let reviewNumber = document.querySelector(`.review-1`);
+
+    if (!reviewNumber) {
+        createElement('div', `review-1`, '.review-block');
+        let block = document.querySelector('.review-1');
+        block.classList.add('review-item');
+        createElement('div', `user-avatar-1`, `.review-1`);
+        createImg(`user-avatar-photo-1`, 'avatar', '110', '110', `.user-avatar-1`)
+
+        createElement('div', `user-review-1`, `.review-1`);
+
+        createElement('div', `review-title-1`, `.user-review-1`);
+        createElement('h5', `user-name-1`, `.review-title-1`);
+        createElement('div', `user-rating-1`, `.review-title-1`);
+        addRatingToComment(`.user-rating-1`);
+
+        createElement('div', `review-date-1`, `.user-review-1`);
+        createElement('div', `review-content-1`, `.user-review-1`);
+    } else {
+        let arrayOfElem = document.querySelectorAll('.review-item'); // создаем массив, чтоб узнать сколько у нас комментариев
+
+        let reviewAmount = arrayOfElem.length; // записываем колличество комментариев в переменную
+
+        id = reviewAmount + 1; // указываем номер комментария и присваеваем к элементам
+        createElement('div', `review-${id}`, '.review-block');
+
+        let block = document.querySelector(`.review-${id}`); // добавление общего класса всем комментариям, чтоб понимать какое количество этих элементов
+        block.classList.add('review-item');
+
+        createElement('div', `user-avatar-${id}`, `.review-${id}`);
+        createImg('user-avatar-photo', 'avatar', '110', '110', `.user-avatar-${id}`)
+
+        createElement('div', `user-review-${id}`, `.review-${id}`);
+
+        createElement('div', `review-title-${id}`, `.user-review-${id}`);
+        createElement('h5', `user-name-${id}`, `.review-title-${id}`);
+        createElement('div', `user-rating-${id}`, `.review-title-${id}`);
+        addRatingToComment(`.user-rating-${id}`);
+
+        createElement('div', `review-date-${id}`, `.user-review-${id}`);
+        createElement('div', `review-content-${id}`, `.user-review-${id}`);
+    }
+}
+    
+
+
+let addEventListenetToReviewSubmit = () => {
+    
+    document.querySelector('input[type=submit]').addEventListener('click', (e) => {
+        e.preventDefault();
+        createUserReview();
     })
 }
