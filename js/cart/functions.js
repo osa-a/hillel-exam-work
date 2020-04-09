@@ -12,7 +12,7 @@ function creatCartPageHead(cartPage) {
 
 function creatCartPageBody(cartPage) {
     const cartBody = document.createElement('section');
-    cartBody.classList.add('cart-body', 'wrapper');
+    cartBody.classList.add('cart-body', 'cart-body-wrapper');
     creatCartPageBilling(cartBody);
     creatCartPageOrder(cartBody);
     cartPage.appendChild(cartBody);
