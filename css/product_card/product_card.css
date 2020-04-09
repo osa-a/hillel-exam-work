@@ -134,7 +134,7 @@
   margin-left: 35px;
 }
 
-.buy-block__button .card-buy-button {
+.buy-block__button .item-card-btn {
   font-size: 20px;
   line-height: 1.2;
   font-weight: 400;
@@ -143,14 +143,11 @@
   height: 50px;
   width: 90px;
   color: #373737;
+  cursor: pointer;
 }
 
-.buy-block__button .card-buy-button:hover {
+.buy-block__button .item-card-btn:hover {
   background-color: #dddddd;
-}
-
-.buy-block__button .card-buy-button:active {
-  background-color: #cbdac7;
 }
 
 .item-card__info-of-good--id {

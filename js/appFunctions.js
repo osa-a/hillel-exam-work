@@ -70,8 +70,7 @@ function createCard(items, i, container) {
     const shopCard = document.createElement('div');
     shopCard.classList.add('shop-card');
     const cardImg = document.createElement('img');
-    cardImg.classList.add('card-image');
-    cardImg.classList.add('another-page');
+    cardImg.classList.add('card-image', 'another-page');
     cardImg.setAttribute('data-page', '6');
     cardImg.setAttribute('data-item', items[i].id);
     cardImg.setAttribute('src', `img/category-shop-cards/${items[i].id}.png`);
@@ -86,9 +85,10 @@ function createCard(items, i, container) {
     price.classList.add('card-price');
     price.innerText = `${items[i].price}$`;
     const cartBtn = document.createElement('button');
-    cartBtn.classList.add('card-cart-button');
+    cartBtn.classList.add('card-cart-button', 'another-page');
     cartBtn.setAttribute('type', 'buton');
-    cartBtn.setAttribute('data-cart', items[i].id);
+    cartBtn.setAttribute('data-page', '6');
+    cartBtn.setAttribute('data-item', items[i].id);
 
     description.appendChild(itemName);
     description.appendChild(price);
@@ -125,11 +125,16 @@ function shopCardListener(container, reload) {
 
 function cartButtonListener(wrapper) {
     wrapper.addEventListener('click', (e) => {
-        let clicked = e.target.getAttribute('data-cart');
+        let clicked = e.target.classList.contains('item-card-btn');
         if (!clicked) {
             return;
         };
-        //функция добавления в корзину 
+        const amount = document.querySelector('.amount-of-goods__int').innerText;
+        const itemElement = {
+            id: e.target.getAttribute('data-product'),
+            amount: parseInt(amount),
+        }
+        cart.push(itemElement);
     })
 }
 
@@ -180,6 +185,7 @@ let getIdFromStorage = (data) => {
 }
 
 //*   MODAL CART   *//
+
 function creatModalCart() {
     const nav = document.querySelector('.navigation');
     const modalOrder = document.createElement('section');
@@ -193,6 +199,27 @@ function creatModalCart() {
     creatOrderHeader(modalOrderBody);
     creatOrderContent(modalOrderBody);
     creatOrderFooter(modalOrderBody);
+    //при создании модалки, у тебя идет проверка 
+    // на то, есть ли одинаковы товары, если есть
+    // тогда этот элемент удаляется их массива и к другому такому же
+    // прибавляется кол-во повторяющегося
+    //обязательно проследи, что бы все работало корректно
+    // функция проверки карзины лежит этажом ниже
+    cart = cartFilter(cart);
+    console.log(cart);
+}
+
+function cartFilter(cart) {
+    let cartAr = cart;
+    for (let i = 0; i < cartAr.length; i++) {
+        for (let j = 1; j < cartAr.length; j++) {
+            if (cartAr[i].id === cartAr[j].id) {
+                cartAr[i].amount += cartAr[j].amount;
+                cartAr.splice(j, 1);
+            }
+        }
+    }
+    return cartAr;
 }
 
 function creatButtonOrderClose(modalOrderBody) {

@@ -5,9 +5,9 @@
 }
 
 .item-card__mini-reviewer {
-    @include flex($fd:column, $jc:flex-start, $ai:stretch, $fw:wrap);
+    @include flex($fd: column, $jc: flex-start, $ai: stretch, $fw: wrap);
 
-    img {  
+    img {
         border: 1px solid rgb(204, 204, 204);
         margin-bottom: 10px;
     }
@@ -17,7 +17,7 @@
     margin-left: 50px;
 
     img {
-        border: 1px solid rgb(204, 204, 204); 
+        border: 1px solid rgb(204, 204, 204);
     }
 }
 
@@ -25,19 +25,19 @@
     margin-left: 40px;
 
     .item-card__info-of-good--title {
-        @include font(36px, 1.2, $fw:400);
+        @include font(36px, 1.2, $fw: 400);
         color: rgb(0, 0, 0);
-        text-align: center;   
+        text-align: center;
     }
 
     .item-card__info-of-good--price {
-        @include font(30px, 1.2, $fw:400);
+        @include font(30px, 1.2, $fw: 400);
         margin-top: 5px;
         color: rgb(55, 55, 55);
     }
 
     .item-card__info-of-good--description {
-        @include font(18px, 1.2, $fw:400);
+        @include font(18px, 1.2, $fw: 400);
         margin-top: 45px;
         color: rgb(55, 55, 55);
         max-width: 410px;
@@ -51,13 +51,13 @@
 .buy-block {
     display: flex;
     margin-top: 55px;
-    
+
     .amount-of-goods {
         display: flex;
         width: 90px;
 
         .amount-of-goods__int {
-            @include flex($fd:row, $jc:center, $ai:center, $fw:wrap);
+            @include flex($fd: row, $jc: center, $ai: center, $fw: wrap);
             width: 60%;
             border: 1px solid #000;
         }
@@ -100,22 +100,21 @@
 
 .buy-block__button {
     margin-left: 35px;
-
-    .card-buy-button {
+    .item-card-btn{
         @include font(20px, 1.2, 400);
         border: 1px solid #000;
         background-color: transparent;
         height: 50px;
         width: 90px;
         color: rgb(55, 55, 55);
-
+        cursor: pointer;
         &:hover {
             background-color: rgb(221, 221, 221);
         }
 
-        &:active {
-            background-color: rgb(203, 218, 199);
-        }
+        // &:active {
+        //     background-color: rgb(203, 218, 199);
+        // }
     }
 }
 

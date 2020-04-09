@@ -2,7 +2,6 @@
 
 let items = [];
 let cart = [];
-
 let categories = [];
 let material = [];
 let type = [];

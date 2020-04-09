@@ -33,7 +33,6 @@ let createReviewForm = () => {
     let parent = document.querySelector('.wrapper');
     form.classList.add('review-form');
     form.setAttribute('name', 'review-form');
-    form.setAttribute('action', 'https://mcslayer.com/hillel/post.php'); // добавить action
     parent.append(form);
 }
 
@@ -69,7 +68,7 @@ let createSectionCategoryHead = () => {
     createElement('div', 'page-head', '.category-head');
     createElement('div', 'cart-title', '.page-head');
     document.querySelector('.cart-title').innerText = 'Shop';
-    
+
     createItemCardSection();
 
 }
@@ -108,8 +107,9 @@ let createItemCardSection = () => {
     document.querySelector('.minus-one').innerText = "-";
 
     createElement('div', 'buy-block__button', '.buy-block');
-    createElement('button', 'card-buy-button', '.buy-block__button');
-    document.querySelector('.card-buy-button').innerText = "BUY";
+    createElement('button', 'item-card-btn', '.buy-block__button');
+    document.querySelector('.item-card-btn').innerText = "BUY";
+    document.querySelector('.item-card-btn').setAttribute('type', 'button');
 
     createElement('div', 'item-card__info-of-good--id', '.item-card__info-of-good');
     createElement('p', 'id-of-good', '.item-card__info-of-good--id');
@@ -201,7 +201,7 @@ let сreateItemCardPage = (reload) => {
     // отрисовка main и css 
     const itemCardPage = document.createElement('main');
     itemCardPage.classList.add('main');
-    
+
     insertMain(itemCardPage);
     cleaner(reload);
     changeCss('product_card');
@@ -239,63 +239,63 @@ let renderingProductCard = () => {
     const productPrice = document.querySelector('.item-card__info-of-good--price');
     const productDescription = document.querySelector('.item-card__info-of-good--description');
     const productId = document.querySelector('.id-of-good');
-    const buyButton = document.querySelector('.card-buy-button');
+    const buyButton = document.querySelector('.item-card-btn');
     const productCategory = document.querySelector('.category-of-good');
     const productType = document.querySelector('.features-of-good__type');
     const productMaterial = document.querySelector('.features-of-good__material');
 
     let arrayOfElem = document.querySelectorAll('.review-item'); // создаем массив, чтоб узнать сколько у нас комментариев
 
-        let id = arrayOfElem.length; 
+    let id = arrayOfElem.length;
 
-        items.forEach(element => {
-            if (element.id === selectedId) {
-                let amount = element.comments.length;
-                console.log(amount);
+    items.forEach(element => {
+        if (element.id === selectedId) {
+            let amount = element.comments.length;
+            // console.log(amount);
 
-                // какое количество в стораже, сначала создаются все сцществующие блоки, а только потом туда добавляется информация
+            // какое количество в стораже, сначала создаются все сцществующие блоки, а только потом туда добавляется информация
 
-                const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
-                const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
-                const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
-        
-                items.forEach(element => {
-                    if (element.id === selectedId) {
-                        productName.innerText = element.name;
-                        productPrice.innerText = `${element.price}$`;
-                        productDescription.innerText = element.description;
-                        productId.innerText = `ID: ${element.id}`;
-                        productCategory.innerText = `Category: ${element.category}`;
-                        productType.innerText = `Type: ${element.type}`;
-                        productMaterial.innerText = `Material: ${element.material}`;
-                        commentUserName.innerText = element.comments[amount - 1].name;
-                        commentUserText.innerText = element.comments[amount - 1].comment;
-                        commentUserDate.innerText = element.comments.date;
-                        buyButton.setAttribute('data-item', element.id);
-                    }
-                });
+            const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
+            const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
+            const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
 
-            }
-        });
+            items.forEach(element => {
+                if (element.id === selectedId) {
+                    productName.innerText = element.name;
+                    productPrice.innerText = `${element.price}$`;
+                    productDescription.innerText = element.description;
+                    productId.innerText = `ID: ${element.id}`;
+                    productCategory.innerText = `Category: ${element.category}`;
+                    productType.innerText = `Type: ${element.type}`;
+                    productMaterial.innerText = `Material: ${element.material}`;
+                    commentUserName.innerText = element.comments[amount - 1].name;
+                    commentUserText.innerText = element.comments[amount - 1].comment;
+                    commentUserDate.innerText = element.comments.date;
+                    buyButton.setAttribute('data-product', element.id);
+                }
+            });
 
-        // const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
-        // const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
-        // const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
+        }
+    });
 
-        // items.forEach(element => {
-        //     if (element.id === selectedId) {
-        //         productName.innerText = element.name;
-        //         productPrice.innerText = `${element.price}$`;
-        //         productDescription.innerText = element.description;
-        //         productId.innerText = `ID: ${element.id}`;
-        //         productCategory.innerText = `Category: ${element.category}`;
-        //         productType.innerText = `Type: ${element.type}`;
-        //         productMaterial.innerText = `Material: ${element.material}`;
-        //         commentUserName.innerText = element.comments[1].name;
-        //         commentUserText.innerText = element.comments[1].comment;
-        //         commentUserDate.innerText = element.comments.date;
-        //     }
-        // });
+    // const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
+    // const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
+    // const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
+
+    // items.forEach(element => {
+    //     if (element.id === selectedId) {
+    //         productName.innerText = element.name;
+    //         productPrice.innerText = `${element.price}$`;
+    //         productDescription.innerText = element.description;
+    //         productId.innerText = `ID: ${element.id}`;
+    //         productCategory.innerText = `Category: ${element.category}`;
+    //         productType.innerText = `Type: ${element.type}`;
+    //         productMaterial.innerText = `Material: ${element.material}`;
+    //         commentUserName.innerText = element.comments[1].name;
+    //         commentUserText.innerText = element.comments[1].comment;
+    //         commentUserDate.innerText = element.comments.date;
+    //     }
+    // });
     // }
 }
 
@@ -326,19 +326,19 @@ let renderingPics = () => {
     items.forEach(element => {
         if (element.id === selectedId) {
             let amount = element.comments.length;
-            console.log(amount);
+            // console.log(amount);
 
-            for (let i = 0; i < amount; i++) { 
+            for (let i = 0; i < amount; i++) {
                 const userAvatar = document.querySelector(`.user-avatar-photo-${i++}`);
 
                 items.forEach(element => {
-                if (element.id === selectedId) {
-                    userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[amount - 1].avatar}`);
-                }
-            });
+                    if (element.id === selectedId) {
+                        userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[amount - 1].avatar}`);
+                    }
+                });
             }
 
-           
+
         }
     });
 }
@@ -452,13 +452,13 @@ let addRatingToComment = (parent) => {
 let createUserReview = () => {                             // Самый страшный костыль проекта 
     let id = getIdFromStorage('item');
 
-    items.forEach(element => { 
+    items.forEach(element => {
         if (element.id === id) {
             let amount = element.comments.length; // надодим сколько всего комментов в этом товаре 
-            console.log(amount);
+            // console.log(amount);
 
             for (let i = 0; i < amount; i++) { // создаем колличество блоков для комментов
-                
+
                 let arrayOfElem = document.querySelectorAll('.review-item'); // создаем массив, чтоб узнать сколько у нас комментариев
 
                 let reviewAmount = arrayOfElem.length; // записываем колличество комментариев в переменную
@@ -485,11 +485,9 @@ let createUserReview = () => {                             // Самый стр�
         }
     });
 }
-    
-
 
 let addEventListenetToReviewSubmit = () => {
-    
+
     document.querySelector('input[type=submit]').addEventListener('click', (e) => {
         e.preventDefault();
         createUserReview();

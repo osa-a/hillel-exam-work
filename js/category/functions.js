@@ -10,7 +10,11 @@ function createCategoryHead(category, text) {
     const cartTitle = document.createElement('p');
     cartTitle.classList.add('cart-title');
     cartTitle.innerText = text;
+    const bB = document.createElement('button');
+    bB.setAttribute('onclick', 'window.history.back()');
+    bB.innerText = 'Back';
 
+    pageHead.appendChild(bB);
     pageHead.appendChild(cartTitle);
     section.appendChild(pageHead);
     category.appendChild(section);
@@ -186,6 +190,7 @@ let filtered = (element, property, obj) => {
 }
 
 //*   AFTER RELOAD   *//
+
 function setSelectedFilter(reload) {
     if (reload) {
         let checkboxes = document.getElementsByClassName('checkbox');
