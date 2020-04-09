@@ -108,8 +108,8 @@ let createItemCardSection = () => {
     document.querySelector('.minus-one').innerText = "-";
 
     createElement('div', 'buy-block__button', '.buy-block');
-    createElement('button', 'buy-button', '.buy-block__button');
-    document.querySelector('.buy-button').innerText = "BUY";
+    createElement('button', 'card-buy-button', '.buy-block__button');
+    document.querySelector('.card-buy-button').innerText = "BUY";
 
     createElement('div', 'item-card__info-of-good--id', '.item-card__info-of-good');
     createElement('p', 'id-of-good', '.item-card__info-of-good--id');
@@ -239,6 +239,7 @@ let renderingProductCard = () => {
     const productPrice = document.querySelector('.item-card__info-of-good--price');
     const productDescription = document.querySelector('.item-card__info-of-good--description');
     const productId = document.querySelector('.id-of-good');
+    const buyButton = document.querySelector('.card-buy-button');
     const productCategory = document.querySelector('.category-of-good');
     const productType = document.querySelector('.features-of-good__type');
     const productMaterial = document.querySelector('.features-of-good__material');
@@ -270,6 +271,7 @@ let renderingProductCard = () => {
                         commentUserName.innerText = element.comments[amount - 1].name;
                         commentUserText.innerText = element.comments[amount - 1].comment;
                         commentUserDate.innerText = element.comments.date;
+                        buyButton.setAttribute('data-item', element.id);
                     }
                 });
 

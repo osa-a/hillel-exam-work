@@ -134,7 +134,7 @@
   margin-left: 35px;
 }
 
-.buy-block__button .buy-button {
+.buy-block__button .card-buy-button {
   font-size: 20px;
   line-height: 1.2;
   font-weight: 400;
@@ -145,11 +145,11 @@
   color: #373737;
 }
 
-.buy-block__button .buy-button:hover {
+.buy-block__button .card-buy-button:hover {
   background-color: #dddddd;
 }
 
-.buy-block__button .buy-button:active {
+.buy-block__button .card-buy-button:active {
   background-color: #cbdac7;
 }
 
