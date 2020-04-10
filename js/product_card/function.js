@@ -279,12 +279,15 @@ let renderingProductCard = () => {
                         commentUserText.innerText = element.comments[i].comment;
                         commentUserDate.innerText = element.comments[i].date;
                         buyButton.setAttribute('data-product', element.id);
-                        addRatingToComment(`.user-rating-${i}`, i);
+                        addRatingToComment(`.user-rating-${i}`, element.comments[i].rate, i);
+                        
                     }
                 });  
             }
+           
         }
     });
+    addRatingToProduct();
 }
 
 let renderingPics = () => {
@@ -405,12 +408,50 @@ let addListenerToChangeMainPic = () => {
 
 // ADD RATING 
 
-let addRatingToProduct = () => {
+let createRatingArray = () => {
+    let selectedId = getIdFromStorage('item');
+    let newArr = [];
 
+    items.forEach(element => {
+        
+        if (element.id === selectedId) {
+            for (let i = 0; i < element.comments.length; i++) {
+                let newEl = parseInt(element.comments[i].rate);
+                newArr.push(newEl);
+            }
+           
+        } 
+    }); 
+    return newArr;
 }
 
-let addRatingToComment = (parent, id) => {
+let findAverage = () => {
+    const rating = createRatingArray(); 
+    let average = 0;    
     
+    for (let item of rating) {
+        average += item / rating.length;
+    } 
+
+    average = Math.round(average);
+    return average;
+}
+
+let addRatingToProduct = () => {
+    const selectedId = getIdFromStorage('item');
+    
+    const averageSum = findAverage();
+  
+    items.forEach(element => {
+        if (element.id === selectedId) {
+            element.rating = averageSum
+        }
+    });
+    
+    addRatingToComment('.product-rating', averageSum, selectedId);
+}
+
+let addRatingToComment = (parent, rating, id) => {
     let selectedId = getIdFromStorage('item');
 
     items.forEach(element => {
@@ -421,7 +462,7 @@ let addRatingToComment = (parent, id) => {
                     document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/empty_star.png');
                 }
 
-                for (let i = 1; i <= parseInt(element.comments[id].rate); i++) {
+                for (let i = 1; i <= parseInt(rating); i++) {
                     document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/full_star.png');
                 }
             
