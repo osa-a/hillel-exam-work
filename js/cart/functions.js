@@ -1,6 +1,6 @@
 'use strict';
 
-function creatCartPageHead(cartPage) {
+function createCartPageHead(cartPage) {
     const section = document.createElement('section');
     section.classList.add('page-head');
     const sectionTitle = document.createElement('div');
@@ -10,15 +10,15 @@ function creatCartPageHead(cartPage) {
     cartPage.appendChild(section);
 }
 
-function creatCartPageBody(cartPage) {
+function createCartPageBody(cartPage) {
     const cartBody = document.createElement('section');
     cartBody.classList.add('cart-body', 'cart-body-wrapper');
-    creatCartPageBilling(cartBody);
-    creatCartPageOrder(cartBody);
+    createCartPageBilling(cartBody);
+    createCartPageOrder(cartBody);
     cartPage.appendChild(cartBody);
 }
 
-function creatCartPageBilling(cartBody) {
+function createCartPageBilling(cartBody) {
     const billing = document.createElement('section');
     billing.classList.add('billing');
     const billingTitle = document.createElement('div');
@@ -26,20 +26,20 @@ function creatCartPageBilling(cartBody) {
     billingTitle.innerText = 'Billing details';
     billing.appendChild(billingTitle);
     cartBody.appendChild(billing);
-    creatOrderForm(billing);
+    createOrderForm(billing);
 }
 
-function creatOrderForm(billing) {
+function createOrderForm(billing) {
     const orderForm = document.createElement('form');
     orderForm.setAttribute('name', 'orderForm');
-    creatInputs(orderForm);
-    creatTextArea(orderForm);
-    creatRadioPaymentBlock(orderForm);
-    creatBillingButtonBlock(orderForm);
+    createInputs(orderForm);
+    createTextArea(orderForm);
+    createRadioPaymentBlock(orderForm);
+    createBillingButtonBlock(orderForm);
     billing.appendChild(orderForm);
 }
 
-function creatInputs(orderForm) {
+function createInputs(orderForm) {
     const divHalfBlock = document.createElement('div');
     divHalfBlock.classList.add('half');
     const inputHalf = [
@@ -95,7 +95,7 @@ function creatInputs(orderForm) {
     }
 }
 
-function creatTextArea(orderForm) {
+function createTextArea(orderForm) {
     const divBlock = document.createElement('div');
     divBlock.classList.add('textarea');
     const textarea = document.createElement('textarea');
@@ -105,7 +105,7 @@ function creatTextArea(orderForm) {
     orderForm.appendChild(divBlock);
 }
 
-function creatRadioPaymentBlock(orderForm) {
+function createRadioPaymentBlock(orderForm) {
     const radio = document.createElement('div');
     radio.classList.add('radio');
     orderForm.appendChild(radio);
@@ -130,7 +130,7 @@ function creatRadioPaymentBlock(orderForm) {
     }
 }
 
-function creatBillingButtonBlock(orderForm) {
+function createBillingButtonBlock(orderForm) {
     const billingButtonBlock = document.createElement('div');
     billingButtonBlock.classList.add('billing-button');
     const placeOrderButton = document.createElement('button');
@@ -142,7 +142,7 @@ function creatBillingButtonBlock(orderForm) {
     billingButtonBlock.appendChild(placeOrderButton);
 }
 
-function creatCartPageOrder(cartBody) {
+function createCartPageOrder(cartBody) {
     const order = document.createElement('section');
     order.classList.add('order');
     cartBody.appendChild(order);
@@ -150,23 +150,18 @@ function creatCartPageOrder(cartBody) {
     orderTitle.classList.add('order-title');
     orderTitle.innerText = 'Your order';
     order.appendChild(orderTitle);
-    creatItemsInCart(order);
+    const orderContent = document.createElement('div');
+    orderContent.classList.add('order-contentcart');
+    order.appendChild(orderContent);
+    createSelectedItems(orderContent); // FUNC THAT WILL SHOW ITEMS THAT USER ADD TO CART //
     const orderTotal = document.createElement('div');
     orderTotal.classList.add('order-total');
     orderTotal.innerText = 'Total:';
     order.appendChild(orderTotal);
 }
 
-// FUNC THAT WILL SHOW ITEMS THAT USER ADD TO CART //
-function creatItemsInCart(order) {
-    const orderItem = document.createElement('div');
-    orderItem.classList.add('order-item');
-    orderItem.innerText = 'Items written on JS';
-    order.appendChild(orderItem);
-}
-
-// CREAT MODAL THANKS //
-function creatModalThanks() {
+// CREATE MODAL THANKS //
+function createModalThanks() {
     document.body.style.overflow = 'hidden';
     const pageHead = document.querySelector('.navigation');
     const modalThanks = document.createElement('section');
@@ -176,12 +171,12 @@ function creatModalThanks() {
     const modalThanksBody = document.createElement('div');
     modalThanksBody.classList.add('modal-order-body');
     modalThanks.appendChild(modalThanksBody);
-    creatButtonThanksClose(modalThanksBody);
-    creatThanksHeader(modalThanksBody);
-    creatThanksContent(modalThanksBody);
+    createButtonThanksClose(modalThanksBody);
+    createThanksHeader(modalThanksBody);
+    createThanksContent(modalThanksBody);
 }
 
-function creatButtonThanksClose(modalThanksBody) {
+function createButtonThanksClose(modalThanksBody) {
     const buttonThanksClose = document.createElement('button');
     buttonThanksClose.setAttribute('type', 'button');
     buttonThanksClose.classList.add('modal-order-close');
@@ -191,7 +186,7 @@ function creatButtonThanksClose(modalThanksBody) {
     closeModalThanks();
 }
 
-function creatThanksHeader(modalThanksBody) {
+function createThanksHeader(modalThanksBody) {
     const modalThanksHeader = document.createElement('div');
     modalThanksHeader.classList.add('modal-order-header');
     modalThanksBody.appendChild(modalThanksHeader);
@@ -202,7 +197,7 @@ function creatThanksHeader(modalThanksBody) {
     modalThanksTitle.innerText = 'Thank you for the order';
 }
 
-function creatThanksContent(modalThanksBody) {
+function createThanksContent(modalThanksBody) {
     const modalThanksContent = document.createElement('div');
     modalThanksContent.classList.add('modal-order-content');
     modalThanksBody.appendChild(modalThanksContent);
@@ -219,7 +214,6 @@ function closeModalThanks() {
     modalThanksClose.addEventListener('click', () => {
         document.body.style.overflow = 'auto';
         modalThanks.remove();
-
     })
 }
 // FUNC THAT WILL SEND FORM //
@@ -231,6 +225,6 @@ function sendOrder() {
         sendOrderBtn.classList.add('another-page');
         sendOrderBtn.setAttribute('data-page', '1');
         window.scrollTo(0, 0);
-        creatModalThanks();
+        createModalThanks();
     });
 }

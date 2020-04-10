@@ -5,8 +5,8 @@ function createCartPage(reload) {
     changeCss('cart');
     const cartPage = document.createElement('main');
     cartPage.classList.add('main');
-    creatCartPageHead(cartPage);
-    creatCartPageBody(cartPage);
+    createCartPageHead(cartPage);
+    createCartPageBody(cartPage);
 
     insertMain(cartPage);
 }

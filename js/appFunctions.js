@@ -30,8 +30,12 @@ function switchPage(page, reload) {
             watchPriceRange()
             break;
         case '5':
-            createCartPage(reload);
-            sendOrder();
+            if (cart.length > 0) {
+                createCartPage(reload);
+                sendOrder();
+            } else {
+                createModalCart();
+            }
             break;
         case '6':
             сreateItemCardPage(reload);
@@ -186,7 +190,7 @@ let getIdFromStorage = (data) => {
 
 //*   MODAL CART   *//
 
-function creatModalCart() {
+function createModalCart() {
     const nav = document.querySelector('.navigation');
     const modalOrder = document.createElement('section');
     modalOrder.classList.add('modal-order');
@@ -195,18 +199,86 @@ function creatModalCart() {
     const modalOrderBody = document.createElement('div');
     modalOrderBody.classList.add('modal-order-body');
     modalOrder.appendChild(modalOrderBody);
-    creatButtonOrderClose(modalOrderBody);
-    creatOrderHeader(modalOrderBody);
-    creatOrderContent(modalOrderBody);
-    creatOrderFooter(modalOrderBody);
-    //при создании модалки, у тебя идет проверка 
+    createButtonOrderClose(modalOrderBody);
+    createOrderHeader(modalOrderBody);
+    createOrderContent(modalOrderBody);
+    createOrderFooter(modalOrderBody);
+}
+function createSelectedItems(parent) {
+    cart = cartFilter(cart);
+    console.log(cart);
+    for (let i = 0; i < cart.length; i++) {
+        for (let j = 0; j < items.length; j++) {
+            if (cart[i]['id'] === items[j]['id']) {
+                const modalOrderItem = document.createElement('div');
+                modalOrderItem.classList.add('modal-order-item');
+                parent.appendChild(modalOrderItem);
+
+                const modalOrderPic = document.createElement('img');
+                modalOrderPic.classList.add('modal-order-pic');
+                modalOrderPic.setAttribute('src', `./img/category-shop-cards/${items[j]['img']}`);
+                modalOrderPic.setAttribute('alt', 'item__pic')
+                modalOrderItem.appendChild(modalOrderPic);
+
+                const modalOrderInfo = document.createElement('div');
+                modalOrderInfo.classList.add('modal-order-info');
+                modalOrderItem.appendChild(modalOrderInfo);
+
+                const buttonDeleteItem = document.createElement('button');
+                buttonDeleteItem.setAttribute('type', 'button');
+                buttonDeleteItem.classList.add('modal-order-delete');
+                buttonDeleteItem.innerText = 'x';
+                modalOrderItem.appendChild(buttonDeleteItem);
+                // delete item func
+                deleteOrderItem();
+                function deleteOrderItem() {
+
+                }
+
+                const modalOrderName = document.createElement('div');
+                modalOrderName.classList.add('modal-order-name');
+                modalOrderName.innerText = items[j]['name'];
+                modalOrderInfo.appendChild(modalOrderName);
+
+                const modalOrderNuminfo = document.createElement('div');
+                modalOrderNuminfo.classList.add('modal-order-numinfo');
+                modalOrderInfo.appendChild(modalOrderNuminfo);
+
+                const modalOrderAmount = document.createElement('div');
+                modalOrderAmount.classList.add('modal-order-amount');
+                modalOrderNuminfo.appendChild(modalOrderAmount);
+                const modalOrderAmountInit = document.createElement('div');
+                modalOrderAmountInit.classList.add('modal-order-amount-init');
+                modalOrderAmountInit.innerText = cart[i]['amount'];
+                modalOrderAmount.appendChild(modalOrderAmountInit);
+                const modalOrderAmountCounter = document.createElement('div');
+                modalOrderAmountCounter.classList.add('modal-order-amount-counter');
+                modalOrderAmount.appendChild(modalOrderAmountCounter);
+                const modalOrderAmountPlus = document.createElement('div');
+                modalOrderAmountPlus.classList.add('modal-order-amount-plus');
+                modalOrderAmountPlus.innerText = '+';
+                modalOrderAmountCounter.appendChild(modalOrderAmountPlus);
+                const modalOrderAmountMinus = document.createElement('div');
+                modalOrderAmountMinus.classList.add('modal-order-amount-minus');
+                modalOrderAmountMinus.innerText = '-';
+                modalOrderAmountCounter.appendChild(modalOrderAmountMinus);
+
+                const modalOrderSum = document.createElement('div');
+                modalOrderSum.classList.add('modal-order-sum');
+                let price = parseInt(items[j]['price']);
+                let amount = parseInt(cart[i]['amount']);
+                let sumOfItems = price * amount;
+                modalOrderSum.innerText = `${sumOfItems}$`;
+                modalOrderNuminfo.appendChild(modalOrderSum);
+            }
+        }
+    }
+    //при создании модалки, у тебя идет проверка
     // на то, есть ли одинаковы товары, если есть
     // тогда этот элемент удаляется их массива и к другому такому же
     // прибавляется кол-во повторяющегося
     //обязательно проследи, что бы все работало корректно
     // функция проверки карзины лежит этажом ниже
-    cart = cartFilter(cart);
-    console.log(cart);
 }
 
 function cartFilter(cart) {
@@ -222,7 +294,7 @@ function cartFilter(cart) {
     return cartAr;
 }
 
-function creatButtonOrderClose(modalOrderBody) {
+function createButtonOrderClose(modalOrderBody) {
     const buttonOrderClose = document.createElement('button');
     buttonOrderClose.setAttribute('type', 'button');
     buttonOrderClose.classList.add('modal-order-close');
@@ -232,7 +304,7 @@ function creatButtonOrderClose(modalOrderBody) {
     closeOrderCart();
 }
 
-function creatOrderHeader(modalOrderBody) {
+function createOrderHeader(modalOrderBody) {
     const modalOrderHeader = document.createElement('div');
     modalOrderHeader.classList.add('modal-order-header');
     modalOrderBody.appendChild(modalOrderHeader);
@@ -247,22 +319,22 @@ function creatOrderHeader(modalOrderBody) {
     }
 }
 
-function creatOrderContent(modalOrderBody) {
+function createOrderContent(modalOrderBody) {
     const modalOrderContent = document.createElement('div');
     modalOrderContent.classList.add('modal-order-content');
     modalOrderBody.appendChild(modalOrderContent);
-    const modalOrderItems = document.createElement('div');
-    modalOrderItems.classList.add('modal-order-items');
-    modalOrderContent.appendChild(modalOrderItems);
     if (cart.length > 0) {
-        //* CREAT SELECTED ITEMS *//
+        createSelectedItems(modalOrderContent);
     } else {
-        modalOrderItems.innerText = 'You have a good taste. And we have a lot of interesting and necessary items.';
         modalOrderContent.style.textAlign = 'center';
+        const modalOrderNoItems = document.createElement('div');
+        modalOrderNoItems.classList.add('modal-order-noitems');
+        modalOrderNoItems.innerText = 'You have a good taste. And we have a lot of interesting and necessary items.';
+        modalOrderContent.appendChild(modalOrderNoItems);
     }
 }
 
-function creatOrderFooter(modalOrderBody) {
+function createOrderFooter(modalOrderBody) {
     const modalOrderFooter = document.createElement('div');
     modalOrderFooter.classList.add('modal-order-footer');
     modalOrderBody.appendChild(modalOrderFooter);
@@ -303,7 +375,7 @@ function openModalOrder() {
     let cartButton = document.getElementById('cartButton');
     cartButton.addEventListener('click', () => {
         document.body.style.overflow = 'hidden';
-        creatModalCart();
+        createModalCart();
     })
 }
 
