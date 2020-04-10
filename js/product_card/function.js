@@ -8,6 +8,13 @@ let createElement = (element, setclass, classOfParent) => {
     parent.append(item);
 }
 
+let createReviewElement = (element, setClass1, setClass2, classOfParent) => {
+    let item = document.createElement(element);
+    let parent = document.querySelector(classOfParent);
+    item.classList.add(setClass1, setClass2);
+    parent.append(item);
+}
+
 let createImg = (setclass, alt, width, height, classOfParent) => {
     let img = document.createElement('img');
     let parent = document.querySelector(classOfParent);
@@ -251,7 +258,7 @@ let renderingProductCard = () => {
     items.forEach(element => {
         if (element.id === selectedId) {
             let amount = element.comments.length;
-            
+
             // какое количество в стораже, сначала создаются все существующие блоки, а только потом туда добавляется информация
             for (let i = 0; i < amount; i++) {
 
@@ -438,22 +445,20 @@ let createUserReview = () => {                             // Самый стр�
                 let reviewAmount = arrayOfElem.length; // записываем колличество комментариев в переменную
 
                 id = reviewAmount; // указываем номер комментария и присваеваем к элементам
-                createElement('div', `review-${id}`, '.review-block');
+                createReviewElement('div', `review-${id}`, `review-item`, '.review-block'); // добавление общего класса всем комментариям, чтоб понимать какое количество этих элементов
 
-                let block = document.querySelector(`.review-${id}`); // добавление общего класса всем комментариям, чтоб понимать какое количество этих элементов
-                block.classList.add('review-item');
 
-                createElement('div', `user-avatar-${id}`, `.review-${id}`);
+                createReviewElement('div', `user-avatar-${id}`, 'user-avatar', `.review-${id}`);
                 createImg(`user-avatar-photo-${id}`, 'avatar', '110', '110', `.user-avatar-${id}`)
 
-                createElement('div', `user-review-${id}`, `.review-${id}`);
+                createReviewElement('div', `user-review-${id}`, 'user-review', `.review-${id}`);
 
-                createElement('div', `review-title-${id}`, `.user-review-${id}`);
-                createElement('h5', `user-name-${id}`, `.review-title-${id}`);
-                createElement('div', `user-rating-${id}`, `.review-title-${id}`);
+                createReviewElement('div', `review-title-${id}`, 'review-title', `.user-review-${id}`);
+                createReviewElement('h5', `user-name-${id}`, 'user-name', `.review-title-${id}`);
+                createReviewElement('div', `user-rating-${id}`, 'user-rating', `.review-title-${id}`);
                 
-                createElement('div', `review-date-${id}`, `.user-review-${id}`);
-                createElement('div', `review-content-${id}`, `.user-review-${id}`);
+                createReviewElement('div', `review-date-${id}`, 'review-date', `.user-review-${id}`);
+                createReviewElement('div', `review-content-${id}`, 'review-content', `.user-review-${id}`);
             }
         }
     });

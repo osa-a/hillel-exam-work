@@ -224,11 +224,11 @@
   margin-top: 10px;
 }
 
-.review-block {
+.review-block .review-item {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
   flex-wrap: nowrap;
@@ -238,12 +238,12 @@
   margin-top: 70px;
 }
 
-.review-block .user-avatar {
+.review-block .review-item .user-avatar {
   margin-right: 50px;
   display: inline;
 }
 
-.review-block .user-avatar img {
+.review-block .review-item .user-avatar img {
   border: 1px solid #cccccc;
 }
 
