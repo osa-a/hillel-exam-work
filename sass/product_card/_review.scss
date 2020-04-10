@@ -59,7 +59,7 @@
 .review-block {
 
     @include pm_zeroSet();
-    @include flex($fd:row, $jc:stretch, $ai:stretch, $fw:nowrap);
+    @include flex($fd:column, $jc:stretch, $ai:stretch, $fw:nowrap);
     
     max-width: 800px;
     border-bottom: 1px solid rgb(204, 204, 204);

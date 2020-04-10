@@ -251,52 +251,33 @@ let renderingProductCard = () => {
     items.forEach(element => {
         if (element.id === selectedId) {
             let amount = element.comments.length;
-            // console.log(amount);
+            
+            // какое количество в стораже, сначала создаются все существующие блоки, а только потом туда добавляется информация
+            for (let i = 0; i < amount; i++) {
 
-            // какое количество в стораже, сначала создаются все сцществующие блоки, а только потом туда добавляется информация
+                const commentUserName = document.querySelector(`.user-name-${i}`); 
+                const commentUserText = document.querySelector(`.review-content-${i}`); 
+                const commentUserDate = document.querySelector(`.review-date-${i}`);
 
-            const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
-            const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
-            const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
-
-            items.forEach(element => {
-                if (element.id === selectedId) {
-                    productName.innerText = element.name;
-                    productPrice.innerText = `${element.price}$`;
-                    productDescription.innerText = element.description;
-                    productId.innerText = `ID: ${element.id}`;
-                    productCategory.innerText = `Category: ${element.category}`;
-                    productType.innerText = `Type: ${element.type}`;
-                    productMaterial.innerText = `Material: ${element.material}`;
-                    commentUserName.innerText = element.comments[amount - 1].name;
-                    commentUserText.innerText = element.comments[amount - 1].comment;
-                    commentUserDate.innerText = element.comments.date;
-                    buyButton.setAttribute('data-product', element.id);
-                }
-            });
-
+                items.forEach(element => {
+                    if (element.id === selectedId) {
+                        productName.innerText = element.name;
+                        productPrice.innerText = `${element.price}$`;
+                        productDescription.innerText = element.description;
+                        productId.innerText = `ID: ${element.id}`;
+                        productCategory.innerText = `Category: ${element.category}`;
+                        productType.innerText = `Type: ${element.type}`;
+                        productMaterial.innerText = `Material: ${element.material}`;
+                        commentUserName.innerText = element.comments[i].name;
+                        commentUserText.innerText = element.comments[i].comment;
+                        commentUserDate.innerText = element.comments[i].date;
+                        buyButton.setAttribute('data-product', element.id);
+                        addRatingToComment(`.user-rating-${i}`, i);
+                    }
+                });  
+            }
         }
     });
-
-    // const commentUserName = document.querySelector(`.user-name-${id}`);  // временно 
-    // const commentUserText = document.querySelector(`.review-content-${id}`); // временно 
-    // const commentUserDate = document.querySelector(`.review-date-${id}`); // временно 
-
-    // items.forEach(element => {
-    //     if (element.id === selectedId) {
-    //         productName.innerText = element.name;
-    //         productPrice.innerText = `${element.price}$`;
-    //         productDescription.innerText = element.description;
-    //         productId.innerText = `ID: ${element.id}`;
-    //         productCategory.innerText = `Category: ${element.category}`;
-    //         productType.innerText = `Type: ${element.type}`;
-    //         productMaterial.innerText = `Material: ${element.material}`;
-    //         commentUserName.innerText = element.comments[1].name;
-    //         commentUserText.innerText = element.comments[1].comment;
-    //         commentUserDate.innerText = element.comments.date;
-    //     }
-    // });
-    // }
 }
 
 let renderingPics = () => {
@@ -308,8 +289,6 @@ let renderingPics = () => {
     const miniPic4 = document.querySelector('.mini-pic-4');
     const descPic1 = document.querySelector('.description-pic-1');
     const descPic2 = document.querySelector('.description-pic-2');
-
-    // const userAvatar = document.querySelector(`.user-avatar-photo-${id}`); // временно 
 
     for (let value in smallImg) {
         if (value === selectedId) {
@@ -326,19 +305,11 @@ let renderingPics = () => {
     items.forEach(element => {
         if (element.id === selectedId) {
             let amount = element.comments.length;
-            // console.log(amount);
 
             for (let i = 0; i < amount; i++) {
-                const userAvatar = document.querySelector(`.user-avatar-photo-${i++}`);
-
-                items.forEach(element => {
-                    if (element.id === selectedId) {
-                        userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[amount - 1].avatar}`);
-                    }
-                });
+                const userAvatar = document.querySelector(`.user-avatar-photo-${i}`);
+                userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[i].avatar}`);
             }
-
-
         }
     });
 }
@@ -431,20 +402,24 @@ let addRatingToProduct = () => {
 
 }
 
-let addRatingToComment = (parent) => {
+let addRatingToComment = (parent, id) => {
+    
     let selectedId = getIdFromStorage('item');
-    for (let i = 1; i < 6; i++) {
-        createImg(`rate-star-${i}`, 'star', '25', '25', parent);
-        document.querySelector(`.rate-star-${i}`).setAttribute('src', '../img/product_card/empty_star.png');
-    }
 
-    items.forEach(elem => {
-        if (elem.id === selectedId) {
-            for (let i = 1; i <= parseInt(elem.comments.rate); i++) {
-                document.querySelector(`.rate-star-${i}`).setAttribute('src', '../img/product_card/full_star.png');
-            }
+    items.forEach(element => {
+        if (element.id === selectedId) {
+
+                for (let i = 1; i < 6; i++) {
+                    createImg(`rate-star-${i}-${id}`, 'star', '25', '25', parent);
+                    document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/empty_star.png');
+                }
+
+                for (let i = 1; i <= parseInt(element.comments[id].rate); i++) {
+                    document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/full_star.png');
+                }
+            
         }
-    })
+    });
 }
 
 // ADD USER-REVIEW
@@ -454,8 +429,7 @@ let createUserReview = () => {                             // Самый стр�
 
     items.forEach(element => {
         if (element.id === id) {
-            let amount = element.comments.length; // надодим сколько всего комментов в этом товаре 
-            // console.log(amount);
+            let amount = element.comments.length; // находим сколько всего комментов в этом товаре 
 
             for (let i = 0; i < amount; i++) { // создаем колличество блоков для комментов
 
@@ -463,22 +437,21 @@ let createUserReview = () => {                             // Самый стр�
 
                 let reviewAmount = arrayOfElem.length; // записываем колличество комментариев в переменную
 
-                id = reviewAmount + 1; // указываем номер комментария и присваеваем к элементам
+                id = reviewAmount; // указываем номер комментария и присваеваем к элементам
                 createElement('div', `review-${id}`, '.review-block');
 
                 let block = document.querySelector(`.review-${id}`); // добавление общего класса всем комментариям, чтоб понимать какое количество этих элементов
                 block.classList.add('review-item');
 
                 createElement('div', `user-avatar-${id}`, `.review-${id}`);
-                createImg(`user-avatar-photo-${i}`, 'avatar', '110', '110', `.user-avatar-${id}`)
+                createImg(`user-avatar-photo-${id}`, 'avatar', '110', '110', `.user-avatar-${id}`)
 
                 createElement('div', `user-review-${id}`, `.review-${id}`);
 
                 createElement('div', `review-title-${id}`, `.user-review-${id}`);
                 createElement('h5', `user-name-${id}`, `.review-title-${id}`);
                 createElement('div', `user-rating-${id}`, `.review-title-${id}`);
-                addRatingToComment(`.user-rating-${id}`);
-
+                
                 createElement('div', `review-date-${id}`, `.user-review-${id}`);
                 createElement('div', `review-content-${id}`, `.user-review-${id}`);
             }

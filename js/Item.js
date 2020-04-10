@@ -38,7 +38,7 @@ function createData(){
     itemElem.pushToAr(itemElem);
     itemElem = new Item('54vt', 'Hocko Picture', 21,  categories[1], material[0], type[5], [comments[2]]);
     itemElem.pushToAr(itemElem);
-    itemElem = new Item('9mn', 'Amyndas Pendant Lamp', 99,  categories[1], material[2], type[2], [comments[3], comments[2]]);
+    itemElem = new Item('9mn', 'Amyndas Pendant Lamp', 99,  categories[1], material[2], type[2], [comments[3], comments[2], comments[1]]);
     itemElem.pushToAr(itemElem);
     itemElem = new Item('5b', 'Planting Light', 25,  categories[1], material[4], type[2], [comments[5]]);
     itemElem.pushToAr(itemElem);
