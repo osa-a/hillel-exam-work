@@ -64,7 +64,7 @@ function cleaner(reload) {
 function createShopLine(array, start, amount, calssName, page, secondClass) {
     const section = document.createElement('section');
     section.classList.add(calssName);
-    if(secondClass){
+    if (secondClass) {
         section.classList.add(secondClass);
     }
     for (let i = start; i < amount; i++) {
@@ -116,6 +116,7 @@ function mainPageListener(wrapper) {
         setIdToSession(e, 'page', 'page');
         const page = e.target.getAttribute('data-page');
         switchPage(page);
+        document.documentElement.scrollTop = 0;
     });
 }
 
@@ -286,7 +287,7 @@ function createSelectedItems(parent) {
 
 function cartFilter(cart) {
     let cartAr = cart;
-    for (let i = 0; i < cartAr.length;i++) {
+    for (let i = 0; i < cartAr.length; i++) {
         for (let j = 0; j < cartAr.length && j !== i; j++) {
             if (cartAr[i].id === cartAr[j].id) {
                 cartAr[i].amount += cartAr[j].amount;
