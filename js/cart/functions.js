@@ -154,10 +154,7 @@ function createCartPageOrder(cartBody) {
     orderContent.classList.add('order-contentcart');
     order.appendChild(orderContent);
     createSelectedItems(orderContent); // FUNC THAT WILL SHOW ITEMS THAT USER ADD TO CART //
-    const orderTotal = document.createElement('div');
-    orderTotal.classList.add('order-total');
-    orderTotal.innerText = 'Total:';
-    order.appendChild(orderTotal);
+    createOrderTotal(order);
 }
 
 // CREATE MODAL THANKS //

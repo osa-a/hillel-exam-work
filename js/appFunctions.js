@@ -366,38 +366,58 @@ function createOrderFooter(modalOrderBody) {
     modalOrderFooter.classList.add('modal-order-footer');
     modalOrderBody.appendChild(modalOrderFooter);
     if (cart.length > 0) {
-        const modalOrderTotal = document.createElement('div');
-        modalOrderTotal.classList.add('modal-order-total');
-        modalOrderTotal.innerText = 'Total:';
-        modalOrderFooter.appendChild(modalOrderTotal);
-
-        const buttonOrderContinue = document.createElement('button');
-        buttonOrderContinue.setAttribute('type', 'button');
-        buttonOrderContinue.classList.add('modal-order-button', 'modal-order-continue');
-        buttonOrderContinue.setAttribute('id', 'modalOrderContinue');
-        buttonOrderContinue.innerText = 'Continue shopping';
-        modalOrderFooter.appendChild(buttonOrderContinue);
-
-        const buttonOrderCheckout = document.createElement('button');
-        buttonOrderCheckout.setAttribute('type', 'button');
-        buttonOrderCheckout.classList.add('modal-order-button');
-        buttonOrderCheckout.setAttribute('id', 'modalOrderCheckout');
-        buttonOrderCheckout.innerText = 'Checkout';
-        modalOrderFooter.appendChild(buttonOrderCheckout);
-        continueOrder();
-        openOrder();
+        createOrderTotal(modalOrderFooter);
+        createOrderContinueBtn(modalOrderFooter);
+        createOrderCheckoutBtn(modalOrderFooter);
     } else {
-        const buttonOrderShopping = document.createElement('button');
-        buttonOrderShopping.setAttribute('type', 'button');
-        buttonOrderShopping.classList.add('modal-order-button');
-        buttonOrderShopping.setAttribute('id', 'modalOrderShopping');
-        buttonOrderShopping.innerText = 'Start shopping';
-        modalOrderFooter.appendChild(buttonOrderShopping);
-        modalOrderFooter.style.textAlign = 'center';
-        startShopping();
+        createOrderShoppingBtn(modalOrderFooter);
     }
 }
-
+function createOrderTotal(parent) {
+    const modalOrderTotal = document.createElement('div');
+    modalOrderTotal.classList.add('modal-order-total');
+    parent.appendChild(modalOrderTotal);
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+        for (let j = 0; j < items.length; j++) {
+            if (cart[i]['id'] === items[j]['id']) {
+                let price = parseInt(items[j]['price']);
+                let amount = parseInt(cart[i]['amount']);
+                let sumOfOneItem = price * amount;
+                total += sumOfOneItem;
+            }
+        }
+    }
+    modalOrderTotal.innerText = `Total: ${total}$`;
+}
+function createOrderContinueBtn(modalOrderFooter) {
+    const buttonOrderContinue = document.createElement('button');
+    buttonOrderContinue.setAttribute('type', 'button');
+    buttonOrderContinue.classList.add('modal-order-button', 'modal-order-continue');
+    buttonOrderContinue.setAttribute('id', 'modalOrderContinue');
+    buttonOrderContinue.innerText = 'Continue shopping';
+    modalOrderFooter.appendChild(buttonOrderContinue);
+    continueOrder();
+}
+function createOrderCheckoutBtn(modalOrderFooter) {
+    const buttonOrderCheckout = document.createElement('button');
+    buttonOrderCheckout.setAttribute('type', 'button');
+    buttonOrderCheckout.classList.add('modal-order-button');
+    buttonOrderCheckout.setAttribute('id', 'modalOrderCheckout');
+    buttonOrderCheckout.innerText = 'Checkout';
+    modalOrderFooter.appendChild(buttonOrderCheckout);
+    openOrder();
+}
+function createOrderShoppingBtn(modalOrderFooter) {
+    const buttonOrderShopping = document.createElement('button');
+    buttonOrderShopping.setAttribute('type', 'button');
+    buttonOrderShopping.classList.add('modal-order-button');
+    buttonOrderShopping.setAttribute('id', 'modalOrderShopping');
+    buttonOrderShopping.innerText = 'Start shopping';
+    modalOrderFooter.appendChild(buttonOrderShopping);
+    modalOrderFooter.style.textAlign = 'center';
+    startShopping();
+}
 function openModalOrder() {
     let cartButton = document.getElementById('cartButton');
     cartButton.addEventListener('click', () => {
