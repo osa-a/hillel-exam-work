@@ -214,75 +214,10 @@ function createSelectedItems(parent) {
     for (let i = 0; i < cart.length; i++) {
         for (let j = 0; j < items.length; j++) {
             if (cart[i]['id'] === items[j]['id']) {
-                const modalOrderItem = document.createElement('div');
-                modalOrderItem.classList.add('modal-order-item');
-                parent.appendChild(modalOrderItem);
-
-                const modalOrderPic = document.createElement('img');
-                modalOrderPic.classList.add('modal-order-pic');
-                modalOrderPic.setAttribute('src', `./img/category-shop-cards/${items[j]['img']}`);
-                modalOrderPic.setAttribute('alt', 'item__pic')
-                modalOrderItem.appendChild(modalOrderPic);
-
-                const modalOrderInfo = document.createElement('div');
-                modalOrderInfo.classList.add('modal-order-info');
-                modalOrderItem.appendChild(modalOrderInfo);
-
-                const buttonDeleteItem = document.createElement('button');
-                buttonDeleteItem.setAttribute('type', 'button');
-                buttonDeleteItem.classList.add('modal-order-delete');
-                buttonDeleteItem.innerText = 'x';
-                modalOrderItem.appendChild(buttonDeleteItem);
-                // delete item func
-                deleteOrderItem();
-                function deleteOrderItem() {
-
-                }
-
-                const modalOrderName = document.createElement('div');
-                modalOrderName.classList.add('modal-order-name');
-                modalOrderName.innerText = items[j]['name'];
-                modalOrderInfo.appendChild(modalOrderName);
-
-                const modalOrderNuminfo = document.createElement('div');
-                modalOrderNuminfo.classList.add('modal-order-numinfo');
-                modalOrderInfo.appendChild(modalOrderNuminfo);
-
-                const modalOrderAmount = document.createElement('div');
-                modalOrderAmount.classList.add('modal-order-amount');
-                modalOrderNuminfo.appendChild(modalOrderAmount);
-                const modalOrderAmountInit = document.createElement('div');
-                modalOrderAmountInit.classList.add('modal-order-amount-init');
-                modalOrderAmountInit.innerText = cart[i]['amount'];
-                modalOrderAmount.appendChild(modalOrderAmountInit);
-                const modalOrderAmountCounter = document.createElement('div');
-                modalOrderAmountCounter.classList.add('modal-order-amount-counter');
-                modalOrderAmount.appendChild(modalOrderAmountCounter);
-                const modalOrderAmountPlus = document.createElement('div');
-                modalOrderAmountPlus.classList.add('modal-order-amount-plus');
-                modalOrderAmountPlus.innerText = '+';
-                modalOrderAmountCounter.appendChild(modalOrderAmountPlus);
-                const modalOrderAmountMinus = document.createElement('div');
-                modalOrderAmountMinus.classList.add('modal-order-amount-minus');
-                modalOrderAmountMinus.innerText = '-';
-                modalOrderAmountCounter.appendChild(modalOrderAmountMinus);
-
-                const modalOrderSum = document.createElement('div');
-                modalOrderSum.classList.add('modal-order-sum');
-                let price = parseInt(items[j]['price']);
-                let amount = parseInt(cart[i]['amount']);
-                let sumOfItems = price * amount;
-                modalOrderSum.innerText = `${sumOfItems}$`;
-                modalOrderNuminfo.appendChild(modalOrderSum);
+                createOrderItem(parent, i, j);
             }
         }
     }
-    //при создании модалки, у тебя идет проверка
-    // на то, есть ли одинаковы товары, если есть
-    // тогда этот элемент удаляется их массива и к другому такому же
-    // прибавляется кол-во повторяющегося
-    //обязательно проследи, что бы все работало корректно
-    // функция проверки карзины лежит этажом ниже
 }
 
 function cartFilter(cart) {
@@ -296,6 +231,94 @@ function cartFilter(cart) {
         }
     }
     return cartAr;
+}
+function createOrderItem(parent, i, j) {
+    const modalOrderItem = document.createElement('div');
+    modalOrderItem.classList.add('modal-order-item');
+    parent.appendChild(modalOrderItem);
+    createOrderPic(modalOrderItem, j);
+    createOrderInfo(modalOrderItem, i, j)
+    createOrderDeleteBtn(modalOrderItem);
+}
+function createOrderPic(modalOrderItem, j) {
+    const modalOrderPic = document.createElement('img');
+    modalOrderPic.classList.add('modal-order-pic');
+    modalOrderPic.setAttribute('src', `./img/category-shop-cards/${items[j]['img']}`);
+    modalOrderPic.setAttribute('alt', 'item__pic')
+    modalOrderItem.appendChild(modalOrderPic);
+}
+function createOrderInfo(modalOrderItem, i, j) {
+    const modalOrderInfo = document.createElement('div');
+    modalOrderInfo.classList.add('modal-order-info');
+    modalOrderItem.appendChild(modalOrderInfo);
+    createOrderNameItem(modalOrderInfo, j);
+    createOrderNumInfo(modalOrderInfo, i, j);
+}
+function createOrderDeleteBtn(modalOrderItem) {
+    const buttonDeleteItem = document.createElement('button');
+    buttonDeleteItem.setAttribute('type', 'button');
+    buttonDeleteItem.classList.add('modal-order-delete');
+    buttonDeleteItem.innerText = 'x';
+    modalOrderItem.appendChild(buttonDeleteItem);
+    // delete item func
+    deleteOrderItem();
+    function deleteOrderItem() {
+        console.log('del');
+    }
+}
+function createOrderNameItem(modalOrderInfo, j) {
+    const modalOrderName = document.createElement('div');
+    modalOrderName.classList.add('modal-order-name');
+    modalOrderName.innerText = items[j]['name'];
+    modalOrderInfo.appendChild(modalOrderName);
+}
+function createOrderNumInfo(modalOrderInfo, i, j) {
+    const modalOrderNumInfo = document.createElement('div');
+    modalOrderNumInfo.classList.add('modal-order-numinfo');
+    modalOrderInfo.appendChild(modalOrderNumInfo);
+    createOrderAmount(modalOrderNumInfo, i);
+    createOrderSum(modalOrderNumInfo, i, j);
+}
+function createOrderAmount(modalOrderNumInfo, i) {
+    const modalOrderAmount = document.createElement('div');
+    modalOrderAmount.classList.add('modal-order-amount');
+    modalOrderNumInfo.appendChild(modalOrderAmount);
+    createOrderAmountInit(modalOrderAmount, i);
+    createOrderAmountCounter(modalOrderAmount);
+}
+function createOrderAmountInit(modalOrderAmount, i) {
+    const modalOrderAmountInit = document.createElement('div');
+    modalOrderAmountInit.classList.add('modal-order-amount-init');
+    modalOrderAmountInit.innerText = cart[i]['amount'];
+    modalOrderAmount.appendChild(modalOrderAmountInit);
+}
+function createOrderAmountCounter(modalOrderAmount) {
+    const modalOrderAmountCounter = document.createElement('div');
+    modalOrderAmountCounter.classList.add('modal-order-amount-counter');
+    modalOrderAmount.appendChild(modalOrderAmountCounter);
+    OrderAmountPlus(modalOrderAmountCounter);
+    createOrderAmountMinus(modalOrderAmountCounter);
+}
+function OrderAmountPlus(modalOrderAmountCounter) {
+    const modalOrderAmountPlus = document.createElement('div');
+    modalOrderAmountPlus.classList.add('modal-order-amount-plus');
+    modalOrderAmountPlus.innerText = '+';
+    modalOrderAmountCounter.appendChild(modalOrderAmountPlus);
+}
+function createOrderAmountMinus(modalOrderAmountCounter) {
+    const modalOrderAmountMinus = document.createElement('div');
+    modalOrderAmountMinus.classList.add('modal-order-amount-minus');
+    modalOrderAmountMinus.innerText = '-';
+    modalOrderAmountCounter.appendChild(modalOrderAmountMinus);
+}
+function createOrderSum(modalOrderNumInfo, i, j) {
+    const modalOrderSum = document.createElement('div');
+    modalOrderSum.classList.add('modal-order-sum');
+    let price = parseInt(items[j]['price']);
+    let amount = parseInt(cart[i]['amount']);
+    let sumOfItems = price * amount;
+    modalOrderSum.innerText = `${sumOfItems}$`;
+    modalOrderNumInfo.appendChild(modalOrderSum);
 }
 
 function createButtonOrderClose(modalOrderBody) {
