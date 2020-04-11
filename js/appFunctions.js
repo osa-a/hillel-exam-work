@@ -139,6 +139,7 @@ function cartButtonListener(wrapper) {
             amount: parseInt(amount),
         }
         cart.push(itemElement);
+        cart = cartFilter(cart);
     })
 }
 
@@ -205,8 +206,6 @@ function createModalCart() {
     createOrderFooter(modalOrderBody);
 }
 function createSelectedItems(parent) {
-    cart = cartFilter(cart);
-    console.log(cart);
     for (let i = 0; i < cart.length; i++) {
         for (let j = 0; j < items.length; j++) {
             if (cart[i]['id'] === items[j]['id']) {
@@ -283,8 +282,8 @@ function createSelectedItems(parent) {
 
 function cartFilter(cart) {
     let cartAr = cart;
-    for (let i = 0; i < cartAr.length; i++) {
-        for (let j = 1; j < cartAr.length; j++) {
+    for (let i = 0; i < cartAr.length;i++) {
+        for (let j = 0; j < cartAr.length && j !== i; j++) {
             if (cartAr[i].id === cartAr[j].id) {
                 cartAr[i].amount += cartAr[j].amount;
                 cartAr.splice(j, 1);
