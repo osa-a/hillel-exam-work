@@ -10,11 +10,7 @@ function createCategoryHead(category, text) {
     const cartTitle = document.createElement('p');
     cartTitle.classList.add('cart-title');
     cartTitle.innerText = text;
-    const bB = document.createElement('button');
-    bB.setAttribute('onclick', 'window.history.back()');
-    bB.innerText = 'Back';
-
-    pageHead.appendChild(bB);
+    
     pageHead.appendChild(cartTitle);
     section.appendChild(pageHead);
     category.appendChild(section);
