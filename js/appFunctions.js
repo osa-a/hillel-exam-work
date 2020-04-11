@@ -54,16 +54,19 @@ function cleaner(reload) {
     }
 }
 
-function changeCss(style) {
-    const mainCss = document.querySelector('.style-css-files');
-    mainCss.setAttribute('href', `css/${style}/${style}.css`)
-}
+// function changeCss(style) {
+//     const mainCss = document.querySelector('.style-css-files');
+//     mainCss.setAttribute('href', `css/${style}/${style}.css`)
+// }
 
 //*   HOMEPAGE  +  CATEGORY    *// 
 
-function createShopLine(array, start, amount, calssName, page) {
+function createShopLine(array, start, amount, calssName, page, secondClass) {
     const section = document.createElement('section');
     section.classList.add(calssName);
+    if(secondClass){
+        section.classList.add(secondClass);
+    }
     for (let i = start; i < amount; i++) {
         createCard(array, i, section);
     }
@@ -205,6 +208,7 @@ function createModalCart() {
     createOrderContent(modalOrderBody);
     createOrderFooter(modalOrderBody);
 }
+
 function createSelectedItems(parent) {
     for (let i = 0; i < cart.length; i++) {
         for (let j = 0; j < items.length; j++) {

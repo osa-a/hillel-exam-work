@@ -3,7 +3,6 @@
 
 function createCategoryPage(page, reload) {
     cleaner(reload);
-    changeCss('category');
     const category = document.createElement('main');
     category.classList.add('main');
     let filteredArray = items;

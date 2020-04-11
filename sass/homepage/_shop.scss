@@ -1,15 +1,14 @@
-.shop-head {
+.shop-line{
   display: flex;
   justify-content: space-around;
-  padding-top: 100px;
   padding-left: 250px;
   padding-right: 250px;
 }
 
-.shop-footer{
-  display: flex;
-  justify-content: space-around;
+.shop-line-top {
+  padding-top: 100px;
+}
+
+.shop-line-bot{
   padding-bottom: 170px;
-  padding-left: 250px;
-  padding-right: 250px;
 }

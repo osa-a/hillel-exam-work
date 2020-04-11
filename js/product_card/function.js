@@ -211,7 +211,6 @@ let сreateItemCardPage = (reload) => {
 
     insertMain(itemCardPage);
     cleaner(reload);
-    changeCss('product_card');
 
     createSectionCategoryHead();
     createSwitchesSection();
