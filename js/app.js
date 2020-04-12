@@ -19,6 +19,7 @@ fetch('data.json')
         shopCardListener(wrapper);
         cartButtonListener(wrapper);
         filterListener(wrapper);
+        createRatingArray(); // rating
     });
 
 openModalOrder();

@@ -6,14 +6,14 @@ let createElement = (element, setclass, classOfParent) => {
     let parent = document.querySelector(classOfParent);
     item.classList.add(setclass);
     parent.append(item);
-}
+};
 
 let createReviewElement = (element, setClass1, setClass2, classOfParent) => {
     let item = document.createElement(element);
     let parent = document.querySelector(classOfParent);
     item.classList.add(setClass1, setClass2);
     parent.append(item);
-}
+};
 
 let createImg = (setclass, alt, width, height, classOfParent) => {
     let img = document.createElement('img');
@@ -23,7 +23,7 @@ let createImg = (setclass, alt, width, height, classOfParent) => {
     img.setAttribute('width', width);
     img.setAttribute('height', height);
     parent.append(img);
-}
+};
 
 let createInput = (name, type, id, placeholder, classOfParent) => {
     let input = document.createElement('input');
@@ -33,7 +33,7 @@ let createInput = (name, type, id, placeholder, classOfParent) => {
     input.setAttribute('id', id);
     input.setAttribute('placeholder', placeholder)
     parent.append(input);
-}
+};
 
 let createReviewForm = () => {
     let form = document.createElement('form');
@@ -41,7 +41,7 @@ let createReviewForm = () => {
     form.classList.add('review-form');
     form.setAttribute('name', 'review-form');
     parent.append(form);
-}
+};
 
 let createTextareaReview = () => {
     let textarea = document.createElement('textarea');
@@ -53,14 +53,14 @@ let createTextareaReview = () => {
     textarea.setAttribute('rows', '10');
     textarea.setAttribute('placeholder', 'Write your review')
     parent.append(textarea);
-}
+};
 
 let mnemonFunc = () => {
     let mnemon = '&rarr;';
     let htmlDecode = value => $('<div/>').html(value).text();
     mnemon = htmlDecode(mnemon);
     return mnemon;
-}
+};
 
 let createSubmitButtonReview = () => {
     let input = document.createElement('input');
@@ -68,7 +68,7 @@ let createSubmitButtonReview = () => {
     input.setAttribute('type', 'submit');
     input.setAttribute('value', `Submit ${mnemonFunc()}`);
     parent.append(input);
-}
+};
 
 let createSectionCategoryHead = () => {
     createElement('section', 'category-head', '.main');
@@ -78,7 +78,7 @@ let createSectionCategoryHead = () => {
 
     createItemCardSection();
 
-}
+};
 
 let createItemCardSection = () => {
     // create wrapper
@@ -99,7 +99,6 @@ let createItemCardSection = () => {
     createElement('h3', 'item-card__info-of-good--title', '.item-card__info-of-good');
     createElement('h4', 'item-card__info-of-good--price', '.item-card__info-of-good');
     createElement('div', 'product-rating', '.item-card__info-of-good');
-    // сюда допилить рейтинг звездочками
 
     createElement('p', 'item-card__info-of-good--description', '.item-card__info-of-good');
     createElement('div', 'buy-block', '.item-card__info-of-good');
@@ -121,7 +120,7 @@ let createItemCardSection = () => {
     createElement('div', 'item-card__info-of-good--id', '.item-card__info-of-good');
     createElement('p', 'id-of-good', '.item-card__info-of-good--id');
     createElement('p', 'category-of-good', '.item-card__info-of-good--id');
-}
+};
 
 let createSwitchesSection = () => {
     createElement('section', 'switches', '.wrapper');
@@ -131,7 +130,7 @@ let createSwitchesSection = () => {
     document.querySelector('.description-window__btn').innerText = 'Description';
     document.querySelector('.review-window__btn').classList.add('non-active');
     document.querySelector('.review-window__btn').innerText = 'Reviews';
-}
+};
 
 let createDescriptionBlock = () => {
     createElement('section', 'description-section', '.wrapper');
@@ -148,13 +147,13 @@ let createDescriptionBlock = () => {
     createImg('description-pic-2', 'description-block__portfolio', '400', '530', '.description-block__portfolio');
 
 
-}
+};
 
 let createReviewSection = () => {
     createElement('section', 'review-block', '.wrapper');
 
     createUserReview();
-}
+};
 
 let createReviewFormSection = () => {
     createReviewForm();
@@ -199,43 +198,7 @@ let createReviewFormSection = () => {
 
     createTextareaReview();
     createSubmitButtonReview();
-}
-
-// MAIN FUNC (ASSEMBLY)
-
-let сreateItemCardPage = (reload) => {
-
-    // отрисовка main и css 
-    const itemCardPage = document.createElement('main');
-    itemCardPage.classList.add('main');
-
-    insertMain(itemCardPage);
-    cleaner(reload);
-
-    createSectionCategoryHead();
-    createSwitchesSection();
-    createDescriptionBlock();
-    createReviewSection();
-    createReviewFormSection();
-
-    // отрисовка контента страницы
-    renderingProductCard();
-    renderingPics();
-
-    // switches listener
-    hideBlock();
-    addlistenerToSwitches();
-
-    // counter of amount of product
-    addlistenerToAmountOfProduct();
-
-    // change main pic
-    addListenerToChangeMainPic();
-
-    // add comments to review
-    addEventListenetToReviewSubmit();
-}
-
+};
 
 // RENDER
 
@@ -279,15 +242,13 @@ let renderingProductCard = () => {
                         commentUserDate.innerText = element.comments[i].date;
                         buyButton.setAttribute('data-product', element.id);
                         addRatingToComment(`.user-rating-${i}`, element.comments[i].rate, i);
-                        
                     }
                 });  
             }
-           
         }
     });
-    addRatingToProduct();
-}
+    addRatingToCard();
+};
 
 let renderingPics = () => {
     let selectedId = getIdFromStorage('item');
@@ -321,7 +282,7 @@ let renderingPics = () => {
             }
         }
     });
-}
+};
 
 // SWITCHES LISTENERS
 
@@ -331,7 +292,7 @@ let hideBlock = () => {
     let form = document.forms['review-form'];
     form.classList.toggle('hidden');
     block.classList.toggle('hidden');
-}
+};
 
 let addlistenerToSwitches = () => {
 
@@ -355,7 +316,7 @@ let addlistenerToSwitches = () => {
             document.querySelector('.description-window__btn').classList.remove('non-active');
         }
     });
-}
+};
 
 let addlistenerToAmountOfProduct = () => {
 
@@ -387,7 +348,7 @@ let changeAmountValue = (amount) => {
         document.querySelector('.amount-of-goods__int').innerHTML = amount;
     }
     return amount;
-}
+};
 
 // CHANGE MAIN PIC
 
@@ -403,71 +364,37 @@ let addListenerToChangeMainPic = () => {
             }
         }
     });
-}
+};
 
 // ADD RATING 
 
-let createRatingArray = () => {
-    let selectedId = getIdFromStorage('item');
-    let newArr = [];
-
-    items.forEach(element => {
-        
-        if (element.id === selectedId) {
-            for (let i = 0; i < element.comments.length; i++) {
-                let newEl = parseInt(element.comments[i].rate);
-                newArr.push(newEl);
-            }
-           
-        } 
-    }); 
-    return newArr;
-}
-
-let findAverage = () => {
-    const rating = createRatingArray(); 
-    let average = 0;    
-    
-    for (let item of rating) {
-        average += item / rating.length;
-    } 
-
-    average = Math.round(average);
-    return average;
-}
-
-let addRatingToProduct = () => {
+let addRatingToCard = () => {
     const selectedId = getIdFromStorage('item');
-    
-    const averageSum = findAverage();
   
     items.forEach(element => {
         if (element.id === selectedId) {
-            element.rating = averageSum
+           let averageSum = element.rating;
+           addRatingToComment('.product-rating', averageSum, selectedId);
         }
-    });
-    
-    addRatingToComment('.product-rating', averageSum, selectedId);
-}
+    }); 
+};
 
 let addRatingToComment = (parent, rating, id) => {
     let selectedId = getIdFromStorage('item');
 
     items.forEach(element => {
         if (element.id === selectedId) {
+            for (let i = 1; i < 6; i++) {
+                createImg(`rate-star-${i}-${id}`, 'star', '25', '25', parent);
+                document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/empty_star.png');
+            }
 
-                for (let i = 1; i < 6; i++) {
-                    createImg(`rate-star-${i}-${id}`, 'star', '25', '25', parent);
-                    document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/empty_star.png');
-                }
-
-                for (let i = 1; i <= parseInt(rating); i++) {
-                    document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/full_star.png');
-                }
-            
+            for (let i = 1; i <= parseInt(rating); i++) {
+                document.querySelector(`.rate-star-${i}-${id}`).setAttribute('src', '../img/product_card/full_star.png');
+            }
         }
     });
-}
+};
 
 // ADD USER-REVIEW
 
@@ -502,7 +429,7 @@ let createUserReview = () => {                             // Самый стр�
             }
         }
     });
-}
+};
 
 let addEventListenetToReviewSubmit = () => {
 
@@ -510,4 +437,4 @@ let addEventListenetToReviewSubmit = () => {
         e.preventDefault();
         createUserReview();
     })
-}
+};

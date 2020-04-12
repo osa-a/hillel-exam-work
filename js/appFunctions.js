@@ -490,3 +490,51 @@ function startShopping() {
         modalOrder.remove();
     })
 }
+
+//* RATING *// 
+
+let createRatingArray = () => {
+
+    items.forEach(element => {
+        if (element.comments.length > 1) {
+
+            let innerArr = [];
+
+            for (let k = 0; k < element.comments.length; k++) {
+                let newEl = parseInt(element.comments[k].rate);
+                innerArr.push(newEl);
+            }
+
+            let average = findAverage(innerArr);
+            addRatingToProduct(element.id, average)
+           
+        } else {
+
+            for (let i = 0; i < element.comments.length; i++) { 
+                let newEl = [parseInt(element.comments[i].rate)];
+                let average = findAverage(newEl);
+                addRatingToProduct(element.id, average);
+            }
+        }         
+    }); 
+};
+
+let findAverage = (element) => {
+    const rating = element; 
+    let average = 0; 
+        
+    for (let item of rating) {
+        average += item;
+    }
+    average = average / rating.length;
+    average = Math.round(average);
+    return average;
+};
+
+let addRatingToProduct = (id, average) => {
+    items.forEach(element => {
+        if (element.id === id) {
+            element.rating = average;
+        }
+    });
+};

@@ -3,6 +3,7 @@
 
 function createCategoryPage(page, reload) {
     cleaner(reload);
+    createRatingArray(); // rating
     const category = document.createElement('main');
     category.classList.add('main');
     let filteredArray = items;
