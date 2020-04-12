@@ -374,6 +374,21 @@ let changeAmountValue = (amount, i) => {
     } else {
         document.querySelector('.modal-order-amount-init').innerText = amount;
         cart[i]['amount'] = amount;
+        let price = parseInt(items[i]['price']);
+        let sumOfItems = price * amount;
+        document.querySelector('.modal-order-sum').innerText = `${sumOfItems}$`;
+        let total = 0;
+        for (let i = 0; i < cart.length; i++) {
+            for (let j = 0; j < items.length; j++) {
+                if (cart[i]['id'] === items[j]['id']) {
+                    let price = parseInt(items[j]['price']);
+                    let amount = parseInt(cart[i]['amount']);
+                    let sumOfOneItem = price * amount;
+                    total += sumOfOneItem;
+                }
+            }
+        }
+        document.querySelector('.modal-order-total').innerText = `Total: ${total}$`;
         sendToLS(cart);
     }
     return amount;
