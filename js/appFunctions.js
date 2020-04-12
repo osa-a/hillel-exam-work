@@ -146,10 +146,12 @@ function cartButtonListener(wrapper) {
         let filteredCart = cartFilter(cart, itemElement.id);
         if (filteredCart === 'already') {
             createModalCart();
+            deleteOrderItem();
             return;
         }
         cart.push(itemElement);
         createModalCart();
+        deleteOrderItem();
     })
 }
 
