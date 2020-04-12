@@ -146,12 +146,10 @@ function cartButtonListener(wrapper) {
         let filteredCart = cartFilter(cart, itemElement.id);
         if (filteredCart === 'already') {
             createModalCart();
-            deleteOrderItem();
             return;
         }
         cart.push(itemElement);
         createModalCart();
-        deleteOrderItem();
     });
 }
 
@@ -216,6 +214,7 @@ function createModalCart() {
     createOrderHeader(modalOrderBody);
     createOrderContent(modalOrderBody);
     createOrderFooter(modalOrderBody);
+    deleteOrderItem();
 }
 
 function createSelectedItems(parent) {
@@ -459,7 +458,6 @@ function openModalOrder() {
     cartButton.addEventListener('click', () => {
         document.body.style.overflow = 'hidden';
         createModalCart();
-        deleteOrderItem();
     });
 }
 
