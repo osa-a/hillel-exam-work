@@ -153,16 +153,7 @@ function cartButtonListener(wrapper) {
         createModalCart();
     });
 }
-let sendToLS = (cart) => {
-    let cartInJSONFormat = JSON.stringify(cart);
-    return localStorage.setItem('cart', cartInJSONFormat);
-};
-let reloadCart = () => {
-    if (localStorage.getItem('cart')) {
-        return cart = JSON.parse(localStorage.getItem('cart'));
-    }
-    sendToLS();
-};
+
 function filterListener() {
     wrapper.addEventListener('click', (e) => {
         let clicked = e.target.classList.contains('filter-button');
@@ -184,6 +175,16 @@ function filterListener() {
 }
 
 //*   LOCAL + SESSION STORAGES   *//
+
+let sendToLS = (cart) => {
+    let cartInJSONFormat = JSON.stringify(cart);
+    return localStorage.setItem('cart', cartInJSONFormat);
+};
+let reloadCart = () => {
+    if (localStorage.getItem('cart')) {
+        return cart = JSON.parse(localStorage.getItem('cart'));
+    }
+};
 
 let setDataToSession = (data, array) => {
     sessionStorage.setItem(`Data-${data}`, JSON.stringify(array));
