@@ -149,10 +149,20 @@ function cartButtonListener(wrapper) {
             return;
         }
         cart.push(itemElement);
+        sendToLS(cart);
         createModalCart();
     });
 }
-
+let sendToLS = (cart) => {
+    let cartInJSONFormat = JSON.stringify(cart);
+    return localStorage.setItem('cart', cartInJSONFormat);
+};
+let reloadCart = () => {
+    if (localStorage.getItem('cart')) {
+        return cart = JSON.parse(localStorage.getItem('cart'));
+    }
+    sendToLS();
+};
 function filterListener() {
     wrapper.addEventListener('click', (e) => {
         let clicked = e.target.classList.contains('filter-button');
@@ -277,6 +287,7 @@ function deleteOrderItem() {
             for (let j = 0; j < cart.length; j++) {
                 if (cart[j]['id'] === clicked) {
                     cart.splice(j, 1);
+                    sendToLS(cart);
                 }
             }
             if (modalOrderItem.length === 1) {

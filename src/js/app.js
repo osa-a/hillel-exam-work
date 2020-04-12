@@ -20,6 +20,7 @@ fetch('data.json')
         cartButtonListener(wrapper);
         filterListener(wrapper);
         createRatingArray();
+        reloadCart();
     });
 
 openModalOrder();
