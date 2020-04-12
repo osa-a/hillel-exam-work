@@ -139,7 +139,7 @@ function cartButtonListener(wrapper) {
         if (!clicked) {
             return;
         };
-        const itemElement = {
+        let itemElement = {
             id: clicked,
             amount: 1,
         };

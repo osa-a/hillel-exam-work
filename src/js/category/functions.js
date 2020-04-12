@@ -10,7 +10,7 @@ function createCategoryHead(category, text) {
     const cartTitle = document.createElement('p');
     cartTitle.classList.add('cart-title');
     cartTitle.innerText = text;
-    
+
     pageHead.appendChild(cartTitle);
     section.appendChild(pageHead);
     category.appendChild(section);
@@ -71,7 +71,7 @@ function createRange(form) {
 function watchPriceRange() {
     $(document).ready(function () {
         const $spanValue = $('.spanValue');
-        const $value = $('#customRange'); 
+        const $value = $('#customRange');
         $spanValue.html(`${$value.val()}$`);
         $value.on('input change', () => {
             $spanValue.html(`${$value.val()}$`);
@@ -132,11 +132,11 @@ function filterFormTrigger() {
         type: getCheckboxesValue('checkType'),
         rating: getCheckboxesValue('checkRating'),
     };
+
     setDataToSession('price', obj.price);
     const page = getIdFromSession('page');
 
     let itemsAr = filterPageCategories(items, page);
-
     return filtersRun(itemsAr, obj);
 }
 
@@ -166,19 +166,19 @@ function filtersRun(elements, obj) {
             filtered(element, element.category, obj.category) &&
             filtered(element, element.material, obj.material) &&
             filtered(element, element.type, obj.type) &&
-            filtered(element, element.rating, obj.rating);
+            filtered(element, element.rating, obj.rating, true);
     });
     return array;
 }
 
-let filtered = (element, property, obj) => {
-//проверка по рейтингу через parseInt/property/obj values
-// определить что входящие данные, это рейтинговые данные
-
+let filtered = (element, property, obj, rating) => {
     if (obj.length === 0) {
         return true;
     }
     for (let elem of obj) {
+        if (rating) {
+            elem = parseInt(elem);
+        }
         if (property === elem) {
             return element;
         }
@@ -194,7 +194,7 @@ function setSelectedFilter(reload) {
         if (!selected) {
             selected = [];
         }
-        //* -- start  price range from storage
+        //* -- start  (price range from storage)
         let price = getIdFromSession('price');
         const $value = $('#customRange');
         $value.val(price);
