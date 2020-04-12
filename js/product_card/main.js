@@ -1,7 +1,5 @@
 'use strict'
 
-'use strict'
-
 let сreateItemCardPage = (reload) => {
     // rating
     createRatingArray(); 
@@ -27,9 +25,6 @@ let сreateItemCardPage = (reload) => {
     // switches listener
     hideBlock();
     addlistenerToSwitches();
-
-    // counter of amount of product
-    addlistenerToAmountOfProduct();
 
     // change main pic
     addListenerToChangeMainPic();

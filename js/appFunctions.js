@@ -54,10 +54,13 @@ function cleaner(reload) {
     }
 }
 
-// function changeCss(style) {
-//     const mainCss = document.querySelector('.style-css-files');
-//     mainCss.setAttribute('href', `css/${style}/${style}.css`)
-// }
+function cartFilter(cart, element) {
+    for (let i = 0; i < cart.length; i++) {
+        if(cart[i].id === element){
+            return 'already';
+        }
+    }
+}
 
 //*   HOMEPAGE  +  CATEGORY    *// 
 
@@ -92,10 +95,9 @@ function createCard(items, i, container) {
     price.classList.add('card-price');
     price.innerText = `${items[i].price}$`;
     const cartBtn = document.createElement('button');
-    cartBtn.classList.add('card-cart-button', 'another-page');
+    cartBtn.classList.add('card-cart-button');
     cartBtn.setAttribute('type', 'buton');
-    cartBtn.setAttribute('data-page', '6');
-    cartBtn.setAttribute('data-item', items[i].id);
+    cartBtn.setAttribute('data-cart', items[i].id);
 
     description.appendChild(itemName);
     description.appendChild(price);
@@ -133,17 +135,21 @@ function shopCardListener(container, reload) {
 
 function cartButtonListener(wrapper) {
     wrapper.addEventListener('click', (e) => {
-        let clicked = e.target.classList.contains('item-card-btn');
+        let clicked = e.target.getAttribute('data-cart');
         if (!clicked) {
             return;
         };
-        const amount = document.querySelector('.amount-of-goods__int').innerText;
         const itemElement = {
-            id: e.target.getAttribute('data-product'),
-            amount: parseInt(amount),
+            id: clicked,
+            amount: 1,
+        }
+        let filteredCart = cartFilter(cart, itemElement.id);
+        if (filteredCart === 'already') {
+            createModalCart();
+            return;
         }
         cart.push(itemElement);
-        cart = cartFilter(cart);
+        createModalCart();
     })
 }
 
@@ -219,19 +225,6 @@ function createSelectedItems(parent) {
         }
     }
 }
-
-function cartFilter(cart) {
-    let cartAr = cart;
-    for (let i = 0; i < cartAr.length; i++) {
-        for (let j = 0; j < cartAr.length && j !== i; j++) {
-            if (cartAr[i].id === cartAr[j].id) {
-                cartAr[i].amount += cartAr[j].amount;
-                cartAr.splice(j, 1);
-            }
-        }
-    }
-    return cartAr;
-}
 function createOrderItem(parent, i, j) {
     const modalOrderItem = document.createElement('div');
     modalOrderItem.classList.add('modal-order-item');
@@ -273,7 +266,7 @@ function deleteOrderItem() {
         }
         const modalOrderItem = document.querySelectorAll('.modal-order-item');
         for (let i = 0; i < modalOrderItem.length; i++) {
-            if(modalOrderItem[i].dataset.selected === clicked) {
+            if (modalOrderItem[i].dataset.selected === clicked) {
                 modalOrderItem[i].remove();
             }
             for (let j = 0; j < cart.length; j++) {
@@ -507,22 +500,22 @@ let createRatingArray = () => {
 
             let average = findAverage(innerArr);
             addRatingToProduct(element.id, average)
-           
+
         } else {
 
-            for (let i = 0; i < element.comments.length; i++) { 
+            for (let i = 0; i < element.comments.length; i++) {
                 let newEl = [parseInt(element.comments[i].rate)];
                 let average = findAverage(newEl);
                 addRatingToProduct(element.id, average);
             }
-        }         
-    }); 
+        }
+    });
 };
 
 let findAverage = (element) => {
-    const rating = element; 
-    let average = 0; 
-        
+    const rating = element;
+    let average = 0;
+
     for (let item of rating) {
         average += item;
     }

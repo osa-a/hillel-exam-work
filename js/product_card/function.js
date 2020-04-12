@@ -103,15 +103,6 @@ let createItemCardSection = () => {
     createElement('p', 'item-card__info-of-good--description', '.item-card__info-of-good');
     createElement('div', 'buy-block', '.item-card__info-of-good');
 
-    createElement('div', 'amount-of-goods', '.buy-block');
-    createElement('div', 'amount-of-goods__int', '.amount-of-goods');
-    createElement('div', 'amount-of-goods__counter', '.amount-of-goods');
-    createElement('div', 'plus-one', '.amount-of-goods__counter');
-    createElement('div', 'minus-one', '.amount-of-goods__counter');
-    document.querySelector('.amount-of-goods__int').innerText = "1";
-    document.querySelector('.plus-one').innerText = "+";
-    document.querySelector('.minus-one').innerText = "-";
-
     createElement('div', 'buy-block__button', '.buy-block');
     createElement('button', 'item-card-btn', '.buy-block__button');
     document.querySelector('.item-card-btn').innerText = "BUY";
@@ -240,7 +231,7 @@ let renderingProductCard = () => {
                         commentUserName.innerText = element.comments[i].name;
                         commentUserText.innerText = element.comments[i].comment;
                         commentUserDate.innerText = element.comments[i].date;
-                        buyButton.setAttribute('data-product', element.id);
+                        buyButton.setAttribute('data-cart', element.id);
                         addRatingToComment(`.user-rating-${i}`, element.comments[i].rate, i);
                     }
                 });  
@@ -316,38 +307,6 @@ let addlistenerToSwitches = () => {
             document.querySelector('.description-window__btn').classList.remove('non-active');
         }
     });
-};
-
-let addlistenerToAmountOfProduct = () => {
-
-    let amount = document.querySelector('.amount-of-goods__int').innerHTML = 1;
-
-    document.querySelector('.amount-of-goods__counter').addEventListener('click', function (e) {
-
-        if (e.target.classList.contains('plus-one')) {
-            amount += 1;
-            changeAmountValue(amount);
-        } else if (e.target.classList.contains('minus-one')) {
-            if (amount <= 1) {
-                document.querySelector('.amount-of-goods__int').innerHTML = 1;
-                amount = 1;
-            } else {
-                amount -= 1;
-                changeAmountValue(amount);
-            }
-        }
-    });
-
-}
-
-let changeAmountValue = (amount) => {
-    if (amount < 1) {
-        document.querySelector('.amount-of-goods__int').innerHTML = 1;
-        amount = 1;
-    } else {
-        document.querySelector('.amount-of-goods__int').innerHTML = amount;
-    }
-    return amount;
 };
 
 // CHANGE MAIN PIC
