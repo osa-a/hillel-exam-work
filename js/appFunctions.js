@@ -125,10 +125,10 @@ function shopCardListener(container, reload) {
         let clicked = e.target.getAttribute('data-item');
         if (!clicked) {
             return;
-        };
+        }
         setIdToStorage(e, 'item', 'item');
         сreateItemCardPage(reload);
-    })
+    });
 }
 
 function cartButtonListener(wrapper) {
@@ -235,10 +235,11 @@ function cartFilter(cart) {
 function createOrderItem(parent, i, j) {
     const modalOrderItem = document.createElement('div');
     modalOrderItem.classList.add('modal-order-item');
+    modalOrderItem.setAttribute('data-selected', cart[i].id);
     parent.appendChild(modalOrderItem);
     createOrderPic(modalOrderItem, j);
     createOrderInfo(modalOrderItem, i, j)
-    createOrderDeleteBtn(modalOrderItem);
+    createOrderDeleteBtn(modalOrderItem, i);
 }
 function createOrderPic(modalOrderItem, j) {
     const modalOrderPic = document.createElement('img');
@@ -254,17 +255,39 @@ function createOrderInfo(modalOrderItem, i, j) {
     createOrderNameItem(modalOrderInfo, j);
     createOrderNumInfo(modalOrderInfo, i, j);
 }
-function createOrderDeleteBtn(modalOrderItem) {
+function createOrderDeleteBtn(modalOrderItem, i) {
     const buttonDeleteItem = document.createElement('button');
     buttonDeleteItem.setAttribute('type', 'button');
     buttonDeleteItem.classList.add('modal-order-delete');
+    buttonDeleteItem.setAttribute('data-delete', cart[i].id);
     buttonDeleteItem.innerText = 'x';
     modalOrderItem.appendChild(buttonDeleteItem);
-    // delete item func
-    deleteOrderItem();
-    function deleteOrderItem() {
-        console.log('del');
-    }
+}
+// delete item func
+function deleteOrderItem() {
+    const modalOrderContent = document.getElementById('modalOrderContent');
+    modalOrderContent.addEventListener('click', (e) => {
+        let clicked = e.target.getAttribute('data-delete');
+        if (!clicked) {
+            return;
+        }
+        const modalOrderItem = document.querySelectorAll('.modal-order-item');
+        for (let i = 0; i < modalOrderItem.length; i++) {
+            if(modalOrderItem[i].dataset.selected === clicked) {
+                modalOrderItem[i].remove();
+            }
+            for (let j = 0; j < cart.length; j++) {
+                if (cart[j]['id'] === clicked) {
+                    cart.splice(j, 1);
+                }
+            }
+            if (modalOrderItem.length === 1) {
+                let modalOrder = document.getElementById('modalOrder');
+                document.body.style.overflow = 'auto';
+                modalOrder.remove();
+            }
+        }
+    });
 }
 function createOrderNameItem(modalOrderInfo, j) {
     const modalOrderName = document.createElement('div');
@@ -349,6 +372,7 @@ function createOrderHeader(modalOrderBody) {
 function createOrderContent(modalOrderBody) {
     const modalOrderContent = document.createElement('div');
     modalOrderContent.classList.add('modal-order-content');
+    modalOrderContent.setAttribute('id', 'modalOrderContent')
     modalOrderBody.appendChild(modalOrderContent);
     if (cart.length > 0) {
         createSelectedItems(modalOrderContent);
@@ -423,6 +447,7 @@ function openModalOrder() {
     cartButton.addEventListener('click', () => {
         document.body.style.overflow = 'hidden';
         createModalCart();
+        deleteOrderItem();
     })
 }
 
