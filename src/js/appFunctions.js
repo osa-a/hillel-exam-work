@@ -326,7 +326,6 @@ function createOrderAmount(modalOrderNumInfo, i) {
 function createOrderAmountInit(modalOrderAmount, i) {
     const modalOrderAmountInit = document.createElement('div');
     modalOrderAmountInit.classList.add('modal-order-amount-init');
-    modalOrderAmountInit.innerText = cart[i]['amount'];
     modalOrderAmount.appendChild(modalOrderAmountInit);
 }
 
@@ -356,24 +355,26 @@ function calcAmountOfItem(i) {
     document.querySelector('.modal-order-amount-counter').addEventListener('click', function (e) {
         if (e.target.classList.contains('modal-order-amount-plus')) {
             amount += 1;
-            changeAmountValue(amount);
+            changeAmountValue(amount, i);
         } else if (e.target.classList.contains('modal-order-amount-minus')) {
             if (amount <= 1) {
                 document.querySelector('.modal-order-amount-init').innerText = cart[i]['amount'];
                 amount = 1;
             } else {
                 amount -= 1;
-                changeAmountValue(amount);
+                changeAmountValue(amount, i);
             }
         }
     });
 }
-let changeAmountValue = (amount) => {
+let changeAmountValue = (amount, i) => {
     if (amount < 1) {
         document.querySelector('.modal-order-amount-init').innerText = cart[i]['amount'];
         amount = 1;
     } else {
         document.querySelector('.modal-order-amount-init').innerText = amount;
+        cart[i]['amount'] = amount;
+        sendToLS(cart);
     }
     return amount;
 };
