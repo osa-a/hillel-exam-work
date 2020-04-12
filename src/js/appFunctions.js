@@ -309,6 +309,7 @@ function createOrderAmount(modalOrderNumInfo, i) {
     modalOrderNumInfo.appendChild(modalOrderAmount);
     createOrderAmountInit(modalOrderAmount, i);
     createOrderAmountCounter(modalOrderAmount);
+    calcAmountOfItem(i);
 }
 
 function createOrderAmountInit(modalOrderAmount, i) {
@@ -339,6 +340,32 @@ function createOrderAmountMinus(modalOrderAmountCounter) {
     modalOrderAmountMinus.innerText = '-';
     modalOrderAmountCounter.appendChild(modalOrderAmountMinus);
 }
+function calcAmountOfItem(i) {
+    let amount = document.querySelector('.modal-order-amount-init').innerText = cart[i]['amount'];
+    document.querySelector('.modal-order-amount-counter').addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal-order-amount-plus')) {
+            amount += 1;
+            changeAmountValue(amount);
+        } else if (e.target.classList.contains('modal-order-amount-minus')) {
+            if (amount <= 1) {
+                document.querySelector('.modal-order-amount-init').innerText = cart[i]['amount'];
+                amount = 1;
+            } else {
+                amount -= 1;
+                changeAmountValue(amount);
+            }
+        }
+    });
+}
+let changeAmountValue = (amount) => {
+    if (amount < 1) {
+        document.querySelector('.modal-order-amount-init').innerText = cart[i]['amount'];
+        amount = 1;
+    } else {
+        document.querySelector('.modal-order-amount-init').innerText = amount;
+    }
+    return amount;
+};
 
 function createOrderSum(modalOrderNumInfo, i, j) {
     const modalOrderSum = document.createElement('div');
