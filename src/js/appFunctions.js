@@ -153,16 +153,7 @@ function cartButtonListener(wrapper) {
         createModalCart();
     });
 }
-let sendToLS = (cart) => {
-    let cartInJSONFormat = JSON.stringify(cart);
-    return localStorage.setItem('cart', cartInJSONFormat);
-};
-let reloadCart = () => {
-    if (localStorage.getItem('cart')) {
-        return cart = JSON.parse(localStorage.getItem('cart'));
-    }
-    sendToLS();
-};
+
 function filterListener() {
     wrapper.addEventListener('click', (e) => {
         let clicked = e.target.classList.contains('filter-button');
@@ -185,6 +176,16 @@ function filterListener() {
 
 //*   LOCAL + SESSION STORAGES   *//
 
+let sendToLS = (cart) => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+let reloadCart = () => {
+    if (localStorage.getItem('cart')) {
+        return cart = JSON.parse(localStorage.getItem('cart'));
+    }
+};
+
 let setDataToSession = (data, array) => {
     sessionStorage.setItem(`Data-${data}`, JSON.stringify(array));
 };
@@ -195,8 +196,7 @@ let setIdToSession = (e, data, item) => {
 };
 
 let getIdFromSession = (data) => {
-    let selectedData = JSON.parse(sessionStorage.getItem(`Data-${data}`));
-    return selectedData;
+    return selectedData = JSON.parse(sessionStorage.getItem(`Data-${data}`));
 };
 
 let setIdToStorage = (e, data, item) => {
@@ -205,8 +205,7 @@ let setIdToStorage = (e, data, item) => {
 };
 
 let getIdFromStorage = (data) => {
-    let selectedData = JSON.parse(localStorage.getItem(`Data-${data}`));
-    return selectedData;
+    return selectedData = JSON.parse(localStorage.getItem(`Data-${data}`));
 };
 
 //*   MODAL CART   *//
@@ -288,6 +287,7 @@ function deleteOrderItem() {
                 if (cart[j]['id'] === clicked) {
                     cart.splice(j, 1);
                     sendToLS(cart);
+                    return;
                 }
             }
             if (modalOrderItem.length === 1) {
