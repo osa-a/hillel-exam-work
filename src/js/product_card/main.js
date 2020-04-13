@@ -3,6 +3,9 @@
 let сreateItemCardPage = (reload) => {
     // rating
     createRatingArray(); 
+    
+    //get items from storage
+    items = createItemsStorage(items);
 
     // отрисовка main и css 
     const itemCardPage = document.createElement('main');
@@ -30,5 +33,18 @@ let сreateItemCardPage = (reload) => {
     addListenerToChangeMainPic();
 
     // add comments to review
-    addEventListenetToReviewSubmit();
+    // addEventListenetToReviewSubmit();
+    createCommentStorage(comments);
 };
+
+function createItemsStorage(arr) {
+    if (localStorage.getItem('Items-data')) {
+        arr = JSON.parse(localStorage.getItem('Items-data')); 
+    } else {
+        localStorage.setItem('Items-data', JSON.stringify(arr)); 
+    }
+
+    return arr;
+}
+
+let setItemsToStorage = (arr) => localStorage.setItem('Items-data', JSON.stringify(arr));

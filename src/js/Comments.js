@@ -23,4 +23,6 @@ function createCommentsData(){
     commentElem.pushToAr(commentElem);
     commentElem = new Comment('Daniel', rating[3], 'Package came perfectly packaged, very good value, decent quality', 'craig.png');
     commentElem.pushToAr(commentElem);
+
+    return commentElem;
 }

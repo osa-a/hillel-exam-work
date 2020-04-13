@@ -46,7 +46,7 @@ let createReviewForm = () => {
 let createTextareaReview = () => {
     let textarea = document.createElement('textarea');
     let parent = document.querySelector('.review-info');
-    textarea.setAttribute('name', 'review-field');
+    textarea.setAttribute('name', 'empty');
     textarea.setAttribute('type', type);
     textarea.setAttribute('id', 'review-field-id');
     textarea.setAttribute('cols', '30');
@@ -180,8 +180,8 @@ let createReviewFormSection = () => {
     });
 
     // сюда запилить рейтинг звездочками
-    createInput('name-field', 'text', 'name-field-id', 'Your name', '.review-info');
-    createInput('email-field', 'text', 'email-field-id', 'Your email', '.review-info');
+    createInput('nameSurname', 'text', 'name-field-id', 'Your name', '.review-info');
+    createInput('email', 'text', 'email-field-id', 'Your email', '.review-info');
 
     createTextareaReview();
     createSubmitButtonReview();
@@ -200,8 +200,6 @@ let renderingProductCard = () => {
     const productType = document.querySelector('.features-of-good__type');
     const productMaterial = document.querySelector('.features-of-good__material');
     // создаем массив, чтоб узнать сколько у нас комментариев
-    let arrayOfElem = document.querySelectorAll('.review-item');
-    let id = arrayOfElem.length;
 
     items.forEach(element => {
         if (element.id === selectedId) {
@@ -209,9 +207,6 @@ let renderingProductCard = () => {
 
             // какое количество в стораже, сначала создаются все существующие блоки, а только потом туда добавляется информация
             for (let i = 0; i < amount; i++) {
-                const commentUserName = document.querySelector(`.user-name-${i}`);
-                const commentUserText = document.querySelector(`.review-content-${i}`);
-                const commentUserDate = document.querySelector(`.review-date-${i}`);
 
                 items.forEach(element => {
                     if (element.id === selectedId) {
@@ -222,11 +217,34 @@ let renderingProductCard = () => {
                         productCategory.innerText = `Category: ${element.category}`;
                         productType.innerText = `Type: ${element.type}`;
                         productMaterial.innerText = `Material: ${element.material}`;
+                        buyButton.setAttribute('data-cart', element.id);
+                    }
+                });
+            }
+        }
+    });
+    renderComments(selectedId);
+};
+
+let renderComments = (selectedId) => {
+    items.forEach(element => {
+        if (element.id === selectedId) {
+            let amount = element.comments.length;
+
+            // какое количество в стораже, сначала создаются все существующие блоки, а только потом туда добавляется информация
+            for (let i = 0; i < amount; i++) {
+                const commentUserName = document.querySelector(`.user-name-${i}`);
+                const commentUserText = document.querySelector(`.review-content-${i}`);
+                const commentUserDate = document.querySelector(`.review-date-${i}`);
+                
+                items.forEach(element => {
+                    if (element.id === selectedId) {
                         commentUserName.innerText = element.comments[i].name;
                         commentUserText.innerText = element.comments[i].comment;
                         commentUserDate.innerText = element.comments[i].date;
-                        buyButton.setAttribute('data-cart', element.id);
-                        addRatingToComment(`.user-rating-${i}`, element.comments[i].rate, i);
+                        addRatingToComment(`.user-rating-${i}`, element.comments[i].rate, i); 
+                        const userAvatar = document.querySelector(`.user-avatar-photo-${i}`);
+                        userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[i].avatar}`);
                     }
                 });
             }
@@ -256,17 +274,6 @@ let renderingPics = () => {
             descPic2.setAttribute('src', `../img/category-shop-cards/descr/${value}-2.jpg`);
         }
     }
-
-    items.forEach(element => {
-        if (element.id === selectedId) {
-            let amount = element.comments.length;
-
-            for (let i = 0; i < amount; i++) {
-                const userAvatar = document.querySelector(`.user-avatar-photo-${i}`);
-                userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[i].avatar}`);
-            }
-        }
-    });
 };
 
 // SWITCHES LISTENERS
@@ -291,6 +298,8 @@ let addlistenerToSwitches = () => {
             descrBlock.classList.add('hidden');
             document.querySelector('.review-window__btn').classList.remove('non-active');
             document.querySelector('.description-window__btn').classList.add('non-active');
+             addSaveListenersToValidation();
+
         } else if (e.target.classList.contains('description-window__btn')) {
             form.classList.add('hidden');
             reviewBlock.classList.add('hidden');
@@ -299,6 +308,7 @@ let addlistenerToSwitches = () => {
             document.querySelector('.description-window__btn').classList.remove('non-active');
         }
     });
+   
 };
 
 // CHANGE MAIN PIC
@@ -382,9 +392,108 @@ let createUserReview = () => {
     });
 };
 
-let addEventListenetToReviewSubmit = () => {
-    document.querySelector('input[type=submit]').addEventListener('click', (e) => {
+// VALIDATION COMMENTS 
+
+function addSaveListenersToValidation() {
+    const submitButton = document.querySelector('input[type=submit]');
+    const validElements = {};
+
+    submitButton.addEventListener('click', (e) => {
         e.preventDefault();
         createUserReview();
+        const form = document.forms['review-form'];
+        
+        const elementsArr = Object.values(form);
+        console.log(elementsArr);
+        for (let element of elementsArr) {
+            if (!element.name) {
+                continue;
+            }
+                
+            const isValidValue = isValid(element.value, element.name);
+
+            if (isValidValue) {
+                validElements[element.name] = element.value;
+            }
+
+            validate(isValidValue, element.name);    
+        }
+
+        if (!document.querySelector('.error')) {
+            
+            let commentElem = new Comment(validElements.nameSurname, rating[3], validElements.empty, 'full_star.png', {"id": getIdFromStorage()});
+            commentElem.pushToAr(commentElem);
+            setCommentToStorage(comments);
+            setCommentToItems(getIdFromStorage('item'), commentElem);
+            console.log(items);
+        }
+    });
+    return validElements;
+}
+
+function validate(isValid, key) {    
+    if (!isValid) { 
+        if (key === 'nameSurname' && !document.querySelector('.name-error')) {
+            const errorInput = document.querySelector(`input[name=${key}]`);
+            errorInput.insertAdjacentHTML('afterend', '<div class="error name-error">Your name isn\'t correct</div>');
+        } else if (key === 'email' && !document.querySelector('.email-error')) {
+            const errorInput = document.querySelector(`input[name=${key}]`);
+            errorInput.insertAdjacentHTML('afterend', '<div class="error email-error">Your email isn\'t correct</div>');
+        } else if (key === 'empty' && !document.querySelector('.textarea-error')) {
+            const errorInput = document.querySelector(`textarea[name=${key}]`);
+            errorInput.insertAdjacentHTML('afterend', '<div class="error textarea-error">Please, write your comment</div>');
+        }
+    } else {
+        if (key === 'nameSurname' && document.querySelector('.name-error')) {
+            document.querySelector('.name-error').remove(); 
+        } else if (key === 'email' && document.querySelector('.email-error')) {
+            document.querySelector('.email-error').remove(); 
+    } else if (key === 'empty' && document.querySelector('.textarea-error')) {
+            document.querySelector('.textarea-error').remove();
+        }
+    }
+}
+
+let isValid = (value, key) => {
+    if (key !== 'empty') {
+        return patterns[key].test(value);
+    } else {
+        if (patterns[key].test(value)) {
+            return false;
+        } else {
+            return true;
+        }
+    }  
+};
+
+// CREATE COMMENT STORAGE
+
+function createCommentStorage(arr) {
+    if (localStorage.getItem('Comment-data')) {
+        arr = JSON.parse(localStorage.getItem('Comment-data')); 
+    } else {
+        localStorage.setItem('Comment-data', JSON.stringify(arr)); 
+    }
+
+    return arr;
+}
+
+let setCommentToStorage = (arr) => localStorage.setItem('Comment-data', JSON.stringify(arr));
+let getCommentFromStorage = (arr) => localStorage.getItem('Comment-data', JSON.stringify(arr));
+
+
+// ADD COMMENT 
+
+let setCommentToItems = (id, value) => {
+    items.forEach(element => {
+        if (element.id === id) {
+            element.comments.push(value);
+            document.querySelector('.review-block').remove();
+            createReviewSection();
+            $('.review-block').insertAfter('.switches');
+            renderComments(element.id);
+            addlistenerToSwitches();
+            setItemsToStorage(items);
+        }
     });
 };
