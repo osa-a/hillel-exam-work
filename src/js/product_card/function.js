@@ -487,6 +487,7 @@ let getCommentFromStorage = (arr) => localStorage.getItem('Comment-data', JSON.s
 let setCommentToItems = (id, value) => {
     items.forEach(element => {
         if (element.id === id) {
+            value.date = moment().format('LLL');
             element.comments.push(value);
             document.querySelector('.review-block').remove();
             createReviewSection();

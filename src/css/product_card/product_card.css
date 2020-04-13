@@ -186,7 +186,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  width: 640px; }
   .review-block .review-title .user-name {
     font-size: 18px;
     line-height: 21px;

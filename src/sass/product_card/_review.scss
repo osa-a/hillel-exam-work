@@ -79,6 +79,7 @@
 
     .review-title {
         @include flex($fd:row, $jc:space-between, $ai:stretch, $fw:wrap);
+        width: 640px;
 
         .user-name {
             @include font(18px, 21px, $fw:400);
