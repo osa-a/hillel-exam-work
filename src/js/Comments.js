@@ -1,18 +1,14 @@
 'use strict';
-
-function CommentProto() {
-    this.pushToAr = (commentElem) => comments.push(commentElem);
-}
-
-const Comment = function (name, rate, comment, avatar) {
+class Comment {
+    constructor(name, rate, comment, avatar) {
         this.name = name,
         this.date = moment().subtract(3, 'days').format('LL');
         this.rate = rate,
         this.comment = comment,
         this.avatar = avatar;
-};
-
-Comment.prototype = new CommentProto();
+    }
+    pushToAr = (commentElem) => comments.push(commentElem) ;
+}
 
 function createCommentsData(){
     let commentElem = new Comment('Marta', rating[4], 'I have bought this good from your company for the last 3 years. This was the first time I have purchased something from there. The experience has been great. I highly recommend your shop.', 'marta.png');

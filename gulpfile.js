@@ -37,7 +37,10 @@ const jsDefault = () => {
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
         .pipe(babel({
-            "presets": ["@babel/preset-env"]
+            "presets": ["@babel/preset-env"],
+            "plugins": [
+                "@babel/plugin-proposal-class-properties",
+              ]
         }))
         .pipe(uglify())
         .pipe(concat('app.js'))
