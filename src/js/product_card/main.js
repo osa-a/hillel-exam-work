@@ -1,11 +1,11 @@
 'use strict';
 
 let сreateItemCardPage = (reload) => {
-    // rating
-    createRatingArray(); 
-    
     //get items from storage
     items = createItemsStorage(items);
+    
+    // rating
+    createRatingArray(); 
 
     // отрисовка main и css 
     const itemCardPage = document.createElement('main');

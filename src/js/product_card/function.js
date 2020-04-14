@@ -156,6 +156,16 @@ let createReviewFormSection = () => {
 
     createElement('div', 'chose-rating', '.review-info');
 
+    createRatingBlock();
+
+    createInput('nameSurname', 'text', 'name-field-id', 'Your name', '.review-info');
+    createInput('email', 'text', 'email-field-id', 'Your email', '.review-info');
+
+    createTextareaReview();
+    createSubmitButtonReview();
+};
+
+let createRatingBlock = () => {
     $('<div>', {
         class: 'br-wrapper br-theme-fontawesome-stars',
         html:
@@ -168,23 +178,9 @@ let createReviewFormSection = () => {
       </select>`
     }).appendTo(document.querySelector('.chose-rating'));
     $('select').barrating('show');
-    // еще разбираюсь как эта хрень работает
     $('#rating-scale').barrating('show', {
         theme: 'my-awesome-theme',
-        onSelect: function (value, event) {
-            if (typeof (event) !== 'undefined') {
-                // rating was selected by a user
-                console.log(event.target);
-            }
-        }
     });
-
-    // сюда запилить рейтинг звездочками
-    createInput('nameSurname', 'text', 'name-field-id', 'Your name', '.review-info');
-    createInput('email', 'text', 'email-field-id', 'Your email', '.review-info');
-
-    createTextareaReview();
-    createSubmitButtonReview();
 };
 
 // RENDER
@@ -404,32 +400,36 @@ function addSaveListenersToValidation() {
         const form = document.forms['review-form'];
         
         const elementsArr = Object.values(form);
-        console.log(elementsArr);
         for (let element of elementsArr) {
             if (!element.name) {
                 continue;
             }
                 
             const isValidValue = isValid(element.value, element.name);
-
+            
             if (isValidValue) {
                 validElements[element.name] = element.value;
             }
 
-            validate(isValidValue, element.name);    
+            validate(isValidValue, element.name);  
         }
 
         if (!document.querySelector('.error')) {
-            
-            let commentElem = new Comment(validElements.nameSurname, rating[3], validElements.empty, 'full_star.png', {"id": getIdFromStorage()});
+            const ratingAmount = getRatingValue();
+            let commentElem = new Comment(validElements.nameSurname, rating[ratingAmount - 1], validElements.empty);
             commentElem.pushToAr(commentElem);
             setCommentToStorage(comments);
             setCommentToItems(getIdFromStorage('item'), commentElem);
-            console.log(items);
         }
     });
     return validElements;
 }
+
+// GET RATING VALUE
+
+let getRatingValue = () => document.querySelectorAll('.br-selected').length;
+
+// VALIDATION
 
 function validate(isValid, key) {    
     if (!isValid) { 
@@ -448,7 +448,7 @@ function validate(isValid, key) {
             document.querySelector('.name-error').remove(); 
         } else if (key === 'email' && document.querySelector('.email-error')) {
             document.querySelector('.email-error').remove(); 
-    } else if (key === 'empty' && document.querySelector('.textarea-error')) {
+        } else if (key === 'empty' && document.querySelector('.textarea-error')) {
             document.querySelector('.textarea-error').remove();
         }
     }
@@ -481,20 +481,49 @@ function createCommentStorage(arr) {
 let setCommentToStorage = (arr) => localStorage.setItem('Comment-data', JSON.stringify(arr));
 let getCommentFromStorage = (arr) => localStorage.getItem('Comment-data', JSON.stringify(arr));
 
+// RESETS
+
+let resetReviewSection = (id) => {
+    document.querySelector('.review-block').remove();
+    createReviewSection();
+    $('.review-block').insertAfter('.switches');
+    renderComments(id);
+};
+
+let reserFormValue = () =>  document['review-form'].reset();
+
+let resetRating = () => {
+    //clear rating in form
+    document.querySelector('.chose-rating').innerHTML = '';
+    createRatingBlock();
+    //clear rating in card
+    document.querySelector('.product-rating').remove();
+    createElement('div', 'product-rating', '.item-card__info-of-good');
+    $('.product-rating').insertAfter('.item-card__info-of-good--price');
+    createRatingArray(); 
+    addRatingToCard();
+};
 
 // ADD COMMENT 
 
 let setCommentToItems = (id, value) => {
     items.forEach(element => {
         if (element.id === id) {
+            // add new date
             value.date = moment().format('LLL');
+            // add comment to items array
             element.comments.push(value);
-            document.querySelector('.review-block').remove();
-            createReviewSection();
-            $('.review-block').insertAfter('.switches');
-            renderComments(element.id);
+            // clear all reviews
+            resetReviewSection(element.id);
+            // just because deleted review block we need to add listener again
             addlistenerToSwitches();
+            // clear all inputs in form
+            reserFormValue();
+            // add new items array to local storage
             setItemsToStorage(items);
+            
+            // reset rating in card
+            resetRating();
         }
     });
 };
