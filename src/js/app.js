@@ -13,14 +13,14 @@ fetch('data.json')
         smallImg = { ...res.smallImg };
         createCommentsData();
         createData();
-        page = getIdFromSession('page');
+        page = getDataFromSession('page');
         switchPage(page, true);
         mainPageListener(wrapper);
         shopCardListener(wrapper);
         cartButtonListener(wrapper);
         filterListener(wrapper);
         createRatingArray();
-        reloadCart();
+        getCartLocal();
     });
 
 openModalOrder();

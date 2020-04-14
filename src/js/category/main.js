@@ -13,11 +13,19 @@ function createCategoryPage(page, reload) {
             return item.category === page;
         });
     }
-    let check = getIdFromSession('filter');
-    if (check && check.lenght !== 0 && reload) {
+    let check = getDataFromSession('filter');
+    let sorry = getDataFromSession('sorry');
+    if(sorry){
+        createCategoryHead(category, page);
+        createCategoryWrapper(category, shop);
+        insertMain(category);
+        sorryMessage();
+        return;
+    }
+    if (check && check.lenght !== 0 && reload ) {
         filteredArray = check;
     }
     createCategoryHead(category, page);
-    createCategoryWrapper(category, filteredArray, shop);
+    createCategoryWrapper(category, shop, filteredArray);
     insertMain(category);
 }

@@ -99,7 +99,6 @@
 }
 
 .buy-block__button {
-    margin-left: 35px;
     .item-card-btn{
         @include font(20px, 1.2, 400);
         border: 1px solid #000;
@@ -111,10 +110,6 @@
         &:hover {
             background-color: rgb(221, 221, 221);
         }
-
-        // &:active {
-        //     background-color: rgb(203, 218, 199);
-        // }
     }
 }
 
