@@ -16,11 +16,13 @@ function createCategoryHead(category, text) {
     category.appendChild(section);
 }
 
-function createCategoryWrapper(category, filteredArray, shop) {
+function createCategoryWrapper(category, shop, filteredArray) {
     const section = document.createElement('section');
     section.classList.add('category-wrapper');
     createFilterForm(section, shop);
-    createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
+    if(filteredArray){
+        createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
+    }
     category.appendChild(section);
 }
 
@@ -134,7 +136,7 @@ function filterFormTrigger() {
     };
 
     setDataToSession('price', obj.price);
-    const page = getIdFromSession('page');
+    const page = getDataFromSession('page');
 
     let itemsAr = filterPageCategories(items, page);
     return filtersRun(itemsAr, obj);
@@ -190,12 +192,12 @@ let filtered = (element, property, obj, rating) => {
 function setSelectedFilter(reload) {
     if (reload) {
         let checkboxes = document.getElementsByClassName('checkbox');
-        let selected = getIdFromSession('checkbox');
+        let selected = getDataFromSession('checkbox');
         if (!selected) {
             selected = [];
         }
         //* -- start  (price range from storage)
-        let price = getIdFromSession('price');
+        let price = getDataFromSession('price');
         const $value = $('#customRange');
         $value.val(price);
         //* -- ending
@@ -224,15 +226,4 @@ function getCheckedForStorage() {
         }
     }
     return checked;
-}
-
-function sorryMessage() {
-    const container = document.querySelector('.category-wrapper');
-    const section = document.createElement('section');
-    section.classList.add('shop-head');
-    const message = document.createElement('div');
-    message.classList.add('empty-message');
-    message.innerText = 'We\'re  sorry to say but we don\'t have products you were looking for';
-    section.appendChild(message);
-    container.appendChild(section);
 }

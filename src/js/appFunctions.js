@@ -62,6 +62,16 @@ function cartFilter(cart, element) {
     }
 }
 
+function sorryMessage() {
+    const container = document.querySelector('.category-wrapper');
+    const section = document.createElement('section');
+    section.classList.add('shop-head');
+    const message = document.createElement('div');
+    message.classList.add('empty-message');
+    message.innerText = 'We\'re  sorry to say but we don\'t have products you were looking for';
+    section.appendChild(message);
+    container.appendChild(section);
+}
 //*   HOMEPAGE  +  CATEGORY    *// 
 
 function createShopLine(array, start, amount, calssName, page, secondClass) {
@@ -149,7 +159,7 @@ function cartButtonListener(wrapper) {
             return;
         }
         cart.push(itemElement);
-        sendToLS(cart);
+        setCartToLocal(cart);
         createModalCart();
     });
 }
@@ -164,6 +174,7 @@ function filterListener() {
         shopLineCleaner();
         let filtered = filterFormTrigger();
         if (filtered.length === 0) {
+            setDataToSession('sorry', true);
             sorryMessage();
             return;
         }
@@ -176,14 +187,25 @@ function filterListener() {
 
 //*   LOCAL + SESSION STORAGES   *//
 
-let sendToLS = (cart) => {
+let setCartToLocal = (cart) => {
     let cartInJSONFormat = JSON.stringify(cart);
     return localStorage.setItem('cart', cartInJSONFormat);
 };
-let reloadCart = () => {
+
+let getCartLocal = () => {
     if (localStorage.getItem('cart')) {
         return cart = JSON.parse(localStorage.getItem('cart'));
     }
+};
+
+let setIdToStorage = (e, data, item) => {
+    let selectedData = e.target.dataset[item];
+    localStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
+};
+
+let getIdFromStorage = (data) => {
+    let selectedData = JSON.parse(localStorage.getItem(`Data-${data}`));
+    return selectedData;
 };
 
 let setDataToSession = (data, array) => {
@@ -195,18 +217,8 @@ let setIdToSession = (e, data, item) => {
     sessionStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
 };
 
-let getIdFromSession = (data) => {
+let getDataFromSession = (data) => {
     let selectedData = JSON.parse(sessionStorage.getItem(`Data-${data}`));
-    return selectedData;
-};
-
-let setIdToStorage = (e, data, item) => {
-    let selectedData = e.target.dataset[item];
-    localStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
-};
-
-let getIdFromStorage = (data) => {
-    let selectedData = JSON.parse(localStorage.getItem(`Data-${data}`));
     return selectedData;
 };
 
@@ -289,7 +301,7 @@ function deleteOrderItem() {
             for (let j = 0; j < cart.length; j++) {
                 if (cart[j]['id'] === clicked) {
                     cart.splice(j, 1);
-                    sendToLS(cart);
+                    setCartToLocal(cart);
                 }
             }
             if (modalOrderItem.length === 1) {
