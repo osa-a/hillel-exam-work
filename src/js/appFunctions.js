@@ -379,6 +379,7 @@ function calcCounter() {
                     changeAmountValue(amount, i);
                 }
             }
+
         }
     });
 }
