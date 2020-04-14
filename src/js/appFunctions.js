@@ -365,7 +365,7 @@ function calcCounter() {
         let minusClick = e.target.getAttribute('data-minus');
 
         for (let i = 0; i < counter.length; i++) {
-            let amount = parseInt(counter[i].innerText);
+            let amount = counter[i].innerText = cart[i]['amount'];
             if (counter[i].dataset.counter === plusClick) {
                 amount += 1;
                 changeAmountValue(amount, i);
@@ -373,13 +373,13 @@ function calcCounter() {
             if (counter[i].dataset.counter === minusClick) {
                 if (amount <= 1) {
                     counter[i].innerText = 1;
-                    amount = 1;
+                    cart[i]['amount'] = amount = 1;
                 } else {
                     amount -= 1;
                     changeAmountValue(amount, i);
                 }
             }
-
+            sendToLS(cart);
         }
     });
 }
@@ -388,9 +388,10 @@ let changeAmountValue = (amount, i) => {
     let counter = document.querySelectorAll('.modal-order-amount-init');
     if (amount < 1) {
         counter[i].innerText = 1;
-        amount = 1;
+        cart[i]['amount'] = amount = 1;
     } else {
         counter[i].innerText = amount;
+        cart[i]['amount'] = amount;
     }
     return amount;
 };
