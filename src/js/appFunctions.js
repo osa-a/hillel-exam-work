@@ -226,6 +226,7 @@ function createModalCart() {
     createOrderContent(modalOrderBody);
     createOrderFooter(modalOrderBody);
     deleteOrderItem();
+    calcCounter();
 }
 
 function createSelectedItems(parent) {
@@ -320,37 +321,78 @@ function createOrderAmount(modalOrderNumInfo, i) {
     modalOrderAmount.classList.add('modal-order-amount');
     modalOrderNumInfo.appendChild(modalOrderAmount);
     createOrderAmountInit(modalOrderAmount, i);
-    createOrderAmountCounter(modalOrderAmount);
+    createOrderAmountCounter(modalOrderAmount, i);
 }
 
 function createOrderAmountInit(modalOrderAmount, i) {
     const modalOrderAmountInit = document.createElement('div');
     modalOrderAmountInit.classList.add('modal-order-amount-init');
     modalOrderAmountInit.innerText = cart[i]['amount'];
+    modalOrderAmountInit.setAttribute('data-counter', cart[i]['id']);
     modalOrderAmount.appendChild(modalOrderAmountInit);
 }
 
-function createOrderAmountCounter(modalOrderAmount) {
+function createOrderAmountCounter(modalOrderAmount, i) {
     const modalOrderAmountCounter = document.createElement('div');
     modalOrderAmountCounter.classList.add('modal-order-amount-counter');
     modalOrderAmount.appendChild(modalOrderAmountCounter);
-    OrderAmountPlus(modalOrderAmountCounter);
-    createOrderAmountMinus(modalOrderAmountCounter);
+    OrderAmountPlus(modalOrderAmountCounter, i);
+    createOrderAmountMinus(modalOrderAmountCounter, i);
 }
 
-function OrderAmountPlus(modalOrderAmountCounter) {
+function OrderAmountPlus(modalOrderAmountCounter, i) {
     const modalOrderAmountPlus = document.createElement('div');
     modalOrderAmountPlus.classList.add('modal-order-amount-plus');
     modalOrderAmountPlus.innerText = '+';
+    modalOrderAmountPlus.setAttribute('data-plus', cart[i]['id']);
     modalOrderAmountCounter.appendChild(modalOrderAmountPlus);
 }
 
-function createOrderAmountMinus(modalOrderAmountCounter) {
+function createOrderAmountMinus(modalOrderAmountCounter, i) {
     const modalOrderAmountMinus = document.createElement('div');
     modalOrderAmountMinus.classList.add('modal-order-amount-minus');
     modalOrderAmountMinus.innerText = '-';
+    modalOrderAmountMinus.setAttribute('data-minus', cart[i]['id']);
     modalOrderAmountCounter.appendChild(modalOrderAmountMinus);
 }
+
+// COUNTER
+function calcCounter() {
+    let content = document.getElementById('modalOrderContent');
+    let counter = document.querySelectorAll('.modal-order-amount-init');
+    content.addEventListener('click', (e) => {
+        let plusClick = e.target.getAttribute('data-plus');
+        let minusClick = e.target.getAttribute('data-minus');
+
+        for (let i = 0; i < counter.length; i++) {
+            let amount = parseInt(counter[i].innerText);
+            if (counter[i].dataset.counter === plusClick) {
+                amount += 1;
+                changeAmountValue(amount, i);
+            }
+            if (counter[i].dataset.counter === minusClick) {
+                if (amount <= 1) {
+                    counter[i].innerText = 1;
+                    amount = 1;
+                } else {
+                    amount -= 1;
+                    changeAmountValue(amount, i);
+                }
+            }
+        }
+    });
+}
+
+let changeAmountValue = (amount, i) => {
+    let counter = document.querySelectorAll('.modal-order-amount-init');
+    if (amount < 1) {
+        counter[i].innerText = 1;
+        amount = 1;
+    } else {
+        counter[i].innerText = amount;
+    }
+    return amount;
+};
 
 function createOrderSum(modalOrderNumInfo, i, j) {
     const modalOrderSum = document.createElement('div');
