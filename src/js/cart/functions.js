@@ -274,12 +274,13 @@ function sendOrder() {
             document.querySelector(`.parent-payment > .error`).style.display = 'none';
         }
         let inputs = document.querySelectorAll('.input-text');
-        console.log(Object.keys(validValues).length);
-        console.log(inputs.length);
+
         if (Object.keys(validValues).length === inputs.length && document.querySelector('input[type="radio"]').checked) {
             sendOrderBtn.classList.add('another-page');
             sendOrderBtn.setAttribute('data-page', '1');
             window.scrollTo(0, 0);
+            cart = [];
+            setCartToLocal();
             createModalThanks();
         }
     });
