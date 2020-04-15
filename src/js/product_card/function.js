@@ -63,11 +63,12 @@ let mnemonFunc = () => {
 };
 
 let createSubmitButtonReview = () => {
-    let input = document.createElement('input');
+    let button = document.createElement('button');
     let parent = document.querySelector('.review-info');
-    input.setAttribute('type', 'submit');
-    input.setAttribute('value', `Submit ${mnemonFunc()}`);
-    parent.append(input);
+    button.setAttribute('type', 'submit');
+    // button.setAttribute('value', `Submit ${mnemonFunc()}`);
+    button.innerHTML = `Submit ${mnemonFunc()}`;
+    parent.append(button);
 };
 
 let createSectionCategoryHead = () => {
@@ -391,12 +392,11 @@ let createUserReview = () => {
 // VALIDATION COMMENTS 
 
 function addSaveListenersToValidation() {
-    const submitButton = document.querySelector('input[type=submit]');
+    const submitButton = document.querySelector('button[type=submit]');
     const validElements = {};
 
     submitButton.addEventListener('click', (e) => {
         e.preventDefault();
-        createUserReview();
         const form = document.forms['review-form'];
         
         const elementsArr = Object.values(form);
@@ -414,7 +414,8 @@ function addSaveListenersToValidation() {
             validate(isValidValue, element.name);  
         }
 
-        if (!document.querySelector('.error')) {
+        if (!document.querySelector('.error-comment')) {
+            createUserReview();
             const ratingAmount = getRatingValue();
             let commentElem = new Comment(validElements.nameSurname, rating[ratingAmount - 1], validElements.empty);
             commentElem.pushToAr(commentElem);
@@ -435,13 +436,13 @@ function validate(isValid, key) {
     if (!isValid) { 
         if (key === 'nameSurname' && !document.querySelector('.name-error')) {
             const errorInput = document.querySelector(`input[name=${key}]`);
-            errorInput.insertAdjacentHTML('afterend', '<div class="error name-error">Your name isn\'t correct</div>');
+            errorInput.insertAdjacentHTML('afterend', '<div class="error-comment name-error">Your name isn\'t correct</div>');
         } else if (key === 'email' && !document.querySelector('.email-error')) {
             const errorInput = document.querySelector(`input[name=${key}]`);
-            errorInput.insertAdjacentHTML('afterend', '<div class="error email-error">Your email isn\'t correct</div>');
+            errorInput.insertAdjacentHTML('afterend', '<div class="error-comment email-error">Your email isn\'t correct</div>');
         } else if (key === 'empty' && !document.querySelector('.textarea-error')) {
             const errorInput = document.querySelector(`textarea[name=${key}]`);
-            errorInput.insertAdjacentHTML('afterend', '<div class="error textarea-error">Please, write your comment</div>');
+            errorInput.insertAdjacentHTML('afterend', '<div class="error-comment textarea-error">Please, write your comment</div>');
         }
     } else {
         if (key === 'nameSurname' && document.querySelector('.name-error')) {
