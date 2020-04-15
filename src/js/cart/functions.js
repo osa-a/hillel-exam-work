@@ -119,12 +119,15 @@ function createTextArea(orderForm) {
 
 function createRadioPaymentBlock(orderForm) {
     const radio = document.createElement('div');
-    radio.classList.add('radio');
+    radio.classList.add('radio', 'parent-error', `parent-payment`);
+    let error = document.createElement('div');
+    error.innerText = `You don't choose kind of payment`;
+    error.classList.add('error', 'error-radio');
     orderForm.appendChild(radio);
     let radioInfo = [
-        { id: 'orderBank', text: 'Direct bank transfer' },
-        { id: 'orderCheck', text: 'Check payments' },
-        { id: 'orderCash', text: 'Cash on delivery' }
+        { id: 'orderBank', text: 'Direct bank transfer', value: 'Bank' },
+        { id: 'orderCheck', text: 'Check payments', value: 'Check' },
+        { id: 'orderCash', text: 'Cash on delivery', value: 'Cash' }
     ];
     for (let i = 0; i < radioInfo.length; i++) {
         const div = document.createElement('div');
@@ -133,6 +136,7 @@ function createRadioPaymentBlock(orderForm) {
         input.setAttribute('type', 'radio');
         input.setAttribute('name', 'payment');
         input.setAttribute('id', radioInfo[i]['id']);
+        input.setAttribute('value', radioInfo[i]['value']);
         input.classList.add('radio-payment');
         div.appendChild(input);
         const label = document.createElement('label');
@@ -140,6 +144,7 @@ function createRadioPaymentBlock(orderForm) {
         label.innerText = radioInfo[i]['text'];
         div.appendChild(label);
     }
+    radio.appendChild(error);
 }
 
 function createBillingButtonBlock(orderForm) {
@@ -220,15 +225,15 @@ function closeModalThanks() {
     });
 }
 // FUNC THAT WILL SEND FORM //
-let validate = (isValid, key) => {
-    if (!isValid) {
+let validateCart = (isValidCart, key) => {
+    if (!isValidCart) {
         document.querySelector(`.parent-${key} > .error`).style.display = 'block';
     } else {
         document.querySelector(`.parent-${key} > .error`).style.display = 'none';
     }
 };
 
-let isValid = (value, key, pattern) => {
+let isValidCart = (value, key, pattern) => {
     return pattern[key].test(value);
 };
 
@@ -249,23 +254,29 @@ function sendOrder() {
         const validValues = {};
         const elements = document.forms.orderForm.elements;
         const elementsArr = Object.values(elements);
-        console.log(elementsArr);
         for (let element of elementsArr) {
-            if (!element.name) {
+            if (!element.name || element.name === 'payment') {
                 continue;
             }
-            console.log(element.value);
-            const isValueValid = isValid(element.value, element.name, valuePattern);
+
+            const isValueValid = isValidCart(element.value, element.name, valuePattern);
 
             if (isValueValid) {
                 validValues[element.name] = element.value;
             } else {
                 delete validValues[element.name];
             }
-            validate(isValueValid, element.name);
+            validateCart(isValueValid, element.name);
+        }
+        if (!document.querySelector('input[type="radio"]').checked) {
+            document.querySelector(`.parent-payment > .error`).style.display = 'block';
+        } else {
+            document.querySelector(`.parent-payment > .error`).style.display = 'none';
         }
         let inputs = document.querySelectorAll('.input-text');
-        if (Object.keys(validValues).length === inputs.length) {
+        console.log(Object.keys(validValues).length);
+        console.log(inputs.length);
+        if (Object.keys(validValues).length === inputs.length && document.querySelector('input[type="radio"]').checked) {
             sendOrderBtn.classList.add('another-page');
             sendOrderBtn.setAttribute('data-page', '1');
             window.scrollTo(0, 0);
