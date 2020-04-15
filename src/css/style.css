@@ -150,7 +150,8 @@ h6 {
     min-width: 600px;
     padding: 30px;
     background-color: #ffffff;
-    border: 1px solid #000000;
+    border: 3px solid #333333;
+    border-radius: 20px;
     position: relative;
     font-family: "OpenSans Regular", Helvetica, sans-serif; }
   .modal-order-close {
@@ -159,7 +160,9 @@ h6 {
     border: none;
     position: absolute;
     top: 1%;
-    right: 1%; }
+    right: 1%;
+    color: #dc3545;
+    font-weight: bold; }
   .modal-order-content {
     padding-bottom: 15px;
     max-height: 500px;
@@ -178,6 +181,7 @@ h6 {
     max-height: 100px; }
   .modal-order-info {
     margin-left: 70px;
+    border-radius: 10px;
     display: flex;
     flex-wrap: wrap; }
   .modal-order-delete {
@@ -186,7 +190,9 @@ h6 {
     border: none;
     position: absolute;
     top: 1%;
-    right: 1%; }
+    right: 1%;
+    color: #dc3545;
+    font-weight: bold; }
   .modal-order-name {
     margin-bottom: 15px;
     flex-basis: 100%; }
@@ -236,7 +242,8 @@ h6 {
     padding: 10px 20px 10px 20px;
     cursor: pointer;
     border: 1px solid #333;
-    outline: none; }
+    outline: none;
+    transition: all .4s ease-in-out; }
     .modal-order-button:hover {
       background-color: #333333;
       color: #ffffff; }

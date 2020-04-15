@@ -17,7 +17,6 @@
 .cart-body {
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   display: flex;
-  flex-wrap: wrap;
   padding-top: 30px; }
   .cart-body-wrapper {
     width: 1000px;
@@ -81,6 +80,7 @@
     color: #333; }
 
 .radio {
+  display: flex;
   margin-bottom: 40px;
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 15px;

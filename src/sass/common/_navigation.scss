@@ -113,7 +113,8 @@
     min-width: 600px;
     padding: 30px;
     background-color: $mainLightClr;
-    border: 1px solid $mainDarkClr;
+    border: 3px solid $footerBackround;
+    border-radius: 20px;
     position: relative;
     font-family: "OpenSans Regular", Helvetica, sans-serif;
   }
@@ -124,6 +125,8 @@
     position: absolute;
     top: 1%;
     right: 1%;
+    color: #dc3545;
+    font-weight: bold;
   }
   &-content {
     padding-bottom: 15px;
@@ -147,6 +150,7 @@
   }
   &-info {
     margin-left: 70px;
+    border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
   }
@@ -157,6 +161,8 @@
     position: absolute;
     top: 1%;
     right: 1%;
+    color: #dc3545;
+    font-weight: bold;
   }
   &-name {
     margin-bottom: 15px;
@@ -219,6 +225,7 @@
     cursor: pointer;
     border: 1px solid #333;
     outline: none;
+    transition: all .4s ease-in-out;
     &:hover {
       background-color: $footerBackround;
       color: $mainLightClr;

@@ -121,7 +121,7 @@ function createRadioPaymentBlock(orderForm) {
     const radio = document.createElement('div');
     radio.classList.add('radio', 'parent-error', `parent-payment`);
     let error = document.createElement('div');
-    error.innerText = `You don't choose kind of payment`;
+    error.innerText = `Please, choose a kind of payment`;
     error.classList.add('error', 'error-radio');
     orderForm.appendChild(radio);
     let radioInfo = [
@@ -131,6 +131,7 @@ function createRadioPaymentBlock(orderForm) {
     ];
     for (let i = 0; i < radioInfo.length; i++) {
         const div = document.createElement('div');
+        div.classList.add('pretty', 'p-default', 'p-round');
         radio.appendChild(div);
         const input = document.createElement('input');
         input.setAttribute('type', 'radio');
@@ -139,10 +140,13 @@ function createRadioPaymentBlock(orderForm) {
         input.setAttribute('value', radioInfo[i]['value']);
         input.classList.add('radio-payment');
         div.appendChild(input);
+        const divLable = document.createElement('div');
+        divLable.classList.add('state', 'p-success-o');
         const label = document.createElement('label');
         label.setAttribute('for', radioInfo[i]['id']);
         label.innerText = radioInfo[i]['text'];
-        div.appendChild(label);
+        divLable.appendChild(label);
+        div.appendChild(divLable);
     }
     radio.appendChild(error);
 }
