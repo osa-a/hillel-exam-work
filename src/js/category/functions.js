@@ -20,7 +20,7 @@ function createCategoryWrapper(category, shop, filteredArray) {
     const section = document.createElement('section');
     section.classList.add('category-wrapper');
     createFilterForm(section, shop);
-    if(filteredArray){
+    if (filteredArray) {
         createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
     }
     category.appendChild(section);
@@ -96,8 +96,10 @@ function createFilter(dataArray, form, filterClass, text) {
 
 function createCheckBox(container, dataArray, i, text) {
     let input = document.createElement('input');
+    let labelContainer = document.createElement('div');
     let label = document.createElement('label');
     let boxContainer = document.createElement('div');
+    boxContainer.classList.add('pretty', 'p-default', 'p-curve', 'check-container');
 
     input.setAttribute('type', 'checkbox');
     input.setAttribute('id', `box${dataArray[i]}`);
@@ -105,12 +107,14 @@ function createCheckBox(container, dataArray, i, text) {
     input.setAttribute('value', dataArray[i]);
     input.classList.add('checkbox-margin', 'checkbox');
 
+    labelContainer.classList.add('state', 'p-warning');
     label.setAttribute('for', `box${dataArray[i]}`);
     label.classList.add('filter-label');
     label.innerText = dataArray[i];
 
     boxContainer.appendChild(input);
-    boxContainer.appendChild(label);
+    labelContainer.appendChild(label);
+    boxContainer.appendChild(labelContainer);
     container.appendChild(boxContainer);
 }
 
