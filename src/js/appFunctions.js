@@ -372,12 +372,14 @@ function createOrderAmountMinus(modalOrderAmountCounter, i) {
 function calcCounter() {
     let content = document.getElementById('modalOrderContent');
     let counter = document.querySelectorAll('.modal-order-amount-init');
+    let sum = document.querySelectorAll('.modal-order-sum');
     content.addEventListener('click', (e) => {
         let plusClick = e.target.getAttribute('data-plus');
         let minusClick = e.target.getAttribute('data-minus');
 
         for (let i = 0; i < counter.length; i++) {
             let amount = counter[i].innerText = cart[i]['amount'];
+            let price = parseInt(sum[i].innerText) / cart[i]['amount'];
             if (counter[i].dataset.counter === plusClick) {
                 amount += 1;
                 changeAmountValue(amount, i);
@@ -391,7 +393,9 @@ function calcCounter() {
                     changeAmountValue(amount, i);
                 }
             }
-            sendToLS(cart);
+            sum[i].innerText = `${price * cart[i]['amount']}$`;
+            calcTotal();
+            setCartToLocal(cart);
         }
     });
 }
@@ -407,6 +411,7 @@ let changeAmountValue = (amount, i) => {
     }
     return amount;
 };
+
 
 function createOrderSum(modalOrderNumInfo, i, j) {
     const modalOrderSum = document.createElement('div');
@@ -476,6 +481,11 @@ function createOrderTotal(parent) {
     const modalOrderTotal = document.createElement('div');
     modalOrderTotal.classList.add('modal-order-total');
     parent.appendChild(modalOrderTotal);
+    calcTotal();
+}
+
+function calcTotal() {
+    const modalOrderTotal = document.querySelector('.modal-order-total');
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
         for (let j = 0; j < items.length; j++) {
