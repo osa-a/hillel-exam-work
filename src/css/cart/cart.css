@@ -46,6 +46,7 @@
         color: #ffffff; }
 
 .input-text {
+  width: 100%;
   outline: none;
   border: none;
   border-bottom: 1px solid #333;

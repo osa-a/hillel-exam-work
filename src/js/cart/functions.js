@@ -48,12 +48,12 @@ function createInputs(orderForm) {
     ];
     for (let i = 0; i < inputHalf.length; i++) {
         let inputBlock = document.createElement('div');
-        inputBlock.classList.add('parent-error', `parent-${inputHalf[i]['name']}`);
+        inputBlock.classList.add('parent-error', `parent-${inputHalf[i]['name']}`, 'input-half');
         let input = document.createElement('input');
         input.setAttribute('type', 'text');
         input.setAttribute('name', inputHalf[i]['name']);
         input.setAttribute('placeholder', inputHalf[i]['placeholder']);
-        input.classList.add('input-text', 'input-half');
+        input.classList.add('input-text');
         let error = document.createElement('div');
         error.innerText = `Incorrect ${inputHalf[i]['placeholder']}`;
         error.classList.add('error');
@@ -94,7 +94,7 @@ function createInputs(orderForm) {
         let divFullBlock = document.createElement('div');
         divFullBlock.classList.add('parent-error', `parent-${inputFull[j]['name']}`);
         let input = document.createElement('input');
-        input.classList.add('input-text', 'input-text', 'input-full');
+        input.classList.add('input-text', 'input-full');
         input.setAttribute('type', inputFull[j]['type']);
         input.setAttribute('name', inputFull[j]['name']);
         input.setAttribute('placeholder', inputFull[j]['placeholder']);
@@ -254,7 +254,7 @@ function sendOrder() {
             if (!element.name) {
                 continue;
             }
-            console.log(element);
+            console.log(element.value);
             const isValueValid = isValid(element.value, element.name, valuePattern);
 
             if (isValueValid) {
