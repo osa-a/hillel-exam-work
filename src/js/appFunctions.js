@@ -30,9 +30,9 @@ function switchPage(page, reload) {
             watchPriceRange();
             break;
         case '5':
+            getCartLocal();
             if (cart.length > 0) {
                 createCartPage(reload);
-                sendOrder();
             } else {
                 createModalCart();
             }

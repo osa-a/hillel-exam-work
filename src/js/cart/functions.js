@@ -146,16 +146,8 @@ function createCartPageOrder(cartBody) {
     const order = document.createElement('section');
     order.classList.add('order');
     cartBody.appendChild(order);
-    const orderTitle = document.createElement('div');
-    orderTitle.classList.add('order-title');
-    orderTitle.innerText = 'Your order';
-    order.appendChild(orderTitle);
-    const orderContent = document.createElement('div');
-    orderContent.classList.add('order-contentcart');
-    order.appendChild(orderContent);
-    // FUNC THAT WILL SHOW ITEMS THAT USER ADD TO CART //
-    createSelectedItems(orderContent); 
-    createOrderTotal(order);
+    createOrderHeader(order);
+    createOrderContent(order);
 }
 
 // CREATE MODAL THANKS //
