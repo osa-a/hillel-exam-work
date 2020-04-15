@@ -47,12 +47,19 @@ function createInputs(orderForm) {
         { name: 'surname', placeholder: 'Second Name *' }
     ];
     for (let i = 0; i < inputHalf.length; i++) {
+        let inputBlock = document.createElement('div');
+        inputBlock.classList.add('parent-error', `parent-${inputHalf[i]['name']}`);
         let input = document.createElement('input');
         input.setAttribute('type', 'text');
         input.setAttribute('name', inputHalf[i]['name']);
         input.setAttribute('placeholder', inputHalf[i]['placeholder']);
         input.classList.add('input-text', 'input-half');
-        divHalfBlock.appendChild(input);
+        let error = document.createElement('div');
+        error.innerText = `Incorrect ${inputHalf[i]['placeholder']}`;
+        error.classList.add('error');
+        inputBlock.appendChild(input);
+        inputBlock.appendChild(error);
+        divHalfBlock.appendChild(inputBlock);
     }
     orderForm.appendChild(divHalfBlock);
 
@@ -85,12 +92,17 @@ function createInputs(orderForm) {
     ];
     for (let j = 0; j < inputFull.length; j++) {
         let divFullBlock = document.createElement('div');
+        divFullBlock.classList.add('parent-error', `parent-${inputFull[j]['name']}`);
         let input = document.createElement('input');
         input.classList.add('input-text', 'input-text', 'input-full');
         input.setAttribute('type', inputFull[j]['type']);
         input.setAttribute('name', inputFull[j]['name']);
         input.setAttribute('placeholder', inputFull[j]['placeholder']);
+        let error = document.createElement('div');
+        error.innerText = `Incorrect ${inputFull[j]['placeholder']}`;
+        error.classList.add('error');
         divFullBlock.appendChild(input);
+        divFullBlock.appendChild(error);
         orderForm.appendChild(divFullBlock);
     }
 }
@@ -208,14 +220,56 @@ function closeModalThanks() {
     });
 }
 // FUNC THAT WILL SEND FORM //
+let validate = (isValid, key) => {
+    if (!isValid) {
+        document.querySelector(`.parent-${key} > .error`).style.display = 'block';
+    } else {
+        document.querySelector(`.parent-${key} > .error`).style.display = 'none';
+    }
+};
+
+let isValid = (value, key, pattern) => {
+    return pattern[key].test(value);
+};
+
 function sendOrder() {
     const sendOrderBtn = document.getElementById('sendOrderBtn');
     sendOrderBtn.addEventListener('click', function () {
         // validation of form
-        // if all is ok, creat modalThanks
-        sendOrderBtn.classList.add('another-page');
-        sendOrderBtn.setAttribute('data-page', '1');
-        window.scrollTo(0, 0);
-        createModalThanks();
+        const valuePattern = {
+            name: /^[A-Z][a-z]{1,}$/,
+            surname: /^[A-Z][a-z]{1,}$/,
+            address: /^[0-9]{1,7}((\-|\s)?[A-Z]?[a-z]{1,}){0,5}[str]\.\/\d{1,4}$/,
+            city: /^([A-Z]{2,3}|[the[A-Z][a-z]{1,}(\s[A-Z]?[a-z]{1,}){0,8})$/,
+            country: /^([A-Z]{2,3}|[the[A-Z][a-z]{1,}(\s[A-Z]?[a-z]{1,}){0,8})$/,
+            phone: /^((\+38)?[\(\-]?)?0\d{2}[\)\-]?\d{3}\-?\d{2}\-?\d{2}$/,
+            email: /^[0-9a-z]+([_\.]?[a-z0-9]{1,10}){0,2}@[a-z]{2,7}\.[a-z]{2,4}$/,
+        };
+
+        const validValues = {};
+        const elements = document.forms.orderForm.elements;
+        const elementsArr = Object.values(elements);
+        console.log(elementsArr);
+        for (let element of elementsArr) {
+            if (!element.name) {
+                continue;
+            }
+            console.log(element);
+            const isValueValid = isValid(element.value, element.name, valuePattern);
+
+            if (isValueValid) {
+                validValues[element.name] = element.value;
+            } else {
+                delete validValues[element.name];
+            }
+            validate(isValueValid, element.name);
+        }
+        let inputs = document.querySelectorAll('.input-text');
+        if (Object.keys(validValues).length === inputs.length) {
+            sendOrderBtn.classList.add('another-page');
+            sendOrderBtn.setAttribute('data-page', '1');
+            window.scrollTo(0, 0);
+            createModalThanks();
+        }
     });
 }
