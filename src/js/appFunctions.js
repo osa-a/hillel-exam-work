@@ -290,11 +290,13 @@ function createOrderDeleteBtn(modalOrderItem, i) {
 function deleteOrderItem() {
     const modalOrderContent = document.getElementById('modalOrderContent');
     modalOrderContent.addEventListener('click', (e) => {
+        let page = getDataFromSession('page');
         let clicked = e.target.getAttribute('data-delete');
         if (!clicked) {
             return;
         }
         const modalOrderItem = document.querySelectorAll('.modal-order-item');
+        const modalOrderDelete = document.querySelectorAll('.modal-order-delete');
         for (let i = 0; i < modalOrderItem.length; i++) {
             if (modalOrderItem[i].dataset.selected === clicked) {
                 modalOrderItem[i].remove();
@@ -306,9 +308,15 @@ function deleteOrderItem() {
                 }
             }
             if (modalOrderItem.length === 1) {
-                let modalOrder = document.getElementById('modalOrder');
-                document.body.style.overflow = 'auto';
-                modalOrder.remove();
+                if (page === '5') {
+                    modalOrderDelete[i].classList.add('another-page');
+                    modalOrderDelete[i].setAttribute('data-page', '1');
+                    window.scrollTo(0, 0);
+                } else {
+                    let modalOrder = document.getElementById('modalOrder');
+                    document.body.style.overflow = 'auto';
+                    modalOrder.remove();
+                }
             }
         }
     });
