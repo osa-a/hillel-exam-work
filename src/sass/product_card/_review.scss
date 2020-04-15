@@ -1,11 +1,11 @@
-// form 
+// form
 
 .review-form {
-    @include flex($fd:column, $jc:stretch, $ai:stretch, $fw:wrap);
+    @include flex($fd: column, $jc: stretch, $ai: stretch, $fw: wrap);
     margin-top: 70px;
-    
+
     input {
-        @include font(18px, 21px, $fw:400);
+        @include font(18px, 21px, $fw: 400);
         min-width: 800px;
         height: 50px;
         display: block;
@@ -16,21 +16,21 @@
 
     .review-info__add-review {
         font-weight: 700px;
-        font-size: 28px; 
+        font-size: 28px;
     }
 
     .review-info__sub-info {
         font-style: italic;
-        font-size: 14px; 
+        font-size: 14px;
     }
 
     .review-info__rating {
         font-size: 21px;
-        line-height: 50px; 
+        line-height: 50px;
     }
 
     textarea {
-        @include font(18px, 21px, $fw:400);
+        @include font(18px, 21px, $fw: 400);
         min-width: 800px;
         border: none;
         border-bottom: 1px solid #000;
@@ -38,8 +38,8 @@
         height: 100px;
     }
 
-    button[type=submit] {
-        @include font(21px, 25px, $fw:400);
+    button[type="submit"] {
+        @include font(21px, 25px, $fw: 400);
         display: block;
         margin-bottom: 40px;
         margin-top: 10px;
@@ -50,7 +50,7 @@
     }
 
     .review-info p {
-        @include pm_zeroSet(); 
+        @include pm_zeroSet();
     }
 
     .chose-rating {
@@ -58,14 +58,13 @@
     }
 }
 
-// review 
+// review
 
 .review-block {
-
     .review-item {
         @include pm_zeroSet();
-        @include flex($fd:row, $jc:stretch, $ai:stretch, $fw:nowrap);
-        
+        @include flex($fd: row, $jc: stretch, $ai: stretch, $fw: nowrap);
+
         max-width: 800px;
         border-bottom: 1px solid rgb(204, 204, 204);
         padding-bottom: 10px;
@@ -74,7 +73,7 @@
         .user-avatar {
             margin-right: 50px;
             display: inline;
-            
+
             img {
                 border: 1px solid rgb(204, 204, 204);
             }
@@ -82,24 +81,24 @@
     }
 
     .review-title {
-        @include flex($fd:row, $jc:space-between, $ai:stretch, $fw:wrap);
+        @include flex($fd: row, $jc: space-between, $ai: stretch, $fw: wrap);
         width: 640px;
 
         .user-name {
-            @include font(18px, 21px, $fw:400);
+            @include font(18px, 21px, $fw: 400);
             margin: 0;
             padding-top: 5px;
         }
     }
 
     .review-date {
-        @include font(13px, 21px, $fw:400);
+        @include font(13px, 21px, $fw: 400);
         margin: 0;
         opacity: 0.5;
     }
 
     .review-content {
-        @include font(16px, 21px, $fw:400);
+        @include font(16px, 21px, $fw: 400);
         padding-top: 20px;
         padding-bottom: 15px;
         line-height: 25px;
@@ -108,4 +107,13 @@
 
 .hidden {
     display: none;
+}
+
+button.submit-item-card-btn {
+    transition: all 0.4s ease-in-out;
+    &:hover {
+        border: 1px solid transparent;
+        background-color: #6e9e63;
+        color: #ffffff;
+    }
 }

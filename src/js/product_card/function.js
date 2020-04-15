@@ -65,6 +65,7 @@ let mnemonFunc = () => {
 let createSubmitButtonReview = () => {
     let button = document.createElement('button');
     let parent = document.querySelector('.review-info');
+    button.classList.add('submit-item-card-btn');
     button.setAttribute('type', 'submit');
     // button.setAttribute('value', `Submit ${mnemonFunc()}`);
     button.innerHTML = `Submit ${mnemonFunc()}`;
