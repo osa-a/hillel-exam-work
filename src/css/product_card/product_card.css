@@ -27,7 +27,12 @@
   flex-wrap: wrap; }
   .item-card__mini-reviewer img {
     border: 1px solid #cccccc;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all .1s ease-in-out; }
+    .item-card__mini-reviewer img:hover {
+      border-radius: 10px;
+      border: 2px solid #636363; }
 
 .item-card__max-reviewer {
   margin-left: 50px; }
@@ -97,14 +102,16 @@
   font-size: 20px;
   line-height: 1.2;
   font-weight: 400;
-  border: 1px solid #000;
+  border: 1px solid #000000;
   background-color: transparent;
-  height: 50px;
-  width: 90px;
+  padding: 10px 25px;
   color: #373737;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: all 0.4s ease-in-out; }
   .buy-block__button .item-card-btn:hover {
-    background-color: #dddddd; }
+    border: 1px solid transparent;
+    background-color: #6e9e63;
+    color: #ffffff; }
 
 .item-card__info-of-good--id {
   font-size: 16px;
@@ -137,9 +144,9 @@
     font-size: 28px; }
   .review-form .review-info__sub-info {
     font-style: italic;
-    font-size: 16px; }
+    font-size: 14px; }
   .review-form .review-info__rating {
-    font-size: 23px;
+    font-size: 21px;
     line-height: 50px; }
   .review-form textarea {
     font-size: 18px;
@@ -204,13 +211,15 @@
   font-size: 16px;
   line-height: 21px;
   font-weight: 400;
-  margin-top: 10px; }
+  padding-top: 20px;
+  padding-bottom: 15px;
+  line-height: 25px; }
 
 .hidden {
   display: none; }
 
 .switches {
-  margin-top: 90px; }
+  margin-top: 50px; }
   .switches .description-window__btn,
   .switches .review-window__btn {
     font-size: 16px;

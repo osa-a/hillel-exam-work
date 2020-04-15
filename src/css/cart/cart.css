@@ -40,6 +40,7 @@
       cursor: pointer;
       border: 1px solid #333;
       font-family: "OpenSans Regular", Helvetica, sans-serif;
+      transition: all .4s ease-in-out;
       outline: none; }
       .billing-button-body:hover {
         background-color: #333333;

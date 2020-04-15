@@ -21,11 +21,11 @@
 
     .review-info__sub-info {
         font-style: italic;
-        font-size: 16px; 
+        font-size: 14px; 
     }
 
     .review-info__rating {
-        font-size: 23px;
+        font-size: 21px;
         line-height: 50px; 
     }
 
@@ -96,12 +96,12 @@
 
     .review-content {
         @include font(16px, 21px, $fw:400);
-        margin-top: 10px;
+        padding-top: 20px;
+        padding-bottom: 15px;
+        line-height: 25px;
     }
 }
 
 .hidden {
     display: none;
 }
-
-

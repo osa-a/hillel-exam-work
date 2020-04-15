@@ -86,6 +86,9 @@ function createAboutUs(homepage) {
     aboutImg.classList.add('about-img');
     aboutImg.setAttribute('src', 'img/homepage/3.png');
     aboutImg.setAttribute('alt', 'director');
+    const texture = document.createElement('img');
+    texture.classList.add('texture');
+    texture.setAttribute('src', 'img/homepage/dot.png');
     const aboutInfo = document.createElement('div');
     aboutInfo.classList.add('about-info');
     const aboutHeader = document.createElement('h2');
@@ -106,6 +109,7 @@ function createAboutUs(homepage) {
     aboutInfo.appendChild(signatureName);
     aboutInfo.appendChild(signaturePosition);
     section.appendChild(aboutImg);
+    section.appendChild(texture);
     section.appendChild(aboutInfo);
     homepage.appendChild(section);
 }

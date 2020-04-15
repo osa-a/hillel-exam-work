@@ -10,6 +10,12 @@
     img {
         border: 1px solid rgb(204, 204, 204);
         margin-bottom: 10px;
+        cursor: pointer;
+        transition: all .1s ease-in-out;
+        &:hover{
+            border-radius: 10px;
+            border: 2px solid #636363;
+        }
     }
 }
 
@@ -99,16 +105,18 @@
 }
 
 .buy-block__button {
-    .item-card-btn{
+    .item-card-btn {
         @include font(20px, 1.2, 400);
-        border: 1px solid #000;
+        border: 1px solid #000000;
         background-color: transparent;
-        height: 50px;
-        width: 90px;
+        padding: 10px 25px;
         color: rgb(55, 55, 55);
         cursor: pointer;
+        transition: all 0.4s ease-in-out;
         &:hover {
-            background-color: rgb(221, 221, 221);
+            border: 1px solid transparent;
+            background-color: #6e9e63;
+            color: #ffffff;
         }
     }
 }

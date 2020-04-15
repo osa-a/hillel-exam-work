@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 125px;
+  position: relative;
 }
 
 .about-info {
@@ -11,7 +12,7 @@
   margin-top: 50px;
 }
 
-.about-img{
+.about-img {
   width: 512px;
   height: 609px;
 }
@@ -30,8 +31,17 @@
   text-align: justify;
 }
 
-.about-signature-name{
+.about-signature-name {
   @include setFont($eighteenSize);
   line-height: 35px;
   max-width: 700px;
+}
+
+.texture {
+  position: absolute;
+  width: 500px;
+  height: 600px;
+  top: -10%;
+  left: 20%;
+  z-index: -1;
 }
