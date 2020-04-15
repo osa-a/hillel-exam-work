@@ -237,6 +237,7 @@ function createModalCart() {
     createOrderHeader(modalOrderBody);
     createOrderContent(modalOrderBody);
     createOrderFooter(modalOrderBody);
+    calcTotal();
     deleteOrderItem();
     calcCounter();
 }
@@ -481,7 +482,6 @@ function createOrderTotal(parent) {
     const modalOrderTotal = document.createElement('div');
     modalOrderTotal.classList.add('modal-order-total');
     parent.appendChild(modalOrderTotal);
-    calcTotal();
 }
 
 function calcTotal() {

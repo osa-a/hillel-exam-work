@@ -148,6 +148,7 @@ function createCartPageOrder(cartBody) {
     cartBody.appendChild(order);
     createOrderHeader(order);
     createOrderContent(order);
+    createOrderTotal(order);
 }
 
 // CREATE MODAL THANKS //
