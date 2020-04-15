@@ -566,39 +566,42 @@ function closeOrderCart() {
     let modalOrderClose = document.getElementById('modalOrderClose');
     let modalOrder = document.getElementById('modalOrder');
     modalOrderClose.addEventListener('click', () => {
-        document.body.style.overflow = 'auto';
-        modalOrder.remove();
+        if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
+            modalOrderClose.classList.add('another-page');
+            modalOrderClose.setAttribute('data-page', '5');
+        }
+        removeModalCart();
     });
 }
 
 function continueOrder() {
-    let modalOrderContinue = document.getElementById('modalOrderContinue');
     let modalOrder = document.getElementById('modalOrder');
+    let modalOrderContinue = document.getElementById('modalOrderContinue');
     modalOrderContinue.addEventListener('click', () => {
-        document.body.style.overflow = 'auto';
-        modalOrder.remove();
+        if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
+            modalOrderContinue.classList.add('another-page');
+            modalOrderContinue.setAttribute('data-page', '4');
+        }
+        removeModalCart();
     });
 }
 
 function openOrder() {
     let modalOrderCheckout = document.getElementById('modalOrderCheckout');
-    let modalOrder = document.getElementById('modalOrder');
     modalOrderCheckout.addEventListener('click', () => {
         modalOrderCheckout.classList.add('another-page');
         modalOrderCheckout.setAttribute('data-page', '5');
-        document.body.style.overflow = 'auto';
-        modalOrder.remove();
+        removeModalCart();
     });
 }
 
 function startShopping() {
     let cartButtonShopping = document.getElementById('modalOrderShopping');
-    let modalOrder = document.getElementById('modalOrder');
+    removeModalCart();
     cartButtonShopping.addEventListener('click', () => {
         cartButtonShopping.classList.add('another-page');
         cartButtonShopping.setAttribute('data-page', '4');
-        document.body.style.overflow = 'auto';
-        modalOrder.remove();
+        removeModalCart();
     });
 }
 
