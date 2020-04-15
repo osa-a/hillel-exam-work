@@ -1,8 +1,40 @@
 'use strict';
 
-function createHomepageHead(homepage) {
-    const section = document.createElement('section');
-    section.classList.add('homepage-head');
+function createHomepageSlider(homepage, slider) {
+    const carouselWrapper = document.createElement('div');
+    carouselWrapper.classList.add('carousel', 'slide');
+    carouselWrapper.setAttribute('id', 'homePageCarousel');
+    carouselWrapper.setAttribute('data-ride', 'carousel');
+    const indicators = document.createElement('ol');
+    indicators.classList.add('carousel-indicators');
+    for (let i = 0; i < slider.length; i++) {
+        const indicatorElem = document.createElement('li');
+        indicatorElem.setAttribute('data-target', '#homePageCarousel');
+        indicatorElem.setAttribute('data-slide-to', i);
+        indicators.appendChild(indicatorElem);
+    }
+    carouselWrapper.appendChild(indicators);
+    const carousel = document.createElement('div');
+    carousel.classList.add('carousel-inner');
+    for (let i = 0; i < slider.length; i++) {
+        const slide = document.createElement('div');
+        slide.classList.add('carousel-item');
+        if (i === 0) {
+            slide.classList.add('active');
+        }
+        const slideImg = document.createElement('img');
+        slideImg.classList.add('d-block', 'w-100','slider-img');
+        slideImg.setAttribute('alt', 'decor');
+        slideImg.setAttribute('src', `./img/homepage/slider/${slider[i]}`);
+        slide.appendChild(slideImg);
+        carousel.appendChild(slide);
+    }
+    carouselWrapper.appendChild(carousel);
+    createSliderText(carouselWrapper);
+    homepage.appendChild(carouselWrapper);
+}
+
+function createSliderText(wrapper) {
     const textBlock = document.createElement('div');
     textBlock.classList.add('head-text-block');
     const firstHeader = document.createElement('h1');
@@ -20,8 +52,7 @@ function createHomepageHead(homepage) {
     textBlock.appendChild(firstHeader);
     textBlock.appendChild(secondHeader);
     textBlock.appendChild(buyButton);
-    section.appendChild(textBlock);
-    homepage.appendChild(section);
+    wrapper.appendChild(textBlock);
 }
 
 function createBanner(homepage) {

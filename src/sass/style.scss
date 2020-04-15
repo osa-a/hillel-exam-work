@@ -1,12 +1,12 @@
-@import 'fonts';
-@import 'variables';
-@import 'mixin';
+@import "fonts";
+@import "variables";
+@import "mixin";
 
 @include mainSet();
 @include listReset();
 @include linkSet();
 @include headingReset();
 
-@import 'common/navigation';
-@import 'common/small-item-cards';
-@import 'common/footer';
+@import "common/navigation";
+@import "common/small-item-cards";
+@import "common/footer";

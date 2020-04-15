@@ -1,12 +1,11 @@
-.homepage-head {
-  display: flex;
-  justify-content: flex-end;
-  background-image: url("../../img/homepage/1.png");
-  @include backgroundSet();
-  padding: 276px 115px 272px;
+.carousel {
+  position: relative;
 }
 
 .head-text-block {
+  position: absolute;
+  top: 25%;
+  left: 55%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,23 +15,31 @@
   font-family: "OpenSans Bold", Helvetica, sans-serif;
   font-size: 100px;
   line-height: 100px;
-  color: $mainDarkClr;
+  color: $mainLightClr;
   margin-bottom: 50px;
 }
 
 .header-description {
   @include setFont($thirtysize);
-  color: $descriptionClr;
+  color: $mainLightClr;
   margin-bottom: 37px;
 }
 
 .head-buy-button {
   @include setFont($thirtysize);
-  @include buttonSet();
   padding: 23px 45px;
-  &:hover {
+  transition: all .4s ease-in-out;
+  color: $mainLightClr;
+  border: 2px solid $mainLightClr;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover{
     border: 2px solid transparent;
     background-color: $headAccentClr;
     color: $mainLightClr;
   }
+}
+
+.slider-img{
+  filter: brightness(50%);
 }

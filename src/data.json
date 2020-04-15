@@ -1,7 +1,23 @@
 {
-    "categories" :["Furniture", "Decoration"],
-    "material" :["Wood", "Wool", "Metal", "Stone", "Glass"],
-    "type" :["Chair", "Textile", "Light", "Table", "Vase", "Picture"],
+    "categories": [
+        "Furniture",
+        "Decoration"
+    ],
+    "material": [
+        "Wood",
+        "Wool",
+        "Metal",
+        "Stone",
+        "Glass"
+    ],
+    "type": [
+        "Chair",
+        "Textile",
+        "Light",
+        "Table",
+        "Vase",
+        "Picture"
+    ],
     "descriptions": {
         "76": "This is the softest chair in the whole goddamn world. You'll never be disappointed in this chair. Buy it, my friend, buy!",
         "4gh": "This beautiful and colorful blanket is just for your soft and beautiful skin. Gimme your money and I'll give you this piece of gold. ",
@@ -16,18 +32,83 @@
         "5b": "LAMP. MORE LAMPS IN OUR SHOP. I LOVE LAMPS. I WANT AAAAALLLLLL THE LAMPS IN THIS WORLD. I WANNA BE AS BEAUTIFUL AS LAMP.",
         "51": "Colorful planting vase set. Amazingly fit with the Tweed Armchair. Buy both and forget about troubles. This set will solve it automatically. Good luck, have fun."
     },
-    "smallImg":{
-        "76": ["76-1.png","76-2.png","76-3.png","76-4.png" ] ,
-        "4gh": ["4gh-1.png","4gh-2.png","4gh-3.png","4gh-4.png" ] ,
-        "74":["74-1.png","74-2.png","74-3.png","74-4.png" ],
-        "k78":["k78-1.png","k78-2.png","k78-3.png","k78-4.png" ],
-        "1s3":["1s3-1.png","1s3-2.png","1s3-3.png","1s3-4.png" ],
-        "75t":["75t-1.png","75t-2.png","75t-3.png","75t-4.png" ],
-        "kg":["kg-1.png","kg-2.png","kg-3.png","kg-4.png" ],
-        "24d":["24d-1.png","24d-2.png","24d-3.png","24d-4.png" ],
-        "54vt":["54vt-1.png","54vt-2.png","54vt-3.png","54vt-4.png" ],
-        "9mn":["9mn-1.png","9mn-2.png","9mn-3.png","9mn-4.png" ],
-        "5b":["5b-1.png","5b-2.png","5b-3.png","5b-4.png" ],
-        "51":["51-1.png","51-2.png","51-3.png","51-4.png" ]
-    }
+    "smallImg": {
+        "76": [
+            "76-1.png",
+            "76-2.png",
+            "76-3.png",
+            "76-4.png"
+        ],
+        "4gh": [
+            "4gh-1.png",
+            "4gh-2.png",
+            "4gh-3.png",
+            "4gh-4.png"
+        ],
+        "74": [
+            "74-1.png",
+            "74-2.png",
+            "74-3.png",
+            "74-4.png"
+        ],
+        "k78": [
+            "k78-1.png",
+            "k78-2.png",
+            "k78-3.png",
+            "k78-4.png"
+        ],
+        "1s3": [
+            "1s3-1.png",
+            "1s3-2.png",
+            "1s3-3.png",
+            "1s3-4.png"
+        ],
+        "75t": [
+            "75t-1.png",
+            "75t-2.png",
+            "75t-3.png",
+            "75t-4.png"
+        ],
+        "kg": [
+            "kg-1.png",
+            "kg-2.png",
+            "kg-3.png",
+            "kg-4.png"
+        ],
+        "24d": [
+            "24d-1.png",
+            "24d-2.png",
+            "24d-3.png",
+            "24d-4.png"
+        ],
+        "54vt": [
+            "54vt-1.png",
+            "54vt-2.png",
+            "54vt-3.png",
+            "54vt-4.png"
+        ],
+        "9mn": [
+            "9mn-1.png",
+            "9mn-2.png",
+            "9mn-3.png",
+            "9mn-4.png"
+        ],
+        "5b": [
+            "5b-1.png",
+            "5b-2.png",
+            "5b-3.png",
+            "5b-4.png"
+        ],
+        "51": [
+            "51-1.png",
+            "51-2.png",
+            "51-3.png",
+            "51-4.png"
+        ]
+    },
+    "slider": [
+        "1.png",
+        "2.png",
+        "3.png"
+    ]
 }

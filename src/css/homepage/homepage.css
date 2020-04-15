@@ -1,16 +1,13 @@
 /*   MAIN CLR  */
 /*   ACCENT CLR   */
 /*   FONT SIZES   */
-.homepage-head {
-  display: flex;
-  justify-content: flex-end;
-  background-image: url("../../img/homepage/1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 276px 115px 272px; }
+.carousel {
+  position: relative; }
 
 .head-text-block {
+  position: absolute;
+  top: 25%;
+  left: 55%;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -19,7 +16,7 @@
   font-family: "OpenSans Bold", Helvetica, sans-serif;
   font-size: 100px;
   line-height: 100px;
-  color: #000000;
+  color: #ffffff;
   margin-bottom: 50px; }
 
 .header-description {
@@ -27,7 +24,7 @@
   font-size: 30px;
   line-height: 30px;
   font-weight: 400;
-  color: #8e8e8e;
+  color: #ffffff;
   margin-bottom: 37px; }
 
 .head-buy-button {
@@ -35,27 +32,35 @@
   font-size: 30px;
   line-height: 30px;
   font-weight: 400;
+  padding: 23px 45px;
+  transition: all .4s ease-in-out;
+  color: #ffffff;
+  border: 2px solid #ffffff;
   background-color: transparent;
-  border: 2px solid #000000;
-  color: #000000;
-  cursor: pointer;
-  padding: 23px 45px; }
+  cursor: pointer; }
   .head-buy-button:hover {
     border: 2px solid transparent;
-    background-color: #ff518f;
+    background-color: #d1cdca;
     color: #ffffff; }
+
+.slider-img {
+  filter: brightness(50%); }
 
 .banner-head {
   display: flex;
-  justify-content: space-around;
-  padding-top: 185px;
-  padding-bottom: 185px; }
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #ece7dd; }
 
 .banner-info {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding-top: 120px; }
+  padding-top: 120px;
+  margin-right: 200px; }
 
 .banner-text {
   font-family: "OpenSans Regular", Helvetica, sans-serif;
@@ -63,8 +68,8 @@
   line-height: 72px;
   font-weight: 400;
   max-width: 420px;
-  color: #000000;
-  margin-bottom: 105px;
+  color: #574c3c;
+  margin-bottom: 75px;
   text-align: right; }
 
 .banner-button {
@@ -74,13 +79,14 @@
   line-height: 24px;
   font-weight: 400;
   background-color: transparent;
-  border: 2px solid #000000;
-  color: #000000;
+  border: 2px solid #574c3c;
+  color: #574c3c;
   cursor: pointer;
-  padding: 23px 20px; }
+  padding: 23px 20px;
+  transition: all 0.4s ease-in-out; }
   .banner-button:hover {
-    background-color: #df8647;
     border: 2px solid transparent;
+    background-color: #bf9f4e;
     color: #ffffff; }
 
 .shop-line {

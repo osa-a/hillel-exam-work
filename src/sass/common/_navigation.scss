@@ -6,11 +6,11 @@
 .navigation {
   display: flex;
   justify-content: space-around;
-  padding: 50px 75px;
+  padding: 25px 75px;
   border-bottom: 1px solid $mainDarkClr;
 }
 
-.header-logo{
+.header-logo {
   cursor: pointer;
 }
 
@@ -27,6 +27,7 @@
 .nav-item {
   border-bottom: 2px solid transparent;
   cursor: pointer;
+  transition: all .2s ease-in-out;
   &:not(:last-child) {
     margin-right: 72px;
   }
@@ -93,11 +94,12 @@
 }
 
 /*   MODAL CART   */
+
 .modal-order {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, .9);
+  background: rgba(0, 0, 0, 0.9);
   position: fixed;
   top: 0;
   left: 0;
@@ -226,7 +228,3 @@
     margin-right: 10px;
   }
 }
-
-
-
-

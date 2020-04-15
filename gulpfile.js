@@ -9,7 +9,7 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const autoprefixer = require('gulp-autoprefixer');
 const imagemin = require('gulp-imagemin');
-const csso = require('gulp-csso'); 
+const csso = require('gulp-csso');
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 const cssConcat = require('gulp-concat-css');
@@ -40,7 +40,7 @@ const jsDefault = () => {
             "presets": ["@babel/preset-env"],
             "plugins": [
                 "@babel/plugin-proposal-class-properties",
-              ]
+            ]
         }))
         .pipe(uglify())
         .pipe(concat('app.js'))
@@ -91,9 +91,9 @@ gulp.task('move', () => {
 
 gulp.task('images', () => {
     return gulp.src('./src/img/**/*.*')
-//! не запускайте минификацию изображений
-//! очень-очень долго будет грузить
-//! это уже для финальной сборки
+        //! не запускайте минификацию изображений
+        //! очень-очень долго будет грузить
+        //! это уже для финальной сборки
         // .pipe(imagemin())
         .pipe(gulp.dest('./build/img'));
 });
@@ -103,7 +103,7 @@ gulp.task('fonts', () => {
         .pipe(gulp.dest('./build/fonts'));
 });
 
-gulp.task('compile', gulp.series('sass', cssDefault, 'images','fonts', jsDefault, 'move'));
+gulp.task('compile', gulp.series('sass', cssDefault, 'images', 'fonts', jsDefault, 'move'));
 
 gulp.task('server', () => {
     browserSync.init({

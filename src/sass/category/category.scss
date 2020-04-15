@@ -14,7 +14,7 @@
 
 .category-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding-top: 70px;
   padding-bottom: 70px;
 }
@@ -23,6 +23,7 @@
   display: flex;
   justify-content: space-around;
   width: 1020px;
+  height: fit-content;
   flex-wrap: wrap;
 }
 
@@ -39,21 +40,30 @@
 
 .shop-card {
   margin-bottom: 25px;
-  max-height: 400px;
+  height: fit-content;
 }
 
 .filter-form {
   min-width: 250px;
+  background-color: #ebebeb;
+  padding: 50px 40px;
+  border-radius: 10px;
+  margin-right: 100px;
+  height: fit-content;
 }
 
 .filter-button {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
   @include setFont($eighteenSize);
   @include buttonSet();
   padding: 5px 15px;
   margin-bottom: 25px;
+  transition: all .4s ease-in-out;
   &:hover {
-    background-color: $mainDarkClr;
     border: 2px solid transparent;
+    background-color: $mainDarkClr;
     color: $mainLightClr;
   }
 }
@@ -66,7 +76,7 @@
   color: $mainDarkClr;
 }
 
-.filter {
+.filter{
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
@@ -75,11 +85,12 @@
 .filter-name {
   margin-bottom: 15px;
   @include setFont($twentySize);
+  font-size: 25px;
 }
 
 .filter-label {
   @include setFont($fourteenSize);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 30px;
   cursor: pointer;
 }

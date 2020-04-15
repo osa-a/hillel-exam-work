@@ -1,8 +1,11 @@
 .banner-head {
   display: flex;
-  justify-content: space-around;
-  padding-top: 185px;
-  padding-bottom: 185px;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #ece7dd;
 }
 
 .banner-info {
@@ -10,24 +13,29 @@
   flex-direction: column;
   align-items: flex-end;
   padding-top: 120px;
+  margin-right: 200px;
 }
 
 .banner-text {
   @include setFont($seventySize);
   max-width: 420px;
-  color: $mainDarkClr;
-  margin-bottom: 105px;
+  color: #574c3c;
+  margin-bottom: 75px;
   text-align: right;
 }
 
 .banner-button {
   width: 185px;
   @include setFont($twentySize);
-  @include buttonSet();
+  background-color: transparent;
+  border: 2px solid #574c3c;
+  color: #574c3c;
+  cursor: pointer;
   padding: 23px 20px;
+  transition: all 0.4s ease-in-out;
   &:hover {
-    background-color: $bannerAccentClr;
     border: 2px solid transparent;
+    background-color: $bannerAccentClr;
     color: $mainLightClr;
   }
 }

@@ -1,10 +1,7 @@
-@charset "UTF-8";
 /*   MAIN CLR  */
 /*   ACCENT CLR   */
 /*   FONT SIZES   */
-/* МОЛЮ, НЕ ТРОГАЙТЕ ЭТОТ ФАЙЛ */
 input[type=range] {
-  height: 24px;
   -webkit-appearance: none;
   margin: 10px 0;
   width: 100%; }
@@ -16,7 +13,7 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 7px;
   cursor: pointer;
-  background: #D9D9D9;
+  background: white;
   border-radius: 10px;
   border: 0px solid #000000; }
 
@@ -30,6 +27,14 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -5.5px; }
+
+.spanValue {
+  font-family: "OpenSans Regular", Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px; }
 
 .page-head {
   background-image: url("../../img/cart/shop-bg.png");
@@ -46,7 +51,7 @@ input[type=range]::-webkit-slider-thumb {
 
 .category-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding-top: 70px;
   padding-bottom: 70px; }
 
@@ -54,6 +59,7 @@ input[type=range]::-webkit-slider-thumb {
   display: flex;
   justify-content: space-around;
   width: 1020px;
+  height: fit-content;
   flex-wrap: wrap; }
 
 .empty-message {
@@ -73,12 +79,20 @@ input[type=range]::-webkit-slider-thumb {
 
 .shop-card {
   margin-bottom: 25px;
-  max-height: 400px; }
+  height: fit-content; }
 
 .filter-form {
-  min-width: 250px; }
+  min-width: 250px;
+  background-color: #ebebeb;
+  padding: 50px 40px;
+  border-radius: 10px;
+  margin-right: 100px;
+  height: fit-content; }
 
 .filter-button {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 18px;
   line-height: 18px;
@@ -88,10 +102,11 @@ input[type=range]::-webkit-slider-thumb {
   color: #000000;
   cursor: pointer;
   padding: 5px 15px;
-  margin-bottom: 25px; }
+  margin-bottom: 25px;
+  transition: all .4s ease-in-out; }
   .filter-button:hover {
-    background-color: #000000;
     border: 2px solid transparent;
+    background-color: #000000;
     color: #ffffff; }
 
 .range-slider {
@@ -110,14 +125,15 @@ input[type=range]::-webkit-slider-thumb {
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 24px;
   line-height: 24px;
-  font-weight: 400; }
+  font-weight: 400;
+  font-size: 25px; }
 
 .filter-label {
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 14px;
   line-height: 14px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 30px;
   cursor: pointer; }
 

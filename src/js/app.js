@@ -11,6 +11,7 @@ fetch('data.json')
         type = [...res.type];
         descriptions = { ...res.descriptions };
         smallImg = { ...res.smallImg };
+        slider = [...res.slider];
         createCommentsData();
         createData();
         page = getDataFromSession('page');
