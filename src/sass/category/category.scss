@@ -36,6 +36,7 @@
   background-size: 415px 400px;
   color: #727272;
   font-weight: 600;
+  min-height: 650px;
 }
 
 .shop-card {
@@ -91,10 +92,14 @@
 .filter-label {
   @include setFont($fourteenSize);
   font-size: 18px;
-  line-height: 30px;
+  line-height: 18px;
   cursor: pointer;
 }
 .checkbox-margin {
-  margin-right: 10px;
+  margin-right: 50px;
   cursor: pointer;
+}
+
+.check-container{
+margin-bottom: 15px;
 }
