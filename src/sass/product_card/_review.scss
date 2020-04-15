@@ -30,7 +30,7 @@
     }
 
     textarea {
-        @include font(18px, 21pxpx, $fw:400);
+        @include font(18px, 21px, $fw:400);
         min-width: 800px;
         border: none;
         border-bottom: 1px solid #000;
@@ -38,8 +38,12 @@
         height: 100px;
     }
 
-    input[type=submit] {
+    button[type=submit] {
+        @include font(21px, 25px, $fw:400);
+        display: block;
         margin-bottom: 40px;
+        margin-top: 10px;
+        padding: 10px;
         min-width: 150px;
         border: 1px solid #000;
         background-color: transparent;
