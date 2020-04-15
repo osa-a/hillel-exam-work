@@ -30,9 +30,9 @@ function switchPage(page, reload) {
             watchPriceRange();
             break;
         case '5':
+            getCartLocal();
             if (cart.length > 0) {
                 createCartPage(reload);
-                sendOrder();
             } else {
                 createModalCart();
             }
@@ -237,6 +237,7 @@ function createModalCart() {
     createOrderHeader(modalOrderBody);
     createOrderContent(modalOrderBody);
     createOrderFooter(modalOrderBody);
+    calcTotal();
     deleteOrderItem();
     calcCounter();
 }
@@ -289,11 +290,13 @@ function createOrderDeleteBtn(modalOrderItem, i) {
 function deleteOrderItem() {
     const modalOrderContent = document.getElementById('modalOrderContent');
     modalOrderContent.addEventListener('click', (e) => {
+        let page = getDataFromSession('page');
         let clicked = e.target.getAttribute('data-delete');
         if (!clicked) {
             return;
         }
         const modalOrderItem = document.querySelectorAll('.modal-order-item');
+        const modalOrderDelete = document.querySelectorAll('.modal-order-delete');
         for (let i = 0; i < modalOrderItem.length; i++) {
             if (modalOrderItem[i].dataset.selected === clicked) {
                 modalOrderItem[i].remove();
@@ -305,9 +308,15 @@ function deleteOrderItem() {
                 }
             }
             if (modalOrderItem.length === 1) {
-                let modalOrder = document.getElementById('modalOrder');
-                document.body.style.overflow = 'auto';
-                modalOrder.remove();
+                if (page === '5') {
+                    modalOrderDelete[i].classList.add('another-page');
+                    modalOrderDelete[i].setAttribute('data-page', '1');
+                    window.scrollTo(0, 0);
+                } else {
+                    let modalOrder = document.getElementById('modalOrder');
+                    document.body.style.overflow = 'auto';
+                    modalOrder.remove();
+                }
             }
         }
     });
@@ -372,12 +381,14 @@ function createOrderAmountMinus(modalOrderAmountCounter, i) {
 function calcCounter() {
     let content = document.getElementById('modalOrderContent');
     let counter = document.querySelectorAll('.modal-order-amount-init');
+    let sum = document.querySelectorAll('.modal-order-sum');
     content.addEventListener('click', (e) => {
         let plusClick = e.target.getAttribute('data-plus');
         let minusClick = e.target.getAttribute('data-minus');
 
         for (let i = 0; i < counter.length; i++) {
-            let amount = parseInt(counter[i].innerText);
+            let amount = counter[i].innerText = cart[i]['amount'];
+            let price = parseInt(sum[i].innerText) / cart[i]['amount'];
             if (counter[i].dataset.counter === plusClick) {
                 amount += 1;
                 changeAmountValue(amount, i);
@@ -385,13 +396,15 @@ function calcCounter() {
             if (counter[i].dataset.counter === minusClick) {
                 if (amount <= 1) {
                     counter[i].innerText = 1;
-                    amount = 1;
+                    cart[i]['amount'] = amount = 1;
                 } else {
                     amount -= 1;
                     changeAmountValue(amount, i);
                 }
             }
-
+            sum[i].innerText = `${price * cart[i]['amount']}$`;
+            calcTotal();
+            setCartToLocal(cart);
         }
     });
 }
@@ -400,12 +413,14 @@ let changeAmountValue = (amount, i) => {
     let counter = document.querySelectorAll('.modal-order-amount-init');
     if (amount < 1) {
         counter[i].innerText = 1;
-        amount = 1;
+        cart[i]['amount'] = amount = 1;
     } else {
         counter[i].innerText = amount;
+        cart[i]['amount'] = amount;
     }
     return amount;
 };
+
 
 function createOrderSum(modalOrderNumInfo, i, j) {
     const modalOrderSum = document.createElement('div');
@@ -475,6 +490,10 @@ function createOrderTotal(parent) {
     const modalOrderTotal = document.createElement('div');
     modalOrderTotal.classList.add('modal-order-total');
     parent.appendChild(modalOrderTotal);
+}
+
+function calcTotal() {
+    const modalOrderTotal = document.querySelector('.modal-order-total');
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
         for (let j = 0; j < items.length; j++) {

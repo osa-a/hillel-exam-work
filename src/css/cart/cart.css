@@ -46,6 +46,8 @@
         color: #ffffff; }
 
 .input-text {
+  width: 100%;
+  outline: none;
   border: none;
   border-bottom: 1px solid #333;
   padding: 0 0 9px;
@@ -96,3 +98,17 @@
     font-family: "OpenSans Regular", Helvetica, sans-serif;
     font-size: 15px;
     font-weight: 500; }
+
+.parent-error {
+  position: relative; }
+
+.error {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 55%;
+  color: #D71E02;
+  font-size: 12px; }
+
+.error-radio {
+  top: 90%; }

@@ -8,4 +8,8 @@ function createCartPage(reload) {
     createCartPageBody(cartPage);
 
     insertMain(cartPage);
+    sendOrder();
+    calcTotal();
+    deleteOrderItem();
+    calcCounter();
 }
