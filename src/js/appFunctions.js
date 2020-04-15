@@ -237,9 +237,11 @@ function createModalCart() {
     createOrderHeader(modalOrderBody);
     createOrderContent(modalOrderBody);
     createOrderFooter(modalOrderBody);
-    calcTotal();
-    deleteOrderItem();
-    calcCounter();
+    if (cart.length > 0) {
+        calcTotal();
+        calcCounter();
+        deleteOrderItem();
+    }
 }
 
 function createSelectedItems(parent) {
@@ -288,7 +290,7 @@ function createOrderDeleteBtn(modalOrderItem, i) {
 }
 // delete item func
 function deleteOrderItem() {
-    const modalOrderContent = document.getElementById('modalOrderContent');
+    const modalOrderContent = document.querySelector('.modal-order-content');
     modalOrderContent.addEventListener('click', (e) => {
         let page = getDataFromSession('page');
         let clicked = e.target.getAttribute('data-delete');
@@ -308,15 +310,17 @@ function deleteOrderItem() {
                 }
             }
             if (modalOrderItem.length === 1) {
+                let modalOrder = document.getElementById('modalOrder');
                 if (page === '5') {
                     modalOrderDelete[i].classList.add('another-page');
                     modalOrderDelete[i].setAttribute('data-page', '1');
                     window.scrollTo(0, 0);
                 } else {
-                    let modalOrder = document.getElementById('modalOrder');
                     document.body.style.overflow = 'auto';
                     modalOrder.remove();
                 }
+                cart = [];
+                localStorage.removeItem('cart');
             }
         }
     });
@@ -348,9 +352,11 @@ function createOrderAmount(modalOrderNumInfo, i) {
 function createOrderAmountInit(modalOrderAmount, i) {
     const modalOrderAmountInit = document.createElement('div');
     modalOrderAmountInit.classList.add('modal-order-amount-init');
-    modalOrderAmountInit.innerText = cart[i]['amount'];
-    modalOrderAmountInit.setAttribute('data-counter', cart[i]['id']);
-    modalOrderAmount.appendChild(modalOrderAmountInit);
+    if (cart.length > 0) {
+        modalOrderAmountInit.innerText = cart[i]['amount'];
+        modalOrderAmountInit.setAttribute('data-counter', cart[i]['id']);
+        modalOrderAmount.appendChild(modalOrderAmountInit);
+    }
 }
 
 function createOrderAmountCounter(modalOrderAmount, i) {
@@ -379,7 +385,7 @@ function createOrderAmountMinus(modalOrderAmountCounter, i) {
 
 // COUNTER
 function calcCounter() {
-    let content = document.getElementById('modalOrderContent');
+    let content = document.querySelector('.modal-order-content');
     let counter = document.querySelectorAll('.modal-order-amount-init');
     let sum = document.querySelectorAll('.modal-order-sum');
     content.addEventListener('click', (e) => {
@@ -460,7 +466,6 @@ function createOrderHeader(modalOrderBody) {
 function createOrderContent(modalOrderBody) {
     const modalOrderContent = document.createElement('div');
     modalOrderContent.classList.add('modal-order-content');
-    modalOrderContent.setAttribute('id', 'modalOrderContent');
     modalOrderBody.appendChild(modalOrderContent);
     if (cart.length > 0) {
         createSelectedItems(modalOrderContent);

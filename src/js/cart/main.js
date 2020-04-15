@@ -10,6 +10,6 @@ function createCartPage(reload) {
     insertMain(cartPage);
     sendOrder();
     calcTotal();
-    deleteOrderItem();
     calcCounter();
+    deleteOrderItem();
 }

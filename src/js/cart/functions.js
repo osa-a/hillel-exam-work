@@ -280,7 +280,7 @@ function sendOrder() {
             sendOrderBtn.setAttribute('data-page', '1');
             window.scrollTo(0, 0);
             cart = [];
-            setCartToLocal();
+            localStorage.removeItem('cart');
             createModalThanks();
         }
     });
