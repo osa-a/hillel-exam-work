@@ -290,6 +290,7 @@ function createOrderDeleteBtn(modalOrderItem, i) {
 }
 // delete item func
 function deleteOrderItem() {
+    let modalOrder = document.getElementById('modalOrder');
     const modalOrderContent = document.querySelector('.modal-order-content');
     modalOrderContent.addEventListener('click', (e) => {
         let page = getDataFromSession('page');
@@ -302,6 +303,12 @@ function deleteOrderItem() {
         for (let i = 0; i < modalOrderItem.length; i++) {
             if (modalOrderItem[i].dataset.selected === clicked) {
                 modalOrderItem[i].remove();
+                if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
+                    removeModalCart();
+                    modalOrderDelete[0].classList.add('another-page');
+                    modalOrderDelete[0].setAttribute('data-page', '1');
+                    window.scrollTo(0, 0);
+                }
             }
             for (let j = 0; j < cart.length; j++) {
                 if (cart[j]['id'] === clicked) {
@@ -310,20 +317,23 @@ function deleteOrderItem() {
                 }
             }
             if (modalOrderItem.length === 1) {
-                let modalOrder = document.getElementById('modalOrder');
                 if (page === '5') {
                     modalOrderDelete[i].classList.add('another-page');
                     modalOrderDelete[i].setAttribute('data-page', '1');
                     window.scrollTo(0, 0);
                 } else {
-                    document.body.style.overflow = 'auto';
-                    modalOrder.remove();
+                    removeModalCart();
                 }
                 cart = [];
                 localStorage.removeItem('cart');
             }
         }
     });
+}
+function removeModalCart() {
+    let modalOrder = document.getElementById('modalOrder');
+    document.body.style.overflow = 'auto';
+    modalOrder.remove();
 }
 
 function createOrderNameItem(modalOrderInfo, j) {
