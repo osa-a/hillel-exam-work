@@ -29,6 +29,11 @@ html * {
 body {
   margin: 0; }
 
+button,
+button:active,
+button:focus {
+  outline: none; }
+
 ul {
   margin-top: 0;
   margin-bottom: 0;
@@ -63,6 +68,7 @@ h6 {
   border-bottom: 1px solid #000000; }
 
 .header-logo {
+  outline: none;
   cursor: pointer; }
 
 .navigation-menu {
@@ -89,8 +95,7 @@ h6 {
   position: relative;
   width: 15px;
   height: 22px;
-  padding: 0;
-  outline: none; }
+  padding: 0; }
   .cart-button::before {
     position: absolute;
     content: "";
@@ -156,7 +161,6 @@ h6 {
     font-family: "OpenSans Regular", Helvetica, sans-serif; }
   .modal-order-close {
     cursor: pointer;
-    outline: none;
     border: none;
     position: absolute;
     top: 1%;
@@ -188,7 +192,6 @@ h6 {
     flex-wrap: wrap; }
   .modal-order-delete {
     cursor: pointer;
-    outline: none;
     border: none;
     position: absolute;
     top: 1%;
@@ -249,7 +252,6 @@ h6 {
     padding: 10px 20px 10px 20px;
     cursor: pointer;
     border: 1px solid #333;
-    outline: none;
     transition: all .4s ease-in-out; }
     .modal-order-button:hover {
       background-color: #333333;

@@ -9,6 +9,11 @@
   body {
     margin: 0;
   }
+  button,
+  button:active,
+  button:focus {
+    outline: none;
+  }
 }
 
 @mixin listReset {
@@ -46,7 +51,7 @@
 
 @mixin pm_zeroSet() {
   padding: 0;
-  margin: 0;    
+  margin: 0;
 }
 
 @mixin padding($pt, $pr, $pb, $pl) {
@@ -58,12 +63,12 @@
 
 @mixin margin($mt, $ml, $mb, $mr) {
   margin-top: $mt;
-  margin-left: $ml; 
+  margin-left: $ml;
   margin-bottom: $mb;
   margin-right: $mr;
 }
 
-@mixin flex($fd:row, $jc:center, $ai:center, $fw:wrap) {
+@mixin flex($fd: row, $jc: center, $ai: center, $fw: wrap) {
   display: flex;
   flex-direction: $fd;
   justify-content: $jc;
@@ -84,7 +89,7 @@
   cursor: pointer;
 }
 
-@mixin font($fs, $lh, $fw:400) {
+@mixin font($fs, $lh, $fw: 400) {
   font-size: $fs;
   line-height: $lh;
   font-weight: $fw;
