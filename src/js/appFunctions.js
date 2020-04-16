@@ -597,7 +597,6 @@ function openOrder() {
 
 function startShopping() {
     let cartButtonShopping = document.getElementById('modalOrderShopping');
-    removeModalCart();
     cartButtonShopping.addEventListener('click', () => {
         cartButtonShopping.classList.add('another-page');
         cartButtonShopping.setAttribute('data-page', '4');
