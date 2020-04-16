@@ -291,7 +291,6 @@ function createOrderDeleteBtn(modalOrderItem, i) {
 }
 // delete item func
 function deleteOrderItem() {
-    let modalOrder = document.getElementById('modalOrder');
     const modalOrderContent = document.querySelector('.modal-order-content');
     modalOrderContent.addEventListener('click', (e) => {
         let page = getDataFromSession('page');
@@ -315,6 +314,7 @@ function deleteOrderItem() {
                 if (page === '5') {
                     modalOrderDelete[i].classList.add('another-page');
                     modalOrderDelete[i].setAttribute('data-page', '1');
+                    document.getElementById('cartButton').style.visibility = 'visible';
                     window.scrollTo(0, 0);
                 } else {
                     removeModalCart();
