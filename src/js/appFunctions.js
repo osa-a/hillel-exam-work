@@ -304,12 +304,6 @@ function deleteOrderItem() {
         for (let i = 0; i < modalOrderItem.length; i++) {
             if (modalOrderItem[i].dataset.selected === clicked) {
                 modalOrderItem[i].remove();
-                if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
-                    removeModalCart();
-                    modalOrderDelete[0].classList.add('another-page');
-                    modalOrderDelete[0].setAttribute('data-page', '1');
-                    window.scrollTo(0, 0);
-                }
             }
             for (let j = 0; j < cart.length; j++) {
                 if (cart[j]['id'] === clicked) {
@@ -565,24 +559,14 @@ function openModalOrder() {
 
 function closeOrderCart() {
     let modalOrderClose = document.getElementById('modalOrderClose');
-    let modalOrder = document.getElementById('modalOrder');
     modalOrderClose.addEventListener('click', () => {
-        if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
-            modalOrderClose.classList.add('another-page');
-            modalOrderClose.setAttribute('data-page', '5');
-        }
         removeModalCart();
     });
 }
 
 function continueOrder() {
-    let modalOrder = document.getElementById('modalOrder');
     let modalOrderContinue = document.getElementById('modalOrderContinue');
     modalOrderContinue.addEventListener('click', () => {
-        if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
-            modalOrderContinue.classList.add('another-page');
-            modalOrderContinue.setAttribute('data-page', '4');
-        }
         removeModalCart();
     });
 }
