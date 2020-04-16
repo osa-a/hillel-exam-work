@@ -59,6 +59,20 @@
   }
 }
 
+.scroll-button {
+  position: fixed;
+  right: 10px;
+  bottom: 20px;
+  color: #28a745;
+  font-size: 120px;
+  cursor: pointer;
+  opacity: .5;
+  transform: rotate(90deg);
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .category-item {
   position: relative;
 }

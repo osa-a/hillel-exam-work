@@ -631,3 +631,22 @@ let addRatingToProduct = (id, average) => {
         }
     });
 };
+
+// SCROLL TOP BTN
+$(document).on('scroll', window, function () {
+    if ($(window).scrollTop() > 200) {
+        $('#scrollTopButton').show();
+    } else {
+        $('#scrollTopButton').hide();
+    }
+});
+
+function scrollTop(){
+    document.getElementById('scrollTopButton').addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    });
+}
