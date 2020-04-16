@@ -178,6 +178,7 @@ function filterListener() {
             sorryMessage();
             return;
         }
+        sessionStorage.removeItem('Data-sorry');
         setDataToSession('filter', filtered);
         createShopLine(filtered, 0, filtered.length, 'shop-head', section);
         let checkboxes = getCheckedForStorage();
