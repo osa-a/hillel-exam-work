@@ -125,7 +125,9 @@
     position: absolute;
     top: 1%;
     right: 1%;
-    color: #dc3545;
+    padding:2px 7px 5px 7px;
+    background-color: transparent;
+    color: #000000;
     font-weight: bold;
   }
   &-content {
@@ -161,8 +163,14 @@
     position: absolute;
     top: 1%;
     right: 1%;
-    color: #dc3545;
+    color: #000000;
     font-weight: bold;
+    padding:2px 7px 5px 7px;
+    transition: all .2s ease-in-out;
+    &:hover{
+      color: #ffffff;
+      background-color: #dc3545;
+    }
   }
   &-name {
     margin-bottom: 15px;

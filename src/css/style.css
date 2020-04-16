@@ -161,7 +161,9 @@ h6 {
     position: absolute;
     top: 1%;
     right: 1%;
-    color: #dc3545;
+    padding: 2px 7px 5px 7px;
+    background-color: transparent;
+    color: #000000;
     font-weight: bold; }
   .modal-order-content {
     padding-bottom: 15px;
@@ -191,8 +193,13 @@ h6 {
     position: absolute;
     top: 1%;
     right: 1%;
-    color: #dc3545;
-    font-weight: bold; }
+    color: #000000;
+    font-weight: bold;
+    padding: 2px 7px 5px 7px;
+    transition: all .2s ease-in-out; }
+    .modal-order-delete:hover {
+      color: #ffffff;
+      background-color: #dc3545; }
   .modal-order-name {
     margin-bottom: 15px;
     flex-basis: 100%; }

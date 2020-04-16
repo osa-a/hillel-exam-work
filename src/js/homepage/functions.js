@@ -19,6 +19,7 @@ function createHomepageSlider(homepage, slider) {
     for (let i = 0; i < slider.length; i++) {
         const slide = document.createElement('div');
         slide.classList.add('carousel-item');
+        slide.setAttribute('data-interval', '3000');
         if (i === 0) {
             slide.classList.add('active');
         }
