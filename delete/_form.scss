@@ -1,0 +1,142 @@
+.contact-us {
+  background-image: url("../img/sections/footer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.contact-us__container {
+  width: 100%;
+  min-width: 320px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 65px;
+  padding-bottom: 85px;
+}
+
+.contact-us__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .contact-us__header {
+    font-family: "Roboto Bold", Arial Bold, sans-serif;
+    font-size: 28px;
+    line-height: 31px;
+    color: $HeaderClr;
+    margin-bottom: 60px;
+  }
+  .contact-us__text {
+    font-family: "Roboto Regular", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 18px;
+    color: $HeaderClr;
+    margin-bottom: 45px;
+  }
+}
+
+.contact-us__name-surname {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.contact-us__name {
+  width: 212px;
+  margin-right: 25px;
+}
+
+.contact-us__surname {
+  width: 212px;
+}
+.contact-us__email {
+  width: 450px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.contact-us__input,
+.contact-us__textarea {
+  padding-top: 15px;
+  padding-left: 25px;
+  padding-bottom: 15px;
+  padding-right: 25px;
+  font-family: "Roboto Italic", Arial Italic, italic;
+  font-size: 12px;
+  line-height: 15px;
+  border-radius: 10px;
+  border: 1px solid $formUnputBorderClr;
+}
+
+.contact-us__textarea {
+  width: 450px;
+  margin-bottom: 25px;
+  align-self: center;
+  height: 170px;
+}
+
+.contact-us__submit {
+  width: 450px;
+  background-color: #b7b7b7;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border: 1px solid $formUnputBorderClr;
+  color: #ffffff;
+  align-self: center;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .contact-us__header {
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+  }
+  .contact-us__name {
+    margin-right:25px;
+    width: 150px;
+  }
+  .contact-us__surname{
+    width: 150px;
+  }
+  .contact-us__submit {
+    width: 330px;
+  }
+  .contact-us__textarea {
+    width: 330px;
+  }
+  .contact-us__email {
+    width: 330px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 768px) {
+  .contact-us__form {
+    align-items: center;
+  }
+  .contact-us__name-surname {
+    flex-direction: column;
+    .contact-us__name{
+      margin-right:0;
+      margin-bottom: 20px;
+    }
+    .contact-us__surname{
+      width: 210px;
+    }
+  }
+  .contact-us__submit {
+    width: 210px;
+  }
+  .contact-us__textarea {
+    width: 210px;
+    height: 100px;
+
+  }
+  .contact-us__email {
+    width: 210px;
+  }
+
+  .contact-us__text{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+}

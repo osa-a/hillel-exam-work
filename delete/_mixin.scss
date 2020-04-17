@@ -1,0 +1,62 @@
+@mixin mainSet {
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@mixin listReset {
+  ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+
+  li {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
+
+@mixin linkSet {
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+@mixin headingReset {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+@mixin buttonSet {
+  .button {
+    font-family: "Roboto Bold", Arial Bold, sans-serif;
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+@mixin sectionHeader {
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto Bold", Arial Bold, sans-serif;
+  font-size: 28px;
+  color: $HeaderClr;
+}
+

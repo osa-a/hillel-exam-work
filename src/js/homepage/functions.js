@@ -9,6 +9,9 @@ function createHomepageSlider(homepage, slider) {
     indicators.classList.add('carousel-indicators');
     for (let i = 0; i < slider.length; i++) {
         const indicatorElem = document.createElement('li');
+        if (i === 0) {
+            indicatorElem.classList.add('active');
+        }
         indicatorElem.setAttribute('data-target', '#homePageCarousel');
         indicatorElem.setAttribute('data-slide-to', i);
         indicators.appendChild(indicatorElem);

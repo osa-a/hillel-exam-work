@@ -1,0 +1,127 @@
+.popular {
+  padding-top: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 35px;
+}
+
+.popular__main-header {
+  @include sectionHeader;
+  margin-bottom: 3.5vw;
+}
+
+.popular__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.popular--container {
+  width: 100%;
+  min-width: 320px;
+  max-width: 1875px;
+  margin: 0 auto;
+}
+
+.popular__information {
+  color: $popularDarkTextClr;
+  font-size: 15px;
+  line-height: 17px;
+  .popular__header {
+    font-family: "Roboto Bold", Arial Bold, sans-serif;
+    margin-bottom: 12px;
+  }
+  .popular__price {
+    font-family: "Roboto Light", Arial, sans-serif;
+  }
+}
+
+.popular__buy-button {
+  padding: 20px 35px;
+  background-color: $popularsButClr;
+  color: $popularLightTextClr;
+  &:hover {
+    background-color: $popularButHover;
+    color: $popularTextAccent;
+  }
+}
+
+.popular__option-select {
+  cursor: pointer;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 80px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid $popularBorderClr;
+  margin-right: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  background: url("../img/down-arrow.png");
+  background-repeat: no-repeat;
+  background-size: 18px 12px;
+  background-position: 108px 21px;
+}
+
+.popular__content--flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 1506px) and (max-width: 1510px) {
+  .popular__items {
+    justify-content: center;
+  }
+  .popular__item--margin {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1506px) {
+  .popular__items {
+    justify-content: center;
+  }
+  .popular__item--margin {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .popular__items {
+    flex-direction: column;
+    align-items: center;
+  }
+  .popular__item--margin {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 768px) {
+  .popular__items {
+    flex-direction: column;
+    align-items: center;
+  }
+  .popular__item {
+    margin-bottom: 20px;
+  }
+  .popular__item--margin {
+    margin-right: 10px;
+  }
+  .popular__image {
+    width: 330px;
+    height: 275px;
+  }
+
+  .popular__header{
+    width: 120px;
+  }
+  .popular__buy-button {
+    padding: 15px 20px;
+  }
+  .popular__option-select {
+    padding-right: 40px;
+    background-position: 80px 21px;
+  }
+}

@@ -5,7 +5,7 @@
 
 .navigation {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 25px 75px;
   border-bottom: 1px solid $mainDarkClr;
 }
@@ -13,13 +13,12 @@
 .header-logo {
   outline: none;
   cursor: pointer;
+  margin-right: 250px;
 }
 
 .navigation-menu {
   display: flex;
-}
-
-.navigation-menu {
+  margin-right: 250px;
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 24px;
   line-height: 24px;
@@ -28,7 +27,7 @@
 .nav-item {
   border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   &:not(:last-child) {
     margin-right: 72px;
   }
@@ -124,7 +123,7 @@
     position: absolute;
     top: 1%;
     right: 1%;
-    padding:2px 7px 5px 7px;
+    padding: 2px 7px 5px 7px;
     background-color: transparent;
     color: #000000;
     font-weight: bold;
@@ -163,9 +162,9 @@
     right: 1%;
     color: #000000;
     font-weight: bold;
-    padding:2px 7px 5px 7px;
-    transition: all .2s ease-in-out;
-    &:hover{
+    padding: 2px 7px 5px 7px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
       color: #ffffff;
       background-color: #dc3545;
     }
@@ -230,7 +229,7 @@
     padding: 10px 20px 10px 20px;
     cursor: pointer;
     border: 1px solid #333;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     &:hover {
       background-color: $footerBackround;
       color: $mainLightClr;
@@ -238,5 +237,25 @@
   }
   &-continue {
     margin-right: 10px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .header-logo {
+    display: none;
+  }
+}
+
+@media (min-width: 920px) and(max-width:1560px) {
+  .header-logo {
+    margin-right: 100px;
+  }
+  .navigation-menu {
+    margin-right: 100px;
+  }
+  .nav-item {
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
   }
 }
