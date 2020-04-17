@@ -110,13 +110,14 @@ h6 {
 
 .scroll-button {
   position: fixed;
-  right: 10px;
+  right: 5px;
   bottom: 20px;
+  border: 0;
+  background-color: transparent;
   color: #28a745;
-  font-size: 120px;
+  font-size: 60px;
   cursor: pointer;
-  opacity: .5;
-  transform: rotate(90deg); }
+  opacity: .5; }
   .scroll-button:hover {
     opacity: 1; }
 
