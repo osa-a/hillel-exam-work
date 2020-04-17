@@ -63,18 +63,18 @@ h6 {
 
 .navigation {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 25px 75px;
   border-bottom: 1px solid #000000; }
 
 .header-logo {
   outline: none;
-  cursor: pointer; }
+  cursor: pointer;
+  margin-right: 250px; }
 
 .navigation-menu {
-  display: flex; }
-
-.navigation-menu {
+  display: flex;
+  margin-right: 250px;
   font-family: "OpenSans Regular", Helvetica, sans-serif;
   font-size: 24px;
   line-height: 24px; }
@@ -82,7 +82,7 @@ h6 {
 .nav-item {
   border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: all .2s ease-in-out; }
+  transition: all 0.2s ease-in-out; }
   .nav-item:not(:last-child) {
     margin-right: 72px; }
   .nav-item:hover:not(div) {
@@ -117,7 +117,7 @@ h6 {
   color: #28a745;
   font-size: 60px;
   cursor: pointer;
-  opacity: .5; }
+  opacity: 0.5; }
   .scroll-button:hover {
     opacity: 1; }
 
@@ -212,7 +212,7 @@ h6 {
     color: #000000;
     font-weight: bold;
     padding: 2px 7px 5px 7px;
-    transition: all .2s ease-in-out; }
+    transition: all 0.2s ease-in-out; }
     .modal-order-delete:hover {
       color: #ffffff;
       background-color: #dc3545; }
@@ -265,7 +265,7 @@ h6 {
     padding: 10px 20px 10px 20px;
     cursor: pointer;
     border: 1px solid #333;
-    transition: all .4s ease-in-out; }
+    transition: all 0.4s ease-in-out; }
     .modal-order-button:hover {
       background-color: #333333;
       color: #ffffff; }
@@ -276,7 +276,10 @@ h6 {
   border: 3px solid #ebebeb;
   padding: 7px 20px 25px 15px;
   border-radius: 10px;
-  transition: all .2s ease-in-out; }
+  margin-bottom: 25px;
+  height: fit-content;
+  transition: all .2s ease-in-out;
+  margin-right: 25px; }
   .shop-card:hover {
     border: 3px solid; }
 
@@ -361,4 +364,3 @@ h6 {
 
 .contact-web {
   cursor: pointer; }
-

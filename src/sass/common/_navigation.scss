@@ -67,7 +67,7 @@
   color: #28a745;
   font-size: 60px;
   cursor: pointer;
-  opacity: .5;
+  opacity: 0.5;
   &:hover {
     opacity: 1;
   }
@@ -252,25 +252,5 @@
   }
   &-continue {
     margin-right: 10px;
-  }
-}
-
-@media (max-width: 1120px) {
-  .header-logo {
-    display: none;
-  }
-}
-
-@media (min-width: 920px) and(max-width:1560px) {
-  .header-logo {
-    margin-right: 100px;
-  }
-  .navigation-menu {
-    margin-right: 100px;
-  }
-  .nav-item {
-    &:not(:last-child) {
-      margin-right: 15px;
-    }
   }
 }
