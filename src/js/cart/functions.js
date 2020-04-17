@@ -271,17 +271,13 @@ function sendOrder() {
             }
             validateCart(isValueValid, element.name);
         }
-        let payment = document.getElementsByName('payment');
-        for (let i = 0; i < payment.length; i++){
-            if (payment[i].checked) {
-                document.querySelector(`.parent-payment > .error`).style.display = 'none';
-                validValues['payment'] = payment[i].value;
-            } else {
-                document.querySelector(`.parent-payment > .error`).style.display = 'block';
-            }
+        if (!document.querySelector('input[type="radio"]:checked')) {
+            document.querySelector(`.parent-payment > .error`).style.display = 'block';
+        } else {
+            document.querySelector(`.parent-payment > .error`).style.display = 'none';
         }
         let inputs = document.querySelectorAll('.input-text');
-        if (Object.keys(validValues).length === inputs.length) {
+        if (Object.keys(validValues).length === inputs.length && document.querySelector('input[type="radio"]:checked')) {
             sendOrderBtn.classList.add('another-page');
             sendOrderBtn.setAttribute('data-page', '1');
             window.scrollTo(0, 0);
