@@ -1,6 +1,7 @@
 'use strict';
 
 let items = [];
+let orders = [];
 let cart = [];
 let categories = [];
 let material = [];

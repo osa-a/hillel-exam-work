@@ -22,6 +22,7 @@ fetch('data.json')
         filterListener(wrapper);
         createRatingArray();
         getCartLocal();
+        getOrdersLocal();
     });
 
 openModalOrder();
