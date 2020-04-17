@@ -291,7 +291,6 @@ function createOrderDeleteBtn(modalOrderItem, i) {
 }
 // delete item func
 function deleteOrderItem() {
-    let modalOrder = document.getElementById('modalOrder');
     const modalOrderContent = document.querySelector('.modal-order-content');
     modalOrderContent.addEventListener('click', (e) => {
         let page = getDataFromSession('page');
@@ -304,12 +303,6 @@ function deleteOrderItem() {
         for (let i = 0; i < modalOrderItem.length; i++) {
             if (modalOrderItem[i].dataset.selected === clicked) {
                 modalOrderItem[i].remove();
-                if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
-                    removeModalCart();
-                    modalOrderDelete[0].classList.add('another-page');
-                    modalOrderDelete[0].setAttribute('data-page', '1');
-                    window.scrollTo(0, 0);
-                }
             }
             for (let j = 0; j < cart.length; j++) {
                 if (cart[j]['id'] === clicked) {
@@ -321,6 +314,7 @@ function deleteOrderItem() {
                 if (page === '5') {
                     modalOrderDelete[i].classList.add('another-page');
                     modalOrderDelete[i].setAttribute('data-page', '1');
+                    document.getElementById('cartButton').style.visibility = 'visible';
                     window.scrollTo(0, 0);
                 } else {
                     removeModalCart();
@@ -565,24 +559,14 @@ function openModalOrder() {
 
 function closeOrderCart() {
     let modalOrderClose = document.getElementById('modalOrderClose');
-    let modalOrder = document.getElementById('modalOrder');
     modalOrderClose.addEventListener('click', () => {
-        if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
-            modalOrderClose.classList.add('another-page');
-            modalOrderClose.setAttribute('data-page', '5');
-        }
         removeModalCart();
     });
 }
 
 function continueOrder() {
-    let modalOrder = document.getElementById('modalOrder');
     let modalOrderContinue = document.getElementById('modalOrderContinue');
     modalOrderContinue.addEventListener('click', () => {
-        if (document.querySelector('.navigation').contains(modalOrder) && document.querySelector('.main').contains(document.querySelector('.cart-body'))) {
-            modalOrderContinue.classList.add('another-page');
-            modalOrderContinue.setAttribute('data-page', '4');
-        }
         removeModalCart();
     });
 }
@@ -647,3 +631,22 @@ let addRatingToProduct = (id, average) => {
         }
     });
 };
+
+// SCROLL TOP BTN
+$(document).on('scroll', window, function () {
+    if ($(window).scrollTop() > 200) {
+        $('#scrollTopButton').show();
+    } else {
+        $('#scrollTopButton').hide();
+    }
+});
+
+function scrollTop(){
+    document.getElementById('scrollTopButton').addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    });
+}
