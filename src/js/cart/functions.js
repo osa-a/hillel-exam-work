@@ -262,7 +262,6 @@ function sendOrder() {
             if (!element.name || element.name === 'payment') {
                 continue;
             }
-
             const isValueValid = isValidCart(element.value, element.name, valuePattern);
 
             if (isValueValid) {
@@ -272,20 +271,52 @@ function sendOrder() {
             }
             validateCart(isValueValid, element.name);
         }
-        if (!document.querySelector('input[type="radio"]').checked) {
-            document.querySelector(`.parent-payment > .error`).style.display = 'block';
-        } else {
-            document.querySelector(`.parent-payment > .error`).style.display = 'none';
+        let payment = document.getElementsByName('payment');
+        for (let i = 0; i < payment.length; i++){
+            if (payment[i].checked) {
+                document.querySelector(`.parent-payment > .error`).style.display = 'none';
+                validValues['payment'] = payment[i].value;
+            } else {
+                document.querySelector(`.parent-payment > .error`).style.display = 'block';
+            }
         }
         let inputs = document.querySelectorAll('.input-text');
-
-        if (Object.keys(validValues).length === inputs.length && document.querySelector('input[type="radio"]').checked) {
+        if (Object.keys(validValues).length === inputs.length) {
             sendOrderBtn.classList.add('another-page');
             sendOrderBtn.setAttribute('data-page', '1');
             window.scrollTo(0, 0);
             cart = [];
             localStorage.removeItem('cart');
+            getDataOrder(elementsArr);
             createModalThanks();
         }
     });
+}
+
+function getDataOrder(elementsArr) {
+    let order = new Order();
+    for (let element of elementsArr) {
+        for (let key in order) {
+            if (key === element.name) {
+                order[key] = element.value;
+                console.log(order[key]);
+            } else if (key === 'cart') {
+                order[key] = cart;
+            }
+        }
+    }
+    orders.push(order);
+    setOrdersToLocal();
+}
+
+function Order(name, surname, address, city, country, phone, email, payment, cart) {
+    this.name = name;
+    this.surname = surname;
+    this.address = address;
+    this.city = city;
+    this.country = country;
+    this.phone = phone;
+    this.email = email;
+    this.payment = payment;
+    this.cart = cart;
 }

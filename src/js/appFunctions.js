@@ -193,9 +193,19 @@ let setCartToLocal = (cart) => {
     return localStorage.setItem('cart', cartInJSONFormat);
 };
 
+let setOrdersToLocal = (orders) => {
+    let ordersInJSONFormat = JSON.stringify(orders);
+    return localStorage.setItem('orders', ordersInJSONFormat);
+};
+
 let getCartLocal = () => {
     if (localStorage.getItem('cart')) {
         return cart = JSON.parse(localStorage.getItem('cart'));
+    }
+};
+let getOrdersLocal = () => {
+    if (localStorage.getItem('orders')) {
+        return orders = JSON.parse(localStorage.getItem('orders'));
     }
 };
 
