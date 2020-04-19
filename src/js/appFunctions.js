@@ -159,7 +159,7 @@ function cartButtonListener(wrapper) {
             return;
         }
         cart.push(itemElement);
-        setCartToLocal(cart);
+        setDataToLocal('cart', cart);
         createModalCart();
     });
 }
@@ -188,14 +188,9 @@ function filterListener() {
 
 //*   LOCAL + SESSION STORAGES   *//
 
-let setCartToLocal = (cart) => {
-    let cartInJSONFormat = JSON.stringify(cart);
-    return localStorage.setItem('cart', cartInJSONFormat);
-};
-
-let setOrdersToLocal = (orders) => {
-    let ordersInJSONFormat = JSON.stringify(orders);
-    return localStorage.setItem('orders', ordersInJSONFormat);
+let setDataToLocal = (dataName, data) => {
+    let cartInJSONFormat = JSON.stringify(data);
+    return localStorage.setItem(dataName, cartInJSONFormat);
 };
 
 let getCartLocal = () => {
@@ -317,7 +312,7 @@ function deleteOrderItem() {
             for (let j = 0; j < cart.length; j++) {
                 if (cart[j]['id'] === clicked) {
                     cart.splice(j, 1);
-                    setCartToLocal(cart);
+                    setDataToLocal('cart', cart);
                 }
             }
             if (modalOrderItem.length === 1) {
@@ -425,7 +420,7 @@ function calcCounter() {
             }
             sum[i].innerText = `${price * cart[i]['amount']}$`;
             calcTotal();
-            setCartToLocal(cart);
+            setDataToLocal('cart', cart);
         }
     });
 }

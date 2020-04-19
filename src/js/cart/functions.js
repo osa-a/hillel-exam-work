@@ -302,7 +302,7 @@ function getDataOrder(elementsArr) {
         }
     }
     orders.push(order);
-    setOrdersToLocal();
+    setOrdersToLocal('orders', orders);
 }
 
 function Order(name, surname, address, city, country, phone, email, payment, cart) {
