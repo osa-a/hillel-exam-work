@@ -7,7 +7,6 @@ function createCartPage(reload) {
     document.getElementById('cartButton').style.visibility = 'hidden';
     createCartPageHead(cartPage);
     createCartPageBody(cartPage);
-
     insertMain(cartPage);
     sendOrder();
     calcTotal();

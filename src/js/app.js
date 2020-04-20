@@ -21,8 +21,8 @@ fetch('data.json')
         cartButtonListener(wrapper);
         filterListener(wrapper);
         createRatingArray();
-        getCartLocal();
-        getOrdersLocal();
+        getDataFromStorage('cart', cart);
+        getDataFromStorage('orders', orders);
     });
 
 openModalOrder();

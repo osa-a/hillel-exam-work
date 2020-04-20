@@ -30,7 +30,8 @@ function switchPage(page, reload) {
             watchPriceRange();
             break;
         case '5':
-            getCartLocal();
+            getDataFromStorage('cart', cart);
+            getDataFromStorage('orders', orders);
             if (cart.length > 0) {
                 createCartPage(reload);
             } else {
@@ -193,16 +194,11 @@ let setDataToLocal = (dataName, data) => {
     return localStorage.setItem(dataName, cartInJSONFormat);
 };
 
-let getCartLocal = () => {
-    if (localStorage.getItem('cart')) {
-        return cart = JSON.parse(localStorage.getItem('cart'));
+let getDataFromStorage = (dataName, data) => {
+    if (localStorage.getItem(dataName)) {
+        return data = JSON.parse(localStorage.getItem(dataName));
     }
-};
-let getOrdersLocal = () => {
-    if (localStorage.getItem('orders')) {
-        return orders = JSON.parse(localStorage.getItem('orders'));
-    }
-};
+}
 
 let setIdToStorage = (e, data, item) => {
     let selectedData = e.target.dataset[item];
