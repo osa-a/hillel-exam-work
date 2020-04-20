@@ -198,12 +198,12 @@ let getCartLocal = () => {
     if (localStorage.getItem('cart')) {
         return cart = JSON.parse(localStorage.getItem('cart'));
     }
-}
+};
 let getOrdersLocal = () => {
     if (localStorage.getItem('orders')) {
         return orders = JSON.parse(localStorage.getItem('orders'));
     }
-}
+};
 
 let setIdToStorage = (e, data, item) => {
     let selectedData = e.target.dataset[item];
