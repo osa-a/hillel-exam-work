@@ -2,18 +2,17 @@
 
 let сreateItemCardPage = (reload) => {
     //get items from storage
-    items = createItemsStorage(items);
+    items = createStorage(items, 'Items-data');
     
     // rating
     createRatingArray(); 
 
-    // отрисовка main и css 
+    // rendering main & css 
     const itemCardPage = document.createElement('main');
     itemCardPage.classList.add('main');
 
     insertMain(itemCardPage);
     cleaner(reload);
-    // changeCss('product_card');
 
     createSectionCategoryHead();
     createSwitchesSection();
@@ -21,7 +20,7 @@ let сreateItemCardPage = (reload) => {
     createReviewSection();
     createReviewFormSection();
 
-    // отрисовка контента страницы
+    // content rendering
     renderingProductCard();
     renderingPics();
 
@@ -33,18 +32,18 @@ let сreateItemCardPage = (reload) => {
     addListenerToChangeMainPic();
 
     // add comments to review
-    // addEventListenetToReviewSubmit();
-    createCommentStorage(comments);
+    createStorage(comments, 'Comment-data');
 };
 
-function createItemsStorage(arr) {
-    if (localStorage.getItem('Items-data')) {
-        arr = JSON.parse(localStorage.getItem('Items-data')); 
+// ADD DATA TO STORAGE
+
+let createStorage = (arr, storageName) => {
+    if (localStorage.getItem(storageName)) {
+        arr = JSON.parse(localStorage.getItem(storageName)); 
     } else {
-        localStorage.setItem('Items-data', JSON.stringify(arr)); 
+        localStorage.setItem(storageName, JSON.stringify(arr)); 
     }
+        return arr;
+};
 
-    return arr;
-}
-
-let setItemsToStorage = (arr) => localStorage.setItem('Items-data', JSON.stringify(arr));
+let setDataToStorage = (arr, storageName) => localStorage.setItem(storageName, JSON.stringify(arr));
