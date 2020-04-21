@@ -149,17 +149,17 @@ function filterFormTrigger() {
 function filterPageCategories(items, page) {
     let ar = [];
     switch (page) {
-        case '2':
+        case 'decoration':
             ar = items.filter((item) => {
                 return item.category === 'Decoration';
             });
             break;
-        case '3':
+        case 'furniture':
             ar = items.filter((item) => {
                 return item.category === 'Furniture';
             });
             break;
-        case '4':
+        case 'shop':
             ar = items;
             break;
     }

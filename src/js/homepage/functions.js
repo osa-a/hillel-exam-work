@@ -49,7 +49,7 @@ function createSliderText(wrapper) {
     secondHeader.innerText = 'LATEST COLLECTION 2020';
     const buyButton = document.createElement('button');
     buyButton.classList.add('head-buy-button', 'another-page');
-    buyButton.setAttribute('data-page', '2');
+    buyButton.setAttribute('data-page', 'decoration');
     buyButton.setAttribute('type', 'button');
     buyButton.innerText = 'BUY';
 
@@ -69,7 +69,7 @@ function createBanner(homepage) {
     secondHeader.innerText = 'Collection of Furniture';
     const buyButton = document.createElement('button');
     buyButton.classList.add('banner-button', 'another-page');
-    buyButton.setAttribute('data-page', '3');
+    buyButton.setAttribute('data-page', 'furniture');
     buyButton.setAttribute('type', 'button');
     buyButton.innerText = 'SHOP NOW';
     const bannerImage = document.createElement('img');

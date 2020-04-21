@@ -10,30 +10,30 @@ function insertMain(page) {
 
 function switchPage(page, reload) {
     switch (page) {
-        case '1':
+        case 'homepage':
             document.getElementById('cartButton').style.visibility = 'visible';
             cleaner(reload);
             createHomepage();
             break;
-        case '2':
+        case 'decoration':
             document.getElementById('cartButton').style.visibility = 'visible';
             createCategoryPage('Decoration', reload);
             setSelectedFilter(reload);
             watchPriceRange();
             break;
-        case '3':
+        case 'furniture':
             document.getElementById('cartButton').style.visibility = 'visible';
             createCategoryPage('Furniture', reload);
             setSelectedFilter(reload);
             watchPriceRange();
             break;
-        case '4':
+        case 'shop':
             document.getElementById('cartButton').style.visibility = 'visible';
             createCategoryPage('Shop', reload);
             setSelectedFilter(reload);
             watchPriceRange();
             break;
-        case '5':
+        case 'cart':
             getCartLocal();
             if (cart.length > 0) {
                 createCartPage(reload);
@@ -41,7 +41,7 @@ function switchPage(page, reload) {
                 createModalCart();
             }
             break;
-        case '6':
+        case 'item-card':
             document.getElementById('cartButton').style.visibility = 'visible';
             сreateItemCardPage(reload);
             break;
@@ -96,7 +96,7 @@ function createCard(items, i, container) {
     shopCard.classList.add('shop-card');
     const cardImg = document.createElement('img');
     cardImg.classList.add('card-image', 'another-page');
-    cardImg.setAttribute('data-page', '6');
+    cardImg.setAttribute('data-page', 'item-card');
     cardImg.setAttribute('data-item', items[i].id);
     cardImg.setAttribute('src', `img/category-shop-cards/${items[i].id}.png`);
     cardImg.setAttribute('alt', 'item');
@@ -323,7 +323,7 @@ function deleteOrderItem() {
             if (modalOrderItem.length === 1) {
                 if (page === '5') {
                     modalOrderDelete[i].classList.add('another-page');
-                    modalOrderDelete[i].setAttribute('data-page', '1');
+                    modalOrderDelete[i].setAttribute('data-page', 'homepage');
                     document.getElementById('cartButton').style.visibility = 'visible';
                     window.scrollTo(0, 0);
                 } else {
@@ -596,7 +596,7 @@ function openOrder() {
     let modalOrderCheckout = document.getElementById('modalOrderCheckout');
     modalOrderCheckout.addEventListener('click', () => {
         modalOrderCheckout.classList.add('another-page');
-        modalOrderCheckout.setAttribute('data-page', '5');
+        modalOrderCheckout.setAttribute('data-page', 'cart');
         removeModalCart();
     });
 }
@@ -605,7 +605,7 @@ function startShopping() {
     let cartButtonShopping = document.getElementById('modalOrderShopping');
     cartButtonShopping.addEventListener('click', () => {
         cartButtonShopping.classList.add('another-page');
-        cartButtonShopping.setAttribute('data-page', '4');
+        cartButtonShopping.setAttribute('data-page', 'shop');
         removeModalCart();
     });
 }

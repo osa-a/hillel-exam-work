@@ -224,7 +224,7 @@ function sendOrder() {
         let inputs = document.querySelectorAll('.input-text');
         if (Object.keys(validValues).length === inputs.length && document.querySelector('input[type="radio"]:checked')) {
             sendOrderBtn.classList.add('another-page');
-            sendOrderBtn.setAttribute('data-page', '1');
+            sendOrderBtn.setAttribute('data-page', 'homepage');
             window.scrollTo(0, 0);
             cart = [];
             localStorage.removeItem('cart');
