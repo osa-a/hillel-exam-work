@@ -172,62 +172,6 @@ function createCartPageOrder(cartBody) {
     createOrderTotal(order);
 }
 
-// CREATE MODAL THANKS //
-function createModalThanks() {
-    document.body.style.overflow = 'hidden';
-    const pageHead = document.querySelector('.navigation');
-    const modalThanks = document.createElement('section');
-    modalThanks.classList.add('modal-order');
-    modalThanks.setAttribute('id', 'modalThanks');
-    pageHead.appendChild(modalThanks);
-    const modalThanksBody = document.createElement('div');
-    modalThanksBody.classList.add('modal-order-body');
-    modalThanks.appendChild(modalThanksBody);
-    createButtonThanksClose(modalThanksBody);
-    createThanksHeader(modalThanksBody);
-    createThanksContent(modalThanksBody);
-}
-
-function createButtonThanksClose(modalThanksBody) {
-    const buttonThanksClose = document.createElement('button');
-    buttonThanksClose.setAttribute('type', 'button');
-    buttonThanksClose.classList.add('modal-order-close');
-    buttonThanksClose.setAttribute('id', 'modalThanksClose');
-    buttonThanksClose.innerText = 'x';
-    modalThanksBody.appendChild(buttonThanksClose);
-    closeModalThanks();
-}
-
-function createThanksHeader(modalThanksBody) {
-    const modalThanksHeader = document.createElement('div');
-    modalThanksHeader.classList.add('modal-order-header');
-    modalThanksBody.appendChild(modalThanksHeader);
-    const modalThanksTitle = document.createElement('div');
-    modalThanksTitle.classList.add('modal-order-title');
-    modalThanksHeader.appendChild(modalThanksTitle);
-    modalThanksHeader.style.textAlign = 'center';
-    modalThanksTitle.innerText = 'Thank you for the order';
-}
-
-function createThanksContent(modalThanksBody) {
-    const modalThanksContent = document.createElement('div');
-    modalThanksContent.classList.add('modal-order-content');
-    modalThanksBody.appendChild(modalThanksContent);
-    const modalThanksItems = document.createElement('div');
-    modalThanksItems.classList.add('modal-order-items');
-    modalThanksContent.appendChild(modalThanksItems);
-    modalThanksContent.style.textAlign = 'center';
-    modalThanksItems.innerText = 'Looking forward to seeing you again';
-}
-
-function closeModalThanks() {
-    let modalThanksClose = document.getElementById('modalThanksClose');
-    let modalThanks = document.getElementById('modalThanks');
-    modalThanksClose.addEventListener('click', () => {
-        document.body.style.overflow = 'auto';
-        modalThanks.remove();
-    });
-}
 // FUNC THAT WILL SEND FORM //
 let validateCart = (isValidCart, key) => {
     if (!isValidCart) {
@@ -244,6 +188,7 @@ let isValidCart = (value, key, pattern) => {
 function sendOrder() {
     const sendOrderBtn = document.getElementById('sendOrderBtn');
     sendOrderBtn.addEventListener('click', function () {
+        sendOrderBtn.classList.add('sendOrder');
         // validation of form
         const valuePattern = {
             name: /^[A-Z][a-z]{1,}$/,
@@ -284,7 +229,7 @@ function sendOrder() {
             cart = [];
             localStorage.removeItem('cart');
             getDataOrder(elementsArr);
-            createModalThanks();
+            createModalCart();
         }
     });
 }

@@ -11,27 +11,30 @@ function insertMain(page) {
 function switchPage(page, reload) {
     switch (page) {
         case '1':
+            document.getElementById('cartButton').style.visibility = 'visible';
             cleaner(reload);
             createHomepage();
             break;
         case '2':
+            document.getElementById('cartButton').style.visibility = 'visible';
             createCategoryPage('Decoration', reload);
             setSelectedFilter(reload);
             watchPriceRange();
             break;
         case '3':
+            document.getElementById('cartButton').style.visibility = 'visible';
             createCategoryPage('Furniture', reload);
             setSelectedFilter(reload);
             watchPriceRange();
             break;
         case '4':
+            document.getElementById('cartButton').style.visibility = 'visible';
             createCategoryPage('Shop', reload);
             setSelectedFilter(reload);
             watchPriceRange();
             break;
         case '5':
             getCartLocal();
-            getOrdersLocal();
             if (cart.length > 0) {
                 createCartPage(reload);
             } else {
@@ -39,6 +42,7 @@ function switchPage(page, reload) {
             }
             break;
         case '6':
+            document.getElementById('cartButton').style.visibility = 'visible';
             сreateItemCardPage(reload);
             break;
         default:
@@ -466,7 +470,10 @@ function createOrderHeader(modalOrderBody) {
     const modalOrderTitle = document.createElement('div');
     modalOrderTitle.classList.add('modal-order-title');
     modalOrderHeader.appendChild(modalOrderTitle);
-    if (cart.length > 0) {
+    if (document.querySelector('.sendOrder')) {
+        modalOrderHeader.style.textAlign = 'center';
+        modalOrderTitle.innerText = 'Thank you for the order.';
+    } else if (cart.length > 0) {
         modalOrderTitle.innerText = 'Your order';
     } else {
         modalOrderHeader.style.textAlign = 'center';
@@ -478,7 +485,13 @@ function createOrderContent(modalOrderBody) {
     const modalOrderContent = document.createElement('div');
     modalOrderContent.classList.add('modal-order-content');
     modalOrderBody.appendChild(modalOrderContent);
-    if (cart.length > 0) {
+    if (document.querySelector('.sendOrder')) {
+        const modalThanksItems = document.createElement('div');
+        modalThanksItems.classList.add('modal-order-items');
+        modalOrderContent.appendChild(modalThanksItems);
+        modalOrderContent.style.textAlign = 'center';
+        modalThanksItems.innerText = 'Looking forward to seeing you again';
+    } else if (cart.length > 0) {
         createSelectedItems(modalOrderContent);
     } else {
         modalOrderContent.style.textAlign = 'center';
@@ -493,12 +506,14 @@ function createOrderFooter(modalOrderBody) {
     const modalOrderFooter = document.createElement('div');
     modalOrderFooter.classList.add('modal-order-footer');
     modalOrderBody.appendChild(modalOrderFooter);
-    if (cart.length > 0) {
-        createOrderTotal(modalOrderFooter);
-        createOrderContinueBtn(modalOrderFooter);
-        createOrderCheckoutBtn(modalOrderFooter);
-    } else {
-        createOrderShoppingBtn(modalOrderFooter);
+    if (!document.querySelector('.sendOrder')) {
+        if (cart.length > 0) {
+            createOrderTotal(modalOrderFooter);
+            createOrderContinueBtn(modalOrderFooter);
+            createOrderCheckoutBtn(modalOrderFooter);
+        } else {
+            createOrderShoppingBtn(modalOrderFooter);
+        }
     }
 }
 
