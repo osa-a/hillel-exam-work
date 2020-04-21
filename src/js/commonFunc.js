@@ -194,6 +194,15 @@ function filterListener() {
 
 //*   LOCAL + SESSION STORAGES   *//
 
+let createStorage = (arr, storageName) => {
+    if (localStorage.getItem(storageName)) {
+        arr = JSON.parse(localStorage.getItem(storageName));
+    } else {
+        localStorage.setItem(storageName, JSON.stringify(arr));
+    }
+    return arr;
+};
+
 let setDataToLocal = (name, data) => {
     localStorage.setItem(name, JSON.stringify(data));
 };
@@ -282,7 +291,7 @@ let addRatingToProduct = (id, average) => {
 
 //*   SCROLL TOP BTN   *//
 
-$(document).on('scroll', window, function () {
+$(document).on('scroll', window, function() {
     if ($(window).scrollTop() > 200) {
         $('#scrollTopButton').show();
     } else {

@@ -56,20 +56,12 @@ let createTextareaReview = () => {
     parent.append(textarea);
 };
 
-//если эт не нужно, можно убрать
-let mnemonFunc = () => {
-    let mnemon = '&rarr;';
-    let htmlDecode = value => $('<div/>').html(value).text();
-    mnemon = htmlDecode(mnemon);
-    return mnemon;
-};
-
 let createSubmitButtonReview = () => {
     let button = document.createElement('button');
     let parent = document.querySelector('.review-info');
     button.classList.add('submit-item-card-btn');
     button.setAttribute('type', 'submit');
-    button.innerHTML = `Submit ${mnemonFunc()}`;
+    button.innerHTML = `Submit &rarr;`;
     parent.append(button);
 };
 
@@ -84,7 +76,7 @@ let createSectionCategoryHead = () => {
 
 let createItemCardSection = () => {
     createElement('div', 'wrapper', '.main');
-    // create section - item-card
+    // create section - "item-card"
     createElement('section', 'item-card', '.wrapper');
     createElement('div', 'item-card__mini-reviewer', '.item-card');
 
@@ -159,14 +151,14 @@ let createReviewFormSection = () => {
 
     createRatingBlock();
 
-    createInput('nameSurname', 'text', 'name-field-id', 'Your name', '.review-info');
+    createInput('name', 'text', 'name-field-id', 'Your name', '.review-info');
     createInput('email', 'text', 'email-field-id', 'Your email', '.review-info');
 
     createTextareaReview();
     createSubmitButtonReview();
 };
 
-//!!!!! RATINGGGGGGGGGGG
+//!!!!! RATINGGGGGGGGGGG (add in comments)
 
 let createRatingBlock = () => {
     $('<div>', {
@@ -417,11 +409,9 @@ let addSaveListenersToValidation = () => {
         if (!document.querySelector('.error-comment')) {
             createUserReview();
             const ratingAmount = getRatingValue();
-            let commentElem = new Comment(validElements.nameSurname, rating[ratingAmount - 1], validElements.empty);
+            let commentElem = new Comment(validElements.name, rating[ratingAmount - 1], validElements.empty);
             commentElem.pushToAr(commentElem);
-            //?start
-            setDataToStorage(comments, 'Comment-data');
-            //?end
+            setDataToLocal('Comment-data', comments);
             setCommentToItems(getDataFromLocal('Data-item'), commentElem);
         }
     });
@@ -436,7 +426,7 @@ let getRatingValue = () => document.querySelectorAll('.br-selected').length;
 
 let validate = (isValid, key) => {
     if (!isValid) {
-        if (key === 'nameSurname' && !document.querySelector('.name-error')) {
+        if (key === 'name' && !document.querySelector('.name-error')) {
             const errorInput = document.querySelector(`input[name=${key}]`);
             errorInput.insertAdjacentHTML('afterend', '<div class="error-comment name-error">Your name isn\'t correct</div>');
         } else if (key === 'email' && !document.querySelector('.email-error')) {
@@ -447,7 +437,7 @@ let validate = (isValid, key) => {
             errorInput.insertAdjacentHTML('afterend', '<div class="error-comment textarea-error">Please, write your comment</div>');
         }
     } else {
-        if (key === 'nameSurname' && document.querySelector('.name-error')) {
+        if (key === 'name' && document.querySelector('.name-error')) {
             document.querySelector('.name-error').remove();
         } else if (key === 'email' && document.querySelector('.email-error')) {
             document.querySelector('.email-error').remove();
@@ -508,9 +498,7 @@ let setCommentToItems = (id, value) => {
             // clear all inputs in form
             reserFormValue();
             // add new items array to local storage
-            //? start
-            setDataToStorage(items, 'Items-data');
-            //? end
+            setDataToLocal('Items-data', items);
             // reset rating in card
             resetRating();
         }
