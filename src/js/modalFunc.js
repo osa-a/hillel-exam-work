@@ -14,9 +14,9 @@ function createModalCart() {
     createOrderContent(modalOrderBody);
     createOrderFooter(modalOrderBody);
     if (cart.length > 0) {
-        calcTotal();
-        calcCounter();
         deleteOrderItem();
+        calcCounter();
+        calcTotal();
     }
 }
 
@@ -85,8 +85,10 @@ function deleteOrderItem() {
                     cart.splice(j, 1);
                     setDataToLocal('cart', cart);
                 }
+                calcTotal();
             }
-            if (modalOrderItem.length === 1) {
+            if (cart.length === 0) {
+                localStorage.removeItem('cart');
                 if (page === 'cart') {
                     modalOrderDelete[i].classList.add('another-page');
                     modalOrderDelete[i].setAttribute('data-page', 'homepage');
@@ -95,8 +97,6 @@ function deleteOrderItem() {
                 } else {
                     removeModalCart();
                 }
-                cart = [];
-                localStorage.removeItem('cart');
             }
         }
     });
@@ -105,6 +105,7 @@ function deleteOrderItem() {
 function removeModalCart() {
     let modalOrder = document.getElementById('modalOrder');
     document.body.style.overflow = 'auto';
+    modalOrder.innerHTML = '';
     modalOrder.remove();
 }
 
@@ -173,7 +174,9 @@ function calcCounter() {
     content.addEventListener('click', (e) => {
         let plusClick = e.target.getAttribute('data-plus');
         let minusClick = e.target.getAttribute('data-minus');
-
+        if (!plusClick && !minusClick) {
+            return;
+        }
         for (let i = 0; i < counter.length; i++) {
             let amount = counter[i].innerText = cart[i]['amount'];
             let price = parseInt(sum[i].innerText) / cart[i]['amount'];
@@ -185,6 +188,7 @@ function calcCounter() {
                 if (amount <= 1) {
                     counter[i].innerText = 1;
                     cart[i]['amount'] = amount = 1;
+
                 } else {
                     amount -= 1;
                     changeAmountValue(amount, i);
