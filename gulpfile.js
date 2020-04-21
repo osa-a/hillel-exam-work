@@ -21,6 +21,7 @@ const jsDefault = () => {
         './src/js/data.js',
         './src/js/Item.js',
         './src/js/Comments.js',
+        './src/js/Order.js',
         './src/js/modalFunc.js',
         './src/js/commonFunc.js',
         './src/js/homepage/functions.js',
