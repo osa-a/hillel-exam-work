@@ -32,27 +32,21 @@ function createCartPageBilling(cartBody) {
 function createOrderForm(billing) {
     const orderForm = document.createElement('form');
     orderForm.setAttribute('name', 'orderForm');
-    createInputs(orderForm);
+    createInputHalf(orderForm);
+    createInputFull(orderForm);
     createTextArea(orderForm);
     createRadioPaymentBlock(orderForm);
     createBillingButtonBlock(orderForm);
     billing.appendChild(orderForm);
 }
 
-function createInputs(orderForm) {
+function createInputHalf(orderForm) {
     const divHalfBlock = document.createElement('div');
     divHalfBlock.classList.add('half');
-    //! все компоненты такого рода, я бы вынесла в data.js   
     const inputHalf = [
         { name: 'name', placeholder: 'First Name *' },
         { name: 'surname', placeholder: 'Second Name *' }
     ];
-
-    //! одинаковые циклы
-    //! хорошо бы сделать из него одну универсальную функцию, с передающимися аргументами
-    //!вызванная два раза
-
-    //? start
     for (let i = 0; i < inputHalf.length; i++) {
         let inputBlock = document.createElement('div');
         inputBlock.classList.add('parent-error', `parent-${inputHalf[i]['name']}`, 'input-half');
@@ -68,10 +62,10 @@ function createInputs(orderForm) {
         inputBlock.appendChild(error);
         divHalfBlock.appendChild(inputBlock);
     }
-    //? end
     orderForm.appendChild(divHalfBlock);
+}
 
-    //! тоже вынесла бы в data.js
+function createInputFull(orderForm) {
     const inputFull = [
         {
             type: 'text',
@@ -99,7 +93,6 @@ function createInputs(orderForm) {
             placeholder: 'Email Address *'
         }
     ];
-    //? start
     for (let j = 0; j < inputFull.length; j++) {
         let divFullBlock = document.createElement('div');
         divFullBlock.classList.add('parent-error', `parent-${inputFull[j]['name']}`);
@@ -115,7 +108,6 @@ function createInputs(orderForm) {
         divFullBlock.appendChild(error);
         orderForm.appendChild(divFullBlock);
     }
-    //? end
 }
 
 function createTextArea(orderForm) {
@@ -135,8 +127,6 @@ function createRadioPaymentBlock(orderForm) {
     error.innerText = `Please, choose a kind of payment`;
     error.classList.add('error', 'error-radio');
     orderForm.appendChild(radio);
-    
- //! тоже вынесла бы в data.js
     let radioInfo = [
         { id: 'orderBank', text: 'Direct bank transfer', value: 'Bank' },
         { id: 'orderCheck', text: 'Check payments', value: 'Check' },
@@ -203,17 +193,6 @@ function sendOrder() {
     sendOrderBtn.addEventListener('click', function () {
         sendOrderBtn.classList.add('sendOrder');
         // validation of form
-        //! нужно оставить всего один вариант паттернов
-        // const valuePattern = {
-        //     name: /^[A-Z][a-z]{1,}$/,
-        //     surname: /^[A-Z][a-z]{1,}$/,
-        //     address: /^[0-9]{1,7}((\-|\s)?[A-Z]?[a-z]{1,}){0,5}[str]\.\/\d{1,4}$/,
-        //     city: /^([A-Z]{2,3}|[the[A-Z][a-z]{1,}(\s[A-Z]?[a-z]{1,}){0,8})$/,
-        //     country: /^([A-Z]{2,3}|[the[A-Z][a-z]{1,}(\s[A-Z]?[a-z]{1,}){0,8})$/,
-        //     phone: /^((\+38)?[\(\-]?)?0\d{2}[\)\-]?\d{3}\-?\d{2}\-?\d{2}$/,
-        //     email: /^[0-9a-z]+([_\.]?[a-z0-9]{1,10}){0,2}@[a-z]{2,7}\.[a-z]{2,4}$/,
-        // };
-
         const validValues = {};
         const elements = document.forms.orderForm.elements;
         const elementsArr = Object.values(elements);
@@ -221,7 +200,7 @@ function sendOrder() {
             if (!element.name || element.name === 'payment') {
                 continue;
             }
-            const isValueValid = isValidCart(element.value, element.name, valuePattern);
+            const isValueValid = isValidCart(element.value, element.name, patterns);
 
             if (isValueValid) {
                 validValues[element.name] = element.value;
@@ -240,41 +219,9 @@ function sendOrder() {
             sendOrderBtn.classList.add('another-page');
             sendOrderBtn.setAttribute('data-page', 'homepage');
             window.scrollTo(0, 0);
-            cart = [];
-            localStorage.removeItem('cart');
             getDataOrder(elementsArr);
+            localStorage.removeItem('cart');
             createModalCart();
         }
     });
-}
-
-//! это сущность объекта, она должна быть в отдельном файле, так же как Item/Comments через классы
-//! если в нему есть методы, туда же 
-function Order(name, surname, address, city, country, phone, email, payment, cart) {
-    this.name = name;
-    this.surname = surname;
-    this.address = address;
-    this.city = city;
-    this.country = country;
-    this.phone = phone;
-    this.email = email;
-    this.payment = payment;
-    this.cart = cart;
-}
-
-function getDataOrder(elementsArr) {
-    let order = new Order();
-    for (let element of elementsArr) {
-        for (let key in order) {
-            if (key === element.name) {
-                order[key] = element.value;
-                //? он тут нужен еще? 
-                console.log(order[key]);
-            } else if (key === 'cart') {
-                order[key] = cart;
-            }
-        }
-    }
-    orders.push(order);
-    setDataToLocal('orders', orders);
 }
