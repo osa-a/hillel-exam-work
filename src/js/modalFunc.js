@@ -1,5 +1,3 @@
-//*   MODAL CART   *//
-
 'use strict';
 
 function createModalCart() {
@@ -210,7 +208,6 @@ let changeAmountValue = (amount, i) => {
     }
     return amount;
 };
-
 
 function createOrderSum(modalOrderNumInfo, i, j) {
     const modalOrderSum = document.createElement('div');

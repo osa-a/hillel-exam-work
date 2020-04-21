@@ -82,9 +82,7 @@ let createSectionCategoryHead = () => {
 };
 
 let createItemCardSection = () => {
-    // create wrapper
     createElement('div', 'wrapper', '.main');
-
     // create section - item-card
     createElement('section', 'item-card', '.wrapper');
     createElement('div', 'item-card__mini-reviewer', '.item-card');
@@ -197,15 +195,14 @@ let renderingProductCard = () => {
     const productCategory = document.querySelector('.category-of-good');
     const productType = document.querySelector('.features-of-good__type');
     const productMaterial = document.querySelector('.features-of-good__material');
-    // создаем массив, чтоб узнать сколько у нас комментариев
 
+    // создаем массив, чтоб узнать сколько у нас комментариев
     items.forEach(element => {
         if (element.id === selectedId) {
             let amount = element.comments.length;
 
             // какое количество в стораже, сначала создаются все существующие блоки, а только потом туда добавляется информация
             for (let i = 0; i < amount; i++) {
-
                 items.forEach(element => {
                     if (element.id === selectedId) {
                         productName.innerText = element.name;
@@ -228,13 +225,12 @@ let renderComments = (selectedId) => {
     items.forEach(element => {
         if (element.id === selectedId) {
             let amount = element.comments.length;
-
             // какое количество в стораже, сначала создаются все существующие блоки, а только потом туда добавляется информация
             for (let i = 0; i < amount; i++) {
                 const commentUserName = document.querySelector(`.user-name-${i}`);
                 const commentUserText = document.querySelector(`.review-content-${i}`);
                 const commentUserDate = document.querySelector(`.review-date-${i}`);
-
+                
                 items.forEach(element => {
                     if (element.id === selectedId) {
                         commentUserName.innerText = element.comments[i].name;
@@ -420,7 +416,9 @@ let addSaveListenersToValidation = () => {
             const ratingAmount = getRatingValue();
             let commentElem = new Comment(validElements.nameSurname, rating[ratingAmount - 1], validElements.empty);
             commentElem.pushToAr(commentElem);
+            //?start
             setDataToStorage(comments, 'Comment-data');
+            //?end
             setCommentToItems(getDataFromLocal('Data-item'), commentElem);
         }
     });
@@ -507,8 +505,9 @@ let setCommentToItems = (id, value) => {
             // clear all inputs in form
             reserFormValue();
             // add new items array to local storage
+            //? start
             setDataToStorage(items, 'Items-data');
-
+            //? end
             // reset rating in card
             resetRating();
         }

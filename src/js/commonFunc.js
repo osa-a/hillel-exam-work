@@ -77,6 +77,7 @@ function sorryMessage() {
     section.appendChild(message);
     container.appendChild(section);
 }
+
 //*   HOMEPAGE  +  CATEGORY    *// 
 
 function createShopLine(array, start, amount, calssName, page, secondClass) {

@@ -42,10 +42,17 @@ function createOrderForm(billing) {
 function createInputs(orderForm) {
     const divHalfBlock = document.createElement('div');
     divHalfBlock.classList.add('half');
+    //! все компоненты такого рода, я бы вынесла в data.js   
     const inputHalf = [
         { name: 'name', placeholder: 'First Name *' },
         { name: 'surname', placeholder: 'Second Name *' }
     ];
+
+    //! одинаковые циклы
+    //! хорошо бы сделать из него одну универсальную функцию, с передающимися аргументами
+    //!вызванная два раза
+
+    //? start
     for (let i = 0; i < inputHalf.length; i++) {
         let inputBlock = document.createElement('div');
         inputBlock.classList.add('parent-error', `parent-${inputHalf[i]['name']}`, 'input-half');
@@ -61,8 +68,10 @@ function createInputs(orderForm) {
         inputBlock.appendChild(error);
         divHalfBlock.appendChild(inputBlock);
     }
+    //? end
     orderForm.appendChild(divHalfBlock);
 
+    //! тоже вынесла бы в data.js
     const inputFull = [
         {
             type: 'text',
@@ -90,6 +99,7 @@ function createInputs(orderForm) {
             placeholder: 'Email Address *'
         }
     ];
+    //? start
     for (let j = 0; j < inputFull.length; j++) {
         let divFullBlock = document.createElement('div');
         divFullBlock.classList.add('parent-error', `parent-${inputFull[j]['name']}`);
@@ -105,6 +115,7 @@ function createInputs(orderForm) {
         divFullBlock.appendChild(error);
         orderForm.appendChild(divFullBlock);
     }
+    //? end
 }
 
 function createTextArea(orderForm) {
@@ -124,6 +135,8 @@ function createRadioPaymentBlock(orderForm) {
     error.innerText = `Please, choose a kind of payment`;
     error.classList.add('error', 'error-radio');
     orderForm.appendChild(radio);
+    
+ //! тоже вынесла бы в data.js
     let radioInfo = [
         { id: 'orderBank', text: 'Direct bank transfer', value: 'Bank' },
         { id: 'orderCheck', text: 'Check payments', value: 'Check' },
@@ -190,6 +203,7 @@ function sendOrder() {
     sendOrderBtn.addEventListener('click', function () {
         sendOrderBtn.classList.add('sendOrder');
         // validation of form
+        //! нужно оставить всего один вариант паттернов
         const valuePattern = {
             name: /^[A-Z][a-z]{1,}$/,
             surname: /^[A-Z][a-z]{1,}$/,
@@ -234,22 +248,8 @@ function sendOrder() {
     });
 }
 
-function getDataOrder(elementsArr) {
-    let order = new Order();
-    for (let element of elementsArr) {
-        for (let key in order) {
-            if (key === element.name) {
-                order[key] = element.value;
-                console.log(order[key]);
-            } else if (key === 'cart') {
-                order[key] = cart;
-            }
-        }
-    }
-    orders.push(order);
-    setDataToLocal('orders', orders);
-}
-
+//! это сущность объекта, она должна быть в отдельном файле, так же как Item/Comments через классы
+//! если в нему есть методы, туда же 
 function Order(name, surname, address, city, country, phone, email, payment, cart) {
     this.name = name;
     this.surname = surname;
@@ -260,4 +260,21 @@ function Order(name, surname, address, city, country, phone, email, payment, car
     this.email = email;
     this.payment = payment;
     this.cart = cart;
+}
+
+function getDataOrder(elementsArr) {
+    let order = new Order();
+    for (let element of elementsArr) {
+        for (let key in order) {
+            if (key === element.name) {
+                order[key] = element.value;
+                //? он тут нужен еще? 
+                console.log(order[key]);
+            } else if (key === 'cart') {
+                order[key] = cart;
+            }
+        }
+    }
+    orders.push(order);
+    setDataToLocal('orders', orders);
 }
