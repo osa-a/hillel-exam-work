@@ -4,9 +4,8 @@
   border-radius: 10px;
   margin-bottom: 25px;
   height: fit-content;
-  transition: all .2s ease-in-out;
-  // margin-right: 25px;
-  &:hover{
+  transition: all 0.2s ease-in-out;
+  &:hover {
     border: 3px solid;
   }
   &:not(:last-of-type) {
@@ -14,17 +13,17 @@
   }
 }
 
-.card-image{
-    cursor: pointer;
+.card-image {
+  cursor: pointer;
 }
 
 .card-item-name {
-  @include  setFont($eighteenSize);
+  @include setFont($eighteenSize);
   margin-bottom: 12px;
 }
 
 .card-price {
-  @include  setFont($fourteenSize);
+  @include setFont($fourteenSize);
 }
 
 .card-cart-button {

@@ -14,8 +14,7 @@
 
 .main-header {
   font-family: "OpenSans Bold", Helvetica, sans-serif;
-  font-size: 100px;
-  line-height: 100px;
+  font-size: 7em;
   color: #ffffff;
   margin-bottom: 50px; }
 
@@ -24,6 +23,7 @@
   font-size: 30px;
   line-height: 30px;
   font-weight: 400;
+  font-size: 2em;
   color: #ffffff;
   margin-bottom: 37px; }
 
@@ -32,6 +32,7 @@
   font-size: 30px;
   line-height: 30px;
   font-weight: 400;
+  font-size: 2em;
   padding: 23px 45px;
   transition: all 0.4s ease-in-out;
   color: #ffffff;
@@ -45,6 +46,21 @@
 
 .slider-img {
   filter: brightness(50%); }
+
+@media (max-width: 1748px) {
+  .main-header {
+    font-size: 5em;
+    margin-bottom: 0.5em; }
+  .header-description {
+    font-size: 2em;
+    margin-bottom: 1.5em; }
+  .head-buy-button {
+    font-family: "OpenSans Regular", Helvetica, sans-serif;
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 400;
+    font-size: 2em;
+    padding: 0.5em 1em; } }
 
 .banner-head {
   display: flex;
@@ -91,7 +107,7 @@
 
 .shop-line {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding-left: 60px;
   padding-right: 60px; }
 
@@ -100,6 +116,13 @@
 
 .shop-line-bot {
   padding-bottom: 170px; }
+
+@media (max-width: 1446px) {
+  .shop-line {
+    justify-content: space-around;
+    flex-wrap: wrap; }
+  .shop-card:not(:last-of-type) {
+    margin-right: 10px; } }
 
 .about-us {
   display: flex;
