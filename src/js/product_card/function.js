@@ -188,7 +188,7 @@ let createRatingBlock = () => {
 // RENDER
 
 let renderingProductCard = () => {
-    const selectedId = getIdFromStorage('item');
+    const selectedId = getDataFromLocal('Data-item');
     const productName = document.querySelector('.item-card__info-of-good--title');
     const productPrice = document.querySelector('.item-card__info-of-good--price');
     const productDescription = document.querySelector('.item-card__info-of-good--description');
@@ -234,13 +234,13 @@ let renderComments = (selectedId) => {
                 const commentUserName = document.querySelector(`.user-name-${i}`);
                 const commentUserText = document.querySelector(`.review-content-${i}`);
                 const commentUserDate = document.querySelector(`.review-date-${i}`);
-                
+
                 items.forEach(element => {
                     if (element.id === selectedId) {
                         commentUserName.innerText = element.comments[i].name;
                         commentUserText.innerText = element.comments[i].comment;
                         commentUserDate.innerText = element.comments[i].date;
-                        addRating(`.user-rating-${i}`, element.comments[i].rate, i); 
+                        addRating(`.user-rating-${i}`, element.comments[i].rate, i);
                         const userAvatar = document.querySelector(`.user-avatar-photo-${i}`);
                         userAvatar.setAttribute('src', `img/product_card/avatars/${element.comments[i].avatar}`);
                     }
@@ -252,7 +252,7 @@ let renderComments = (selectedId) => {
 };
 
 let renderingPics = () => {
-    let selectedId = getIdFromStorage('item');
+    let selectedId = getDataFromLocal('Data-item');
     const mainPic = document.querySelector('.main-pic');
     const miniPic1 = document.querySelector('.mini-pic-1');
     const miniPic2 = document.querySelector('.mini-pic-2');
@@ -306,13 +306,13 @@ let addlistenerToSwitches = () => {
             document.querySelector('.description-window__btn').classList.remove('non-active');
         }
     });
-   
+
 };
 
 // CHANGE MAIN PIC
 
 let addListenerToChangeMainPic = () => {
-    let selectedId = getIdFromStorage('item');
+    let selectedId = getDataFromLocal('Data-item');
     const miniPicBlock = document.querySelector('.item-card__mini-reviewer');
     const mainPic = document.querySelector('.main-pic');
 
@@ -328,7 +328,7 @@ let addListenerToChangeMainPic = () => {
 // ADD RATING 
 
 let addRatingToCard = () => {
-    const selectedId = getIdFromStorage('item');
+    const selectedId = getDataFromLocal('Data-item');
 
     items.forEach(element => {
         if (element.id === selectedId) {
@@ -339,7 +339,7 @@ let addRatingToCard = () => {
 };
 
 let addRating = (parent, rating, id) => {
-    let selectedId = getIdFromStorage('item');
+    let selectedId = getDataFromLocal('Data-item');
 
     items.forEach(element => {
         if (element.id === selectedId) {
@@ -359,7 +359,7 @@ let addRating = (parent, rating, id) => {
 
 // Самый страшный костыль проекта 
 let createUserReview = () => {
-    let id = getIdFromStorage('item');
+    let id = getDataFromLocal('Data-item');
 
     items.forEach(element => {
         if (element.id === id) {
@@ -399,20 +399,20 @@ let addSaveListenersToValidation = () => {
     submitButton.addEventListener('click', (e) => {
         e.preventDefault();
         const form = document.forms['review-form'];
-        
+
         const elementsArr = Object.values(form);
         for (let element of elementsArr) {
             if (!element.name) {
                 continue;
             }
-                
+
             const isValidValue = isValid(element.value, element.name);
-            
+
             if (isValidValue) {
                 validElements[element.name] = element.value;
             }
 
-            validate(isValidValue, element.name);  
+            validate(isValidValue, element.name);
         }
 
         if (!document.querySelector('.error-comment')) {
@@ -421,7 +421,7 @@ let addSaveListenersToValidation = () => {
             let commentElem = new Comment(validElements.nameSurname, rating[ratingAmount - 1], validElements.empty);
             commentElem.pushToAr(commentElem);
             setDataToStorage(comments, 'Comment-data');
-            setCommentToItems(getIdFromStorage('item'), commentElem);
+            setCommentToItems(getDataFromLocal('Data-item'), commentElem);
         }
     });
     return validElements;
@@ -433,8 +433,8 @@ let getRatingValue = () => document.querySelectorAll('.br-selected').length;
 
 // VALIDATION
 
-let validate = (isValid, key) => {    
-    if (!isValid) { 
+let validate = (isValid, key) => {
+    if (!isValid) {
         if (key === 'nameSurname' && !document.querySelector('.name-error')) {
             const errorInput = document.querySelector(`input[name=${key}]`);
             errorInput.insertAdjacentHTML('afterend', '<div class="error-comment name-error">Your name isn\'t correct</div>');
@@ -447,9 +447,9 @@ let validate = (isValid, key) => {
         }
     } else {
         if (key === 'nameSurname' && document.querySelector('.name-error')) {
-            document.querySelector('.name-error').remove(); 
+            document.querySelector('.name-error').remove();
         } else if (key === 'email' && document.querySelector('.email-error')) {
-            document.querySelector('.email-error').remove(); 
+            document.querySelector('.email-error').remove();
         } else if (key === 'empty' && document.querySelector('.textarea-error')) {
             document.querySelector('.textarea-error').remove();
         }
@@ -465,7 +465,7 @@ let isValid = (value, key) => {
         } else {
             return true;
         }
-    }  
+    }
 };
 
 // RESETS
@@ -477,7 +477,7 @@ let resetReviewSection = (id) => {
     renderComments(id);
 };
 
-let reserFormValue = () =>  document['review-form'].reset();
+let reserFormValue = () => document['review-form'].reset();
 
 let resetRating = () => {
     //clear rating in form
@@ -487,7 +487,7 @@ let resetRating = () => {
     document.querySelector('.product-rating').remove();
     createElement('div', 'product-rating', '.item-card__info-of-good');
     $('.product-rating').insertAfter('.item-card__info-of-good--price');
-    createRatingArray(); 
+    createRatingArray();
     addRatingToCard();
 };
 
@@ -508,7 +508,7 @@ let setCommentToItems = (id, value) => {
             reserFormValue();
             // add new items array to local storage
             setDataToStorage(items, 'Items-data');
-            
+
             // reset rating in card
             resetRating();
         }

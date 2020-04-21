@@ -139,8 +139,8 @@ function filterFormTrigger() {
         rating: getCheckboxesValue('checkRating'),
     };
 
-    setDataToSession('price', obj.price);
-    const page = getDataFromSession('page');
+    setDataToSession('Data-price', obj.price);
+    const page = getDataFromSession('Data-page');
 
     let itemsAr = filterPageCategories(items, page);
     return filtersRun(itemsAr, obj);
@@ -196,12 +196,12 @@ let filtered = (element, property, obj, rating) => {
 function setSelectedFilter(reload) {
     if (reload) {
         let checkboxes = document.getElementsByClassName('checkbox');
-        let selected = getDataFromSession('checkbox');
+        let selected = getDataFromSession('Data-checkbox');
         if (!selected) {
             selected = [];
         }
         //* -- start  (price range from storage)
-        let price = getDataFromSession('price');
+        let price = getDataFromSession('Data-price');
         const $value = $('#customRange');
         $value.val(price);
         //* -- ending

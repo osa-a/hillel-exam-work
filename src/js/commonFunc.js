@@ -61,7 +61,7 @@ function cleaner(reload) {
 
 function cartFilter(cart, element) {
     for (let i = 0; i < cart.length; i++) {
-        if(cart[i].id === element){
+        if (cart[i].id === element) {
             return 'already';
         }
     }
@@ -130,7 +130,7 @@ function mainPageListener(wrapper) {
         if (!click) {
             return;
         }
-        setIdToSession(e, 'page', 'page');
+        setIdToSession(e, 'Data-page', 'page');
         const page = e.target.getAttribute('data-page');
         switchPage(page);
         document.documentElement.scrollTop = 0;
@@ -143,7 +143,7 @@ function shopCardListener(container, reload) {
         if (!clicked) {
             return;
         }
-        setIdToStorage(e, 'item', 'item');
+        setIdToLocal(e, 'Data-item', 'item');
         сreateItemCardPage(reload);
     });
 }
@@ -179,23 +179,34 @@ function filterListener() {
         shopLineCleaner();
         let filtered = filterFormTrigger();
         if (filtered.length === 0) {
-            setDataToSession('sorry', true);
+            setDataToSession('Data-sorry', true);
             sorryMessage();
             return;
         }
         sessionStorage.removeItem('Data-sorry');
-        setDataToSession('filter', filtered);
+        setDataToSession('Data-filter', filtered);
         createShopLine(filtered, 0, filtered.length, 'shop-head', section);
         let checkboxes = getCheckedForStorage();
-        setDataToSession('checkbox', checkboxes);
+        setDataToSession('Data-checkbox', checkboxes);
     });
 }
 
 //*   LOCAL + SESSION STORAGES   *//
 
-let setDataToLocal = (dataName, data) => {
-    let cartInJSONFormat = JSON.stringify(data);
-    return localStorage.setItem(dataName, cartInJSONFormat);
+let setDataToLocal = (name, data) => {
+    localStorage.setItem(name, JSON.stringify(data));
+};
+
+let setIdToLocal = (e, name, item) => {
+    let selectedData = e.target.dataset[item];
+    localStorage.setItem(name, JSON.stringify(selectedData));
+};
+
+let getDataFromLocal = (name) => {
+    if (localStorage.getItem(name)) {
+        let selectedData = JSON.parse(localStorage.getItem(name));
+        return selectedData;
+    }
 };
 
 let getCartLocal = () => {
@@ -210,27 +221,18 @@ let getOrdersLocal = () => {
     }
 };
 
-let setIdToStorage = (e, data, item) => {
+//session
+let setIdToSession = (e, name, item) => {
     let selectedData = e.target.dataset[item];
-    localStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
+    sessionStorage.setItem(name, JSON.stringify(selectedData));
 };
 
-let getIdFromStorage = (data) => {
-    let selectedData = JSON.parse(localStorage.getItem(`Data-${data}`));
-    return selectedData;
+let setDataToSession = (name, data) => {
+    sessionStorage.setItem(name, JSON.stringify(data));
 };
 
-let setIdToSession = (e, data, item) => {
-    let selectedData = e.target.dataset[item];
-    sessionStorage.setItem(`Data-${data}`, JSON.stringify(selectedData));
-};
-
-let setDataToSession = (data, array) => {
-    sessionStorage.setItem(`Data-${data}`, JSON.stringify(array));
-};
-
-let getDataFromSession = (data) => {
-    let selectedData = JSON.parse(sessionStorage.getItem(`Data-${data}`));
+let getDataFromSession = (name) => {
+    let selectedData = JSON.parse(sessionStorage.getItem(name));
     return selectedData;
 };
 
@@ -287,7 +289,7 @@ $(document).on('scroll', window, function () {
     }
 });
 
-function scrollTop(){
+function scrollTop() {
     document.getElementById('scrollTopButton').addEventListener('click', () => {
         window.scrollTo({
             top: 0,

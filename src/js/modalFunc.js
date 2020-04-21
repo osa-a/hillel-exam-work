@@ -71,7 +71,7 @@ function createOrderDeleteBtn(modalOrderItem, i) {
 function deleteOrderItem() {
     const modalOrderContent = document.querySelector('.modal-order-content');
     modalOrderContent.addEventListener('click', (e) => {
-        let page = getDataFromSession('page');
+        let page = getDataFromSession('Data-page');
         let clicked = e.target.getAttribute('data-delete');
         if (!clicked) {
             return;

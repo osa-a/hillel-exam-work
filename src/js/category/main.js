@@ -13,8 +13,8 @@ function createCategoryPage(page, reload) {
             return item.category === page;
         });
     }
-    let check = getDataFromSession('filter');
-    let sorry = getDataFromSession('sorry');
+    let check = getDataFromSession('Data-filter');
+    let sorry = getDataFromSession('Data-sorry');
     if(sorry){
         createCategoryHead(category, page);
         createCategoryWrapper(category, shop);

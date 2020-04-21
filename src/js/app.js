@@ -14,7 +14,7 @@ fetch('data.json')
         slider = [...res.slider];
         createCommentsData();
         createData();
-        page = getDataFromSession('page');
+        page = getDataFromSession('Data-page');
         switchPage(page, true);
         mainPageListener(wrapper);
         shopCardListener(wrapper);
