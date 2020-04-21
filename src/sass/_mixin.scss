@@ -101,3 +101,18 @@
   line-height: $size;
   font-weight: 400;
 }
+
+@mixin placeholderSet() {
+  ::-webkit-input-placeholder {
+    font-style: italic;
+  }
+  :-moz-placeholder {
+    font-style: italic;
+  }
+  ::-moz-placeholder {
+    font-style: italic;
+  }
+  :-ms-input-placeholder {
+    font-style: italic;
+  }
+}

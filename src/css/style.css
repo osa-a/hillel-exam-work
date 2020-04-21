@@ -57,6 +57,18 @@ h6 {
   margin-top: 0;
   margin-bottom: 0; }
 
+::-webkit-input-placeholder {
+  font-style: italic; }
+
+:-moz-placeholder {
+  font-style: italic; }
+
+::-moz-placeholder {
+  font-style: italic; }
+
+:-ms-input-placeholder {
+  font-style: italic; }
+
 .wrapepr {
   width: 1920px;
   margin: 0 auto; }

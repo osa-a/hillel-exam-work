@@ -67,7 +67,7 @@ function createInputs(orderForm) {
         {
             type: 'text',
             name: 'address',
-            placeholder: 'Address *'
+            placeholder: 'Address ( 00000 Street Name str./№ ) *'
         },
         {
             type: 'text',
