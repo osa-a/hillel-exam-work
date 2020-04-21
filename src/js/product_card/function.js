@@ -56,6 +56,7 @@ let createTextareaReview = () => {
     parent.append(textarea);
 };
 
+//если эт не нужно, можно убрать
 let mnemonFunc = () => {
     let mnemon = '&rarr;';
     let htmlDecode = value => $('<div/>').html(value).text();
@@ -165,6 +166,8 @@ let createReviewFormSection = () => {
     createSubmitButtonReview();
 };
 
+//!!!!! RATINGGGGGGGGGGG
+
 let createRatingBlock = () => {
     $('<div>', {
         class: 'br-wrapper br-theme-fontawesome-stars',
@@ -230,7 +233,7 @@ let renderComments = (selectedId) => {
                 const commentUserName = document.querySelector(`.user-name-${i}`);
                 const commentUserText = document.querySelector(`.review-content-${i}`);
                 const commentUserDate = document.querySelector(`.review-date-${i}`);
-                
+
                 items.forEach(element => {
                     if (element.id === selectedId) {
                         commentUserName.innerText = element.comments[i].name;
