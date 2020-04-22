@@ -260,7 +260,7 @@ function createOrderContent(modalOrderBody) {
         modalThanksItems.classList.add('modal-order-items');
         modalOrderContent.appendChild(modalThanksItems);
         modalOrderContent.style.textAlign = 'center';
-        modalThanksItems.innerText = 'Looking forward to seeing you again';
+        modalThanksItems.innerText = 'Looking forward to see you again';
     } else if (cart.length > 0) {
         createSelectedItems(modalOrderContent);
     } else {
