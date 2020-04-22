@@ -5,6 +5,7 @@ function createHomepageSlider(homepage, slider) {
     carouselWrapper.classList.add('carousel', 'slide');
     carouselWrapper.setAttribute('id', 'homePageCarousel');
     carouselWrapper.setAttribute('data-ride', 'carousel');
+    //создание индикаторов
     const indicators = document.createElement('ol');
     indicators.classList.add('carousel-indicators');
     for (let i = 0; i < slider.length; i++) {
@@ -17,12 +18,14 @@ function createHomepageSlider(homepage, slider) {
         indicators.appendChild(indicatorElem);
     }
     carouselWrapper.appendChild(indicators);
+    //создание слайдов
     const carousel = document.createElement('div');
     carousel.classList.add('carousel-inner');
     for (let i = 0; i < slider.length; i++) {
         const slide = document.createElement('div');
         slide.classList.add('carousel-item');
         slide.setAttribute('data-interval', '3000');
+        //если первый элеменит, то он активен
         if (i === 0) {
             slide.classList.add('active');
         }

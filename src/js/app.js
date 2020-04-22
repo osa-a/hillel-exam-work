@@ -13,12 +13,20 @@ fetch('data.json')
         smallImg = { ...res.smallImg };
         slider = [...res.slider];
         createCommentsData();
+        //создается data товаров из файла сущности Item.js
         createData();
+        //страница из сешн сторедж
         page = getDataFromSession('Data-page');
+        //переключатель страниц в который передается страница
+        // и ture- была ли перезагрузка
         switchPage(page, true);
+        //слушает переключение страниц
         mainPageListener(wrapper);
+        //слушает переход на страницу кнкретного товара
         shopCardListener(wrapper);
+        //слушает добавление товара в корзину
         cartButtonListener(wrapper);
+        // слушает кнопку фильтр
         filterListener(wrapper);
         createRatingArray();
         getCartLocal();

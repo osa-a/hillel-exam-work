@@ -14,8 +14,6 @@ const slider = [];
 
 const patterns = {
     empty: /^$/,
-    nameSurname: /^[A-Z][a-z]{1,}$/,
-    cityCountry: /^([A-Z]{2,3}|[the[A-Z][a-z]{1,}(\s[A-Z]?[a-z]{1,}){0,8})$/,
     name: /^[A-Z][a-z]{1,}$/,
     surname: /^[A-Z][a-z]{1,}$/,
     address: /^[0-9]{1,7}((\-|\s)?[A-Z]?[a-z]{1,}){0,5}[str]\.\/\d{1,4}$/,
