@@ -154,7 +154,7 @@ function cartButtonListener(wrapper) {
         let clicked = e.target.getAttribute('data-cart');
         if (!clicked) {
             return;
-        };
+        }
         let itemElement = {
             id: clicked,
             amount: 1,

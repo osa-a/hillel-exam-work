@@ -1,3 +1,5 @@
+'use strict';
+
 function Order(name, surname, address, city, country, phone, email, payment, cart) {
     this.name = name;
     this.surname = surname;

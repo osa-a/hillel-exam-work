@@ -9,7 +9,8 @@
         "no-inline-comments": "error",
         "no-var": "error",
         "eqeqeq": "error",
-        "no-empty-function": "error"
-        // "no-console": "error"
+        "no-empty-function": "error",
+        "no-console": "error",
+        "no-extra-semi": "error"
     }
 }
