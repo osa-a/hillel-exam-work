@@ -20,6 +20,7 @@ function createCategoryWrapper(category, shop, filteredArray) {
     const section = document.createElement('section');
     section.classList.add('category-wrapper');
     createFilterForm(section, shop);
+    //отрисовывает товары в соответствии с отфильтрованным массивом
     if (filteredArray) {
         createShopLine(filteredArray, 0, filteredArray.length, 'shop-head', section);
     }
@@ -36,6 +37,7 @@ function createFilterForm(section, shop) {
     filterButton.setAttribute('type', 'button');
     filterButton.innerText = 'Filter';
     form.appendChild(filterButton);
+    //если магаз, показывает все фильтры + по категориям
     if (shop) {
         createFilter(categories, form, 'category', 'Category');
     }
@@ -72,11 +74,15 @@ function createRange(form) {
 
 function watchPriceRange() {
     $(document).ready(function () {
+        //получаем элемент c отображением цены
         const $spanValue = $('.spanValue');
+        //получаем цену
         const $value = $('#customRange');
-        $spanValue.html(`${$value.val()}$`);
+        //устанавливаем текущую цену в спан
+        $spanValue.html(`min: ${$value.val()}$`);
+        //динамически меняем цену в спане при изменении ползунка
         $value.on('input change', () => {
-            $spanValue.html(`${$value.val()}$`);
+            $spanValue.html(`min: ${$value.val()}$`);
         });
     });
 }
@@ -129,6 +135,7 @@ function getCheckboxesValue(checkboxName) {
     return ar;
 }
 
+//получает данные из чекбоксов и ренджа
 function filterFormTrigger() {
     const form = document.forms.filterForm;
     let obj = {
@@ -138,11 +145,14 @@ function filterFormTrigger() {
         type: getCheckboxesValue('checkType'),
         rating: getCheckboxesValue('checkRating'),
     };
-
+    //сетит цену отдельно в сешн сторедж
     setDataToSession('Data-price', obj.price);
+    //получает страницу на которой находится
     const page = getDataFromSession('Data-page');
-
+    //фильтрует общий массив всех товаров, в зависимости от страницы категории
     let itemsAr = filterPageCategories(items, page);
+    //с готовым массивом элементов и объектом выбранных чеков
+    //запускается последовательность фильтров
     return filtersRun(itemsAr, obj);
 }
 
@@ -150,6 +160,7 @@ function filterPageCategories(items, page) {
     let ar = [];
     switch (page) {
         case 'decoration':
+            //если страница decor, возвращает массив элементов без элементов фурнитуры
             ar = items.filter((item) => {
                 return item.category === 'Decoration';
             });
@@ -178,6 +189,9 @@ function filtersRun(elements, obj) {
 }
 
 let filtered = (element, property, obj, rating) => {
+    //если какой-то тип чекбоксов не выбран,
+    //например не выбран материалб что бы фильтр работал
+    // исправно дальше
     if (obj.length === 0) {
         return true;
     }

@@ -2,12 +2,16 @@
 
 //*   MAIN   *//
 
+//внедряет main перед футером
 function insertMain(page) {
     const mainFooter = document.getElementById('main-footer');
     let parentDiv = mainFooter.parentNode;
     parentDiv.insertBefore(page, mainFooter);
 }
 
+//reload - true из fetch (передается в клинер)
+// передаются в функции либо для клинера, либо для того что бы достать
+// конкретную дату из стореджа 
 function switchPage(page, reload) {
     switch (page) {
         case 'homepage':
@@ -18,7 +22,9 @@ function switchPage(page, reload) {
         case 'decoration':
             document.getElementById('cartButton').style.visibility = 'visible';
             createCategoryPage('Decoration', reload);
+            // ставит выбранные фильтры из стореджа
             setSelectedFilter(reload);
+            // следит за изменением цены в range filter 
             watchPriceRange();
             break;
         case 'furniture':
@@ -59,6 +65,7 @@ function cleaner(reload) {
     }
 }
 
+//фильтрует корзину на уже имеющиеся элементы в корзине
 function cartFilter(cart, element) {
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === element) {
@@ -80,6 +87,7 @@ function sorryMessage() {
 
 //*   HOMEPAGE  +  CATEGORY    *// 
 
+//создает полосу || секцию с товарами 
 function createShopLine(array, start, amount, calssName, page, secondClass) {
     const section = document.createElement('section');
     section.classList.add(calssName);
@@ -87,6 +95,7 @@ function createShopLine(array, start, amount, calssName, page, secondClass) {
         section.classList.add(secondClass);
     }
     for (let i = start; i < amount; i++) {
+        //создает карточку товара
         createCard(array, i, section);
     }
     page.appendChild(section);
@@ -124,7 +133,7 @@ function createCard(items, i, container) {
 }
 
 //*   LISTENERS   *//
-
+  //слушает переключение страниц
 function mainPageListener(wrapper) {
     wrapper.addEventListener('click', e => {
         const click = e.target.classList.contains('another-page');
@@ -137,7 +146,7 @@ function mainPageListener(wrapper) {
         document.documentElement.scrollTop = 0;
     });
 }
-
+  //слушает переход на страницу кнкретного товара
 function shopCardListener(container, reload) {
     container.addEventListener('click', (e) => {
         let clicked = e.target.getAttribute('data-item');
@@ -148,7 +157,7 @@ function shopCardListener(container, reload) {
         сreateItemCardPage(reload);
     });
 }
-
+//слушает добавление товара в корзину
 function cartButtonListener(wrapper) {
     wrapper.addEventListener('click', (e) => {
         let clicked = e.target.getAttribute('data-cart');
@@ -159,17 +168,19 @@ function cartButtonListener(wrapper) {
             id: clicked,
             amount: 1,
         };
+        //фильтрует на уже имеющиеся товары
         let filteredCart = cartFilter(cart, itemElement.id);
         if (filteredCart === 'already') {
             createModalCart();
             return;
         }
+        //добавляет в корзину
         cart.push(itemElement);
         setDataToLocal('cart', cart);
         createModalCart();
     });
 }
-
+// слушает кнопку фильтр
 function filterListener() {
     wrapper.addEventListener('click', (e) => {
         let clicked = e.target.classList.contains('filter-button');
@@ -177,8 +188,11 @@ function filterListener() {
             return;
         }
         const section = document.querySelector('.category-wrapper');
+        //чистит контейнер с товарами
         shopLineCleaner();
+        //запускает процесс фильтрации
         let filtered = filterFormTrigger();
+        // если нет подходящего продукта
         if (filtered.length === 0) {
             setDataToSession('Data-sorry', true);
             sorryMessage();
@@ -187,6 +201,7 @@ function filterListener() {
         sessionStorage.removeItem('Data-sorry');
         setDataToSession('Data-filter', filtered);
         createShopLine(filtered, 0, filtered.length, 'shop-head', section);
+        //собирает все выбранные чеки для стореджа
         let checkboxes = getCheckedForStorage();
         setDataToSession('Data-checkbox', checkboxes);
     });
