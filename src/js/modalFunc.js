@@ -185,14 +185,14 @@ function calcCounter() {
                 changeAmountValue(amount, i);
             }
             if (counter[i].dataset.counter === minusClick) {
-                if (amount <= 1) {
-                    counter[i].innerText = 1;
-                    cart[i]['amount'] = amount = 1;
+               // if (amount <= 1) {
+               //     counter[i].innerText = 1;
+               ////     cart[i]['amount'] = amount = 1;
 
-                } else {
+             //  } else {
                     amount -= 1;
                     changeAmountValue(amount, i);
-                }
+              //}
             }
             sum[i].innerText = `${price * cart[i]['amount']}$`;
             calcTotal();
