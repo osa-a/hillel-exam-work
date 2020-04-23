@@ -220,6 +220,7 @@ function sendOrder() {
             sendOrderBtn.setAttribute('data-page', 'homepage');
             window.scrollTo(0, 0);
             getDataOrder(elementsArr);
+            cart = [];
             localStorage.removeItem('cart');
             createModalCart();
         }
