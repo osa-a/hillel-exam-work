@@ -93,10 +93,7 @@ gulp.task('move', () => {
 
 gulp.task('images', () => {
     return gulp.src('./src/img/**/*.*')
-        //! не запускайте минификацию изображений
-        //! очень-очень долго будет грузить
-        //! это уже для финальной сборки
-        // .pipe(imagemin())
+        .pipe(imagemin())
         .pipe(gulp.dest('./build/img'));
 });
 
