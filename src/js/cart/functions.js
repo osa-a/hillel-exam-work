@@ -70,7 +70,7 @@ function createInputFull(orderForm) {
         {
             type: 'text',
             name: 'address',
-            placeholder: 'Address ( 00000 Street Name str./№ ) *'
+            placeholder: 'Address *'
         },
         {
             type: 'text',
