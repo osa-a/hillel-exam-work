@@ -146,7 +146,7 @@ function mainPageListener(wrapper) {
         document.documentElement.scrollTop = 0;
     });
 }
-  //слушает переход на страницу кнкретного товара
+  //слушает переход на страницу кокретного товара
 function shopCardListener(container, reload) {
     container.addEventListener('click', (e) => {
         let clicked = e.target.getAttribute('data-item');
