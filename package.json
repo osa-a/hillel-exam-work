@@ -23,7 +23,7 @@
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "jquery-bar-rating": "^1.2.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.13.1",
     "popper.js": "^1.16.1",
     "pretty-checkbox": "^3.0.3"
